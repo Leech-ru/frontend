@@ -1,11 +1,22 @@
-import { provideEventPlugins } from "@taiga-ui/event-plugins";
-import { provideAnimations } from "@angular/platform-browser/animations";
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import {
+  ApplicationConfig,
+  provideExperimentalZonelessChangeDetection,
+} from '@angular/core';
+import {
+  provideClientHydration,
+  withEventReplay,
+} from '@angular/platform-browser';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
-
+import { provideEventPlugins } from '@taiga-ui/event-plugins';
 import { routes } from './app.routes';
-import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideAnimations(), provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(withEventReplay()), provideEventPlugins()]
+  providers: [
+    provideAnimations(),
+    provideExperimentalZonelessChangeDetection(),
+    provideRouter(routes),
+    provideClientHydration(withEventReplay()),
+    provideEventPlugins(),
+  ],
 };
