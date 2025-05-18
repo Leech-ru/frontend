@@ -1,4 +1,8 @@
+import { RoutePath } from "@/app/@x/route";
+
 import { NavigationItem } from "../model/navigation.model";
+
+export const LOGO_ROUTER_LINK = "" as const satisfies RoutePath;
 
 export const NAVIGATION_ITEMS: NavigationItem[] = [
   {
