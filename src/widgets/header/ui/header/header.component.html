@@ -1,10 +1,12 @@
 <header class="app-header">
-  <img
-    src="/logo.svg"
-    class="app-header__logo"
-    draggable="false"
-    [routerLink]="logoRouterLink"
-  />
+  <div class="app-header__wrapper">
+    <img
+      src="/logo.svg"
+      class="app-header__logo"
+      draggable="false"
+      [routerLink]="logoRouterLink"
+    />
 
-  <app-header-navigation />
+    <app-header-navigation />
+  </div>
 </header>

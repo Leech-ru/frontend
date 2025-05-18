@@ -1,3 +1,17 @@
 :root {
   --tui-text-action: #99932d;
+  --app-max-width: 1024px;
+}
+
+html,
+body {
+  // Чтобы не приближелало при двойном клике на мобильных устройствах
+  touch-action: manipulation;
+}
+
+.t-root-content {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--tui-background-base-alt);
 }
