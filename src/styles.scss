@@ -1,5 +1,5 @@
 :root {
-  --tui-text-action: #99932d;
+  --tui-text-action: #706900;
   --app-max-width: 1024px;
   --app-header-z-index: 1;
 }
@@ -8,6 +8,10 @@ html,
 body {
   // Чтобы не приближелало при двойном клике на мобильных устройствах
   touch-action: manipulation;
+}
+
+tui-root {
+  --tui-duration: 150ms !important;
 }
 
 .t-root-content {
