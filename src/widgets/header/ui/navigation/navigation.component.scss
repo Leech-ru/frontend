@@ -11,13 +11,5 @@
     &:not([data-state="active"]) {
       --tui-text-action: var(--tui-text-secondary);
     }
-
-    &:after {
-      transition: transform var(--tui-duration) ease-in-out;
-    }
-
-    &.tui-dropdown-open:after {
-      transform: rotate(-180deg);
-    }
   }
 }

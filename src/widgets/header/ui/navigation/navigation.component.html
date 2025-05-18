@@ -5,13 +5,13 @@
         #rla="routerLinkActive"
         class="app-header-navigation__list__link"
         tuiButton
+        [tuiChevron]="item.children ? '' : false"
         [tuiDropdown]="item.children ? dropdown : null"
         [(tuiDropdownOpen)]="dropdownOpenStates[item.routerLink]"
         tuiDropdownHover
         size="m"
         appearance="flat"
         [tuiAppearanceState]="rla.isActive ? 'active' : null"
-        [iconEnd]="item.children ? '@tui.chevron-down' : ''"
         [routerLink]="item.routerLink"
         routerLinkActive
         [routerLinkActiveOptions]="{ exact: !item.children }"

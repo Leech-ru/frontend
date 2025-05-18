@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { TuiButton, TuiDataList, TuiDropdown } from "@taiga-ui/core";
+import { TuiChevron } from "@taiga-ui/kit";
 
 import { NAVIGATION_ITEMS } from "../../config/navigation.config";
 
@@ -8,7 +9,14 @@ import { NAVIGATION_ITEMS } from "../../config/navigation.config";
   selector: "app-header-navigation",
   templateUrl: "navigation.component.html",
   styleUrl: "navigation.component.scss",
-  imports: [RouterLink, RouterLinkActive, TuiButton, TuiDataList, TuiDropdown],
+  imports: [
+    RouterLink,
+    RouterLinkActive,
+    TuiButton,
+    TuiChevron,
+    TuiDataList,
+    TuiDropdown,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppHeaderNavigationComponent {
