@@ -8,7 +8,7 @@
     [(tuiDropdownOpen)]="isDropdownOpen"
     tuiDropdownHover
     size="m"
-    appearance="flat"
+    [appearance]="rla.isActive ? 'flat' : 'flat-grayscale'"
     [tuiAppearanceState]="rla.isActive ? 'active' : null"
     [routerLink]="item.routerLink"
     routerLinkActive
@@ -40,7 +40,7 @@
     class="app-header-navigation-link"
     tuiButton
     size="m"
-    appearance="flat"
+    [appearance]="rla.isActive ? 'flat' : 'flat-grayscale'"
     [tuiAppearanceState]="rla.isActive ? 'active' : null"
     [routerLink]="item.routerLink"
     routerLinkActive
