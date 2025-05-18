@@ -6,6 +6,6 @@ import { Title } from "@angular/platform-browser";
   templateUrl: "index.page.component.html",
   styleUrl: "index.page.component.scss",
 })
-export class IndexPageComponent {
+export class AppIndexPageComponent {
   protected readonly title = inject(Title);
 }

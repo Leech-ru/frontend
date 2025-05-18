@@ -1,1 +1,1 @@
-export { IndexPageComponent as default } from "./ui/index.page.component";
+export { AppIndexPageComponent as default } from "./ui/index.page.component";

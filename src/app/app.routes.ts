@@ -4,7 +4,7 @@ export const routes = [
   {
     path: "",
     title: "Главная",
-    loadComponent: () => import("@/pages/index"),
+    loadComponent: () => import("@/pages/home"),
   },
   {
     path: "leech",
