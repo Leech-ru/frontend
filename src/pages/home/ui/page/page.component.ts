@@ -1,10 +1,10 @@
 import { Component } from "@angular/core";
 
-import { HomePageOrderComponent } from "../order/order.component";
+import { AppCalloutComponent } from "@/shared/ui/callout";
 
 @Component({
   selector: "app-home-page",
   templateUrl: "page.component.html",
-  imports: [HomePageOrderComponent],
+  imports: [AppCalloutComponent],
 })
 export class AppHomePageComponent {}

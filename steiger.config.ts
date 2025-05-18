@@ -4,10 +4,10 @@ import { defineConfig } from "steiger";
 export default defineConfig([
   ...fsd.configs.recommended,
   {
-    // disable the `public-api` rule for files in the Shared layer
     files: ["./src/shared/**"],
     rules: {
       "fsd/public-api": "off",
+      "fsd/no-reserved-folder-names": "off",
     },
   },
   {
