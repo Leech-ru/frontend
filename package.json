@@ -11,6 +11,13 @@
     "serve": "ng serve",
     "serve:ssr:frontend": "node dist/frontend/server/server.mjs"
   },
+  "packageManager": "pnpm@10.11.0",
+  "engines": {
+    "npm": "Please use pnpm instead of NPM to install dependencies",
+    "yarn": "Please use pnpm instead of Yarn to install dependencies",
+    "bun": "Please use pnpm instead of Bun to install dependencies",
+    "pnpm": "^10.11.0"
+  },
   "dependencies": {
     "@angular/animations": "^19.2.11",
     "@angular/build": "^19.2.12",
