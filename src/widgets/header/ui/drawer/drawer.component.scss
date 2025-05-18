@@ -7,6 +7,10 @@
   &__header {
     padding: 1rem 1.5rem !important;
     position: sticky;
+
+    &:first-child {
+      margin-inline-end: auto;
+    }
   }
 
   &__content {

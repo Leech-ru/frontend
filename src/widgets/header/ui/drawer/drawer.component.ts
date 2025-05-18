@@ -1,6 +1,17 @@
-import { Component, inject, signal } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from "@angular/core";
 import { Router } from "@angular/router";
-import { TuiButton, TuiDataList, TuiPopup, TuiTitle } from "@taiga-ui/core";
+import {
+  TuiButton,
+  TuiDataList,
+  TuiHint,
+  TuiPopup,
+  TuiTitle,
+} from "@taiga-ui/core";
 import { TuiDrawer } from "@taiga-ui/kit";
 import { TuiHeader } from "@taiga-ui/layout";
 
@@ -13,15 +24,17 @@ import { AppHeaderDrawerLinkComponent } from "./link/link.component";
   templateUrl: "drawer.component.html",
   styleUrl: "drawer.component.scss",
   imports: [
-    AppHeaderLogoComponent,
     AppHeaderDrawerLinkComponent,
+    AppHeaderLogoComponent,
     TuiButton,
     TuiDataList,
     TuiDrawer,
     TuiHeader,
+    TuiHint,
     TuiPopup,
     TuiTitle,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppHeaderDrawerComponent {
   protected readonly router = inject(Router);
