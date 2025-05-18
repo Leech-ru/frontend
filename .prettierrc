@@ -1,11 +1,19 @@
 {
-  "$schema": "https://json.schemastore.org/prettierrc",
-  "endOfLine": "lf",
-  "jsxSingleQuote": false,
-  "printWidth": 80,
-  "semi": true,
-  "singleQuote": false,
-  "tabWidth": 2,
-  "trailingComma": "all",
-  "useTabs": false
+	"$schema": "https://json.schemastore.org/prettierrc",
+	"endOfLine": "lf",
+	"jsxSingleQuote": false,
+	"printWidth": 80,
+	"semi": true,
+	"singleQuote": false,
+	"tabWidth": 2,
+	"trailingComma": "all",
+	"useTabs": false,
+	"overrides": [
+		{
+			"files": "*.html",
+			"options": {
+				"parser": "angular"
+			}
+		}
+	]
 }
