@@ -10,8 +10,8 @@
         tuiDropdownHover
         size="m"
         appearance="flat"
-        [tuiAppearanceState]='rla.isActive ? "active" : null'
-        [iconEnd]='item.children ? "@tui.chevron-down" : ""'
+        [tuiAppearanceState]="rla.isActive ? 'active' : null"
+        [iconEnd]="item.children ? '@tui.chevron-down' : ''"
         [routerLink]="item.routerLink"
         routerLinkActive
         [routerLinkActiveOptions]="{ exact: !item.children }"
