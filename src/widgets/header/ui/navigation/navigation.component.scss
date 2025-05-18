@@ -4,12 +4,4 @@
   display: flex;
   gap: 0.5rem;
   list-style-type: none;
-
-  &__link {
-    font-weight: 500 !important;
-
-    &:not([data-state="active"]) {
-      --tui-text-action: var(--tui-text-secondary);
-    }
-  }
 }

@@ -1,0 +1,51 @@
+@if (item.children) {
+  <a
+    #rla="routerLinkActive"
+    class="app-header-navigation-link"
+    tuiButton
+    [tuiChevron]="item.children ? '' : false"
+    [tuiDropdown]="item.children ? dropdown : null"
+    [(tuiDropdownOpen)]="isDropdownOpen"
+    tuiDropdownHover
+    size="m"
+    appearance="flat"
+    [tuiAppearanceState]="rla.isActive ? 'active' : null"
+    [routerLink]="item.routerLink"
+    routerLinkActive
+    [routerLinkActiveOptions]="{ exact: !item.children }"
+  >
+    {{ item.label }}
+  </a>
+
+  <ng-template #dropdown>
+    <tui-data-list role="menu">
+      @for (child of item.children; track child.routerLink) {
+        <a
+          #rla="routerLinkActive"
+          role="menuitemradio"
+          [attr.aria-checked]="rla.isActive"
+          tuiOption
+          [routerLink]="child.routerLink"
+          routerLinkActive
+          (click)="isDropdownOpen = false"
+        >
+          {{ child.label }}
+        </a>
+      }
+    </tui-data-list>
+  </ng-template>
+} @else {
+  <a
+    #rla="routerLinkActive"
+    class="app-header-navigation-link"
+    tuiButton
+    size="m"
+    appearance="flat"
+    [tuiAppearanceState]="rla.isActive ? 'active' : null"
+    [routerLink]="item.routerLink"
+    routerLinkActive
+    [routerLinkActiveOptions]="{ exact: !item.children }"
+  >
+    {{ item.label }}
+  </a>
+}

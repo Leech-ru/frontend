@@ -1,0 +1,7 @@
+.app-header-navigation-link {
+  font-weight: 500 !important;
+
+  &:not([data-state="active"]) {
+    --tui-text-action: var(--tui-text-secondary);
+  }
+}
