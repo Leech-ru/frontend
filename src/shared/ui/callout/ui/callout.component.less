@@ -14,9 +14,15 @@
   }
 }
 
+h1,
+p {
+  margin: 0;
+  text-wrap-style: balance;
+}
+
 h1 {
-  font: var(--tui-font-heading-1);
-  font-weight: 800;
+  font: var(--tui-font-heading-2);
+  font-weight: 700;
 
   @media @tui-mobile {
     font: var(--tui-font-heading-3);
@@ -27,8 +33,6 @@ p {
   font: var(--tui-font-text-l);
 }
 
-h1,
-p {
-  margin: 0;
-  text-wrap-style: balance;
+button {
+  font-weight: 500;
 }
