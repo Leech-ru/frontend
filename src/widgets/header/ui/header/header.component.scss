@@ -1,8 +1,13 @@
+:host {
+  z-index: var(--app-header-z-index);
+  position: sticky;
+  top: 0;
+}
+
 .app-header {
   background-color: var(--tui-background-base);
   border-bottom: 1px solid var(--tui-border-normal);
-  position: sticky;
-  top: 0;
+  align-self: flex-start;
 
   &__wrapper {
     padding: 0.75rem 2rem;
