@@ -9,6 +9,7 @@ import {
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { provideRouter } from "@angular/router";
 import { provideEventPlugins } from "@taiga-ui/event-plugins";
+import { TUI_LANGUAGE, TUI_RUSSIAN_LANGUAGE } from "@taiga-ui/i18n";
 
 import { routes } from "./app.routes";
 
@@ -19,5 +20,9 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
     provideEventPlugins(),
+    {
+      provide: TUI_LANGUAGE,
+      useValue: TUI_RUSSIAN_LANGUAGE,
+    },
   ],
 };
