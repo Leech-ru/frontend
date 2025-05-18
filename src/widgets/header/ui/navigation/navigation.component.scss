@@ -1,0 +1,23 @@
+.app-header-navigation__list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 0.5rem;
+  list-style-type: none;
+
+  &__link {
+    font-weight: 500 !important;
+
+    &:not([data-state="active"]) {
+      --tui-text-action: var(--tui-text-secondary);
+    }
+
+    &:after {
+      transition: transform var(--tui-duration) ease-in-out;
+    }
+
+    &.tui-dropdown-open:after {
+      transform: rotate(-180deg);
+    }
+  }
+}
