@@ -1,0 +1,13 @@
+.app-footer {
+  background-color: var(--tui-background-base);
+  border-top: 1px solid var(--tui-border-normal);
+
+  &__wrapper {
+    padding: 0.75rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: var(--app-max-width);
+    margin: auto;
+  }
+}
