@@ -18,5 +18,5 @@ export interface NavigationItem {
    * Дочерние элементы главного элемента навигации.
    * Дочерние элементы не могут иметь своих собственных дочерних элементов.
    */
-  children?: Omit<NavigationItem, "items">[];
+  children?: Omit<NavigationItem, "children">[];
 }
