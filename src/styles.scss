@@ -8,6 +8,7 @@ html,
 body {
   // Чтобы не приближелало при двойном клике на мобильных устройствах
   touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 tui-root {

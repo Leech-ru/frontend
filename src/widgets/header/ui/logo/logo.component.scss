@@ -1,0 +1,10 @@
+.app-header-logo {
+  display: flex;
+  user-select: none;
+  text-decoration: none;
+
+  &__img {
+    width: 44px;
+    height: 44px;
+  }
+}

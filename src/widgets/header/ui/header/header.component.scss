@@ -9,22 +9,11 @@
   border-bottom: 1px solid var(--tui-border-normal);
 
   &__wrapper {
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: var(--app-max-width);
     margin: auto;
-  }
-
-  &__logo {
-    display: flex;
-    user-select: none;
-    text-decoration: none;
-
-    &__img {
-      width: 44px;
-      height: 44px;
-    }
   }
 }

@@ -1,9 +1,11 @@
 <header class="app-header">
   <div class="app-header__wrapper">
-    <a class="app-header__logo" [routerLink]="logoRouterLink">
-      <img src="/favicon.svg" class="app-header__logo__img" draggable="false" />
-    </a>
+    <app-header-logo />
 
-    <app-header-navigation />
+    @if (isWebLandscape()) {
+      <app-header-navigation />
+    } @else {
+      <app-header-drawer />
+    }
   </div>
 </header>

@@ -1,0 +1,57 @@
+<button
+  tuiIconButton
+  appearance="flat"
+  iconStart="@tui.menu"
+  size="m"
+  type="button"
+  (click)="open.set(true)"
+>
+  Открыть навигацию
+</button>
+
+<tui-drawer
+  *tuiPopup="open()"
+  direction="right"
+  class="app-header-drawer"
+  [overlay]="true"
+  (click.self)="this.open.set(false)"
+>
+  <header class="app-header-drawer__header">
+    <h2 tuiHeader>
+      <div tuiTitle>
+        <app-header-logo />
+      </div>
+      <div tuiAccessories>
+        <button
+          tuiIconButton
+          appearance="outline-grayscale"
+          iconStart="@tui.x"
+          size="m"
+          type="button"
+          (click)="this.open.set(false)"
+        >
+          Закрыть навигацию
+        </button>
+      </div>
+    </h2>
+  </header>
+
+  <tui-data-list>
+    @for (item of items; track item.routerLink) {
+      <tui-opt-group role="list">
+        <app-header-drawer-link
+          [label]="item.label"
+          [routerLink]="item.routerLink"
+        />
+        @if (item.children) {
+          @for (child of item.children; track child.routerLink) {
+            <app-header-drawer-link
+              [label]="child.label"
+              [routerLink]="child.routerLink"
+            />
+          }
+        }
+      </tui-opt-group>
+    }
+  </tui-data-list>
+</tui-drawer>
