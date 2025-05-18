@@ -8,8 +8,8 @@
     padding: 1rem 1.5rem !important;
     position: sticky;
   }
-}
 
-.app-header-drawer__content {
-  margin-inline: -0.5rem;
+  &__content {
+    margin-inline: -0.5rem;
+  }
 }
