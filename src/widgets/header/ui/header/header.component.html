@@ -2,10 +2,10 @@
   <div class="app-header__wrapper">
     <app-header-logo />
 
-    @if (isWebLandscape()) {
-      <app-header-navigation />
-    } @else {
+    @if (breakpoint() === "mobile") {
       <app-header-drawer />
+    } @else {
+      <app-header-navigation />
     }
   </div>
 </header>
