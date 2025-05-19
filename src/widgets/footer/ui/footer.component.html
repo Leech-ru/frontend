@@ -1,3 +1,24 @@
 <footer class="app-footer">
-  <div class="app-footer__wrapper">Футер</div>
+  <div class="app-footer__sections">
+    @for (section of sections; track section) {
+      <section class="app-footer__section">
+        <h1 class="app-footer__section-title tui-text__body-l">
+          {{ section.title }}
+        </h1>
+        <ul role="list" class="app-footer__item-list">
+          @for (item of section.items; track item) {
+            <li role="listitem" class="app-footer__item">
+              <a
+                tuiLink
+                [routerLink]="item.routerLink"
+                class="app-footer__link"
+              >
+                {{ item.title }}
+              </a>
+            </li>
+          }
+        </ul>
+      </section>
+    }
+  </div>
 </footer>
