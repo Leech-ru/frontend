@@ -5,13 +5,7 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import {
-  TuiButton,
-  TuiDataList,
-  TuiHint,
-  TuiPopup,
-  TuiTitle,
-} from "@taiga-ui/core";
+import { TuiButton, TuiDataList, TuiPopup, TuiTitle } from "@taiga-ui/core";
 import { TuiDrawer } from "@taiga-ui/kit";
 import { TuiHeader } from "@taiga-ui/layout";
 
@@ -30,7 +24,6 @@ import { AppHeaderDrawerLinkComponent } from "./link/link.component";
     TuiDataList,
     TuiDrawer,
     TuiHeader,
-    TuiHint,
     TuiPopup,
     TuiTitle,
   ],
