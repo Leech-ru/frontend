@@ -12,10 +12,6 @@ export const FOOTER_SECTIONS: FooterSection[] = [
         title: "О пиявках",
         routerLink: "leech/about",
       },
-      {
-        title: "Косметика",
-        routerLink: "cosmetics",
-      },
     ],
   },
   {
