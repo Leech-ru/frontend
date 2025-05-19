@@ -30,7 +30,19 @@ export interface FooterSection {
   items: FooterItem[];
 }
 
-export interface FooterContacts {
+export interface Contacts {
+  /**
+   * Номер телефона
+   */
+  tel: string;
+
+  /**
+   * Электронная почта
+   */
+  email: string;
+}
+
+export interface FooterSocial {
   /**
    * Название контакта
    */
