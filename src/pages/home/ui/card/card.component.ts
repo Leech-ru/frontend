@@ -1,3 +1,4 @@
+import { NgOptimizedImage } from "@angular/common";
 import { Component, Input } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { TuiAppearance, TuiLink, TuiTitle } from "@taiga-ui/core";
@@ -11,7 +12,7 @@ import { HomePageCard } from "../../model/cards.model";
   selector: "app-home-page-card",
   templateUrl: "card.component.html",
   styleUrl: "card.component.less",
-  imports: [RouterLink, TuiHeader, TuiLink, TuiTitle],
+  imports: [RouterLink, TuiHeader, TuiLink, TuiTitle, NgOptimizedImage],
   hostDirectives: [
     { directive: TuiCardLarge },
     { directive: TuiAppearance, inputs: ["tuiAppearance"] },
