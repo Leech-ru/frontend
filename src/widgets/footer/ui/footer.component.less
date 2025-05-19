@@ -5,7 +5,7 @@
   border-top: 1px solid var(--tui-border-normal);
 
   &__sections {
-    padding: 1rem 1.5rem;
+    padding: 3rem 1.5rem;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
@@ -34,6 +34,12 @@
   &__item-list {
     padding: 0;
     list-style: none;
+    display: flex;
+    flex-direction: column;
+
+    @media @tui-mobile {
+      gap: 0.5rem;
+    }
   }
 
   &__link {

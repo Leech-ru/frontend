@@ -9,7 +9,7 @@ import { AppHeaderNavigationComponent } from "../navigation/navigation.component
 @Component({
   selector: "app-header",
   templateUrl: "header.component.html",
-  styleUrl: "header.component.scss",
+  styleUrl: "header.component.less",
   imports: [
     AppHeaderDrawerComponent,
     AppHeaderLogoComponent,
