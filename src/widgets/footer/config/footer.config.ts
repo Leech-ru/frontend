@@ -2,7 +2,7 @@ import { FooterSection } from "../model/footer.model";
 
 export const FOOTER_SECTIONS: FooterSection[] = [
   {
-    title: "Пиявки",
+    title: "ПИЯВКИ",
     items: [
       {
         title: "Заказать пиявок",
@@ -19,7 +19,7 @@ export const FOOTER_SECTIONS: FooterSection[] = [
     ],
   },
   {
-    title: "О нас",
+    title: "О НАС",
     items: [
       {
         title: "Информация",
@@ -27,6 +27,19 @@ export const FOOTER_SECTIONS: FooterSection[] = [
       },
       {
         title: "Экскурсии",
+        routerLink: "",
+      },
+    ],
+  },
+  {
+    title: "КОНТАКТЫ",
+    items: [
+      {
+        title: "+7 (495) 501-34-54",
+        routerLink: "",
+      },
+      {
+        title: "leech-centre@mail.ru",
         routerLink: "",
       },
     ],
