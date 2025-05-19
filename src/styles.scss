@@ -1,4 +1,10 @@
 :root {
+  --tui-font-heading:
+    "Manrope Variable", -apple-system, "BlinkMacSystemFont", system-ui,
+    "Roboto", "Segoe UI", "Helvetica Neue", sans-serif;
+  --tui-font-text:
+    "Manrope Variable", -apple-system, "BlinkMacSystemFont", system-ui,
+    "Roboto", "Segoe UI", "Helvetica Neue", sans-serif;
   --tui-text-action: #706900;
   --tui-text-action-hover: #a09500;
   --tui-background-accent-1: #aaa334;
