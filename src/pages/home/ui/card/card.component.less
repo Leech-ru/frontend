@@ -5,9 +5,11 @@
   transform: scale3d(var(--card-scale), var(--card-scale), var(--card-scale));
   transition: transform var(--tui-duration) ease-in-out;
 
-  &:hover,
-  &:has(:focus-visible) {
-    --card-scale: 1.03;
+  @media (hover: hover) {
+    &:hover,
+    &:has(:focus-visible) {
+      --card-scale: 1.03;
+    }
   }
 
   &:active {
