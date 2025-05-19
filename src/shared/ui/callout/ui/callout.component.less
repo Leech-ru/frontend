@@ -6,11 +6,14 @@
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  padding: 2rem;
   text-align: center;
 
   @media @tui-mobile {
     gap: 1rem;
+  }
+
+  @media not @tui-mobile {
+    padding-inline: 2rem;
   }
 }
 
