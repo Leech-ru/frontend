@@ -9,7 +9,7 @@ import { AppHeaderComponent } from "@/widgets/header";
   selector: "app-root",
   imports: [AppHeaderComponent, RouterOutlet, TuiRoot, AppFooterComponent],
   templateUrl: "./app.component.html",
-  styleUrl: "./app.component.scss",
+  styleUrl: "./app.component.less",
 })
 export class AppComponent {
   title = "frontend";

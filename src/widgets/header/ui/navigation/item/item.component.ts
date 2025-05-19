@@ -8,7 +8,7 @@ import { NavigationItem } from "../../../model/navigation.model";
 @Component({
   selector: "app-header-navigation-item",
   templateUrl: "item.component.html",
-  styleUrl: "item.component.scss",
+  styleUrl: "item.component.less",
   imports: [
     RouterLink,
     RouterLinkActive,

@@ -16,7 +16,7 @@ import { AppHeaderDrawerLinkComponent } from "./link/link.component";
 @Component({
   selector: "app-header-drawer",
   templateUrl: "drawer.component.html",
-  styleUrl: "drawer.component.scss",
+  styleUrl: "drawer.component.less",
   imports: [
     AppHeaderDrawerLinkComponent,
     AppHeaderLogoComponent,

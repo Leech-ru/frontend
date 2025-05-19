@@ -6,7 +6,7 @@ import { NAVIGATION_ITEMS } from "../../config/navigation.config";
 @Component({
   selector: "app-header-navigation",
   templateUrl: "navigation.component.html",
-  styleUrl: "navigation.component.scss",
+  styleUrl: "navigation.component.less",
   imports: [AppHeaderNavigationItemComponent],
 })
 export class AppHeaderNavigationComponent {
