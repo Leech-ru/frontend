@@ -7,14 +7,14 @@
   &__sections {
     padding: 1rem 1.5rem;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
     max-width: var(--app-max-width);
     margin: auto;
     place-content: center;
 
     @media @tui-mobile {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 

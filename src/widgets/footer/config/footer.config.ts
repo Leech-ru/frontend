@@ -2,7 +2,7 @@ import { FooterSection } from "../model/footer.model";
 
 export const FOOTER_SECTIONS: FooterSection[] = [
   {
-    title: "ПИЯВКИ",
+    title: "Пиявки",
     items: [
       {
         title: "Заказать пиявок",
@@ -15,7 +15,20 @@ export const FOOTER_SECTIONS: FooterSection[] = [
     ],
   },
   {
-    title: "О НАС",
+    title: "Косметика",
+    items: [
+      {
+        title: "Каталог косметики",
+        routerLink: "cosmetics/catalog",
+      },
+      {
+        title: "Где купить косметику?",
+        routerLink: "cosmetics/buy",
+      },
+    ],
+  },
+  {
+    title: "О нас",
     items: [
       {
         title: "Информация",
@@ -28,7 +41,7 @@ export const FOOTER_SECTIONS: FooterSection[] = [
     ],
   },
   {
-    title: "КОНТАКТЫ",
+    title: "Контакты",
     items: [
       {
         title: "+7 (495) 501-34-54",
