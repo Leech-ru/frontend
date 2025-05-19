@@ -1,6 +1,5 @@
-import { Component, inject, OnInit, Signal } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import { Meta } from "@angular/platform-browser";
-import { ROUTER_OUTLET_DATA } from "@angular/router";
 
 import { AppCalloutComponent } from "@/shared/ui/callout";
 
@@ -20,12 +19,10 @@ import { AppHomePageQualityComponent } from "../quality/quality.component";
 })
 export class AppHomePageComponent implements OnInit {
   protected readonly cards = HOME_PAGE_CARDS;
-  protected readonly metaService = inject(Meta);
+  protected readonly meta = inject(Meta);
   protected readonly description = "Piyavky)";
+
   ngOnInit(): void {
-    this.metaService.addTag({
-      name: "description",
-      content: this.description,
-    });
+    this.meta.addTag({ name: "description", content: this.description });
   }
 }
