@@ -5,6 +5,20 @@
   link="cosmetics/buy"
 />
 
+<section class="cards">
+  @for (card of cards; track card.link) {
+    <app-home-page-card
+      [thumbnail]="card.thumbnail"
+      [heading]="card.heading"
+      [description]="card.description"
+      [action]="card.action"
+      [link]="card.link"
+      [fluid]="card.fluid"
+      tuiAppearance="floating"
+    />
+  }
+</section>
+
 <app-callout
   heading="Готовы сделать заказ?"
   description="Старейшее предприятии в России и в мире, которое более 80 лет занимается выращиванием сертифицированной медицинской пиявки"

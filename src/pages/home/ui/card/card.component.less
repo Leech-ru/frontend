@@ -1,0 +1,42 @@
+:host {
+  --card-scale: 1;
+
+  position: relative;
+  transform: scale3d(var(--card-scale), var(--card-scale), var(--card-scale));
+  transition: transform var(--tui-duration) ease-in-out;
+
+  &:hover,
+  &:has(:focus-visible) {
+    --card-scale: 1.03;
+  }
+
+  &:active {
+    --card-scale: 0.98;
+  }
+
+  img {
+    margin-top: calc(var(--t-padding) * -1);
+    margin-inline: calc(var(--t-padding) * -1);
+    aspect-ratio: 3 / 1;
+  }
+
+  a {
+    position: static;
+    font-weight: 600;
+  }
+
+  a::before {
+    all: unset;
+    content: "";
+    position: absolute;
+    inset: 0;
+  }
+
+  &.fluid {
+    grid-column: 1 / -1;
+
+    img {
+      aspect-ratio: 6 / 1;
+    }
+  }
+}

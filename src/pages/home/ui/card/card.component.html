@@ -1,0 +1,20 @@
+<img [alt]="heading" [src]="thumbnail" loading="lazy" decoding="async" />
+
+<header tuiHeader>
+  <h2 tuiTitle>{{ heading }}</h2>
+</header>
+
+<section>
+  {{ description }}
+</section>
+
+<footer>
+  <a
+    class="card__link"
+    tuiLink
+    iconEnd="@tui.external-link"
+    [routerLink]="link"
+  >
+    {{ action }}
+  </a>
+</footer>
