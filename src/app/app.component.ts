@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { TuiRoot } from "@taiga-ui/core";
 
@@ -10,7 +10,6 @@ import { AppHeaderComponent } from "@/widgets/header";
   imports: [AppHeaderComponent, RouterOutlet, TuiRoot, AppFooterComponent],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.less",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
-  title = "frontend";
-}
+export class AppComponent {}
