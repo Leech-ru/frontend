@@ -11,6 +11,17 @@
     margin: auto;
   }
 
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__section-title {
+    font-weight: bold;
+    margin: 0;
+  }
+
   &__item-list {
     padding: 0;
     list-style: none;
