@@ -10,14 +10,13 @@
 
 html,
 body {
-  // Чтобы не приближелало при двойном клике на мобильных устройствах
-  touch-action: manipulation;
+  touch-action: manipulation; /* Чтобы не приближелало при двойном клике на мобильных устройствах */
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
 }
 
 tui-root {
-  --tui-duration: 150ms !important;
+  --tui-duration: 150ms !important; /* Переопределяет инлайн-стили на <tui-root /> */
 }
 
 .t-root-content {
