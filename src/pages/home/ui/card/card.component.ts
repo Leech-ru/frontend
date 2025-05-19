@@ -15,7 +15,7 @@ import { HomePageCard } from "../../model/cards.model";
   imports: [RouterLink, TuiHeader, TuiLink, TuiTitle, NgOptimizedImage],
   hostDirectives: [
     { directive: TuiCardLarge },
-    { directive: TuiAppearance, inputs: ["tuiAppearance"] },
+    { directive: TuiAppearance, inputs: ["tuiAppearance: appearance"] },
   ],
   host: {
     "[class.fluid]": "fluid",
