@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 
 import { AppHeaderDrawerComponent } from "../drawer/drawer.component";
 import { AppHeaderLogoComponent } from "../logo/logo.component";
@@ -13,5 +13,6 @@ import { AppHeaderNavigationComponent } from "../navigation/navigation.component
     AppHeaderLogoComponent,
     AppHeaderNavigationComponent,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppHeaderComponent {}

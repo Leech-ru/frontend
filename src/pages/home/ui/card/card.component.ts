@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from "@angular/common";
-import { Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { TuiAppearance, TuiLink, TuiTitle } from "@taiga-ui/core";
 import { TuiCardLarge, TuiHeader } from "@taiga-ui/layout";
@@ -20,6 +20,7 @@ import { HomePageCard } from "../../model/cards.model";
   host: {
     "[class.fluid]": "fluid",
   },
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppHomePageCardComponent implements HomePageCard {
   @Input({ required: true })

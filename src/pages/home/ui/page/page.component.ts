@@ -1,4 +1,9 @@
-import { Component, inject, OnInit } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from "@angular/core";
 import { Meta } from "@angular/platform-browser";
 
 import { AppCalloutComponent } from "@/shared/ui/callout";
@@ -16,6 +21,7 @@ import { AppHomePageQualityComponent } from "../quality/quality.component";
     AppHomePageCardComponent,
     AppHomePageQualityComponent,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppHomePageComponent implements OnInit {
   protected readonly cards = HOME_PAGE_CARDS;

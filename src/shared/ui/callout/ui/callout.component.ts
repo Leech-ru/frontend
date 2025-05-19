@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { TuiButton } from "@taiga-ui/core";
 
@@ -9,6 +9,7 @@ import { RoutePath } from "@/app/@x/route";
   templateUrl: "callout.component.html",
   styleUrl: "callout.component.less",
   imports: [RouterLink, TuiButton],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppCalloutComponent {
   @Input({ required: true })
