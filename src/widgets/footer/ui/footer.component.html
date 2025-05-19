@@ -2,7 +2,7 @@
   <div class="app-footer__sections">
     @for (section of sections; track section) {
       <section class="app-footer__section">
-        <h1 class="app-footer__section-title tui-text_body-l">
+        <h1 class="app-footer__section-title">
           {{ section.title }}
         </h1>
         <ul role="list" class="app-footer__item-list">
@@ -12,7 +12,7 @@
                 tuiLink
                 [routerLink]="item.routerLink"
                 appearance="action-grayscale"
-                class="app-footer__link tui-text_body-m"
+                class="app-footer__link"
               >
                 {{ item.title }}
               </a>

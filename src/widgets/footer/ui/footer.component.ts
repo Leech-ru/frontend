@@ -9,7 +9,7 @@ import { FOOTER_SECTIONS } from "../config/footer.config";
   selector: "app-footer",
   imports: [RouterLink, TuiDropdown, TuiLink],
   templateUrl: "footer.component.html",
-  styleUrl: "footer.component.scss",
+  styleUrl: "footer.component.less",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppFooterComponent {

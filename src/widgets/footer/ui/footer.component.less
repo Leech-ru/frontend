@@ -1,29 +1,42 @@
+@import "@taiga-ui/core/styles/taiga-ui-local.less";
+
 .app-footer {
   background-color: var(--tui-background-base);
   border-top: 1px solid var(--tui-border-normal);
 
   &__sections {
     padding: 1rem 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
     max-width: var(--app-max-width);
     margin: auto;
+    place-content: center;
+
+    @media @tui-mobile {
+      grid-template-columns: 1fr;
+    }
   }
 
   &__section {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 1rem;
   }
 
   &__section-title {
-    font-weight: bold;
+    font: var(--tui-font-text-l);
+    font-weight: 700;
     margin: 0;
+    text-transform: uppercase;
   }
 
   &__item-list {
     padding: 0;
     list-style: none;
+  }
+
+  &__link {
+    font: var(--tui-font-text-m);
   }
 }
