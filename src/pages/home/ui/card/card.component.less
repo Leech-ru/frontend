@@ -1,3 +1,5 @@
+@import "@taiga-ui/core/styles/taiga-ui-local.less";
+
 :host {
   --card-scale: 1;
 
@@ -37,8 +39,10 @@
   &.fluid {
     grid-column: 1 / -1;
 
-    img {
-      aspect-ratio: 6 / 1;
+    @media not @tui-mobile {
+      img {
+        aspect-ratio: 6 / 1;
+      }
     }
   }
 }
