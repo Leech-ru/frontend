@@ -22,4 +22,21 @@
       padding: 0.5rem 1.5rem;
     }
   }
+
+  &__drawer,
+  &__navigation {
+    display: none;
+  }
+
+  @media @tui-mobile {
+    &__drawer {
+      display: block;
+    }
+  }
+
+  @media not @tui-mobile {
+    &__navigation {
+      display: block;
+    }
+  }
 }

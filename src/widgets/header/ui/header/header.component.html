@@ -1,11 +1,7 @@
 <header class="app-header">
   <div class="app-header__wrapper">
     <app-header-logo />
-
-    @if (breakpoint() === "mobile") {
-      <app-header-drawer />
-    } @else {
-      <app-header-navigation />
-    }
+    <app-header-drawer class="app-header__drawer" />
+    <app-header-navigation class="app-header__navigation" />
   </div>
 </header>

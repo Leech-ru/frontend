@@ -1,6 +1,4 @@
-import { Component, inject } from "@angular/core";
-import { toSignal } from "@angular/core/rxjs-interop";
-import { TuiBreakpointService } from "@taiga-ui/core";
+import { Component } from "@angular/core";
 
 import { AppHeaderDrawerComponent } from "../drawer/drawer.component";
 import { AppHeaderLogoComponent } from "../logo/logo.component";
@@ -16,6 +14,4 @@ import { AppHeaderNavigationComponent } from "../navigation/navigation.component
     AppHeaderNavigationComponent,
   ],
 })
-export class AppHeaderComponent {
-  protected readonly breakpoint = toSignal(inject(TuiBreakpointService).pipe());
-}
+export class AppHeaderComponent {}
