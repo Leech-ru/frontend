@@ -12,6 +12,7 @@ html,
 body {
   // Чтобы не приближелало при двойном клике на мобильных устройствах
   touch-action: manipulation;
+  scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
 }
 
