@@ -6,9 +6,9 @@ import { TuiChevron } from "@taiga-ui/kit";
 import { NavigationItem } from "../../../model/navigation.model";
 
 @Component({
-  selector: "app-header-navigation-link",
-  templateUrl: "link.component.html",
-  styleUrl: "link.component.scss",
+  selector: "app-header-navigation-item",
+  templateUrl: "item.component.html",
+  styleUrl: "item.component.scss",
   imports: [
     RouterLink,
     RouterLinkActive,
@@ -18,7 +18,7 @@ import { NavigationItem } from "../../../model/navigation.model";
     TuiDropdown,
   ],
 })
-export class AppHeaderNavigationLinkComponent {
+export class AppHeaderNavigationItemComponent {
   @Input({ required: true })
   public item!: NavigationItem;
 
