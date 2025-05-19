@@ -21,5 +21,5 @@ export class AppCalloutComponent {
   public action!: string;
 
   @Input({ required: true })
-  public routerLink!: RoutePath;
+  public link!: RoutePath;
 }
