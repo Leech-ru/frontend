@@ -4,8 +4,6 @@ import { RouterLink } from "@angular/router";
 import { TuiAppearance, TuiLink, TuiTitle } from "@taiga-ui/core";
 import { TuiCardLarge, TuiHeader } from "@taiga-ui/layout";
 
-import { RoutePath } from "@/app/@x/route";
-
 import { HomePageCard } from "../../model/cards.model";
 
 @Component({
@@ -18,26 +16,11 @@ import { HomePageCard } from "../../model/cards.model";
     { directive: TuiAppearance, inputs: ["tuiAppearance: appearance"] },
   ],
   host: {
-    "[class.fluid]": "fluid",
+    "[class.fluid]": "card.fluid",
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppHomePageCardComponent implements HomePageCard {
+export class AppHomePageCardComponent {
   @Input({ required: true })
-  public thumbnail!: string;
-
-  @Input({ required: true })
-  public heading!: string;
-
-  @Input({ required: true })
-  public description!: string;
-
-  @Input({ required: true })
-  public action!: string;
-
-  @Input({ required: true })
-  public link!: RoutePath;
-
-  @Input()
-  public fluid: boolean | null | undefined = null;
+  public card!: HomePageCard;
 }

@@ -27,7 +27,7 @@ export interface HomePageCard {
   /**
    * Путь для навигации при нажатии на карточку.
    */
-  link: RoutePath;
+  routerLink: RoutePath;
 
   /**
    * Опциональный параметр для указания, должна ли карточка занимать всю ширину.

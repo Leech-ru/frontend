@@ -1,11 +1,11 @@
-<img [alt]="heading" [ngSrc]="thumbnail" priority fill />
+<img [alt]="card.heading" [ngSrc]="card.thumbnail" priority fill />
 
 <header tuiHeader>
-  <h2 tuiTitle>{{ heading }}</h2>
+  <h2 tuiTitle>{{ card.heading }}</h2>
 </header>
 
 <section>
-  {{ description }}
+  {{ card.description }}
 </section>
 
 <footer>
@@ -13,8 +13,8 @@
     class="card__link"
     tuiLink
     iconEnd="@tui.external-link"
-    [routerLink]="link"
+    [routerLink]="card.routerLink"
   >
-    {{ action }}
+    {{ card.action }}
   </a>
 </footer>

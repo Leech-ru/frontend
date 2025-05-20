@@ -6,16 +6,8 @@
 />
 
 <section class="cards">
-  @for (card of cards; track card.link) {
-    <app-home-page-card
-      [thumbnail]="card.thumbnail"
-      [heading]="card.heading"
-      [description]="card.description"
-      [action]="card.action"
-      [link]="card.link"
-      [fluid]="card.fluid"
-      appearance="floating"
-    />
+  @for (card of cards; track card.routerLink) {
+    <app-home-page-card [card]="card" appearance="floating" />
   }
 </section>
 
