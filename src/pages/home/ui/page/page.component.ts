@@ -7,6 +7,7 @@ import {
 import { Meta } from "@angular/platform-browser";
 
 import { AppCalloutComponent } from "@/shared/ui/callout";
+import { AppContactComponent } from "@/widgets/contact";
 
 import { HOME_PAGE_CARDS } from "../../config/cards.config";
 import { AppHomePageCardComponent } from "../card/card.component";
@@ -18,6 +19,7 @@ import { AppHomePageQualityComponent } from "../quality/quality.component";
   styleUrl: "page.component.less",
   imports: [
     AppCalloutComponent,
+    AppContactComponent,
     AppHomePageCardComponent,
     AppHomePageQualityComponent,
   ],

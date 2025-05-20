@@ -1,0 +1,93 @@
+<section aria-labelledby="contactHeading" class="app-contact">
+  <h2 id="contactHeading" class="tui-space_top-0 tui-space_bottom-4">
+    Контакты
+  </h2>
+
+  <ul class="app-contact__quick">
+    <li>
+      <strong>АДРЕС</strong>
+      <span>
+        140140, Московская область, г. Раменское, д.п. Удельная, ул.
+        Октябрьская, 40
+      </span>
+      <a tuiLink href="http://maps.yandex.ru/-/CRC9NdT" target="_blank">
+        Открыть схему проезда
+      </a>
+    </li>
+    <li>
+      <strong>15 минут</strong>
+      <span>
+        пешком от
+        <a tuiLink href="https://yandex.ru/maps/-/CHRAMGIY" target="_blank">
+          железнодорожной станции Удельная
+        </a>
+      </span>
+      <a tuiLink href="https://youtu.be/33MGx5DUGKc" target="_blank">
+        Открыть пеший маршрут
+      </a>
+    </li>
+  </ul>
+
+  <iframe
+    src="https://yandex.ru/map-widget/v1/?ll=38.049671%2C55.643261&z=17"
+    width="100%"
+    height="480"
+    frameborder="0"
+    allowfullscreen="true"
+    class="app-contact__map-widget"
+  ></iframe>
+
+  <div class="app-contact__services">
+    @for (service of services; track service.heading) {
+      <div tuiAppearance="floating" tuiCardLarge [class.fluid]="service.fluid">
+        <header tuiHeader>
+          <h3 tuiTitle>{{ service.heading }}</h3>
+
+          <aside tuiAccessories>
+            <tui-avatar appearance="primary" [src]="service.icon" />
+          </aside>
+        </header>
+
+        <section>
+          @if (service.links) {
+            <ul>
+              @for (link of service.links; track link.href) {
+                <li tuiCell>
+                  <a tuiLink [href]="link.href">
+                    {{ link.label }}
+                  </a>
+                </li>
+              }
+            </ul>
+          }
+
+          @if (service.schedule?.length) {
+            <ul>
+              @for (schedule of service.schedule; track schedule.days) {
+                <li tuiCell>
+                  <div tuiTitle>
+                    <strong>
+                      {{ schedule.days.at(0) }}–{{ schedule.days.at(-1) }}
+                    </strong>
+                  </div>
+                  <div tuiTitle>
+                    <span>
+                      {{ schedule.hours.open }}–{{ schedule.hours.close }}
+                    </span>
+                  </div>
+                </li>
+              }
+            </ul>
+          }
+
+          <p
+            class="tui-space_top-4 tui-space_bottom-0"
+            tuiAppearance="action-grayscale"
+          >
+            {{ service.description }}
+          </p>
+        </section>
+      </div>
+    }
+  </div>
+</section>

@@ -39,7 +39,7 @@ export const routes = [
   {
     path: "contact",
     title: "Контакты",
-    loadComponent: () => import("@/pages/index"),
+    loadComponent: () => import("@/pages/contact"),
   },
   {
     path: "about",

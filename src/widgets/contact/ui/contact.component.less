@@ -1,0 +1,85 @@
+@import "@taiga-ui/core/styles/taiga-ui-local.less";
+
+.app-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  [tuiLink] {
+    text-decoration-line: underline;
+  }
+
+  h2 {
+    font: var(--tui-font-heading-2);
+    font-weight: 700;
+    text-align: center;
+
+    @media @tui-mobile {
+      font: var(--tui-font-heading-3);
+    }
+  }
+
+  &__map-widget {
+    border-radius: 1rem;
+    border: 1px solid var(--tui-border-normal);
+  }
+
+  &__quick {
+    font: var(--tui-font-text-l);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    li {
+      display: grid;
+      grid-template-columns: 1fr 6fr 2fr;
+      align-items: center;
+
+      @media @tui-tablet-interval {
+        grid-template-columns: 1fr 8fr;
+
+        :last-child {
+          grid-column: 1 / -1;
+        }
+      }
+
+      @media @tui-mobile {
+        gap: 0.5rem;
+        grid-template-columns: 1fr;
+      }
+
+      @media not @tui-tablet {
+        :last-child {
+          justify-self: end;
+        }
+      }
+    }
+  }
+
+  &__services {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+
+    @media @tui-mobile {
+      grid-template-columns: 1fr;
+    }
+
+    section {
+      margin: 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-wrap-style: pretty;
+
+      [tuiCell] {
+        --t-height: 1em;
+      }
+    }
+  }
+
+  .fluid {
+    grid-column: 1 / -1;
+  }
+}
