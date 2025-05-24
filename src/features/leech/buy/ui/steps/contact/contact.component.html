@@ -1,0 +1,155 @@
+<form
+  tuiAppearance="floating"
+  tuiCardLarge
+  tuiForm="l"
+  [formGroup]="form.group"
+  (submit)="form.submit()"
+>
+  <header tuiHeader>
+    <h2 tuiTitle>Контактная информация</h2>
+  </header>
+
+  <tui-textfield>
+    <label tuiLabel>ФИО *</label>
+    <input
+      formControlName="name"
+      placeholder="Фамилия Имя Отчество"
+      tuiTextfield
+    />
+  </tui-textfield>
+  <tui-error
+    [error]="
+      form.name.touched && form.name.hasError('required')
+        ? 'Пожалуйста, укажите ФИО'
+        : form.name.hasError('invalidFullName')
+          ? 'Пожалуйста, укажите корректное ФИО (например: Иванов Иван Иванович)'
+          : null
+    "
+  />
+
+  <tui-textfield>
+    <label tuiLabel>Номер телефона *</label>
+    <input
+      formControlName="phone"
+      placeholder="+7 (999)-999-99-99"
+      tuiTextfield
+      [maskito]="form.phone.mask"
+    />
+  </tui-textfield>
+  <tui-error
+    [error]="
+      form.phone.touched && form.phone.hasError('required')
+        ? 'Пожалуйста, укажите номер телефона'
+        : form.phone.hasError('minlength')
+          ? 'Пожалуйста, укажите корректный номер телефона'
+          : null
+    "
+  />
+
+  <tui-textfield>
+    <label tuiLabel>Электронная почта *</label>
+    <input
+      formControlName="email"
+      placeholder="example@yandex.ru"
+      tuiTextfield
+    />
+  </tui-textfield>
+  <tui-error
+    [error]="
+      form.email.touched && form.email.hasError('required')
+        ? 'Пожалуйста, укажите электронную почту'
+        : form.email.hasError('email')
+          ? 'Пожалуйста, укажите корректную электронную почту'
+          : null
+    "
+  />
+
+  <tui-textfield>
+    <label tuiLabel>Адрес *</label>
+    <input
+      formControlName="address"
+      placeholder="Россия, Московская область, Москва, ул. Ленина, д. 1, кв. 10"
+      tuiTextfield
+    />
+  </tui-textfield>
+  <tui-error
+    [error]="
+      form.address.touched && form.address.hasError('required')
+        ? 'Пожалуйста, укажите адрес'
+        : null
+    "
+  />
+
+  <tui-textfield>
+    <label tuiLabel>Комментарии</label>
+    <textarea
+      formControlName="comment"
+      placeholder="Оставьте пометки к заказу…"
+      tuiTextarea
+      [min]="3"
+      [max]="6"
+      [limit]="512"
+    ></textarea>
+  </tui-textfield>
+  <tui-error
+    [error]="
+      form.comment.touched && form.comment.hasError('maxlength')
+        ? 'Максимальная длина комментария — 512 символов'
+        : null
+    "
+  />
+
+  <div>
+    <label>
+      <input
+        size="s"
+        tuiCheckbox
+        type="checkbox"
+        formControlName="agreement"
+        size="m"
+      />
+      <span>
+        Оформляя заказ, я даю согласие на обработку моих персональных данных и
+        соглашаюсь с <a tuiLink href="#">политикой конфиденциальности</a> *
+      </span>
+    </label>
+  </div>
+  <tui-error
+    [error]="
+      form.agreement.touched && form.agreement.hasError('required')
+        ? 'Необходимо дать согласие'
+        : null
+    "
+  />
+
+  <div>
+    <p tuiAppearance="action-grayscale">
+      Обработка заказов осуществляется с понедельника по пятницу с 08:30 до
+      17:00.
+    </p>
+    <p tuiAppearance="action-grayscale">
+      Подтверждение и уточнение заказа производится менеджером по телефону или
+      электронной почте.
+    </p>
+  </div>
+
+  <footer>
+    <button
+      appearance="secondary"
+      size="m"
+      tuiButton
+      type="button"
+      (click)="form.previous()"
+    >
+      Назад
+    </button>
+    <button
+      size="m"
+      tuiButton
+      type="submit"
+      [disabled]="form.group.touched && form.group.invalid"
+    >
+      Заказать
+    </button>
+  </footer>
+</form>

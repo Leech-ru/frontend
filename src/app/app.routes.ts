@@ -14,7 +14,7 @@ export const routes = [
   {
     path: "leech/buy",
     title: "Заказать пиявок",
-    loadComponent: () => import("@/pages/index"),
+    loadComponent: () => import("@/pages/leech/buy"),
   },
   {
     path: "leech/about",

@@ -1,0 +1,60 @@
+<form
+  tuiAppearance="floating"
+  tuiCardLarge
+  tuiForm="l"
+  [formGroup]="form.group"
+>
+  <header tuiHeader>
+    <h2 tuiTitle>Покупка медицинской пиявки</h2>
+  </header>
+
+  <tui-notification appearance="warning">
+    Минимальное количество пиявок в заказе —
+    <strong>{{ leechBuyMinCount }}</strong> шт.
+  </tui-notification>
+
+  <fieldset>
+    <h2 class="tui-text_h6 tui-space_top-0 tui-space_bottom-0">
+      Введите количество пиявок
+    </h2>
+  </fieldset>
+
+  <fieldset>
+    <h2 class="tui-text_h6 tui-space_top-0 tui-space_bottom-0">
+      Выберите упаковку
+    </h2>
+
+    <tui-radio-list
+      formControlName="package"
+      [items]="packages"
+      [itemContent]="packageRadioItem"
+      [required]="true"
+    />
+
+    <ng-template #packageRadioItem let-data>
+      <span tuiTitle>
+        {{ data.name }}
+        <span tuiSubtitle>{{ data.description }}</span>
+      </span>
+    </ng-template>
+  </fieldset>
+
+  <p tuiAppearance="action-grayscale">
+    Стоимость и сроки доставки уточняйте у менеджера.
+  </p>
+
+  <footer>
+    <button
+      appearance="secondary"
+      size="m"
+      tuiButton
+      type="button"
+      routerLink=""
+    >
+      На главную
+    </button>
+    <button size="m" tuiButton type="submit" (click)="form.next()">
+      Продолжить
+    </button>
+  </footer>
+</form>

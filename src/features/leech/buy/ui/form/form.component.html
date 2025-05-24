@@ -1,0 +1,8 @@
+<ng-container [ngSwitch]="form.index()">
+  <ng-container *ngSwitchCase="0">
+    <app-leech-buy-form-steps-leech />
+  </ng-container>
+  <ng-container *ngSwitchCase="1">
+    <app-leech-buy-form-steps-contact />
+  </ng-container>
+</ng-container>

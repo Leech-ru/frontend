@@ -1,0 +1,30 @@
+footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+fieldset {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem;
+
+  tui-radio-list {
+    [tuiTitle] {
+      flex: 1;
+      font: var(--tui-font-text-l) !important;
+      font-weight: 600 !important;
+    }
+
+    [tuiSubTitle] {
+      font: var(--tui-font-text-m) !important;
+      font-weight: 400 !important;
+      color: var(--tui-text-secondary) !important;
+    }
+
+    label {
+      flex-direction: row-reverse !important;
+      align-items: center;
+      width: 100%;
+    }
+  }
+}
