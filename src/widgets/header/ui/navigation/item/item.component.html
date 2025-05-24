@@ -5,6 +5,8 @@
     tuiButton
     [tuiChevron]="item.children ? '' : false"
     [tuiDropdown]="item.children ? dropdown : null"
+    [tuiDropdownShowDelay]="0"
+    [tuiDropdownHideDelay]="150"
     [(tuiDropdownOpen)]="isDropdownOpen"
     tuiDropdownHover
     size="m"
