@@ -7,6 +7,7 @@ import {
 } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RouterLink } from "@angular/router";
+import { tuiMarkControlAsTouchedAndValidate } from "@taiga-ui/cdk/utils/miscellaneous";
 import {
   TuiAppearance,
   TuiButton,
@@ -18,8 +19,9 @@ import {
 import { TuiFieldErrorPipe, TuiRadioList } from "@taiga-ui/kit";
 import { TuiCardLarge, TuiForm, TuiHeader } from "@taiga-ui/layout";
 
-import { LEECH_BUY_MIN_COUNT } from "../../../config";
+import { LEECH_BUY_MIN_COUNT, LEECH_BUY_PACKAGES } from "../../../config";
 import { LeechBuyForm } from "../../../model/form";
+import { LeechBuyPackage } from "../../../model/types";
 
 @Component({
   selector: "app-leech-buy-form-steps-leech",
@@ -48,29 +50,22 @@ export class AppLeechBuyFormStepsLeechComponent {
   protected readonly form = inject(LeechBuyForm);
   protected readonly leechBuyMinCount = LEECH_BUY_MIN_COUNT;
 
-  protected readonly packages = [
-    {
-      id: 1,
-      name: "Вода",
-      description: "Транспортировка не более 1-х суток",
-    },
-    {
-      id: 2,
-      name: "Гель",
-      description: "Транспортировка не более 5 суток",
-    },
-    {
-      id: 3,
-      name: "Торф",
-      description: "Транспортировка не более 5 суток",
-    },
-  ] as const;
+  protected readonly packages = LEECH_BUY_PACKAGES;
 
-  // Функция нужна, чтобы <tui-radio-list /> переваривал объекты
-  matchPackage(
-    item1?: (typeof this.packages)[number],
-    item2?: (typeof this.packages)[number],
-  ) {
+  protected comparePackages(item1?: LeechBuyPackage, item2?: LeechBuyPackage) {
     return item1?.id === item2?.id;
+  }
+
+  protected next() {
+    // TODO: когда будет добавлена функциональность выбора количества
+    // пиявок, то нужно тут также проверять новые элементы формы для UX
+    // (например this.form.leech1, this.form.leech2, this.form.leech3)
+    // при помощи tuiMarkControlAsTouchedAndValidate
+
+    tuiMarkControlAsTouchedAndValidate(this.form.package);
+
+    if (this.form.package.valid) {
+      this.form.next();
+    }
   }
 }

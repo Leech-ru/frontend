@@ -15,7 +15,6 @@
       formControlName="name"
       placeholder="Фамилия Имя Отчество"
       tuiTextfield
-      required
     />
   </tui-textfield>
   <tui-error formControlName="name" [error]="[] | tuiFieldError | async" />
@@ -25,7 +24,6 @@
     <input
       formControlName="phone"
       placeholder="+7 (999) 999-99-99"
-      required
       tuiTextfield
       [maskito]="phoneMaskito"
     />
@@ -37,7 +35,6 @@
     <input
       formControlName="email"
       placeholder="example@yandex.ru"
-      required
       tuiTextfield
     />
   </tui-textfield>
@@ -48,7 +45,6 @@
     <input
       formControlName="address"
       placeholder="Россия, Московская область, Москва, ул. Ленина, д. 1, кв. 10"
-      required
       tuiTextfield
     />
   </tui-textfield>
@@ -75,7 +71,6 @@
         type="checkbox"
         formControlName="agreement"
         size="m"
-        required
       />
       <span>
         Оформляя заказ, я даю согласие на обработку моих персональных данных и

@@ -28,7 +28,7 @@
       formControlName="package"
       [items]="packages"
       [itemContent]="packageRadioItem"
-      [identityMatcher]="matchPackage"
+      [identityMatcher]="comparePackages"
     />
     <tui-error formControlName="package" [error]="[] | tuiFieldError | async" />
 
@@ -54,7 +54,7 @@
     >
       На главную
     </button>
-    <button size="m" tuiButton type="submit" (click)="form.next()">
+    <button size="m" tuiButton type="submit" (click)="next()">
       Продолжить
     </button>
   </footer>
