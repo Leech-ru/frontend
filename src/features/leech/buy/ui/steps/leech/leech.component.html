@@ -28,6 +28,7 @@
       formControlName="package"
       [items]="packages"
       [itemContent]="packageRadioItem"
+      [identityMatcher]="matchPackage"
     />
     <tui-error formControlName="package" [error]="[] | tuiFieldError | async" />
 

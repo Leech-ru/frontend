@@ -50,16 +50,27 @@ export class AppLeechBuyFormStepsLeechComponent {
 
   protected readonly packages = [
     {
+      id: 1,
       name: "Вода",
       description: "Транспортировка не более 1-х суток",
     },
     {
+      id: 2,
       name: "Гель",
       description: "Транспортировка не более 5 суток",
     },
     {
+      id: 3,
       name: "Торф",
       description: "Транспортировка не более 5 суток",
     },
-  ];
+  ] as const;
+
+  // Функция нужна, чтобы <tui-radio-list /> переваривал объекты
+  matchPackage(
+    item1?: (typeof this.packages)[number],
+    item2?: (typeof this.packages)[number],
+  ) {
+    return item1?.id === item2?.id;
+  }
 }
