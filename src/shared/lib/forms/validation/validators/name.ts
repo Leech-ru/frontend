@@ -1,6 +1,6 @@
 import { AbstractControl, Validators } from "@angular/forms";
 
-export function fullNameValidator(control: AbstractControl): Validators | null {
+export function nameValidator(control: AbstractControl): Validators | null {
   if (!control.value) {
     return null;
   }

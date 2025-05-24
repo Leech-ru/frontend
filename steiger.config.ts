@@ -12,6 +12,7 @@ export default defineConfig([
     files: ["./src/shared/**"],
     rules: {
       "fsd/public-api": "off",
+      "fsd/no-public-api-sidestep": "off",
       "fsd/no-reserved-folder-names": "off",
     },
   },

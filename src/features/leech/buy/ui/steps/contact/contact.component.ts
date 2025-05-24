@@ -1,3 +1,4 @@
+import { AsyncPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MaskitoDirective } from "@maskito/angular";
@@ -9,8 +10,15 @@ import {
   TuiTextfield,
   TuiTitle,
 } from "@taiga-ui/core";
-import { TuiCheckbox, TuiTextarea, TuiTextareaLimit } from "@taiga-ui/kit";
+import {
+  TuiCheckbox,
+  TuiFieldErrorPipe,
+  TuiTextarea,
+  TuiTextareaLimit,
+} from "@taiga-ui/kit";
 import { TuiCardLarge, TuiForm, TuiHeader } from "@taiga-ui/layout";
+
+import { phoneMaskito } from "@/shared/lib/forms/mask/phone";
 
 import { LeechBuyForm } from "../../../model/form";
 
@@ -19,6 +27,7 @@ import { LeechBuyForm } from "../../../model/form";
   templateUrl: "contact.component.html",
   styleUrl: "contact.component.less",
   imports: [
+    AsyncPipe,
     MaskitoDirective,
     ReactiveFormsModule,
     TuiAppearance,
@@ -26,6 +35,7 @@ import { LeechBuyForm } from "../../../model/form";
     TuiCardLarge,
     TuiCheckbox,
     TuiError,
+    TuiFieldErrorPipe,
     TuiForm,
     TuiHeader,
     TuiLink,
@@ -38,4 +48,5 @@ import { LeechBuyForm } from "../../../model/form";
 })
 export class AppLeechBuyFormStepsContactComponent {
   protected readonly form = inject(LeechBuyForm);
+  protected readonly phoneMaskito = phoneMaskito;
 }

@@ -28,8 +28,8 @@
       formControlName="package"
       [items]="packages"
       [itemContent]="packageRadioItem"
-      [required]="true"
     />
+    <tui-error formControlName="package" [error]="[] | tuiFieldError | async" />
 
     <ng-template #packageRadioItem let-data>
       <span tuiTitle>

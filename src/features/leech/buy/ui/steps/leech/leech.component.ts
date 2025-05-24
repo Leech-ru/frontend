@@ -1,3 +1,4 @@
+import { AsyncPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,11 +10,12 @@ import { RouterLink } from "@angular/router";
 import {
   TuiAppearance,
   TuiButton,
+  TuiError,
   TuiNotification,
   TuiTextfield,
   TuiTitle,
 } from "@taiga-ui/core";
-import { TuiRadioList } from "@taiga-ui/kit";
+import { TuiFieldErrorPipe, TuiRadioList } from "@taiga-ui/kit";
 import { TuiCardLarge, TuiForm, TuiHeader } from "@taiga-ui/layout";
 
 import { LEECH_BUY_MIN_COUNT } from "../../../config";
@@ -24,11 +26,14 @@ import { LeechBuyForm } from "../../../model/form";
   templateUrl: "leech.component.html",
   styleUrl: "leech.component.less",
   imports: [
+    AsyncPipe,
     ReactiveFormsModule,
     RouterLink,
     TuiAppearance,
     TuiButton,
     TuiCardLarge,
+    TuiError,
+    TuiFieldErrorPipe,
     TuiForm,
     TuiHeader,
     TuiNotification,

@@ -9,7 +9,7 @@ import {
   maskitoRemoveOnBlurPlugin,
 } from "@maskito/kit";
 
-export default {
+export const phoneMaskito = {
   mask: [
     "+",
     "7",

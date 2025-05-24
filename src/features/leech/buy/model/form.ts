@@ -1,47 +1,40 @@
 import { Injectable, signal } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { FormControl, FormGroup } from "@angular/forms";
 import { tuiMarkControlAsTouchedAndValidate } from "@taiga-ui/cdk/utils/miscellaneous";
 
-import mask from "@/shared/lib/phone";
-import { fullNameValidator } from "@/shared/lib/validators";
+import * as z from "@/shared/lib/forms/validation";
 
 @Injectable({ providedIn: "root" })
 export class LeechBuyForm {
   public readonly index = signal<number>(0);
 
-  public readonly package = new FormControl("");
-
-  public readonly name = new FormControl("", [
-    Validators.required,
-    fullNameValidator,
-  ]);
-
-  public readonly phone = Object.assign(
-    new FormControl("", [Validators.required, Validators.minLength(18)]),
-    {
-      mask: mask,
-    },
-  );
-
-  public readonly email = new FormControl("", [
-    Validators.required,
-    Validators.email,
-  ]);
-
-  public readonly address = new FormControl("", Validators.required);
-
-  public readonly comment = new FormControl("", Validators.maxLength(512));
-
-  public readonly agreement = new FormControl(false, Validators.requiredTrue);
-
   public readonly group = new FormGroup({
-    package: this.package,
-    name: this.name,
-    phone: this.phone,
-    email: this.email,
-    address: this.address,
-    comment: this.comment,
-    agreement: this.agreement,
+    package: new FormControl("", [
+      z.required("Пожалуйста, укажите тип упаковки"),
+    ]),
+    name: new FormControl("", [
+      z.required("Пожалуйста, укажите ФИО (например, Иванов Иван Иванович)"),
+      z.name("Пожалуйста, укажите корректное ФИО"),
+    ]),
+    phone: new FormControl("", [
+      z.required("Пожалуйста, укажите номер телефона"),
+      z.minLength(18, "Пожалуйста, укажите корректный номер телефона"),
+    ]),
+    email: new FormControl("", [
+      z.required("Пожалуйста, укажите электронную почту"),
+      z.email("Пожалуйста, укажите корректную электронную почту"),
+    ]),
+    address: new FormControl("", [z.required("Пожалуйста, укажите адрес")]),
+    comment: new FormControl("", [
+      z.maxLength(
+        512,
+        ({ maxlength }) =>
+          `Максимальная длина комментария — ${maxlength["requiredLength"]} символов`,
+      ),
+    ]),
+    agreement: new FormControl(false, [
+      z.requiredTrue("Необходимо дать согласие"),
+    ]),
   });
 
   public next(): void {
