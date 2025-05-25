@@ -6,11 +6,11 @@ export const FOOTER_SECTIONS: FooterSection[] = [
     items: [
       {
         title: "Заказать пиявок",
-        routerLink: "leech/buy",
+        routerLink: "/leech/buy",
       },
       {
         title: "О пиявках",
-        routerLink: "leech/about",
+        routerLink: "/leech/about",
       },
     ],
   },
@@ -19,11 +19,11 @@ export const FOOTER_SECTIONS: FooterSection[] = [
     items: [
       {
         title: "Каталог косметики",
-        routerLink: "cosmetics/catalog",
+        routerLink: "/cosmetics/catalog",
       },
       {
         title: "Где купить косметику?",
-        routerLink: "cosmetics/buy",
+        routerLink: "/cosmetics/buy",
       },
     ],
   },
@@ -32,11 +32,11 @@ export const FOOTER_SECTIONS: FooterSection[] = [
     items: [
       {
         title: "Информация",
-        routerLink: "about",
+        routerLink: "/about",
       },
       {
         title: "Экскурсии",
-        routerLink: "",
+        routerLink: "/",
       },
     ],
   },
@@ -45,11 +45,11 @@ export const FOOTER_SECTIONS: FooterSection[] = [
     items: [
       {
         title: "+7 (495) 501-34-54",
-        routerLink: "",
+        routerLink: "/",
       },
       {
         title: "leech-centre@mail.ru",
-        routerLink: "",
+        routerLink: "/",
       },
     ],
   },

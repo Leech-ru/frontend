@@ -9,7 +9,9 @@ type CollectPaths<T> = T extends readonly unknown[]
   : never;
 
 // Вытаскиваем path из элемента, если он есть
-type ExtractPath<T> = T extends { path: infer P } ? P : never;
+type ExtractPath<T> = T extends { path: infer P extends string }
+  ? `/${P}`
+  : never;
 
 // Рекурсивно обрабатываем вложенные children
 type ExtractNestedPaths<T> = T extends { children: infer C }

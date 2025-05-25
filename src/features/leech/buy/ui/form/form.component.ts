@@ -77,7 +77,7 @@ export class AppLeechBuyFormComponent {
       description: "Сроки доставки уточняйте у менеджера",
       next: () => this.form.next(),
       getNextLabel: () => "Далее",
-      back: () => this.router.navigateByUrl(""),
+      back: () => this.router.navigateByUrl("/"),
       getBackLabel: () => "На главную",
       state: () => this.leechStepState(),
     },

@@ -7,7 +7,7 @@ export const HOME_PAGE_CARDS: HomePageCard[] = [
     description:
       "Выращенная в искусственно созданных условиях медицинская пиявка (Hirudo medicinalis)",
     action: "Оформить заказ",
-    routerLink: "leech/buy",
+    routerLink: "/leech/buy",
     fluid: true,
   },
   {
@@ -16,7 +16,7 @@ export const HOME_PAGE_CARDS: HomePageCard[] = [
     description:
       "Косметические средства линии BAA содержат секрет слюнных желез медицинских пиявок, полученный ручным способом",
     action: "Посмотреть",
-    routerLink: "cosmetics/catalog",
+    routerLink: "/cosmetics/catalog",
   },
   {
     thumbnail: "/assets/about-our-center.jpg",
@@ -24,6 +24,6 @@ export const HOME_PAGE_CARDS: HomePageCard[] = [
     description:
       "Обеспечиваем высокое качество продукции круглый год, в наличии любое количество пиявки выращенное в искусственно созданных условиях",
     action: "Читать подробнее",
-    routerLink: "about",
+    routerLink: "/about",
   },
 ];
