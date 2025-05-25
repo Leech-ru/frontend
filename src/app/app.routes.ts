@@ -3,47 +3,59 @@ import { Routes } from "@angular/router";
 export const routes = [
   {
     path: "",
-    title: "Главная",
-    loadComponent: () => import("@/pages/home"),
+    loadComponent: () => import("@/app/layouts/full"),
+    children: [
+      {
+        path: "",
+        title: "Главная",
+        loadComponent: () => import("@/pages/home"),
+      },
+      {
+        path: "leech",
+        title: "Пиявки",
+        loadComponent: () => import("@/pages/index"),
+      },
+      {
+        path: "leech/about",
+        title: "О пиявках",
+        loadComponent: () => import("@/pages/index"),
+      },
+      {
+        path: "cosmetics",
+        title: "Косметика",
+        loadComponent: () => import("@/pages/index"),
+      },
+      {
+        path: "cosmetics/catalog",
+        title: "Каталог косметики",
+        loadComponent: () => import("@/pages/index"),
+      },
+      {
+        path: "cosmetics/buy",
+        title: "Купить косметику",
+        loadComponent: () => import("@/pages/index"),
+      },
+      {
+        path: "contact",
+        title: "Контакты",
+        loadComponent: () => import("@/pages/contact"),
+      },
+      {
+        path: "about",
+        title: "О центре",
+        loadComponent: () => import("@/pages/index"),
+      },
+    ],
   },
   {
-    path: "leech",
-    title: "Пиявки",
-    loadComponent: () => import("@/pages/index"),
-  },
-  {
-    path: "leech/buy",
-    title: "Заказать пиявок",
-    loadComponent: () => import("@/pages/leech/buy"),
-  },
-  {
-    path: "leech/about",
-    title: "О пиявках",
-    loadComponent: () => import("@/pages/index"),
-  },
-  {
-    path: "cosmetics",
-    title: "Косметика",
-    loadComponent: () => import("@/pages/index"),
-  },
-  {
-    path: "cosmetics/catalog",
-    title: "Каталог косметики",
-    loadComponent: () => import("@/pages/index"),
-  },
-  {
-    path: "cosmetics/buy",
-    title: "Купить косметику",
-    loadComponent: () => import("@/pages/index"),
-  },
-  {
-    path: "contact",
-    title: "Контакты",
-    loadComponent: () => import("@/pages/contact"),
-  },
-  {
-    path: "about",
-    title: "О центре",
-    loadComponent: () => import("@/pages/index"),
+    path: "",
+    loadComponent: () => import("@/app/layouts/bare"),
+    children: [
+      {
+        path: "leech/buy",
+        title: "Заказать пиявок",
+        loadComponent: () => import("@/pages/leech/buy"),
+      },
+    ],
   },
 ] as const satisfies Routes;

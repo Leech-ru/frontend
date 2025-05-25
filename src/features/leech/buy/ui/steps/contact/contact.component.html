@@ -1,8 +1,4 @@
 <form tuiForm="l" [formGroup]="form.group" (submit)="form.submit()">
-  <header tuiHeader>
-    <h2 tuiTitle>Контактная информация</h2>
-  </header>
-
   <tui-textfield>
     <label tuiLabel>ФИО</label>
     <input
@@ -92,20 +88,4 @@
       электронной почте.
     </p>
   </div>
-
-  <footer>
-    <button
-      appearance="secondary"
-      size="m"
-      tuiButton
-      type="button"
-      iconStart="@tui.chevron-left"
-      (click)="form.previous()"
-    >
-      Назад
-    </button>
-    <button size="m" tuiButton type="submit" [disabled]="invalid">
-      Заказать
-    </button>
-  </footer>
 </form>

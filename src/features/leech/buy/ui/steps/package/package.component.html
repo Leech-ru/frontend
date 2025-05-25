@@ -1,8 +1,4 @@
 <form tuiForm="l" [formGroup]="form.group" (submit)="form.next()">
-  <header tuiHeader>
-    <h2 tuiTitle>Выбор упаковки</h2>
-  </header>
-
   <div tuiGroup orientation="vertical" [collapsed]="true">
     @for (package of packages; track package.id) {
       <label tuiBlock>
@@ -28,20 +24,4 @@
       Стоимость упаковок уточняйте у менеджеров.
     </p>
   </div>
-
-  <footer>
-    <button
-      appearance="secondary"
-      size="m"
-      tuiButton
-      type="button"
-      iconStart="@tui.chevron-left"
-      (click)="form.previous()"
-    >
-      Назад
-    </button>
-    <button size="m" tuiButton type="submit" [disabled]="form.package.invalid">
-      Продолжить
-    </button>
-  </footer>
 </form>

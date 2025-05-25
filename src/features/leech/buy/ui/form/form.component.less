@@ -1,0 +1,29 @@
+@import "@taiga-ui/core/styles/taiga-ui-local.less";
+
+:host {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  @media @tui-mobile {
+    background-color: var(--tui-background-base);
+  }
+}
+
+tui-app-bar {
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+  flex: unset;
+  background: var(--tui-background-base);
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+
+  @media @tui-mobile {
+    margin-top: auto;
+    margin-inline: 1rem;
+  }
+}

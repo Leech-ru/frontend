@@ -1,17 +1,73 @@
-<div tuiCardLarge="compact" tuiAppearance="floating">
-  <tui-stepper [(activeItemIndex)]="form.index">
-    @for (step of steps; track step.title) {
-      <button
-        tuiStep
-        type="button"
-        [disabled]="step.disabled ? step.disabled() : false"
-        [stepState]="step.state()"
-      >
-        {{ step.title }}
-      </button>
-    }
-  </tui-stepper>
+@if (breakpoint() === "mobile") {
+  <tui-app-bar>
+    <button tuiAppBarBack tuiSlot="left" type="button" (click)="step.back()">
+      {{ step.backLabel }}
+    </button>
+  </tui-app-bar>
 
+  <header tuiHeader class="tui-space_left-4 tui-space_top-4 tui-space_right-4">
+    <h2 tuiTitle>{{ step.title }}</h2>
+  </header>
+
+  <div
+    class="tui-space_top-4 tui-space_bottom-4 tui-space_right-4 tui-space_left-4"
+  >
+    <ng-container *ngTemplateOutlet="stepsTemplate" />
+  </div>
+
+  @if (step.state() === "pass") {
+    <footer tuiFloatingContainer @tuiSlideInTop>
+      <button tuiButton size="m" type="submit" (click)="step.next()">
+        {{ step.action }}
+      </button>
+    </footer>
+  }
+} @else {
+  <div tuiCardLarge tuiAppearance="floating">
+    <tui-stepper [(activeItemIndex)]="form.index">
+      @for (step of steps; track step.title) {
+        <button
+          tuiStep
+          type="button"
+          [disabled]="step.disabled ? step.disabled() : false"
+          [stepState]="step.state()"
+        >
+          {{ step.title }}
+        </button>
+      }
+    </tui-stepper>
+
+    <header tuiHeader class="tui-space_top-4">
+      <h2 tuiTitle>{{ step.title }}</h2>
+    </header>
+
+    <ng-container *ngTemplateOutlet="stepsTemplate" />
+
+    <footer>
+      <button
+        tuiButton
+        size="m"
+        iconStart="@tui.chevron-left"
+        appearance="secondary"
+        type="button"
+        (click)="step.back()"
+      >
+        {{ step.backLabel }}
+      </button>
+      <button
+        tuiButton
+        size="m"
+        type="submit"
+        [disabled]="step.state() !== 'pass'"
+        (click)="step.next()"
+      >
+        {{ step.action }}
+      </button>
+    </footer>
+  </div>
+}
+
+<ng-template #stepsTemplate>
   <ng-container [ngSwitch]="form.index()">
     <ng-container *ngSwitchCase="0">
       <app-leech-buy-form-steps-leech
@@ -29,4 +85,4 @@
       />
     </ng-container>
   </ng-container>
-</div>
+</ng-template>

@@ -8,21 +8,14 @@ import {
 } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MaskitoDirective } from "@maskito/angular";
-import {
-  TuiAppearance,
-  TuiButton,
-  TuiError,
-  TuiLink,
-  TuiTextfield,
-  TuiTitle,
-} from "@taiga-ui/core";
+import { TuiAppearance, TuiError, TuiLink, TuiTextfield } from "@taiga-ui/core";
 import {
   TuiCheckbox,
   TuiFieldErrorPipe,
   TuiTextarea,
   TuiTextareaLimit,
 } from "@taiga-ui/kit";
-import { TuiForm, TuiHeader } from "@taiga-ui/layout";
+import { TuiForm } from "@taiga-ui/layout";
 
 import { phoneMaskito } from "@/shared/lib/forms/mask/phone";
 
@@ -38,17 +31,14 @@ import { TuiStepperStepState } from "../../../model/types";
     MaskitoDirective,
     ReactiveFormsModule,
     TuiAppearance,
-    TuiButton,
     TuiCheckbox,
     TuiError,
     TuiFieldErrorPipe,
     TuiForm,
-    TuiHeader,
     TuiLink,
     TuiTextarea,
     TuiTextareaLimit,
     TuiTextfield,
-    TuiTitle,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

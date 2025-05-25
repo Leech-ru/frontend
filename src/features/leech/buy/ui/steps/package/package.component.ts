@@ -8,7 +8,6 @@ import {
 import { ReactiveFormsModule } from "@angular/forms";
 import {
   TuiAppearance,
-  TuiButton,
   TuiGroup,
   tuiHeightCollapse,
   TuiTextfield,
@@ -20,7 +19,7 @@ import {
   TuiInputNumber,
   TuiRadio,
 } from "@taiga-ui/kit";
-import { TuiForm, TuiHeader } from "@taiga-ui/layout";
+import { TuiForm } from "@taiga-ui/layout";
 
 import { LEECH_BUY_PACKAGES } from "../../../config";
 import { LeechBuyForm } from "../../../model/form";
@@ -34,11 +33,9 @@ import { TuiStepperStepState } from "../../../model/types";
     ReactiveFormsModule,
     TuiAppearance,
     TuiBlock,
-    TuiButton,
     TuiDataListWrapper,
     TuiForm,
     TuiGroup,
-    TuiHeader,
     TuiInputNumber,
     TuiRadio,
     TuiTextfield,

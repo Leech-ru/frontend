@@ -1,8 +1,4 @@
 <form tuiForm="l" [formGroup]="form.group" (submit)="form.next()">
-  <header tuiHeader>
-    <h2 tuiTitle>Выбор пиявок</h2>
-  </header>
-
   <tui-notification
     [appearance]="count < leechBuyMinCount ? 'warning' : 'positive'"
   >
@@ -67,20 +63,4 @@
       Сроки доставки уточняйте у менеджеров.
     </p>
   </div>
-
-  <footer>
-    <button
-      appearance="secondary"
-      size="m"
-      tuiButton
-      type="button"
-      iconStart="@tui.chevron-left"
-      routerLink=""
-    >
-      На главную
-    </button>
-    <button size="m" tuiButton type="submit" [disabled]="invalid">
-      Продолжить
-    </button>
-  </footer>
 </form>

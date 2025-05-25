@@ -1,1 +1,11 @@
-<app-leech-buy-form />
+@if (breakpoint() !== "mobile") {
+  <app-header />
+}
+
+<main>
+  <app-leech-buy-form />
+</main>
+
+@if (breakpoint() !== "mobile") {
+  <app-footer />
+}

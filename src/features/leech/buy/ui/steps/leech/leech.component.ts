@@ -6,17 +6,14 @@ import {
   Output,
 } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
-import { RouterLink } from "@angular/router";
 import {
   TuiAppearance,
-  TuiButton,
   tuiHeightCollapse,
   TuiNotification,
   TuiTextfield,
-  TuiTitle,
 } from "@taiga-ui/core";
 import { TuiInputNumber } from "@taiga-ui/kit";
-import { TuiForm, TuiHeader } from "@taiga-ui/layout";
+import { TuiForm } from "@taiga-ui/layout";
 
 import { LEECH_BUY_MIN_COUNT } from "../../../config";
 import { LeechBuyForm } from "../../../model/form";
@@ -28,15 +25,11 @@ import { TuiStepperStepState } from "../../../model/types";
   styleUrl: "leech.component.less",
   imports: [
     ReactiveFormsModule,
-    RouterLink,
     TuiAppearance,
-    TuiButton,
     TuiForm,
-    TuiHeader,
     TuiInputNumber,
     TuiNotification,
     TuiTextfield,
-    TuiTitle,
   ],
   animations: [tuiHeightCollapse],
   changeDetection: ChangeDetectionStrategy.OnPush,
