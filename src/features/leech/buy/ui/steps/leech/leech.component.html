@@ -6,50 +6,57 @@
     <strong>{{ leechBuyMinCount }}</strong> шт.
   </tui-notification>
 
-  <tui-textfield [tuiTextfieldCleaner]="false">
-    <label tuiLabel>Количество малых пиявок</label>
-    <input
-      postfix=" шт."
-      tuiInputNumber
-      [max]="100"
-      [min]="0"
-      [step]="1"
-      formControlName="small"
-    />
-  </tui-textfield>
+  @for (item of items; track item.title) {
+    <div tuiCell>
+      <div tuiTitle>
+        <strong>{{ item.title }}</strong>
+        <div tuiSubtitle>
+          <tui-badge appearance="neutral" [style.gap.rem]="0.125">
+            <strong tuiAppearance="flat-grayscale">
+              {{ item.price | tuiFormatNumber | async }}
+            </strong>
+            {{ "RUB" | tuiCurrency }}
+            за шт.
+          </tui-badge>
+          <span>
+            @if (item.sizes.min && item.sizes.max) {
+              от <app-leech-size [size]="item.sizes.min" /> до
+              <app-leech-size [size]="item.sizes.max" />
+            } @else if (item.sizes.max) {
+              до <app-leech-size [size]="item.sizes.max" />
+            } @else if (item.sizes.min) {
+              от <app-leech-size [size]="item.sizes.min" />
+            }
+          </span>
+        </div>
+      </div>
+      <tui-textfield [tuiTextfieldCleaner]="false" [style.width.rem]="8">
+        <input
+          postfix=" шт."
+          tuiInputNumber
+          [max]="100"
+          [min]="0"
+          [step]="1"
+          [formControlName]="item.formControlName"
+        />
+      </tui-textfield>
+    </div>
+  }
 
-  <tui-textfield [tuiTextfieldCleaner]="false">
-    <label tuiLabel>Количество средних пиявок</label>
-    <input
-      postfix=" шт."
-      tuiInputNumber
-      [max]="100"
-      [min]="0"
-      [step]="1"
-      formControlName="medium"
-    />
-  </tui-textfield>
-
-  <tui-textfield [tuiTextfieldCleaner]="false">
-    <label tuiLabel>Количество крупных пиявок</label>
-    <input
-      postfix=" шт."
-      tuiInputNumber
-      [max]="100"
-      [min]="0"
-      [step]="1"
-      formControlName="large"
-    />
-  </tui-textfield>
-
-  <hr />
-
-  <div>
+  <div tuiHeader="body-m">
+    <strong tuiTitle tuiAppearance="flat-grayscale">Итого:</strong>
     <p
+      tuiAccessories
       tuiAppearance="action-grayscale"
       class="tui-space_top-0 tui-space_bottom-0"
     >
-      Итого: <strong tuiAppearance="flat-grayscale">{{ count }}</strong> шт.
+      <span>
+        <strong tuiAppearance="flat-grayscale">{{ count }}</strong> шт. за
+        <strong tuiAppearance="flat-grayscale">
+          {{ form.price | tuiFormatNumber | async }}
+        </strong>
+        {{ "RUB" | tuiCurrency }}
+      </span>
     </p>
   </div>
 </form>

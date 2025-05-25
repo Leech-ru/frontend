@@ -8,16 +8,14 @@ import {
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
-import {
-  tuiFormatCurrency,
-  tuiGetCurrencySymbol,
-} from "@taiga-ui/addon-commerce";
+import { tuiGetCurrencySymbol } from "@taiga-ui/addon-commerce";
 import { TuiAnimationPipe } from "@taiga-ui/cdk";
 import {
   TuiAppearance,
   TuiBreakpointService,
   TuiButton,
   tuiCrossFade,
+  tuiFormatNumber,
   tuiSlideInTop,
   TuiTextfield,
   TuiTitle,
@@ -99,7 +97,7 @@ export class AppLeechBuyFormComponent {
         "Подтверждение и уточнение заказа производится менеджером по телефону или электронной почте",
       next: () => this.form.submit(),
       getNextLabel: () =>
-        `Оформить заказ на ${tuiFormatCurrency(this.form.price)} ${tuiGetCurrencySymbol("RUB")}`,
+        `Оформить заказ на ${tuiFormatNumber(this.form.price)} ${tuiGetCurrencySymbol("RUB")}`,
       back: () => this.form.previous(),
       getBackLabel: () => "Назад",
       state: () => this.contactStepState(),

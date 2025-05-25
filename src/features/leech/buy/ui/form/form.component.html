@@ -24,7 +24,7 @@
     <ng-container *ngTemplateOutlet="stepsTemplate" />
   </div>
 
-  <!-- Это нужно, чтобы при изменении размера экрана не было лишней анимации. -->
+  <!-- Это нужно, чтобы при изменении размера экрана не было лишних анимаций. -->
   <div [@.disabled]="breakpoint() !== 'mobile'">
     @if (step.state() === "pass") {
       <footer tuiFloatingContainer @tuiSlideInTop>

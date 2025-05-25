@@ -1,3 +1,4 @@
+import { AsyncPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,16 +7,26 @@ import {
   Output,
 } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
+import { TuiCurrencyPipe } from "@taiga-ui/addon-commerce";
 import {
   TuiAppearance,
+  TuiFormatNumberPipe,
   tuiHeightCollapse,
   TuiNotification,
   TuiTextfield,
+  TuiTitle,
 } from "@taiga-ui/core";
-import { TuiInputNumber } from "@taiga-ui/kit";
-import { TuiForm } from "@taiga-ui/layout";
+import { TuiBadge, TuiInputNumber } from "@taiga-ui/kit";
+import { TuiCell, TuiForm, TuiHeader } from "@taiga-ui/layout";
 
-import { LEECH_BUY_MIN_COUNT } from "../../../config";
+import { AppLeechSizeComponent } from "@/entities/leech";
+
+import {
+  LEECH_BUY_MIN_COUNT,
+  LEECH_LARGE_PRICE,
+  LEECH_MEDIUM_PRICE,
+  LEECH_SMALL_PRICE,
+} from "../../../config";
 import { LeechBuyForm } from "../../../model/form";
 import { TuiStepperStepState } from "../../../model/types";
 
@@ -24,12 +35,20 @@ import { TuiStepperStepState } from "../../../model/types";
   templateUrl: "leech.component.html",
   styleUrl: "leech.component.less",
   imports: [
+    AppLeechSizeComponent,
+    AsyncPipe,
     ReactiveFormsModule,
     TuiAppearance,
+    TuiBadge,
+    TuiCell,
+    TuiCurrencyPipe,
     TuiForm,
+    TuiFormatNumberPipe,
+    TuiHeader,
     TuiInputNumber,
     TuiNotification,
     TuiTextfield,
+    TuiTitle,
   ],
   animations: [tuiHeightCollapse],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -63,4 +82,32 @@ export class AppLeechBuyFormStepsLeechComponent {
 
   protected readonly form = inject(LeechBuyForm);
   protected readonly leechBuyMinCount = LEECH_BUY_MIN_COUNT;
+
+  protected readonly items = [
+    {
+      title: "Малые пиявки",
+      price: LEECH_SMALL_PRICE,
+      sizes: {
+        max: 0.6,
+      },
+      formControlName: "small",
+    },
+    {
+      title: "Средние пиявки",
+      price: LEECH_MEDIUM_PRICE,
+      sizes: {
+        min: 0.6,
+        max: 2,
+      },
+      formControlName: "medium",
+    },
+    {
+      title: "Крупные пиявки",
+      price: LEECH_LARGE_PRICE,
+      sizes: {
+        min: 2,
+      },
+      formControlName: "large",
+    },
+  ];
 }
