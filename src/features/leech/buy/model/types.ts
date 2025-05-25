@@ -1,4 +1,4 @@
-export type LeechPackage = {
+export type LeechBuyPackage = {
   /**
    * Уникальный идентификатор для сравнивания упаковок с пиявками.
    */

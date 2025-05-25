@@ -23,7 +23,6 @@ import {
 import { TuiForm, TuiHeader } from "@taiga-ui/layout";
 
 import { LEECH_BUY_PACKAGES } from "../../../config";
-import { comparePackages } from "../../../model/compare";
 import { LeechBuyForm } from "../../../model/form";
 import { TuiStepperStepState } from "../../../model/types";
 
@@ -64,5 +63,4 @@ export class AppLeechBuyFormStepsPackageComponent {
 
   protected readonly form = inject(LeechBuyForm);
   protected readonly packages = LEECH_BUY_PACKAGES;
-  protected readonly comparePackages = comparePackages;
 }

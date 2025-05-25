@@ -1,10 +1,10 @@
-import { LeechPackage } from "../model/types";
+import { LeechBuyPackage } from "../model/types";
 
 export const LEECH_BUY_MIN_COUNT = 50;
 
 export const LEECH_BUY_COMMENT_MAX_LENGTH = 512;
 
-export const LEECH_BUY_PACKAGES: LeechPackage[] = [
+export const LEECH_BUY_PACKAGES: LeechBuyPackage[] = [
   {
     id: 1,
     name: "Вода",
