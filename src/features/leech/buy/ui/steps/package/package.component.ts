@@ -6,60 +6,54 @@ import {
   Output,
 } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
-import { RouterLink } from "@angular/router";
 import {
   TuiAppearance,
   TuiButton,
+  TuiGroup,
   tuiHeightCollapse,
-  TuiNotification,
   TuiTextfield,
   TuiTitle,
 } from "@taiga-ui/core";
-import { TuiInputNumber } from "@taiga-ui/kit";
+import {
+  TuiBlock,
+  TuiDataListWrapper,
+  TuiInputNumber,
+  TuiRadio,
+} from "@taiga-ui/kit";
 import { TuiForm, TuiHeader } from "@taiga-ui/layout";
 
-import { LEECH_BUY_MIN_COUNT } from "../../../config";
+import { LEECH_BUY_PACKAGES } from "../../../config";
+import { comparePackages } from "../../../model/compare";
 import { LeechBuyForm } from "../../../model/form";
 import { TuiStepperStepState } from "../../../model/types";
 
 @Component({
-  selector: "app-leech-buy-form-steps-leech",
-  templateUrl: "leech.component.html",
-  styleUrl: "leech.component.less",
+  selector: "app-leech-buy-form-steps-package",
+  templateUrl: "package.component.html",
+  styleUrl: "package.component.less",
   imports: [
     ReactiveFormsModule,
-    RouterLink,
     TuiAppearance,
+    TuiBlock,
     TuiButton,
+    TuiDataListWrapper,
     TuiForm,
+    TuiGroup,
     TuiHeader,
     TuiInputNumber,
-    TuiNotification,
+    TuiRadio,
     TuiTextfield,
     TuiTitle,
   ],
   animations: [tuiHeightCollapse],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppLeechBuyFormStepsLeechComponent {
+export class AppLeechBuyFormStepsPackageComponent {
   @Output()
   public stateChange = new EventEmitter<TuiStepperStepState>();
 
-  public get count(): number {
-    return (
-      (this.form.small.value ?? 0) +
-      (this.form.medium.value ?? 0) +
-      (this.form.large.value ?? 0)
-    );
-  }
-
   public get invalid(): boolean {
-    return (
-      this.form.small.invalid ||
-      this.form.medium.invalid ||
-      this.form.large.invalid ||
-      this.count < this.leechBuyMinCount
-    );
+    return this.form.package.invalid;
   }
 
   constructor() {
@@ -69,5 +63,6 @@ export class AppLeechBuyFormStepsLeechComponent {
   }
 
   protected readonly form = inject(LeechBuyForm);
-  protected readonly leechBuyMinCount = LEECH_BUY_MIN_COUNT;
+  protected readonly packages = LEECH_BUY_PACKAGES;
+  protected readonly comparePackages = comparePackages;
 }

@@ -1,8 +1,32 @@
-<ng-container [ngSwitch]="form.index()">
-  <ng-container *ngSwitchCase="0">
-    <app-leech-buy-form-steps-leech />
+<div tuiCardLarge="compact" tuiAppearance="floating">
+  <tui-stepper [(activeItemIndex)]="form.index">
+    @for (step of steps; track step.title) {
+      <button
+        tuiStep
+        type="button"
+        [disabled]="step.disabled ? step.disabled() : false"
+        [stepState]="step.state()"
+      >
+        {{ step.title }}
+      </button>
+    }
+  </tui-stepper>
+
+  <ng-container [ngSwitch]="form.index()">
+    <ng-container *ngSwitchCase="0">
+      <app-leech-buy-form-steps-leech
+        (stateChange)="leechStepState.set($event)"
+      />
+    </ng-container>
+    <ng-container *ngSwitchCase="1">
+      <app-leech-buy-form-steps-package
+        (stateChange)="packageStepState.set($event)"
+      />
+    </ng-container>
+    <ng-container *ngSwitchCase="2">
+      <app-leech-buy-form-steps-contact
+        (stateChange)="contactStepState.set($event)"
+      />
+    </ng-container>
   </ng-container>
-  <ng-container *ngSwitchCase="1">
-    <app-leech-buy-form-steps-contact />
-  </ng-container>
-</ng-container>
+</div>

@@ -1,48 +1,72 @@
-<form
-  tuiAppearance="floating"
-  tuiCardLarge
-  tuiForm="l"
-  [formGroup]="form.group"
->
+<form tuiForm="l" [formGroup]="form.group" (submit)="form.next()">
   <header tuiHeader>
-    <h2 tuiTitle>Покупка медицинской пиявки</h2>
+    <h2 tuiTitle>Выбор пиявок</h2>
   </header>
 
-  <tui-notification appearance="warning">
+  <tui-notification
+    [appearance]="count < leechBuyMinCount ? 'warning' : 'positive'"
+  >
     Минимальное количество пиявок в заказе —
     <strong>{{ leechBuyMinCount }}</strong> шт.
   </tui-notification>
 
-  <fieldset>
-    <h2 class="tui-text_h6 tui-space_top-0 tui-space_bottom-0">
-      Введите количество пиявок
-    </h2>
-  </fieldset>
-
-  <fieldset>
-    <h2 class="tui-text_h6 tui-space_top-0 tui-space_bottom-0">
-      Выберите упаковку
-    </h2>
-
-    <tui-radio-list
-      formControlName="package"
-      [items]="packages"
-      [itemContent]="packageRadioItem"
-      [identityMatcher]="comparePackages"
+  <tui-textfield [tuiTextfieldCleaner]="false">
+    <label tuiLabel>Количество малых пиявок</label>
+    <input
+      postfix=" шт."
+      tuiInputNumber
+      [max]="100"
+      [min]="0"
+      [step]="1"
+      formControlName="small"
     />
-    <tui-error formControlName="package" [error]="[] | tuiFieldError | async" />
+  </tui-textfield>
 
-    <ng-template #packageRadioItem let-data>
-      <span tuiTitle>
-        {{ data.name }}
-        <span tuiSubtitle>{{ data.description }}</span>
-      </span>
-    </ng-template>
-  </fieldset>
+  <tui-textfield [tuiTextfieldCleaner]="false">
+    <label tuiLabel>Количество средних пиявок</label>
+    <input
+      postfix=" шт."
+      tuiInputNumber
+      [max]="100"
+      [min]="0"
+      [step]="1"
+      formControlName="medium"
+    />
+  </tui-textfield>
 
-  <p tuiAppearance="action-grayscale">
-    Стоимость и сроки доставки уточняйте у менеджера.
-  </p>
+  <tui-textfield [tuiTextfieldCleaner]="false">
+    <label tuiLabel>Количество крупных пиявок</label>
+    <input
+      postfix=" шт."
+      tuiInputNumber
+      [max]="100"
+      [min]="0"
+      [step]="1"
+      formControlName="large"
+    />
+  </tui-textfield>
+
+  <hr />
+
+  <div>
+    <p
+      tuiAppearance="action-grayscale"
+      class="tui-space_top-0 tui-space_bottom-0"
+    >
+      Итого: <strong tuiAppearance="flat-grayscale">{{ count }}</strong> шт.
+    </p>
+  </div>
+
+  <hr />
+
+  <div>
+    <p
+      tuiAppearance="action-grayscale"
+      class="tui-space_top-0 tui-space_bottom-0"
+    >
+      Сроки доставки уточняйте у менеджеров.
+    </p>
+  </div>
 
   <footer>
     <button
@@ -50,11 +74,12 @@
       size="m"
       tuiButton
       type="button"
+      iconStart="@tui.chevron-left"
       routerLink=""
     >
       На главную
     </button>
-    <button size="m" tuiButton type="submit" (click)="next()">
+    <button size="m" tuiButton type="submit" [disabled]="invalid">
       Продолжить
     </button>
   </footer>

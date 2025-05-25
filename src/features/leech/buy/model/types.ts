@@ -1,4 +1,4 @@
-export type LeechBuyPackage = {
+export type LeechPackage = {
   /**
    * Уникальный идентификатор для сравнивания упаковок с пиявками.
    */
@@ -14,3 +14,5 @@ export type LeechBuyPackage = {
    */
   description: string;
 };
+
+export type TuiStepperStepState = "normal" | "error" | "pass";

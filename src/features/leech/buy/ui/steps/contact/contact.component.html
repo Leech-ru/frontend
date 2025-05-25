@@ -1,10 +1,4 @@
-<form
-  tuiAppearance="floating"
-  tuiCardLarge
-  tuiForm="l"
-  [formGroup]="form.group"
-  (submit)="form.submit()"
->
+<form tuiForm="l" [formGroup]="form.group" (submit)="form.submit()">
   <header tuiHeader>
     <h2 tuiTitle>Контактная информация</h2>
   </header>
@@ -80,12 +74,20 @@
   </div>
   <tui-error formControlName="agreement" [error]="[] | tuiFieldError | async" />
 
+  <hr />
+
   <div>
-    <p tuiAppearance="action-grayscale">
+    <p
+      tuiAppearance="action-grayscale"
+      class="tui-space_top-0 tui-space_bottom-2"
+    >
       Обработка заказов осуществляется с понедельника по пятницу с 08:30 до
       17:00.
     </p>
-    <p tuiAppearance="action-grayscale">
+    <p
+      tuiAppearance="action-grayscale"
+      class="tui-space_top-0 tui-space_bottom-0"
+    >
       Подтверждение и уточнение заказа производится менеджером по телефону или
       электронной почте.
     </p>
@@ -97,16 +99,12 @@
       size="m"
       tuiButton
       type="button"
+      iconStart="@tui.chevron-left"
       (click)="form.previous()"
     >
       Назад
     </button>
-    <button
-      size="m"
-      tuiButton
-      type="submit"
-      [disabled]="form.group.touched && form.group.invalid"
-    >
+    <button size="m" tuiButton type="submit" [disabled]="invalid">
       Заказать
     </button>
   </footer>
