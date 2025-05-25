@@ -1,3 +1,21 @@
+@import "@taiga-ui/core/styles/taiga-ui-local.less";
+
+:host,
+form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+p {
+  margin-top: auto;
+
+  @media @tui-mobile {
+    text-align: center;
+    align-self: center;
+  }
+}
+
 [tuiBlock] {
   align-items: center;
 

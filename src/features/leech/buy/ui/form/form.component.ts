@@ -13,6 +13,8 @@ import {
   TuiBreakpointService,
   TuiButton,
   tuiCrossFade,
+  tuiHeightCollapse,
+  tuiScaleIn,
   tuiSlideInTop,
   TuiTextfield,
   TuiTitle,
@@ -49,11 +51,12 @@ import { AppLeechBuyFormStepsPackageComponent } from "../steps/package/package.c
     TuiTextfield,
     TuiTitle,
   ],
-  host: {
-    // Это нужно, чтобы при изменении размера экрана не было лишней анимации.
-    "[@.disabled]": "breakpoint() !== 'mobile'",
-  },
-  animations: [tuiSlideInTop, tuiCrossFade],
+  // host: {
+  //   // Это нужно, чтобы при изменении размера экрана не было лишней анимации.
+  //   "[@.disabled]": "breakpoint() !== 'mobile'",
+  // },
+  // // UPD: Оно убирает вообще все анимации.
+  animations: [tuiSlideInTop, tuiHeightCollapse, tuiCrossFade, tuiScaleIn],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppLeechBuyFormComponent {
@@ -62,7 +65,7 @@ export class AppLeechBuyFormComponent {
   protected readonly breakpoint = toSignal(inject(TuiBreakpointService).pipe());
 
   protected readonly leechStepState = signal<TuiStepperStepState>("normal");
-  protected readonly packageStepState = signal<TuiStepperStepState>("normal");
+  protected readonly packageStepState = signal<TuiStepperStepState>("pass");
   protected readonly contactStepState = signal<TuiStepperStepState>("normal");
 
   protected readonly steps = [
@@ -87,7 +90,8 @@ export class AppLeechBuyFormComponent {
       title: "Контактная информация",
       action: "Оформить заказ",
       state: () => this.contactStepState(),
-      disabled: () => this.packageStepState() !== "pass",
+      disabled: () =>
+        this.leechStepState() !== "pass" || this.packageStepState() !== "pass",
       next: () => this.form.submit(),
       back: () => this.form.previous(),
       backLabel: "Назад",

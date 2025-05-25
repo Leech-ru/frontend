@@ -8,12 +8,19 @@ import {
 } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MaskitoDirective } from "@maskito/angular";
-import { TuiAppearance, TuiError, TuiLink, TuiTextfield } from "@taiga-ui/core";
+import {
+  TuiAppearance,
+  TuiError,
+  TuiIcon,
+  TuiLink,
+  TuiTextfield,
+} from "@taiga-ui/core";
 import {
   TuiCheckbox,
   TuiFieldErrorPipe,
   TuiTextarea,
   TuiTextareaLimit,
+  TuiTooltip,
 } from "@taiga-ui/kit";
 import { TuiForm } from "@taiga-ui/layout";
 
@@ -35,10 +42,12 @@ import { TuiStepperStepState } from "../../../model/types";
     TuiError,
     TuiFieldErrorPipe,
     TuiForm,
+    TuiIcon,
     TuiLink,
     TuiTextarea,
     TuiTextareaLimit,
     TuiTextfield,
+    TuiTooltip,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

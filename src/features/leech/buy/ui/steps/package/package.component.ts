@@ -9,7 +9,6 @@ import { ReactiveFormsModule } from "@angular/forms";
 import {
   TuiAppearance,
   TuiGroup,
-  tuiHeightCollapse,
   TuiTextfield,
   TuiTitle,
 } from "@taiga-ui/core";
@@ -41,7 +40,6 @@ import { TuiStepperStepState } from "../../../model/types";
     TuiTextfield,
     TuiTitle,
   ],
-  animations: [tuiHeightCollapse],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppLeechBuyFormStepsPackageComponent {

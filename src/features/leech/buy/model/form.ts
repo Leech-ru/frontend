@@ -14,7 +14,7 @@ export class LeechBuyForm {
   public readonly medium = new FormControl(0);
   public readonly large = new FormControl(0);
 
-  public readonly package = new FormControl("", [
+  public readonly package = new FormControl(1, [
     z.required("Пожалуйста, укажите тип упаковки"),
   ]);
 

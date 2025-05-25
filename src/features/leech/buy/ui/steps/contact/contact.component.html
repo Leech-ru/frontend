@@ -9,7 +9,7 @@
   </tui-textfield>
   <tui-error formControlName="name" [error]="[] | tuiFieldError | async" />
 
-  <tui-textfield>
+  <tui-textfield [tuiTextfieldCleaner]="false">
     <label tuiLabel>Номер телефона</label>
     <input
       formControlName="phone"
@@ -17,15 +17,23 @@
       tuiTextfield
       [maskito]="phoneMaskito"
     />
+    <tui-icon
+      tuiTooltip="Подтверждение и уточнение заказа производится менеджером по телефону или
+      электронной почте."
+    />
   </tui-textfield>
   <tui-error formControlName="phone" [error]="[] | tuiFieldError | async" />
 
-  <tui-textfield>
+  <tui-textfield [tuiTextfieldCleaner]="false">
     <label tuiLabel>Электронная почта</label>
     <input
       formControlName="email"
       placeholder="example@yandex.ru"
       tuiTextfield
+    />
+    <tui-icon
+      tuiTooltip="Подтверждение и уточнение заказа производится менеджером по телефону или
+      электронной почте."
     />
   </tui-textfield>
   <tui-error formControlName="email" [error]="[] | tuiFieldError | async" />
@@ -63,29 +71,14 @@
         size="m"
       />
       <span>
-        Оформляя заказ, я даю согласие на обработку моих персональных данных и
-        соглашаюсь с <a tuiLink href="#">политикой конфиденциальности</a>
+        Я даю согласие на обработку моих персональных данных и соглашаюсь с
+        <a tuiLink href="#">политикой конфиденциальности</a>
       </span>
     </label>
   </div>
   <tui-error formControlName="agreement" [error]="[] | tuiFieldError | async" />
 
-  <hr />
-
-  <div>
-    <p
-      tuiAppearance="action-grayscale"
-      class="tui-space_top-0 tui-space_bottom-2"
-    >
-      Обработка заказов осуществляется с понедельника по пятницу с 08:30 до
-      17:00.
-    </p>
-    <p
-      tuiAppearance="action-grayscale"
-      class="tui-space_top-0 tui-space_bottom-0"
-    >
-      Подтверждение и уточнение заказа производится менеджером по телефону или
-      электронной почте.
-    </p>
-  </div>
+  <p tuiAppearance="action-grayscale" class="tui-space_top-2">
+    Обработка заказов осуществляется с понедельника по пятницу с 08:30 до 17:00.
+  </p>
 </form>
