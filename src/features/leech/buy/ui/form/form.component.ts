@@ -6,20 +6,30 @@ import {
   signal,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
+import { TuiAnimationPipe } from "@taiga-ui/cdk";
 import {
   TuiAppearance,
   TuiBreakpointService,
   TuiButton,
   tuiCrossFade,
+  tuiFadeIn,
+  tuiFadeInBottom,
+  tuiFadeInList,
   tuiHeightCollapse,
+  tuiHeightCollapseList,
   tuiScaleIn,
   tuiSlideInTop,
+  tuiSlideInTopList,
   TuiTextfield,
   TuiTitle,
 } from "@taiga-ui/core";
-import { TuiFloatingContainer, TuiStepper } from "@taiga-ui/kit";
+import {
+  TuiElasticContainer,
+  TuiFloatingContainer,
+  TuiStepper,
+} from "@taiga-ui/kit";
 import { TuiAppBar, TuiCardLarge, TuiHeader } from "@taiga-ui/layout";
 
 import { LeechBuyForm } from "../../model/form";
@@ -37,14 +47,17 @@ import { AppLeechBuyFormStepsPackageComponent } from "../steps/package/package.c
     AppLeechBuyFormStepsContactComponent,
     AppLeechBuyFormStepsLeechComponent,
     AppLeechBuyFormStepsPackageComponent,
+    FormsModule,
     NgSwitch,
     NgSwitchCase,
     NgTemplateOutlet,
     ReactiveFormsModule,
+    TuiAnimationPipe,
     TuiAppBar,
     TuiAppearance,
     TuiButton,
     TuiCardLarge,
+    TuiElasticContainer,
     TuiFloatingContainer,
     TuiHeader,
     TuiStepper,
@@ -56,7 +69,17 @@ import { AppLeechBuyFormStepsPackageComponent } from "../steps/package/package.c
   //   "[@.disabled]": "breakpoint() !== 'mobile'",
   // },
   // // UPD: Оно убирает вообще все анимации.
-  animations: [tuiSlideInTop, tuiHeightCollapse, tuiCrossFade, tuiScaleIn],
+  animations: [
+    tuiSlideInTop,
+    tuiHeightCollapse,
+    tuiCrossFade,
+    tuiScaleIn,
+    tuiFadeInBottom,
+    tuiHeightCollapseList,
+    tuiFadeInList,
+    tuiSlideInTopList,
+    tuiFadeIn,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppLeechBuyFormComponent {
@@ -65,7 +88,7 @@ export class AppLeechBuyFormComponent {
   protected readonly breakpoint = toSignal(inject(TuiBreakpointService).pipe());
 
   protected readonly leechStepState = signal<TuiStepperStepState>("normal");
-  protected readonly packageStepState = signal<TuiStepperStepState>("pass");
+  protected readonly packageStepState = signal<TuiStepperStepState>("normal");
   protected readonly contactStepState = signal<TuiStepperStepState>("normal");
 
   protected readonly steps = [
@@ -76,6 +99,7 @@ export class AppLeechBuyFormComponent {
       next: () => this.form.next(),
       back: () => this.router.navigateByUrl(""),
       backLabel: "На главную",
+      description: "Сроки доставки уточняйте у менеджера.",
     },
     {
       title: "Выбор упаковки",
@@ -85,6 +109,7 @@ export class AppLeechBuyFormComponent {
       next: () => this.form.next(),
       back: () => this.form.previous(),
       backLabel: "Назад",
+      description: "Стоимость упаковок уточняйте у менеджера.",
     },
     {
       title: "Контактная информация",
@@ -95,6 +120,8 @@ export class AppLeechBuyFormComponent {
       next: () => this.form.submit(),
       back: () => this.form.previous(),
       backLabel: "Назад",
+      description:
+        "Подтверждение и уточнение заказа производится менеджером по телефону или электронной почте.",
     },
   ];
 

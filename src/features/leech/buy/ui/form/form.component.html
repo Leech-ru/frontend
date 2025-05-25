@@ -26,9 +26,16 @@
 
   @if (step.state() === "pass") {
     <footer tuiFloatingContainer @tuiSlideInTop>
-      <button tuiButton size="m" type="submit" (click)="step.next()">
-        {{ step.action }}
-      </button>
+      <tui-elastic-container>
+        <button tuiButton size="m" type="submit" (click)="step.next()">
+          {{ step.action }}
+        </button>
+        @if (step.description) {
+          <span [@tuiCrossFade]="{ bottom: '1rem' } | tuiAnimation">
+            {{ step.description }}
+          </span>
+        }
+      </tui-elastic-container>
     </footer>
   }
 } @else {
@@ -51,6 +58,12 @@
     </header>
 
     <ng-container *ngTemplateOutlet="stepsTemplate" />
+
+    @if (step.description) {
+      <span tuiAppearance="action-grayscale">
+        {{ step.description }}
+      </span>
+    }
 
     <footer>
       <button
