@@ -8,20 +8,17 @@ import {
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
+import {
+  tuiFormatCurrency,
+  tuiGetCurrencySymbol,
+} from "@taiga-ui/addon-commerce";
 import { TuiAnimationPipe } from "@taiga-ui/cdk";
 import {
   TuiAppearance,
   TuiBreakpointService,
   TuiButton,
   tuiCrossFade,
-  tuiFadeIn,
-  tuiFadeInBottom,
-  tuiFadeInList,
-  tuiHeightCollapse,
-  tuiHeightCollapseList,
-  tuiScaleIn,
   tuiSlideInTop,
-  tuiSlideInTopList,
   TuiTextfield,
   TuiTitle,
 } from "@taiga-ui/core";
@@ -64,22 +61,7 @@ import { AppLeechBuyFormStepsPackageComponent } from "../steps/package/package.c
     TuiTextfield,
     TuiTitle,
   ],
-  // host: {
-  //   // Это нужно, чтобы при изменении размера экрана не было лишней анимации.
-  //   "[@.disabled]": "breakpoint() !== 'mobile'",
-  // },
-  // // UPD: Оно убирает вообще все анимации.
-  animations: [
-    tuiSlideInTop,
-    tuiHeightCollapse,
-    tuiCrossFade,
-    tuiScaleIn,
-    tuiFadeInBottom,
-    tuiHeightCollapseList,
-    tuiFadeInList,
-    tuiSlideInTopList,
-    tuiFadeIn,
-  ],
+  animations: [tuiSlideInTop, tuiCrossFade],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppLeechBuyFormComponent {
@@ -94,34 +76,35 @@ export class AppLeechBuyFormComponent {
   protected readonly steps = [
     {
       title: "Выбор пиявок",
-      action: "Продолжить",
-      state: () => this.leechStepState(),
+      description: "Сроки доставки уточняйте у менеджера",
       next: () => this.form.next(),
+      getNextLabel: () => "Далее",
       back: () => this.router.navigateByUrl(""),
-      backLabel: "На главную",
-      description: "Сроки доставки уточняйте у менеджера.",
+      getBackLabel: () => "На главную",
+      state: () => this.leechStepState(),
     },
     {
       title: "Выбор упаковки",
-      action: "Продолжить",
+      description: "Стоимость упаковок уточняйте у менеджера",
+      next: () => this.form.next(),
+      getNextLabel: () => "Далее",
+      back: () => this.form.previous(),
+      getBackLabel: () => "Назад",
       state: () => this.packageStepState(),
       disabled: () => this.leechStepState() !== "pass",
-      next: () => this.form.next(),
-      back: () => this.form.previous(),
-      backLabel: "Назад",
-      description: "Стоимость упаковок уточняйте у менеджера.",
     },
     {
       title: "Контактная информация",
-      action: "Оформить заказ",
+      description:
+        "Подтверждение и уточнение заказа производится менеджером по телефону или электронной почте",
+      next: () => this.form.submit(),
+      getNextLabel: () =>
+        `Оформить заказ на ${tuiFormatCurrency(this.form.price)} ${tuiGetCurrencySymbol("RUB")}`,
+      back: () => this.form.previous(),
+      getBackLabel: () => "Назад",
       state: () => this.contactStepState(),
       disabled: () =>
         this.leechStepState() !== "pass" || this.packageStepState() !== "pass",
-      next: () => this.form.submit(),
-      back: () => this.form.previous(),
-      backLabel: "Назад",
-      description:
-        "Подтверждение и уточнение заказа производится менеджером по телефону или электронной почте.",
     },
   ];
 

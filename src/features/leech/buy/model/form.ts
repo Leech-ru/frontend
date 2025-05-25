@@ -4,7 +4,12 @@ import { tuiMarkControlAsTouchedAndValidate } from "@taiga-ui/cdk/utils/miscella
 
 import * as z from "@/shared/lib/forms/validation";
 
-import { LEECH_BUY_COMMENT_MAX_LENGTH } from "../config";
+import {
+  LEECH_BUY_COMMENT_MAX_LENGTH,
+  LEECH_LARGE_PRICE,
+  LEECH_MEDIUM_PRICE,
+  LEECH_SMALL_PRICE,
+} from "../config";
 
 @Injectable({ providedIn: "root" })
 export class LeechBuyForm {
@@ -60,6 +65,14 @@ export class LeechBuyForm {
     comment: this.comment,
     agreement: this.agreement,
   });
+
+  public get price(): number {
+    return (
+      (this.small.value ?? 0) * LEECH_SMALL_PRICE +
+      (this.medium.value ?? 0) * LEECH_MEDIUM_PRICE +
+      (this.large.value ?? 0) * LEECH_LARGE_PRICE
+    );
+  }
 
   public next(): void {
     this.index.update((prev) => prev + 1);

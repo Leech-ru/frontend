@@ -5,7 +5,7 @@
       tuiSlot="left"
       type="button"
       (click)="step.back()"
-      [attr.aria-label]="step.backLabel"
+      [attr.aria-label]="step.getBackLabel()"
     ></button>
     <span> Оформление заказа </span>
     <span tuiSlot="right" tuiAppearance="action" class="tui-space_right-4">
@@ -24,20 +24,23 @@
     <ng-container *ngTemplateOutlet="stepsTemplate" />
   </div>
 
-  @if (step.state() === "pass") {
-    <footer tuiFloatingContainer @tuiSlideInTop>
-      <tui-elastic-container>
-        <button tuiButton size="m" type="submit" (click)="step.next()">
-          {{ step.action }}
-        </button>
-        @if (step.description) {
-          <span [@tuiCrossFade]="{ bottom: '1rem' } | tuiAnimation">
-            {{ step.description }}
-          </span>
-        }
-      </tui-elastic-container>
-    </footer>
-  }
+  <!-- Это нужно, чтобы при изменении размера экрана не было лишней анимации. -->
+  <div [@.disabled]="breakpoint() !== 'mobile'">
+    @if (step.state() === "pass") {
+      <footer tuiFloatingContainer @tuiSlideInTop>
+        <tui-elastic-container>
+          <button tuiButton size="m" type="submit" (click)="step.next()">
+            {{ step.getNextLabel() }}
+          </button>
+          @if (step.description) {
+            <span [@tuiCrossFade]="{ bottom: '1rem' } | tuiAnimation">
+              {{ step.description }}
+            </span>
+          }
+        </tui-elastic-container>
+      </footer>
+    }
+  </div>
 } @else {
   <div tuiCardLarge tuiAppearance="floating">
     <tui-stepper [(activeItemIndex)]="form.index">
@@ -74,7 +77,7 @@
         type="button"
         (click)="step.back()"
       >
-        {{ step.backLabel }}
+        {{ step.getBackLabel() }}
       </button>
       <button
         tuiButton
@@ -83,7 +86,7 @@
         [disabled]="step.state() !== 'pass'"
         (click)="step.next()"
       >
-        {{ step.action }}
+        {{ step.getNextLabel() }}
       </button>
     </footer>
   </div>
@@ -91,20 +94,17 @@
 
 <ng-template #stepsTemplate>
   <ng-container [ngSwitch]="form.index()">
-    <ng-container *ngSwitchCase="0">
-      <app-leech-buy-form-steps-leech
-        (stateChange)="leechStepState.set($event)"
-      />
-    </ng-container>
-    <ng-container *ngSwitchCase="1">
-      <app-leech-buy-form-steps-package
-        (stateChange)="packageStepState.set($event)"
-      />
-    </ng-container>
-    <ng-container *ngSwitchCase="2">
-      <app-leech-buy-form-steps-contact
-        (stateChange)="contactStepState.set($event)"
-      />
-    </ng-container>
+    <app-leech-buy-form-steps-leech
+      *ngSwitchCase="0"
+      (stateChange)="leechStepState.set($event)"
+    />
+    <app-leech-buy-form-steps-package
+      *ngSwitchCase="1"
+      (stateChange)="packageStepState.set($event)"
+    />
+    <app-leech-buy-form-steps-contact
+      *ngSwitchCase="2"
+      (stateChange)="contactStepState.set($event)"
+    />
   </ng-container>
 </ng-template>

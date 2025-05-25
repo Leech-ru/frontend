@@ -2,6 +2,7 @@
   <div tuiGroup orientation="vertical" [collapsed]="true">
     @for (package of packages; track package.id) {
       <label tuiBlock>
+        <tui-avatar [src]="package.icon" />
         <span tuiTitle>
           <strong>{{ package.name }}</strong>
           <span tuiSubtitle>{{ package.description }}</span>

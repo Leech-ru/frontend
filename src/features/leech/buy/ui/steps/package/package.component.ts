@@ -13,6 +13,7 @@ import {
   TuiTitle,
 } from "@taiga-ui/core";
 import {
+  TuiAvatar,
   TuiBlock,
   TuiDataListWrapper,
   TuiInputNumber,
@@ -31,6 +32,7 @@ import { TuiStepperStepState } from "../../../model/types";
   imports: [
     ReactiveFormsModule,
     TuiAppearance,
+    TuiAvatar,
     TuiBlock,
     TuiDataListWrapper,
     TuiForm,
