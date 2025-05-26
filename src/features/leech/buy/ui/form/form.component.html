@@ -5,7 +5,7 @@
     </button>
     <span>Оформление заказа</span>
     <span tuiSlot="right" tuiAppearance="action" class="tui-space_right-4">
-      {{ form.index() + 1 }}/{{ steps.length }}
+      {{ index() + 1 }}/{{ steps.length }}
     </span>
   </tui-app-bar>
 
@@ -38,7 +38,7 @@
   </footer>
 } @else {
   <div tuiCardLarge tuiAppearance="floating">
-    <tui-stepper [(activeItemIndex)]="form.index">
+    <tui-stepper [(activeItemIndex)]="index">
       @for (step of steps; track step.title) {
         <button
           tuiStep
@@ -85,7 +85,7 @@
 }
 
 <ng-template #stepsTemplate>
-  <ng-container [ngSwitch]="form.index()">
+  <ng-container [ngSwitch]="index()">
     <app-leech-buy-form-steps-leech
       *ngSwitchCase="0"
       (stateChange)="leechStepState.set($event)"

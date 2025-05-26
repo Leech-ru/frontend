@@ -53,6 +53,8 @@ import { AppLeechBuyFormStepsPackageComponent } from "../steps/package/package.c
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppLeechBuyFormComponent {
+  protected readonly index = signal<number>(0);
+
   protected readonly form = inject(LeechBuyForm);
   protected readonly router = inject(Router);
   protected readonly breakpoint = toSignal(inject(TuiBreakpointService).pipe());
@@ -65,7 +67,7 @@ export class AppLeechBuyFormComponent {
     {
       title: "Выбор пиявок",
       description: "Сроки доставки уточняйте у менеджера",
-      next: () => this.form.next(),
+      next: () => this.next(),
       getNextLabel: () => "Далее",
       back: () => this.router.navigateByUrl("/"),
       getBackLabel: () => "Назад",
@@ -74,9 +76,9 @@ export class AppLeechBuyFormComponent {
     {
       title: "Выбор упаковки",
       description: "Стоимость упаковок уточняйте у менеджера",
-      next: () => this.form.next(),
+      next: () => this.next(),
       getNextLabel: () => "Далее",
-      back: () => this.form.previous(),
+      back: () => this.previous(),
       getBackLabel: () => "Назад",
       state: () => this.packageStepState(),
       disabled: () => this.leechStepState() !== "pass",
@@ -88,7 +90,7 @@ export class AppLeechBuyFormComponent {
       next: () => this.form.submit(),
       getNextLabel: () =>
         `Оформить заказ на ${tuiFormatNumber(this.form.price)} ${tuiGetCurrencySymbol("RUB")}`,
-      back: () => this.form.previous(),
+      back: () => this.previous(),
       getBackLabel: () => "Назад",
       state: () => this.contactStepState(),
       disabled: () =>
@@ -97,6 +99,14 @@ export class AppLeechBuyFormComponent {
   ];
 
   protected get step() {
-    return this.steps[this.form.index()];
+    return this.steps[this.index()];
+  }
+
+  public next(): void {
+    this.index.update((prev) => prev + 1);
+  }
+
+  public previous(): void {
+    this.index.update((prev) => prev - 1);
   }
 }

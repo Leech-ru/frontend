@@ -1,4 +1,4 @@
-<form tuiForm="l" [formGroup]="form.group" (submit)="form.next()">
+<form tuiForm="l" [formGroup]="form.group">
   <tui-notification
     [appearance]="count < leechBuyMinCount ? 'warning' : 'positive'"
   >
@@ -27,7 +27,7 @@
         <input
           postfix=" шт."
           tuiInputNumber
-          [max]="100"
+          [max]="1000"
           [min]="0"
           [step]="1"
           [formControlName]="item.formControlName"

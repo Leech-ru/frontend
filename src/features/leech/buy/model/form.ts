@@ -1,6 +1,5 @@
-import { Injectable, signal } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
-import { tuiMarkControlAsTouchedAndValidate } from "@taiga-ui/cdk/utils/miscellaneous";
 
 import * as z from "@/shared/lib/forms/validation";
 
@@ -13,10 +12,10 @@ import {
 
 @Injectable({ providedIn: "root" })
 export class LeechBuyForm {
-  public readonly index = signal<number>(0);
-
   public readonly small = new FormControl(0);
+
   public readonly medium = new FormControl(0);
+
   public readonly large = new FormControl(0);
 
   public readonly package = new FormControl("", [
@@ -74,19 +73,7 @@ export class LeechBuyForm {
     );
   }
 
-  public next(): void {
-    this.index.update((prev) => prev + 1);
-  }
-
-  public previous(): void {
-    this.index.update((prev) => prev - 1);
-  }
-
   public submit(): void {
-    tuiMarkControlAsTouchedAndValidate(this.group);
-
-    if (this.group.valid) {
-      alert(JSON.stringify(this.group.value, null, 2));
-    }
+    alert(JSON.stringify(this.group.value, null, 2));
   }
 }

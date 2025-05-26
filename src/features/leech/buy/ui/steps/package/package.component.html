@@ -1,4 +1,4 @@
-<form tuiForm="l" [formGroup]="form.group" (submit)="form.next()">
+<form tuiForm="l" [formGroup]="form.group">
   <div tuiGroup orientation="vertical" [collapsed]="true">
     @for (package of packages; track package.id) {
       <label tuiBlock>
