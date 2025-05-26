@@ -6,7 +6,6 @@ import {
   signal,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { tuiGetCurrencySymbol } from "@taiga-ui/addon-commerce";
 import {
@@ -38,11 +37,9 @@ import { AppLeechBuyFormStepsPackageComponent } from "../steps/package/package.c
     AppLeechBuyFormStepsContactComponent,
     AppLeechBuyFormStepsLeechComponent,
     AppLeechBuyFormStepsPackageComponent,
-    FormsModule,
     NgSwitch,
     NgSwitchCase,
     NgTemplateOutlet,
-    ReactiveFormsModule,
     TuiAppBar,
     TuiAppearance,
     TuiButton,
