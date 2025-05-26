@@ -2,8 +2,7 @@
   <tui-notification
     [appearance]="count < leechBuyMinCount ? 'warning' : 'positive'"
   >
-    Минимальное количество пиявок в заказе —
-    <strong>{{ leechBuyMinCount }}</strong> шт.
+    Заказ от <strong>{{ leechBuyMinCount }}</strong> шт.
   </tui-notification>
 
   @for (item of items; track item.title) {
