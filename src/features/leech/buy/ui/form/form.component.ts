@@ -78,7 +78,7 @@ export class AppLeechBuyFormComponent {
       next: () => this.form.next(),
       getNextLabel: () => "Далее",
       back: () => this.router.navigateByUrl("/"),
-      getBackLabel: () => "На главную",
+      getBackLabel: () => "Назад",
       state: () => this.leechStepState(),
     },
     {

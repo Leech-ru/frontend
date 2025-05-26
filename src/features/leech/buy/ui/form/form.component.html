@@ -1,12 +1,8 @@
 @if (breakpoint() === "mobile") {
   <tui-app-bar>
-    <button
-      tuiAppBarBack
-      tuiSlot="left"
-      type="button"
-      (click)="step.back()"
-      [attr.aria-label]="step.getBackLabel()"
-    ></button>
+    <button tuiAppBarBack tuiSlot="left" type="button" (click)="step.back()">
+      {{ step.getBackLabel() }}
+    </button>
     <span> Оформление заказа </span>
     <span tuiSlot="right" tuiAppearance="action" class="tui-space_right-4">
       {{ form.index() + 1 }}/{{ steps.length }}
