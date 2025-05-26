@@ -1,40 +1,42 @@
 <form tuiForm="l" [formGroup]="form.group">
   <tui-notification
-    [appearance]="count < leechBuyMinCount ? 'warning' : 'positive'"
+    [appearance]="form.count < leechBuyMinCount ? 'warning' : 'positive'"
   >
     Заказ от <strong>{{ leechBuyMinCount }}</strong> шт.
   </tui-notification>
 
-  @for (item of items; track item.title) {
-    <div tuiCell>
-      <div tuiTitle>
-        <strong>{{ item.title }}</strong>
-        <div tuiSubtitle>
-          <app-leech-price [price]="item.price" />
-          <span>
-            @if (item.sizes.min && item.sizes.max) {
-              от <app-leech-size [size]="item.sizes.min" /> до
-              <app-leech-size [size]="item.sizes.max" />
-            } @else if (item.sizes.max) {
-              до <app-leech-size [size]="item.sizes.max" />
-            } @else if (item.sizes.min) {
-              от <app-leech-size [size]="item.sizes.min" />
-            }
-          </span>
+  <ng-container formGroupName="leech">
+    @for (item of items; track item.title) {
+      <div tuiCell>
+        <div tuiTitle>
+          <strong>{{ item.title }}</strong>
+          <div tuiSubtitle>
+            <app-leech-price [price]="item.price" />
+            <span>
+              @if (item.sizes.min && item.sizes.max) {
+                от <app-leech-size [size]="item.sizes.min" /> до
+                <app-leech-size [size]="item.sizes.max" />
+              } @else if (item.sizes.max) {
+                до <app-leech-size [size]="item.sizes.max" />
+              } @else if (item.sizes.min) {
+                от <app-leech-size [size]="item.sizes.min" />
+              }
+            </span>
+          </div>
         </div>
+        <tui-textfield [tuiTextfieldCleaner]="false" [style.width.rem]="10">
+          <input
+            postfix=" шт."
+            tuiInputNumber
+            [max]="1000"
+            [min]="0"
+            [step]="1"
+            [formControlName]="item.formControlName"
+          />
+        </tui-textfield>
       </div>
-      <tui-textfield [tuiTextfieldCleaner]="false" [style.width.rem]="10">
-        <input
-          postfix=" шт."
-          tuiInputNumber
-          [max]="1000"
-          [min]="0"
-          [step]="1"
-          [formControlName]="item.formControlName"
-        />
-      </tui-textfield>
-    </div>
-  }
+    }
+  </ng-container>
 
   <div tuiHeader="body-m">
     <strong tuiTitle tuiAppearance="flat-grayscale">Итого:</strong>
@@ -44,7 +46,7 @@
       class="tui-space_top-0 tui-space_bottom-0"
     >
       <span>
-        <strong tuiAppearance="flat-grayscale">{{ count }}</strong> шт. за
+        <strong tuiAppearance="flat-grayscale">{{ form.count }}</strong> шт. за
         <strong tuiAppearance="flat-grayscale">
           {{ form.price | tuiFormatNumber | async }}
         </strong>

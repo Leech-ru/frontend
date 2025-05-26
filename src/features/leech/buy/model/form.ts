@@ -5,6 +5,7 @@ import * as z from "@/shared/lib/forms/validation";
 
 import {
   LEECH_BUY_COMMENT_MAX_LENGTH,
+  LEECH_BUY_MIN_COUNT,
   LEECH_LARGE_PRICE,
   LEECH_MEDIUM_PRICE,
   LEECH_SMALL_PRICE,
@@ -52,11 +53,22 @@ export class LeechBuyForm {
     z.requiredTrue("Необходимо дать согласие"),
   ]);
 
-  public readonly group = new FormGroup({
-    small: this.small,
-    medium: this.medium,
-    large: this.large,
-    package: this.package,
+  public readonly leech = new FormGroup(
+    {
+      small: this.small,
+      medium: this.medium,
+      large: this.large,
+    },
+    {
+      validators: [
+        () => {
+          return this.count < LEECH_BUY_MIN_COUNT ? { invalid: true } : null;
+        },
+      ],
+    },
+  );
+
+  public readonly contact = new FormGroup({
     name: this.name,
     phone: this.phone,
     email: this.email,
@@ -65,11 +77,25 @@ export class LeechBuyForm {
     agreement: this.agreement,
   });
 
+  public readonly group = new FormGroup({
+    leech: this.leech,
+    package: this.package,
+    contact: this.contact,
+  });
+
   public get price(): number {
     return (
       (this.small.value ?? 0) * LEECH_SMALL_PRICE +
       (this.medium.value ?? 0) * LEECH_MEDIUM_PRICE +
       (this.large.value ?? 0) * LEECH_LARGE_PRICE
+    );
+  }
+
+  public get count(): number {
+    return (
+      (this.small.value ?? 0) +
+      (this.medium.value ?? 0) +
+      (this.large.value ?? 0)
     );
   }
 

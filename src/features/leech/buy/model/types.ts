@@ -33,5 +33,3 @@ export type LeechBuyPackage = {
    */
   background: string;
 };
-
-export type TuiStepperStepState = "normal" | "error" | "pass";

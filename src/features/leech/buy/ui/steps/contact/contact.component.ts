@@ -1,11 +1,5 @@
 import { AsyncPipe } from "@angular/common";
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  inject,
-  Output,
-} from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MaskitoDirective } from "@maskito/angular";
 import { TuiAppearance, TuiError, TuiLink, TuiTextfield } from "@taiga-ui/core";
@@ -20,7 +14,6 @@ import { TuiForm } from "@taiga-ui/layout";
 import { phoneMaskito } from "@/shared/lib/forms/mask/phone";
 
 import { LeechBuyForm } from "../../../model/form";
-import { TuiStepperStepState } from "../../../model/types";
 
 @Component({
   selector: "app-leech-buy-form-steps-contact",
@@ -43,26 +36,6 @@ import { TuiStepperStepState } from "../../../model/types";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppLeechBuyFormStepsContactComponent {
-  @Output()
-  public stateChange = new EventEmitter<TuiStepperStepState>();
-
-  public get invalid(): boolean {
-    return (
-      this.form.name.invalid ||
-      this.form.phone.invalid ||
-      this.form.email.invalid ||
-      this.form.address.invalid ||
-      this.form.comment.invalid ||
-      this.form.agreement.invalid
-    );
-  }
-
-  constructor() {
-    this.form.group.statusChanges.subscribe(() => {
-      this.stateChange.emit(this.invalid ? "error" : "pass");
-    });
-  }
-
   protected readonly form = inject(LeechBuyForm);
   protected readonly phoneMaskito = phoneMaskito;
 }

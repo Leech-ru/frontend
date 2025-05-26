@@ -23,7 +23,6 @@ import {
 import { TuiAppBar, TuiCardLarge, TuiHeader } from "@taiga-ui/layout";
 
 import { LeechBuyForm } from "../../model/form";
-import { TuiStepperStepState } from "../../model/types";
 import { AppLeechBuyFormStepsContactComponent } from "../steps/contact/contact.component";
 import { AppLeechBuyFormStepsLeechComponent } from "../steps/leech/leech.component";
 import { AppLeechBuyFormStepsPackageComponent } from "../steps/package/package.component";
@@ -53,15 +52,11 @@ import { AppLeechBuyFormStepsPackageComponent } from "../steps/package/package.c
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppLeechBuyFormComponent {
-  protected readonly index = signal<number>(0);
-
   protected readonly form = inject(LeechBuyForm);
   protected readonly router = inject(Router);
   protected readonly breakpoint = toSignal(inject(TuiBreakpointService).pipe());
 
-  protected readonly leechStepState = signal<TuiStepperStepState>("normal");
-  protected readonly packageStepState = signal<TuiStepperStepState>("normal");
-  protected readonly contactStepState = signal<TuiStepperStepState>("normal");
+  protected readonly index = signal<number>(0);
 
   protected readonly steps = [
     {
@@ -71,7 +66,14 @@ export class AppLeechBuyFormComponent {
       getNextLabel: () => "Далее",
       back: () => this.router.navigateByUrl("/"),
       getBackLabel: () => "Назад",
-      state: () => this.leechStepState(),
+      control: this.form.leech,
+      get state() {
+        return this.control.touched
+          ? this.control.invalid
+            ? "error"
+            : "pass"
+          : "normal";
+      },
     },
     {
       title: "Выбор упаковки",
@@ -80,8 +82,15 @@ export class AppLeechBuyFormComponent {
       getNextLabel: () => "Далее",
       back: () => this.previous(),
       getBackLabel: () => "Назад",
-      state: () => this.packageStepState(),
-      disabled: () => this.leechStepState() !== "pass",
+      control: this.form.package,
+      get state() {
+        return this.control.touched
+          ? this.control.invalid
+            ? "error"
+            : "pass"
+          : "normal";
+      },
+      disabled: () => this.form.leech.invalid,
     },
     {
       title: "Контактная информация",
@@ -92,9 +101,15 @@ export class AppLeechBuyFormComponent {
         `Оформить заказ на ${tuiFormatNumber(this.form.price)} ${tuiGetCurrencySymbol("RUB")}`,
       back: () => this.previous(),
       getBackLabel: () => "Назад",
-      state: () => this.contactStepState(),
-      disabled: () =>
-        this.leechStepState() !== "pass" || this.packageStepState() !== "pass",
+      control: this.form.contact,
+      get state() {
+        return this.control.touched
+          ? this.control.invalid
+            ? "error"
+            : "pass"
+          : "normal";
+      },
+      disabled: () => this.form.leech.invalid || this.form.package.invalid,
     },
   ];
 
@@ -102,11 +117,11 @@ export class AppLeechBuyFormComponent {
     return this.steps[this.index()];
   }
 
-  public next(): void {
+  protected next(): void {
     this.index.update((prev) => prev + 1);
   }
 
-  public previous(): void {
+  protected previous(): void {
     this.index.update((prev) => prev - 1);
   }
 }
