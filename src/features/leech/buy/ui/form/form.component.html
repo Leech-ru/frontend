@@ -3,14 +3,14 @@
     <button tuiAppBarBack tuiSlot="left" type="button" (click)="step.back()">
       {{ step.getBackLabel() }}
     </button>
-    <span> Оформление заказа </span>
+    <span>Оформление заказа</span>
     <span tuiSlot="right" tuiAppearance="action" class="tui-space_right-4">
       {{ form.index() + 1 }}/{{ steps.length }}
     </span>
   </tui-app-bar>
 
-  <header tuiHeader class="tui-space_left-4 tui-space_top-4 tui-space_right-4">
-    <h2 tuiTitle>{{ step.title }}</h2>
+  <header tuiHeader class="tui-space_top-6 tui-space_right-4 tui-space_left-4">
+    <h1 tuiTitle>{{ step.title }}</h1>
   </header>
 
   <div
@@ -20,23 +20,22 @@
     <ng-container *ngTemplateOutlet="stepsTemplate" />
   </div>
 
-  <!-- Это нужно, чтобы при изменении размера экрана не было лишних анимаций. -->
-  <div [@.disabled]="breakpoint() !== 'mobile'">
-    @if (step.state() === "pass") {
-      <footer tuiFloatingContainer @tuiSlideInTop>
-        <tui-elastic-container>
-          <button tuiButton size="m" type="submit" (click)="step.next()">
-            {{ step.getNextLabel() }}
-          </button>
-          @if (step.description) {
-            <span [@tuiCrossFade]="{ bottom: '1rem' } | tuiAnimation">
-              {{ step.description }}
-            </span>
-          }
-        </tui-elastic-container>
-      </footer>
-    }
-  </div>
+  <footer tuiFloatingContainer="transparent">
+    <tui-elastic-container>
+      <button
+        tuiButton
+        size="m"
+        type="submit"
+        (click)="step.next()"
+        [disabled]="step.state() !== 'pass'"
+      >
+        {{ step.getNextLabel() }}
+      </button>
+      <span>
+        {{ step.description }}
+      </span>
+    </tui-elastic-container>
+  </footer>
 } @else {
   <div tuiCardLarge tuiAppearance="floating">
     <tui-stepper [(activeItemIndex)]="form.index">
@@ -53,16 +52,13 @@
     </tui-stepper>
 
     <header tuiHeader class="tui-space_top-4">
-      <h2 tuiTitle>{{ step.title }}</h2>
+      <hgroup tuiTitle>
+        <h1 tuiTitle>{{ step.title }}</h1>
+        <p tuiSubtitle>{{ step.description }}</p>
+      </hgroup>
     </header>
 
     <ng-container *ngTemplateOutlet="stepsTemplate" />
-
-    @if (step.description) {
-      <span tuiAppearance="action-grayscale">
-        {{ step.description }}
-      </span>
-    }
 
     <footer>
       <button

@@ -9,15 +9,11 @@ import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { tuiGetCurrencySymbol } from "@taiga-ui/addon-commerce";
-import { TuiAnimationPipe } from "@taiga-ui/cdk";
 import {
   TuiAppearance,
   TuiBreakpointService,
   TuiButton,
-  tuiCrossFade,
   tuiFormatNumber,
-  tuiSlideInTop,
-  TuiTextfield,
   TuiTitle,
 } from "@taiga-ui/core";
 import {
@@ -47,7 +43,6 @@ import { AppLeechBuyFormStepsPackageComponent } from "../steps/package/package.c
     NgSwitchCase,
     NgTemplateOutlet,
     ReactiveFormsModule,
-    TuiAnimationPipe,
     TuiAppBar,
     TuiAppearance,
     TuiButton,
@@ -56,10 +51,8 @@ import { AppLeechBuyFormStepsPackageComponent } from "../steps/package/package.c
     TuiFloatingContainer,
     TuiHeader,
     TuiStepper,
-    TuiTextfield,
     TuiTitle,
   ],
-  animations: [tuiSlideInTop, tuiCrossFade],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppLeechBuyFormComponent {

@@ -4,26 +4,38 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-
-  @media @tui-mobile {
-    background-color: var(--tui-background-base);
-  }
 }
 
 tui-app-bar {
   position: sticky;
-  top: 0px;
+  top: 0;
   z-index: 1;
   flex: unset;
   background: var(--tui-background-base);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--tui-border-normal);
+  transition-property: background-color, border-color;
+  transition-duration: var(--tui-duration);
+  transition-timing-function: ease-in-out;
 }
 
 footer {
   display: flex;
   justify-content: space-between;
+  text-wrap-style: pretty;
 
   @media @tui-mobile {
+    padding-top: 0.75rem;
+    padding-inline: 1rem;
     margin-top: auto;
-    margin-inline: 1rem;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: var(--tui-border-normal);
+    background-color: var(--tui-background-base);
+
+    &::before {
+      margin-inline: 1rem;
+    }
   }
 }
