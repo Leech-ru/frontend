@@ -61,9 +61,7 @@ export class LeechBuyForm {
     },
     {
       validators: [
-        () => {
-          return this.count < LEECH_BUY_MIN_COUNT ? { invalid: true } : null;
-        },
+        () => (this.count < LEECH_BUY_MIN_COUNT ? { invalid: true } : null),
       ],
     },
   );
