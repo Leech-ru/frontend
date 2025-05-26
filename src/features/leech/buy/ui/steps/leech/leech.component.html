@@ -10,13 +10,7 @@
       <div tuiTitle>
         <strong>{{ item.title }}</strong>
         <div tuiSubtitle>
-          <tui-badge appearance="neutral" [style.gap.rem]="0.125">
-            <strong tuiAppearance="flat-grayscale">
-              {{ item.price | tuiFormatNumber | async }}
-            </strong>
-            {{ "RUB" | tuiCurrency }}
-            за шт.
-          </tui-badge>
+          <app-leech-price [price]="item.price" />
           <span>
             @if (item.sizes.min && item.sizes.max) {
               от <app-leech-size [size]="item.sizes.min" /> до
@@ -29,7 +23,7 @@
           </span>
         </div>
       </div>
-      <tui-textfield [tuiTextfieldCleaner]="false" [style.width.rem]="8">
+      <tui-textfield [tuiTextfieldCleaner]="false" [style.width.rem]="10">
         <input
           postfix=" шт."
           tuiInputNumber

@@ -16,10 +16,13 @@ import {
   TuiTextfield,
   TuiTitle,
 } from "@taiga-ui/core";
-import { TuiBadge, TuiInputNumber } from "@taiga-ui/kit";
+import { TuiInputNumber } from "@taiga-ui/kit";
 import { TuiCell, TuiForm, TuiHeader } from "@taiga-ui/layout";
 
-import { AppLeechSizeComponent } from "@/entities/leech";
+import {
+  AppLeechPriceComponent,
+  AppLeechSizeComponent,
+} from "@/entities/leech";
 
 import {
   LEECH_BUY_MIN_COUNT,
@@ -35,11 +38,11 @@ import { TuiStepperStepState } from "../../../model/types";
   templateUrl: "leech.component.html",
   styleUrl: "leech.component.less",
   imports: [
+    AppLeechPriceComponent,
     AppLeechSizeComponent,
     AsyncPipe,
     ReactiveFormsModule,
     TuiAppearance,
-    TuiBadge,
     TuiCell,
     TuiCurrencyPipe,
     TuiForm,
