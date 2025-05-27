@@ -23,7 +23,6 @@ export class FormStepper implements FormStepNavigation {
    */
   public constructor(steps: FormStepArgs[]) {
     this.steps = steps.map(({ nextLabel, backLabel, ...step }, i) => ({
-      ...step,
       next: () => this.next(),
       back: () => this.back(),
       get nextLabel() {
@@ -43,6 +42,7 @@ export class FormStepper implements FormStepNavigation {
           : "normal";
       },
       dependencies: steps.slice(0, i).map(({ control }) => control),
+      ...step,
     }));
   }
 
