@@ -22,6 +22,7 @@ import { FormStepper } from "@/shared/lib/forms";
 
 import { LeechBuyForm } from "../../model/form";
 import { AppLeechBuyFormStepsContactComponent } from "../steps/contact/contact.component";
+import { AppLeechBuyFormStepsFinishComponent } from "../steps/finish/finish.component";
 import { AppLeechBuyFormStepsLeechComponent } from "../steps/leech/leech.component";
 import { AppLeechBuyFormStepsPackageComponent } from "../steps/package/package.component";
 
@@ -32,6 +33,7 @@ import { AppLeechBuyFormStepsPackageComponent } from "../steps/package/package.c
   styleUrl: "form.component.less",
   imports: [
     AppLeechBuyFormStepsContactComponent,
+    AppLeechBuyFormStepsFinishComponent,
     AppLeechBuyFormStepsLeechComponent,
     AppLeechBuyFormStepsPackageComponent,
     NgSwitch,
@@ -78,7 +80,22 @@ export class AppLeechBuyFormComponent {
       backLabel: "Назад",
       nextLabel: () =>
         `Оформить заказ на ${tuiFormatNumber(this.form.price)} ${tuiFormatCurrency(TuiCurrency.Ruble)}`,
-      next: () => this.form.submit(),
+      next: () => {
+        this.form.submit();
+        this.stepper.next();
+      },
+    },
+    {
+      title: "Заказ успешно оформлен",
+      description:
+        "Обработка заказов осуществляется с понедельника по пятницу с 08:30 до 17:00.",
+      backLabel: "Назад",
+      nextLabel: "Вернуться на главную",
+      next: () => this.router.navigateByUrl("/"),
     },
   ]);
+
+  protected constructor() {
+    this.form.group.reset();
+  }
 }

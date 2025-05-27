@@ -35,13 +35,16 @@ export class FormStepper implements FormStepNavigation {
         return this.dependencies.some(({ invalid }) => invalid);
       },
       get state() {
-        return step.control.touched
+        return step.control?.touched
           ? step.control.invalid
             ? "error"
             : "pass"
           : "normal";
       },
-      dependencies: steps.slice(0, i).map(({ control }) => control),
+      dependencies: steps
+        .slice(0, i)
+        .map(({ control }) => control)
+        .filter((control) => control !== undefined),
       ...step,
     }));
   }

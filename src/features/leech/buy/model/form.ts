@@ -19,7 +19,7 @@ export class LeechBuyForm {
 
   public readonly large = new FormControl(0);
 
-  public readonly package = new FormControl("", [
+  public readonly package = new FormControl(0, [
     z.required("Пожалуйста, укажите тип упаковки"),
   ]);
 
@@ -98,6 +98,7 @@ export class LeechBuyForm {
   }
 
   public submit(): void {
-    alert(JSON.stringify(this.group.value, null, 2));
+    // TODO: отправлять запрос на бекенд
+    console.log(this.group.value);
   }
 }

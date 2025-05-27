@@ -17,7 +17,7 @@ export interface FormStepBase {
   /**
    * Контроль формы, связанный с этим шагом, который управляет состоянием и валидацией.
    */
-  control: AbstractControl;
+  control?: AbstractControl;
 }
 
 /**

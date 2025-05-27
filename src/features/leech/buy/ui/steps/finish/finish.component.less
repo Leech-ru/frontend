@@ -1,0 +1,50 @@
+@import "@taiga-ui/core/styles/taiga-ui-local.less";
+
+:host {
+  text-align: center;
+  text-wrap-style: pretty;
+}
+
+hgroup {
+  margin-bottom: 2rem;
+
+  h2 {
+    font: var(--tui-font-heading-4);
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+  span {
+    font: var(--tui-font-text-xl);
+    margin-top: 0;
+    font-weight: 600;
+  }
+}
+
+p {
+  font: var(--tui-font-text-l);
+  font-weight: 500;
+}
+
+[tuiLink] {
+  text-decoration-line: underline;
+}
+
+[tuiCell] {
+  [tuiTitle],
+  [tuiSubtitle] {
+    font: var(--tui-font-text-m);
+    font-weight: 500;
+  }
+
+  [tuiTitle] {
+    color: var(--tui-text-secondary);
+  }
+
+  [tuiSubtitle] {
+    color: var(--tui-text-primary);
+  }
+
+  @media @tui-mobile {
+    padding: 0;
+  }
+}

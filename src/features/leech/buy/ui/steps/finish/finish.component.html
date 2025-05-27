@@ -1,0 +1,89 @@
+<hgroup>
+  <img src="/favicon.svg" width="96" height="96" alt="Логотип" />
+  <h2>Заказ успешно оформлен</h2>
+  <span>
+    <strong tuiAppearance="flat-grayscale">{{ form.count }}</strong> шт. за
+    <strong tuiAppearance="flat-grayscale">
+      {{ form.price | tuiFormatNumber | async }}
+    </strong>
+    {{ "RUB" | tuiCurrency }}
+  </span>
+</hgroup>
+
+<p>
+  Мы отправили электронное письмо с деталями заказа на
+  <a tuiLink [href]="`mailto:${form.email.value}`">{{ form.email.value }}</a>
+</p>
+
+<p>
+  Скоро наш менеджер свяжется с вами по телефону или электронной почте для
+  подтверждения и уточнения вашего заказа.
+</p>
+
+<div tuiCell>
+  <div tuiTitle>ФИО</div>
+  <span tuiSubtitle>
+    {{ form.name.value }}
+  </span>
+</div>
+<hr class="tui-space_top-2 tui-space_bottom-1" />
+<div tuiCell>
+  <div tuiTitle>Номер телефона</div>
+  <span tuiSubtitle>
+    <a tuiLink [href]="`tel:${form.phone.value}`">{{ form.phone.value }}</a>
+  </span>
+</div>
+<hr class="tui-space_top-2 tui-space_bottom-1" />
+<div tuiCell>
+  <div tuiTitle>Электронная почта</div>
+  <span tuiSubtitle>
+    <a tuiLink [href]="`mailto:${form.email.value}`">{{ form.email.value }}</a>
+  </span>
+</div>
+@if (form.comment.value) {
+  <hr class="tui-space_top-2 tui-space_bottom-2" />
+  <div tuiCell>
+    <div tuiTitle>
+      Комментарии
+      <span tuiSubtitle>
+        {{ form.comment.value }}
+      </span>
+    </div>
+  </div>
+  <hr class="tui-space_top-4 tui-space_bottom-1" />
+} @else {
+  <hr class="tui-space_top-2 tui-space_bottom-1" />
+}
+@if (form.small.value) {
+  <div tuiCell>
+    <div tuiTitle>Пиявка весом до 0,6 г.</div>
+    <span tuiSubtitle>
+      <strong>{{ form.small.value }}</strong> шт
+    </span>
+  </div>
+  <hr class="tui-space_top-2 tui-space_bottom-1" />
+}
+@if (form.medium.value) {
+  <div tuiCell>
+    <div tuiTitle>Пиявка весом от 0,6 до 2,0 г.</div>
+    <span tuiSubtitle>
+      <strong>{{ form.medium.value }}</strong> шт
+    </span>
+  </div>
+  <hr class="tui-space_top-2 tui-space_bottom-1" />
+}
+@if (form.large.value) {
+  <div tuiCell>
+    <div tuiTitle>Пиявка весом более 2,0 г.</div>
+    <span tuiSubtitle>
+      <strong>{{ form.large.value }}</strong> шт
+    </span>
+  </div>
+  <hr class="tui-space_top-2 tui-space_bottom-1" />
+}
+<div tuiCell>
+  <div tuiTitle>Тип упаковки</div>
+  <span tuiSubtitle>
+    {{ package.name }}
+  </span>
+</div>

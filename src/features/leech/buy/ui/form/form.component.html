@@ -1,22 +1,31 @@
 @if (breakpoint() === "mobile") {
   <tui-app-bar>
-    <button
-      tuiAppBarBack
-      tuiSlot="left"
-      type="button"
-      (click)="stepper.step.back()"
-    >
-      {{ stepper.step.backLabel }}
-    </button>
+    @if (stepper.step.control) {
+      <button
+        tuiAppBarBack
+        tuiSlot="left"
+        type="button"
+        (click)="stepper.step.back()"
+      >
+        {{ stepper.step.backLabel }}
+      </button>
+    }
     <span>Оформление заказа</span>
-    <span tuiSlot="right" tuiAppearance="action" class="tui-space_right-4">
-      {{ stepper.index() + 1 }}/{{ stepper.steps.length }}
-    </span>
+    @if (stepper.step.control) {
+      <span tuiSlot="right" tuiAppearance="action" class="tui-space_right-4">
+        {{ stepper.index() + 1 }}/{{ stepper.steps.length }}
+      </span>
+    }
   </tui-app-bar>
 
-  <header tuiHeader class="tui-space_top-6 tui-space_right-4 tui-space_left-4">
-    <h1 tuiTitle>{{ stepper.step.title }}</h1>
-  </header>
+  @if (stepper.step.control) {
+    <header
+      tuiHeader
+      class="tui-space_top-6 tui-space_right-4 tui-space_left-4"
+    >
+      <h1 tuiTitle>{{ stepper.step.title }}</h1>
+    </header>
+  }
 
   <div
     class="tui-space_top-4 tui-space_bottom-4 tui-space_right-4 tui-space_left-4"
@@ -31,7 +40,7 @@
         size="m"
         type="submit"
         (click)="stepper.step.next()"
-        [disabled]="stepper.step.control.invalid"
+        [disabled]="stepper.step.control?.invalid"
       >
         {{ stepper.step.nextLabel }}
       </button>
@@ -42,49 +51,63 @@
   </footer>
 } @else {
   <div tuiCardLarge tuiAppearance="floating">
-    <tui-stepper [(activeItemIndex)]="stepper.index">
-      @for (step of stepper.steps; track step.title) {
-        <button
-          tuiStep
-          type="button"
-          [disabled]="step.disabled"
-          [stepState]="step.state"
-        >
-          {{ step.title }}
-        </button>
-      }
-    </tui-stepper>
+    @if (stepper.step.control) {
+      <tui-stepper [(activeItemIndex)]="stepper.index">
+        @for (step of stepper.steps; track step.title) {
+          @if (step.control) {
+            <button
+              tuiStep
+              type="button"
+              [disabled]="step.disabled"
+              [stepState]="step.state"
+            >
+              {{ step.title }}
+            </button>
+          }
+        }
+      </tui-stepper>
+    }
 
-    <header tuiHeader class="tui-space_top-4">
-      <hgroup tuiTitle>
-        <h1 tuiTitle>{{ stepper.step.title }}</h1>
-        <p tuiSubtitle>{{ stepper.step.description }}</p>
-      </hgroup>
-    </header>
+    @if (stepper.step.control) {
+      <header tuiHeader class="tui-space_top-4">
+        <hgroup tuiTitle>
+          <h1 tuiTitle>{{ stepper.step.title }}</h1>
+          <p tuiSubtitle>{{ stepper.step.description }}</p>
+        </hgroup>
+      </header>
+    }
 
     <ng-container *ngTemplateOutlet="stepsTemplate" />
 
     <footer>
-      <button
-        tuiButton
-        size="m"
-        iconStart="@tui.chevron-left"
-        appearance="secondary"
-        type="button"
-        (click)="stepper.step.back()"
-      >
-        {{ stepper.step.backLabel }}
-      </button>
+      @if (stepper.step.control) {
+        <button
+          tuiButton
+          size="m"
+          iconStart="@tui.chevron-left"
+          appearance="secondary"
+          type="button"
+          (click)="stepper.step.back()"
+        >
+          {{ stepper.step.backLabel }}
+        </button>
+      }
       <button
         tuiButton
         size="m"
         type="submit"
-        [disabled]="stepper.step.control.invalid"
+        [disabled]="stepper.step.control?.invalid"
         (click)="stepper.step.next()"
       >
         {{ stepper.step.nextLabel }}
       </button>
     </footer>
+
+    @if (!stepper.step.control) {
+      <p tuiSubtitle tuiAppearance="action-grayscale" align="center">
+        {{ stepper.step.description }}
+      </p>
+    }
   </div>
 }
 
@@ -93,5 +116,6 @@
     <app-leech-buy-form-steps-leech *ngSwitchCase="0" />
     <app-leech-buy-form-steps-package *ngSwitchCase="1" />
     <app-leech-buy-form-steps-contact *ngSwitchCase="2" />
+    <app-leech-buy-form-steps-finish *ngSwitchCase="3" />
   </ng-container>
 </ng-template>
