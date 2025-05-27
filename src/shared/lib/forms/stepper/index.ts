@@ -24,8 +24,8 @@ export class FormStepper implements FormStepNavigation {
   public constructor(steps: FormStepArgs[]) {
     this.steps = steps.map(({ nextLabel, backLabel, ...step }, i) => ({
       ...step,
-      next: () => this.next,
-      back: () => this.back,
+      next: () => this.next(),
+      back: () => this.back(),
       get nextLabel() {
         return typeof nextLabel === "function" ? nextLabel() : nextLabel;
       },
