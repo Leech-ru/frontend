@@ -4,6 +4,7 @@ import {
   Component,
   inject,
   signal,
+  ViewEncapsulation,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { Router } from "@angular/router";
@@ -15,11 +16,7 @@ import {
   tuiFormatNumber,
   TuiTitle,
 } from "@taiga-ui/core";
-import {
-  TuiElasticContainer,
-  TuiFloatingContainer,
-  TuiStepper,
-} from "@taiga-ui/kit";
+import { TuiElasticContainer, TuiStepper } from "@taiga-ui/kit";
 import { TuiAppBar, TuiCardLarge, TuiHeader } from "@taiga-ui/layout";
 
 import { LeechBuyForm } from "../../model/form";
@@ -44,11 +41,11 @@ import { AppLeechBuyFormStepsPackageComponent } from "../steps/package/package.c
     TuiButton,
     TuiCardLarge,
     TuiElasticContainer,
-    TuiFloatingContainer,
     TuiHeader,
     TuiStepper,
     TuiTitle,
   ],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppLeechBuyFormComponent {

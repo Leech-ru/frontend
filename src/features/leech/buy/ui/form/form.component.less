@@ -1,41 +1,58 @@
 @import "@taiga-ui/core/styles/taiga-ui-local.less";
 
-:host {
+app-leech-buy-form {
   flex: 1;
   display: flex;
   flex-direction: column;
-}
 
-tui-app-bar {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  flex: unset;
-  background: var(--tui-background-base);
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: var(--tui-border-normal);
-  transition-property: background-color, border-color;
-  transition-duration: var(--tui-duration);
-  transition-timing-function: ease-in-out;
-}
+  tui-app-bar {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    flex: unset;
+    background: var(--tui-background-base);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: var(--tui-border-normal);
+    transition-property: background-color, border-color;
+    transition-duration: var(--tui-duration);
+    transition-timing-function: ease-in-out;
+  }
 
-footer {
-  display: flex;
-  justify-content: space-between;
-  text-wrap-style: pretty;
+  footer,
+  .t-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
 
-  @media @tui-mobile {
-    padding-top: 0.75rem;
-    padding-inline: 1rem;
-    margin-top: auto;
-    border-top-width: 1px;
-    border-top-style: solid;
-    border-top-color: var(--tui-border-normal);
-    background-color: var(--tui-background-base);
+  tui-elastic-container {
+    flex: 1;
+  }
 
-    &::before {
-      margin-inline: 1rem;
+  footer {
+    text-wrap-style: pretty;
+    font: var(--tui-font-text-ui-s);
+    color: var(--tui-text-secondary);
+
+    @media @tui-mobile {
+      position: sticky;
+      bottom: 0;
+      z-index: 1;
+      padding-top: 0.75rem;
+      padding-bottom: calc(1rem + env(safe-area-inset-bottom, 1rem));
+      padding-inline: 1rem;
+      margin-top: auto;
+      border-top-width: 1px;
+      border-top-style: solid;
+      border-top-color: var(--tui-border-normal);
+      background-color: var(--tui-background-base);
+
+      .t-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+      }
     }
   }
 }
