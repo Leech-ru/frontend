@@ -3,12 +3,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  signal,
   ViewEncapsulation,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { Router } from "@angular/router";
-import { tuiGetCurrencySymbol } from "@taiga-ui/addon-commerce";
+import { TuiCurrency, tuiFormatCurrency } from "@taiga-ui/addon-commerce";
 import {
   TuiAppearance,
   TuiBreakpointService,
@@ -18,6 +17,8 @@ import {
 } from "@taiga-ui/core";
 import { TuiElasticContainer, TuiStepper } from "@taiga-ui/kit";
 import { TuiAppBar, TuiCardLarge, TuiHeader } from "@taiga-ui/layout";
+
+import { Stepper } from "@/shared/lib/forms";
 
 import { LeechBuyForm } from "../../model/form";
 import { AppLeechBuyFormStepsContactComponent } from "../steps/contact/contact.component";
@@ -53,72 +54,31 @@ export class AppLeechBuyFormComponent {
   protected readonly router = inject(Router);
   protected readonly breakpoint = toSignal(inject(TuiBreakpointService).pipe());
 
-  protected readonly index = signal<number>(0);
-
-  protected readonly steps = [
+  protected readonly stepper = new Stepper([
     {
       title: "Выбор пиявок",
       description: "Сроки доставки уточняйте у менеджера",
-      next: () => this.next(),
-      getNextLabel: () => "Далее",
-      back: () => this.router.navigateByUrl("/"),
-      getBackLabel: () => "Назад",
       control: this.form.leech,
-      get state() {
-        return this.control.touched
-          ? this.control.invalid
-            ? "error"
-            : "pass"
-          : "normal";
-      },
+      backLabel: "Назад",
+      nextLabel: "Далее",
+      back: () => this.router.navigateByUrl("/"),
     },
     {
       title: "Выбор упаковки",
       description: "Стоимость упаковок уточняйте у менеджера",
-      next: () => this.next(),
-      getNextLabel: () => "Далее",
-      back: () => this.previous(),
-      getBackLabel: () => "Назад",
       control: this.form.package,
-      get state() {
-        return this.control.touched
-          ? this.control.invalid
-            ? "error"
-            : "pass"
-          : "normal";
-      },
-      disabled: () => this.form.leech.invalid,
+      backLabel: "Назад",
+      nextLabel: "Далее",
     },
     {
       title: "Контактная информация",
       description:
         "Подтверждение и уточнение заказа производится менеджером по телефону или электронной почте",
-      next: () => this.form.submit(),
-      getNextLabel: () =>
-        `Оформить заказ на ${tuiFormatNumber(this.form.price)} ${tuiGetCurrencySymbol("RUB")}`,
-      back: () => this.previous(),
-      getBackLabel: () => "Назад",
       control: this.form.contact,
-      get state() {
-        return this.control.touched
-          ? this.control.invalid
-            ? "error"
-            : "pass"
-          : "normal";
-      },
-      disabled: () => this.form.leech.invalid || this.form.package.invalid,
+      backLabel: "Назад",
+      nextLabel: () =>
+        `Оформить заказ на ${tuiFormatNumber(this.form.price)} ${tuiFormatCurrency(TuiCurrency.Ruble)}`,
+      next: () => this.form.submit(),
     },
-  ];
-
-  protected get step() {
-    return this.steps[this.index()];
-  }
-
-  protected next(): void {
-    this.index.update((prev) => prev + 1);
-  }
-
-  protected previous(): void {
-    this.index.update((prev) => prev - 1);
-  }
+  ]);
 }

@@ -1,16 +1,21 @@
 @if (breakpoint() === "mobile") {
   <tui-app-bar>
-    <button tuiAppBarBack tuiSlot="left" type="button" (click)="step.back()">
-      {{ step.getBackLabel() }}
+    <button
+      tuiAppBarBack
+      tuiSlot="left"
+      type="button"
+      (click)="stepper.step.back()"
+    >
+      {{ stepper.step.backLabel }}
     </button>
     <span>Оформление заказа</span>
     <span tuiSlot="right" tuiAppearance="action" class="tui-space_right-4">
-      {{ index() + 1 }}/{{ steps.length }}
+      {{ stepper.index() + 1 }}/{{ stepper.steps.length }}
     </span>
   </tui-app-bar>
 
   <header tuiHeader class="tui-space_top-6 tui-space_right-4 tui-space_left-4">
-    <h1 tuiTitle>{{ step.title }}</h1>
+    <h1 tuiTitle>{{ stepper.step.title }}</h1>
   </header>
 
   <div
@@ -25,24 +30,24 @@
         tuiButton
         size="m"
         type="submit"
-        (click)="step.next()"
-        [disabled]="step.control.invalid"
+        (click)="stepper.step.next()"
+        [disabled]="stepper.step.control.invalid"
       >
-        {{ step.getNextLabel() }}
+        {{ stepper.step.nextLabel }}
       </button>
       <span>
-        {{ step.description }}
+        {{ stepper.step.description }}
       </span>
     </tui-elastic-container>
   </footer>
 } @else {
   <div tuiCardLarge tuiAppearance="floating">
-    <tui-stepper [(activeItemIndex)]="index">
-      @for (step of steps; track step.title) {
+    <tui-stepper [(activeItemIndex)]="stepper.index">
+      @for (step of stepper.steps; track step.title) {
         <button
           tuiStep
           type="button"
-          [disabled]="step.disabled?.()"
+          [disabled]="step.disabled"
           [stepState]="step.state"
         >
           {{ step.title }}
@@ -52,8 +57,8 @@
 
     <header tuiHeader class="tui-space_top-4">
       <hgroup tuiTitle>
-        <h1 tuiTitle>{{ step.title }}</h1>
-        <p tuiSubtitle>{{ step.description }}</p>
+        <h1 tuiTitle>{{ stepper.step.title }}</h1>
+        <p tuiSubtitle>{{ stepper.step.description }}</p>
       </hgroup>
     </header>
 
@@ -66,25 +71,25 @@
         iconStart="@tui.chevron-left"
         appearance="secondary"
         type="button"
-        (click)="step.back()"
+        (click)="stepper.step.back()"
       >
-        {{ step.getBackLabel() }}
+        {{ stepper.step.backLabel }}
       </button>
       <button
         tuiButton
         size="m"
         type="submit"
-        [disabled]="step.control.invalid"
-        (click)="step.next()"
+        [disabled]="stepper.step.control.invalid"
+        (click)="stepper.step.next()"
       >
-        {{ step.getNextLabel() }}
+        {{ stepper.step.nextLabel }}
       </button>
     </footer>
   </div>
 }
 
 <ng-template #stepsTemplate>
-  <ng-container [ngSwitch]="index()">
+  <ng-container [ngSwitch]="stepper.index()">
     <app-leech-buy-form-steps-leech *ngSwitchCase="0" />
     <app-leech-buy-form-steps-package *ngSwitchCase="1" />
     <app-leech-buy-form-steps-contact *ngSwitchCase="2" />
