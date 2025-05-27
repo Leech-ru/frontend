@@ -21,7 +21,7 @@ export class FormStepper implements FormStepNavigation {
    *
    * @param steps Конфигурационный массив шагов, используемых для инициализации степпера.
    */
-  constructor(steps: FormStepArgs[]) {
+  public constructor(steps: FormStepArgs[]) {
     this.steps = steps.map(({ nextLabel, backLabel, ...step }, i) => ({
       ...step,
       next: () => this.next,
