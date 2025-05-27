@@ -18,7 +18,7 @@ import {
 import { TuiElasticContainer, TuiStepper } from "@taiga-ui/kit";
 import { TuiAppBar, TuiCardLarge, TuiHeader } from "@taiga-ui/layout";
 
-import { Stepper } from "@/shared/lib/forms";
+import { FormStepper } from "@/shared/lib/forms";
 
 import { LeechBuyForm } from "../../model/form";
 import { AppLeechBuyFormStepsContactComponent } from "../steps/contact/contact.component";
@@ -54,7 +54,7 @@ export class AppLeechBuyFormComponent {
   protected readonly router = inject(Router);
   protected readonly breakpoint = toSignal(inject(TuiBreakpointService).pipe());
 
-  protected readonly stepper = new Stepper([
+  protected readonly stepper = new FormStepper([
     {
       title: "Выбор пиявок",
       description: "Сроки доставки уточняйте у менеджера",

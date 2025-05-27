@@ -1,1 +1,1 @@
-export { Stepper } from "./stepper";
+export { FormStepper } from "./stepper";

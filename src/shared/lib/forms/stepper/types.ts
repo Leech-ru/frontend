@@ -3,7 +3,7 @@ import { AbstractControl } from "@angular/forms";
 /**
  * Общие параметры, используемые в шагах степпера.
  */
-export interface StepBase {
+export interface FormStepBase {
   /**
    * Заголовок шага, отображаемый пользователю.
    */
@@ -23,7 +23,7 @@ export interface StepBase {
 /**
  * Навигационные функции для управления переходами между шагами.
  */
-export interface StepNavigation {
+export interface FormStepNavigation {
   /**
    * Функция, вызываемая при возврате к предыдущему шагу.
    */
@@ -38,7 +38,9 @@ export interface StepNavigation {
 /**
  * Параметры, необходимые для создания шага в степпере.
  */
-export interface StepArgs extends StepBase, Partial<StepNavigation> {
+export interface FormStepArgs
+  extends FormStepBase,
+    Partial<FormStepNavigation> {
   /**
    * Этикетка для кнопки назад или функция, возвращающая строку.
    */
@@ -53,7 +55,7 @@ export interface StepArgs extends StepBase, Partial<StepNavigation> {
 /**
  * Представляет шаг в степпере с публичным интерфейсом.
  */
-export interface Step extends StepBase, StepNavigation {
+export interface FormStep extends FormStepBase, FormStepNavigation {
   /**
    * Этикетка для кнопки далее.
    */

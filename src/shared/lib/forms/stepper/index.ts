@@ -1,15 +1,15 @@
 import { signal } from "@angular/core";
 
-import { Step, StepArgs, StepNavigation } from "./types";
+import { FormStep, FormStepArgs, FormStepNavigation } from "./types";
 
 /**
- *
+ * Определяет форму из нескольких шагов.
  */
-export class Stepper implements StepNavigation {
+export class FormStepper implements FormStepNavigation {
   /**
    * Массив шагов, представляющих последовательность шагов в степпере.
    */
-  public readonly steps: Step[];
+  public readonly steps: FormStep[];
 
   /**
    * Индекс текущего шага, управляемый с помощью сигнала.
@@ -21,7 +21,7 @@ export class Stepper implements StepNavigation {
    *
    * @param steps Конфигурационный массив шагов, используемых для инициализации степпера.
    */
-  constructor(steps: StepArgs[]) {
+  constructor(steps: FormStepArgs[]) {
     this.steps = steps.map(({ nextLabel, backLabel, ...step }, i) => ({
       ...step,
       next: () => this.next,
@@ -49,7 +49,7 @@ export class Stepper implements StepNavigation {
   /**
    * Текущий шаг степпера.
    */
-  public get step(): Step {
+  public get step(): FormStep {
     return this.steps[this.index()];
   }
 
