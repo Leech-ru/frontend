@@ -20,6 +20,7 @@ import { TuiAppBar, TuiCardLarge, TuiHeader } from "@taiga-ui/layout";
 
 import { FormStepper } from "@/shared/lib/forms";
 
+import { LEECH_BUY_MIN_COUNT } from "../../config";
 import { LeechBuyForm } from "../../model/form";
 import { AppLeechBuyFormStepsContactComponent } from "../steps/contact/contact.component";
 import { AppLeechBuyFormStepsFinishComponent } from "../steps/finish/finish.component";
@@ -62,7 +63,11 @@ export class AppLeechBuyFormComponent {
       description: "Сроки доставки уточняйте у менеджера",
       control: this.form.leech,
       backLabel: "Назад",
-      nextLabel: "Далее",
+      nextLabel: () => {
+        return this.form.count < LEECH_BUY_MIN_COUNT
+          ? `Необходимо ещё ${LEECH_BUY_MIN_COUNT - this.form.count} пиявок`
+          : "Далее";
+      },
       back: () => this.router.navigateByUrl("/"),
     },
     {
