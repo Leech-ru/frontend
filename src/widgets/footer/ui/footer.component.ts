@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { TuiDropdown, TuiLink } from "@taiga-ui/core";
 
-import { FOOTER_SECTIONS } from "../config/footer.config";
+import { FOOTER_CONTENT } from "../config/footer.config";
 
 @Component({
   standalone: true,
@@ -13,5 +13,5 @@ import { FOOTER_SECTIONS } from "../config/footer.config";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppFooterComponent {
-  protected readonly sections = FOOTER_SECTIONS;
+  protected readonly footer = FOOTER_CONTENT;
 }

@@ -1,6 +1,6 @@
-import { FooterContent, FooterSection } from "../model/footer.model";
+import { FooterContent } from "../model/footer.model";
 
-export const FOOTER_SECTIONS: FooterContent = {
+export const FOOTER_CONTENT: FooterContent = {
   sections: [
     {
       title: "Пиявки",
@@ -37,19 +37,6 @@ export const FOOTER_SECTIONS: FooterContent = {
         },
         {
           title: "Экскурсии",
-          routerLink: "/",
-        },
-      ],
-    },
-    {
-      title: "Контакты",
-      items: [
-        {
-          title: "+7 (495) 501-34-54",
-          routerLink: "/",
-        },
-        {
-          title: "leech-centre@mail.ru",
           routerLink: "/",
         },
       ],
