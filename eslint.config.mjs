@@ -41,7 +41,7 @@ export default [
     },
     rules: {
       "no-console": "off",
-
+      "@typescript-eslint/explicit-member-accessibility": "error",
       "import/order": [
         "error",
         {
