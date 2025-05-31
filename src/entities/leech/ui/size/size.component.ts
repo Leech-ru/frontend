@@ -1,5 +1,5 @@
 import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 import { TuiFormatNumberPipe } from "@taiga-ui/core";
 
 @Component({
@@ -9,6 +9,5 @@ import { TuiFormatNumberPipe } from "@taiga-ui/core";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppLeechSizeComponent {
-  @Input({ required: true })
-  public size!: number;
+  public size = input.required<number>();
 }

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { TuiButton, TuiDataList, TuiDropdown } from "@taiga-ui/core";
 import { TuiChevron } from "@taiga-ui/kit";
@@ -20,8 +20,6 @@ import { NavigationItem } from "../../../model/navigation.model";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppHeaderNavigationItemComponent {
-  @Input({ required: true })
-  public item!: NavigationItem;
-
+  public item = input.required<NavigationItem>();
   protected isDropdownOpen: boolean = false;
 }
