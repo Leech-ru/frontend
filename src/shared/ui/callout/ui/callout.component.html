@@ -1,7 +1,9 @@
-<h1>{{ heading }}</h1>
+<h1>{{ heading() }}</h1>
 
 <p>
-  {{ description }}
+  {{ description() }}
 </p>
 
-<a tuiButton size="l" [routerLink]="link">{{ action }}</a>
+@if (link() && action()) {
+  <a tuiButton size="l" [routerLink]="link()">{{ action() }}</a>
+}

@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  Input,
+} from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { TuiButton } from "@taiga-ui/core";
 
@@ -12,15 +17,8 @@ import { RoutePath } from "@/app/@x/route";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppCalloutComponent {
-  @Input({ required: true })
-  public heading!: string;
-
-  @Input({ required: true })
-  public description!: string;
-
-  @Input({ required: true })
-  public action!: string;
-
-  @Input({ required: true })
-  public link!: RoutePath;
+  public heading = input.required<string>();
+  public description = input.required<string>();
+  public action = input<string>();
+  public link = input<RoutePath>();
 }
