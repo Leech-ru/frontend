@@ -28,7 +28,7 @@ export const routes = [
       {
         path: "cosmetics/catalog",
         title: "Каталог косметики",
-        loadComponent: () => import("@/pages/index"),
+        loadComponent: () => import("@/pages/cosmetics-catalog"),
       },
       {
         path: "cosmetics/buy",
