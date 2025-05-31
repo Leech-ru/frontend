@@ -41,7 +41,7 @@ export default [
     },
     rules: {
       "no-console": "off",
-      "@typescript-eslint/explicit-member-accessibility": "error",
+
       "import/order": [
         "error",
         {
@@ -85,6 +85,7 @@ export default [
       "@typescript-eslint/no-empty-object-type": "off",
       "@typescript-eslint/no-wrapper-object-types": "error",
       "@typescript-eslint/triple-slash-reference": "off",
+      "@typescript-eslint/explicit-member-accessibility": "error",
 
       "@typescript-eslint/no-unused-expressions": [
         "error",
