@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 
-import { AppCalloutComponent } from "../callout/ui/callout.component";
+import { AppCalloutComponent } from "../callout/callout.component";
 
 @Component({
   selector: "app-cosmetics-page",
