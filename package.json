@@ -6,7 +6,7 @@
     "build": "ng build",
     "clean": "rm -rf .angular dist node_modules",
     "format": "prettier --check --write . && sort-package-json",
-    "lint": "ng lint",
+    "lint": "ng lint && ngc --noEmit",
     "prepare": "husky",
     "serve": "ng serve",
     "serve:ssr:frontend": "node dist/frontend/server/server.mjs"
