@@ -16,7 +16,7 @@ import { HomePageCard } from "../../model/cards.model";
     { directive: TuiAppearance, inputs: ["tuiAppearance: appearance"] },
   ],
   host: {
-    "[class.fluid]": "card.fluid",
+    "[class.fluid]": "card().fluid",
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
