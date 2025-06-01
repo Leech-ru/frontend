@@ -132,6 +132,7 @@ export class AppLeechBuyFormComponent {
       this.router.navigate([], {
         queryParams: { step: this.stepper.index() + 1 },
         queryParamsHandling: "merge",
+        replaceUrl: this.route.snapshot.queryParams["step"] ? false : true,
       });
     });
   }
