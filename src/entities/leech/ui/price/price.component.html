@@ -1,6 +1,6 @@
 <tui-badge appearance="neutral">
   <strong tuiAppearance="flat-grayscale">
-    {{ price | tuiFormatNumber | async }}
+    {{ price() | tuiFormatNumber | async }}
   </strong>
   <span>
     {{ "RUB" | tuiCurrency }}

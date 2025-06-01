@@ -1,10 +1,10 @@
-@if (item.children) {
+@if (item().children) {
   <a
     #rla="routerLinkActive"
     class="app-header-navigation-link"
     tuiButton
-    [tuiChevron]="item.children ? '' : false"
-    [tuiDropdown]="item.children ? dropdown : null"
+    [tuiChevron]="item().children ? '' : false"
+    [tuiDropdown]="item().children ? dropdown : null"
     [tuiDropdownShowDelay]="0"
     [tuiDropdownHideDelay]="150"
     [(tuiDropdownOpen)]="isDropdownOpen"
@@ -12,16 +12,16 @@
     size="m"
     [appearance]="rla.isActive ? 'flat' : 'flat-grayscale'"
     [tuiAppearanceState]="rla.isActive ? 'active' : null"
-    [routerLink]="item.routerLink"
+    [routerLink]="item().routerLink"
     routerLinkActive
-    [routerLinkActiveOptions]="{ exact: !item.children }"
+    [routerLinkActiveOptions]="{ exact: !item().children }"
   >
-    {{ item.label }}
+    {{ item().label }}
   </a>
 
   <ng-template #dropdown>
     <tui-data-list role="menu">
-      @for (child of item.children; track child.routerLink) {
+      @for (child of item().children; track child.routerLink) {
         <a
           #rla="routerLinkActive"
           role="menuitemradio"
@@ -44,10 +44,10 @@
     size="m"
     [appearance]="rla.isActive ? 'flat' : 'flat-grayscale'"
     [tuiAppearanceState]="rla.isActive ? 'active' : null"
-    [routerLink]="item.routerLink"
+    [routerLink]="item().routerLink"
     routerLinkActive
-    [routerLinkActiveOptions]="{ exact: !item.children }"
+    [routerLinkActiveOptions]="{ exact: !item().children }"
   >
-    {{ item.label }}
+    {{ item().label }}
   </a>
 }

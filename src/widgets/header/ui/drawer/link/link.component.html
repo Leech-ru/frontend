@@ -3,8 +3,8 @@
   role="listitem"
   [attr.aria-checked]="rla.isActive"
   tuiOption
-  [routerLink]="routerLink"
+  [routerLink]="routerLink()"
   routerLinkActive
 >
-  {{ label }}
+  {{ label() }}
 </a>
