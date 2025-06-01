@@ -116,6 +116,15 @@ export class AppLeechBuyFormComponent {
         !this.stepper.steps[step].disabled
       ) {
         this.stepper.index.set(step);
+      } else {
+        const latestStep = this.stepper.steps
+          .map((step, index) => ({ index, disabled: step.disabled }))
+          .reverse()
+          .find(({ disabled }) => !disabled);
+
+        if (latestStep && latestStep.index > 0) {
+          this.stepper.index.set(latestStep.index);
+        }
       }
     });
 
