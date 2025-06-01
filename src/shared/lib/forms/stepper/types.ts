@@ -27,12 +27,12 @@ export interface FormStepNavigation {
   /**
    * Функция, вызываемая при возврате к предыдущему шагу.
    */
-  back: VoidFunction;
+  back: VoidFunction | (() => Promise<unknown>);
 
   /**
    * Функция, вызываемая после завершения шага.
    */
-  next: VoidFunction;
+  next: VoidFunction | (() => Promise<unknown>);
 }
 
 /**

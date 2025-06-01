@@ -10,7 +10,7 @@ export default [
   {
     ignores: [".angular", "dist", "node_modules", "public"],
   },
-  ...typescriptPlugin.configs.recommended,
+  ...typescriptPlugin.configs.recommendedTypeChecked,
   importPlugin.flatConfigs.recommended,
   importPlugin.flatConfigs.typescript,
   ...angularPlugin.configs.tsRecommended,

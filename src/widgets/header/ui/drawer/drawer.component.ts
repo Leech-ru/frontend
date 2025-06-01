@@ -34,7 +34,7 @@ export class AppHeaderDrawerComponent {
   protected readonly items = NAVIGATION_ITEMS;
   protected readonly open = signal(false);
 
-  constructor() {
+  public constructor() {
     this.router.events.subscribe(() => {
       this.open.set(false);
     });

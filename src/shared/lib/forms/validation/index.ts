@@ -11,13 +11,13 @@ export const max = (max: number, message?: ErrorMessage) =>
   createValidator(Validators.max(max), message);
 
 export const required = (message?: ErrorMessage) =>
-  createValidator(Validators.required, message);
+  createValidator(Validators.required.bind(this), message);
 
 export const requiredTrue = (message?: ErrorMessage) =>
-  createValidator(Validators.requiredTrue, message);
+  createValidator(Validators.requiredTrue.bind(this), message);
 
 export const email = (message?: ErrorMessage) =>
-  createValidator(Validators.email, message);
+  createValidator(Validators.email.bind(this), message);
 
 export const minLength = (minLength: number, message?: ErrorMessage) =>
   createValidator(Validators.minLength(minLength), message);
@@ -29,7 +29,7 @@ export const pattern = (pattern: string | RegExp, message?: ErrorMessage) =>
   createValidator(Validators.pattern(pattern), message);
 
 export const nullValidator = (message?: ErrorMessage) =>
-  createValidator(Validators.nullValidator, message);
+  createValidator(Validators.nullValidator.bind(this), message);
 
 export const compose = (
   validators: (ValidatorFn | null | undefined)[],

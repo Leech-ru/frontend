@@ -1,7 +1,7 @@
 import { AbstractControl, Validators } from "@angular/forms";
 
 export function nameValidator(control: AbstractControl): Validators | null {
-  if (!control.value) {
+  if (!control.value || typeof control.value !== "string") {
     return null;
   }
 

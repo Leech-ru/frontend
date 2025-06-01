@@ -30,7 +30,7 @@ export class AppHomePageComponent implements OnInit {
   protected readonly meta = inject(Meta);
   protected readonly description = "Piyavky)";
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.meta.addTag({ name: "description", content: this.description });
   }
 }
