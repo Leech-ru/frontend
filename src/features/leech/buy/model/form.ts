@@ -1,18 +1,29 @@
-import { Injectable } from "@angular/core";
+import { effect, Injectable, signal } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 
-import * as z from "@/shared/lib/forms/validation";
-
 import {
-  LEECH_BUY_COMMENT_MAX_LENGTH,
-  LEECH_BUY_MIN_COUNT,
   LEECH_LARGE_PRICE,
   LEECH_MEDIUM_PRICE,
   LEECH_SMALL_PRICE,
-} from "../config";
+} from "@/entities/leech";
+import { ExtractFormGroupValue } from "@/shared/lib/forms";
+import * as z from "@/shared/lib/forms/validation";
+
+import { LEECH_BUY_COMMENT_MAX_LENGTH, LEECH_BUY_MIN_COUNT } from "../config";
+import {
+  clearLeechBuyFormValue,
+  getLeechBuyFormValue,
+  saveLeechBuyFormValue,
+} from "./storage";
 
 @Injectable({ providedIn: "root" })
 export class LeechBuyForm {
+  public readonly submitted = signal<boolean>(false);
+
+  public readonly value = signal<ExtractFormGroupValue<
+    typeof this.group
+  > | null>(getLeechBuyFormValue());
+
   public readonly small = new FormControl(0);
 
   public readonly medium = new FormControl(0);
@@ -98,7 +109,33 @@ export class LeechBuyForm {
   }
 
   public submit(): void {
+    this.submitted.set(true);
+
     // TODO: отправлять запрос на бекенд
     console.log(this.group.value);
+  }
+
+  public constructor() {
+    const value = this.value();
+
+    this.group.reset(value ? value : undefined);
+    this.group.valueChanges.subscribe((value) => {
+      this.value.set(value as ExtractFormGroupValue<typeof this.group>);
+    });
+
+    effect(() => {
+      const value = this.value();
+
+      if (value) {
+        saveLeechBuyFormValue(value);
+      } else {
+        this.reset();
+      }
+    });
+  }
+
+  public reset(): void {
+    clearLeechBuyFormValue();
+    this.group.reset();
   }
 }

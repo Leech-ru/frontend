@@ -16,14 +16,12 @@ import { TuiCell, TuiForm, TuiHeader } from "@taiga-ui/layout";
 import {
   AppLeechPriceComponent,
   AppLeechSizeComponent,
-} from "@/entities/leech";
-
-import {
-  LEECH_BUY_MIN_COUNT,
   LEECH_LARGE_PRICE,
   LEECH_MEDIUM_PRICE,
   LEECH_SMALL_PRICE,
-} from "../../../config";
+} from "@/entities/leech";
+
+import { LEECH_BUY_MIN_COUNT } from "../../../config";
 import { LeechBuyForm } from "../../../model/form";
 
 @Component({

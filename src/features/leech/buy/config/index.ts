@@ -1,10 +1,8 @@
 import { LeechBuyPackage } from "../model/types";
 
-export const LEECH_BUY_MIN_COUNT = 50;
+export const LEECH_BUY_FORM_VALUE_LOCAL_STORAGE_KEY = "leechBuyFormValue";
 
-export const LEECH_SMALL_PRICE = 105;
-export const LEECH_MEDIUM_PRICE = 135;
-export const LEECH_LARGE_PRICE = 168;
+export const LEECH_BUY_MIN_COUNT = 50;
 
 export const LEECH_BUY_COMMENT_MAX_LENGTH = 512;
 

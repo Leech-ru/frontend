@@ -102,6 +102,10 @@ export class AppLeechBuyFormComponent {
   ]);
 
   public constructor() {
+    if (this.form.submitted()) {
+      this.form.reset();
+    }
+
     this.route.queryParams.subscribe((params) => {
       const step = Number.parseInt(params["step"] as string) - 1;
 
