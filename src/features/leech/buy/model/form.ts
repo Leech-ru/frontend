@@ -6,7 +6,10 @@ import {
   LEECH_MEDIUM_PRICE,
   LEECH_SMALL_PRICE,
 } from "@/entities/leech";
-import { ExtractFormGroupValue } from "@/shared/lib/forms";
+import {
+  ExtractFormGroupValue,
+  markValidControlsAsTouched,
+} from "@/shared/lib/forms";
 import * as z from "@/shared/lib/forms/validation";
 
 import { LEECH_BUY_COMMENT_MAX_LENGTH, LEECH_BUY_MIN_COUNT } from "../config";
@@ -118,7 +121,13 @@ export class LeechBuyForm {
   public constructor() {
     const value = this.value();
 
-    this.group.reset(value ? value : undefined);
+    if (value) {
+      this.group.setValue(value);
+      markValidControlsAsTouched(this.group);
+    } else {
+      this.group.reset();
+    }
+
     this.group.valueChanges.subscribe((value) => {
       this.value.set(value as ExtractFormGroupValue<typeof this.group>);
     });
