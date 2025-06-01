@@ -135,5 +135,15 @@ export class AppLeechBuyFormComponent {
         replaceUrl: this.route.snapshot.queryParams["step"] ? false : true,
       });
     });
+
+    effect(() => {
+      if (
+        !this.form.submitted() &&
+        this.stepper.index() === this.stepper.steps.length - 1
+      ) {
+        this.form.reset();
+        this.stepper.index.set(0);
+      }
+    });
   }
 }
