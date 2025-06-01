@@ -146,5 +146,6 @@ export class LeechBuyForm {
   public reset(): void {
     clearLeechBuyFormValue();
     this.group.reset();
+    this.submitted.set(false);
   }
 }
