@@ -82,6 +82,7 @@ export default [
       ],
 
       "@typescript-eslint/method-signature-style": "error",
+      "@typescript-eslint/no-floating-promises": "off",
       "@typescript-eslint/no-empty-object-type": "off",
       "@typescript-eslint/no-wrapper-object-types": "error",
       "@typescript-eslint/triple-slash-reference": "off",

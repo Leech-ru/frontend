@@ -2,11 +2,12 @@ import { NgSwitch, NgSwitchCase, NgTemplateOutlet } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   inject,
   ViewEncapsulation,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { TuiCurrency, tuiFormatCurrency } from "@taiga-ui/addon-commerce";
 import {
   TuiAppearance,
@@ -28,7 +29,6 @@ import { AppLeechBuyFormStepsLeechComponent } from "../steps/leech/leech.compone
 import { AppLeechBuyFormStepsPackageComponent } from "../steps/package/package.component";
 
 @Component({
-  standalone: true,
   selector: "app-leech-buy-form",
   templateUrl: "form.component.html",
   styleUrl: "form.component.less",
@@ -54,6 +54,7 @@ import { AppLeechBuyFormStepsPackageComponent } from "../steps/package/package.c
 })
 export class AppLeechBuyFormComponent {
   protected readonly form = inject(LeechBuyForm);
+  protected readonly route = inject(ActivatedRoute);
   protected readonly router = inject(Router);
   protected readonly breakpoint = toSignal(inject(TuiBreakpointService).pipe());
 
@@ -100,7 +101,25 @@ export class AppLeechBuyFormComponent {
     },
   ]);
 
-  protected constructor() {
-    this.form.group.reset();
+  public constructor() {
+    this.route.queryParams.subscribe((params) => {
+      const step = Number.parseInt(params["step"] as string) - 1;
+
+      if (
+        !isNaN(step) &&
+        step >= 0 &&
+        step < this.stepper.steps.length &&
+        !this.stepper.steps[step].disabled
+      ) {
+        this.stepper.index.set(step);
+      }
+    });
+
+    effect(() => {
+      this.router.navigate([], {
+        queryParams: { step: this.stepper.index() + 1 },
+        queryParamsHandling: "merge",
+      });
+    });
   }
 }
