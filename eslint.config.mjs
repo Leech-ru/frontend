@@ -1,48 +1,31 @@
-import angularParser from "@angular-eslint/template-parser";
-import typescriptParser from "@typescript-eslint/parser";
-import angularPlugin from "angular-eslint";
-import importPlugin from "eslint-plugin-import";
-import prettierPlugin from "eslint-plugin-prettier/recommended";
-import typescriptPlugin from "typescript-eslint";
+import parserAngular from "@angular-eslint/template-parser";
+import parserTypescript from "@typescript-eslint/parser";
+import pluginAngular from "angular-eslint";
+import pluginImport from "eslint-plugin-import-x";
+import pluginTypescript from "typescript-eslint";
 
-/** @type {import("@typescript-eslint/utils/ts-eslint").FlatConfig.Config[]} */
-export default [
+export default pluginTypescript.config([
   {
     ignores: [".angular", "dist", "node_modules", "public"],
   },
-  ...typescriptPlugin.configs.recommendedTypeChecked,
-  importPlugin.flatConfigs.recommended,
-  importPlugin.flatConfigs.typescript,
-  ...angularPlugin.configs.tsRecommended,
-  prettierPlugin,
+  pluginAngular.configs.tsRecommended,
+  pluginImport.flatConfigs.recommended,
+  pluginImport.flatConfigs.typescript,
+  pluginTypescript.configs.recommendedTypeChecked,
   {
-    files: ["**/*.{ts,tsx}"],
+    files: ["**/*.ts"],
     languageOptions: {
-      parser: typescriptParser,
+      parser: parserTypescript,
       parserOptions: {
         project: true,
       },
-    },
-  },
-  {
-    files: ["**/*.{html}"],
-    ...angularPlugin.configs.templateRecommended,
-    ...angularPlugin.configs.templateAccessibility,
-    languageOptions: {
-      parser: angularParser,
-      parserOptions: {
-        project: true,
-      },
-    },
-  },
-  {
-    languageOptions: {
-      parser: typescriptParser,
     },
     rules: {
       "no-console": "off",
 
-      "import/order": [
+      "import-x/no-named-as-default": "off",
+      "import-x/no-named-as-default-member": "off",
+      "import-x/order": [
         "error",
         {
           alphabetize: {
@@ -69,9 +52,11 @@ export default [
         },
       ],
 
-      "import/no-named-as-default": "off",
-      "import/no-named-as-default-member": "off",
-
+      "@typescript-eslint/explicit-member-accessibility": "error",
+      "@typescript-eslint/method-signature-style": "error",
+      "@typescript-eslint/no-empty-object-type": "off",
+      "@typescript-eslint/no-floating-promises": "off",
+      "@typescript-eslint/no-unnecessary-condition": "error",
       "@typescript-eslint/no-unused-vars": [
         "warn",
         {
@@ -80,20 +65,8 @@ export default [
           caughtErrorsIgnorePattern: "^_",
         },
       ],
-
-      "@typescript-eslint/method-signature-style": "error",
-      "@typescript-eslint/no-floating-promises": "off",
-      "@typescript-eslint/no-empty-object-type": "off",
       "@typescript-eslint/no-wrapper-object-types": "error",
       "@typescript-eslint/triple-slash-reference": "off",
-      "@typescript-eslint/explicit-member-accessibility": "error",
-
-      "@typescript-eslint/no-unused-expressions": [
-        "error",
-        {
-          allowShortCircuit: true,
-        },
-      ],
 
       "@angular-eslint/directive-selector": [
         "error",
@@ -112,23 +85,16 @@ export default [
         },
       ],
     },
-    settings: {
-      "import/resolver": {
-        typescript: {
-          project: true,
-        },
-      },
-    },
   },
   {
-    files: ["**/*.{ts,tsx}"],
+    files: ["**/*.{html}"],
+    ...pluginAngular.configs.templateAccessibility,
+    ...pluginAngular.configs.templateRecommended,
     languageOptions: {
+      parser: parserAngular,
       parserOptions: {
         project: true,
       },
     },
-    rules: {
-      "@typescript-eslint/no-unnecessary-condition": "error",
-    },
   },
-];
+]);
