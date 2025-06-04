@@ -30,7 +30,7 @@ export default pluginTypescript.config([
         {
           alphabetize: {
             order: "asc",
-            caseInsensitive: false,
+            caseInsensitive: true,
           },
           "newlines-between": "always",
           warnOnUnassignedImports: false,
