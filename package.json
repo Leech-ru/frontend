@@ -1,15 +1,48 @@
 {
-  "name": "frontend",
+  "name": "@leech-ru/frontend",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "build": "ng build",
     "clean": "rm -rf .angular dist node_modules",
-    "format": "prettier --check --write . && sort-package-json",
-    "lint": "ng lint && ngc --noEmit",
+    "format": "prettier !pnpm-lock.yaml --check --write --ignore-path .gitignore .",
+    "format:package": "sort-package-json",
+    "lint": "ng lint",
+    "lint:ngc": "ngc --noEmit",
+    "lint:steiger": "steiger src",
     "prepare": "husky",
     "serve": "ng serve",
     "serve:ssr:frontend": "node dist/frontend/server/server.mjs"
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "pnpm lint",
+      "pnpm lint:ngc",
+      "pnpm lint:steiger"
+    ],
+    "*.{js,ts,css,scss,less,html,json,md}": [
+      "pnpm format"
+    ],
+    "package.json": [
+      "pnpm format:package"
+    ]
+  },
+  "prettier": {
+    "endOfLine": "lf",
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": false,
+    "tabWidth": 2,
+    "trailingComma": "all",
+    "useTabs": false,
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
   },
   "dependencies": {
     "@angular/animations": "^19.2.11",
