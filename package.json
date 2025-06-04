@@ -83,28 +83,28 @@
     "tslib": "^2.8.1"
   },
   "devDependencies": {
-    "@angular-eslint/template-parser": "^19.4.0",
+    "@angular-eslint/template-parser": "^19.7.1",
     "@feature-sliced/steiger-plugin": "^0.5.6",
-    "@types/express": "^4.17.17",
-    "@types/node": "^22.15.18",
+    "@types/express": "^5.0.2",
+    "@types/node": "^22.15.29",
     "@typescript-eslint/parser": "^8.32.1",
-    "angular-eslint": "19.4.0",
-    "eslint": "^9.26.0",
-    "eslint-import-resolver-typescript": "^3.7.0",
+    "angular-eslint": "^19.7.1",
+    "eslint": "^9.28.0",
+    "eslint-import-resolver-typescript": "^4.4.2",
     "eslint-plugin-import-x": "^4.15.0",
     "husky": "^9.1.7",
-    "lint-staged": "^16.0.0",
+    "lint-staged": "^16.1.0",
     "prettier": "^3.5.3",
     "sort-package-json": "^3.2.1",
     "steiger": "^0.5.7",
-    "typescript": "^5.7.2",
-    "typescript-eslint": "^8.24.0"
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.33.1"
   },
   "packageManager": "pnpm@10.11.0",
   "engines": {
     "bun": "Please use pnpm instead of bun to install dependencies",
     "deno": "Please use pnpm instead of deno to install dependencies",
-    "node": "^22.15.18",
+    "node": "^22.15.29",
     "npm": "Please use pnpm instead of npm to install dependencies",
     "pnpm": "^10.11.0",
     "yarn": "Please use pnpm instead of yarn to install dependencies"
