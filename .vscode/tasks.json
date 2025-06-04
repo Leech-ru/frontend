@@ -4,7 +4,7 @@
   "tasks": [
     {
       "type": "npm",
-      "script": "start",
+      "script": "serve",
       "isBackground": true,
       "problemMatcher": {
         "owner": "typescript",
