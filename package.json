@@ -7,7 +7,8 @@
     "clean": "rm -rf .angular dist node_modules",
     "format": "prettier !pnpm-lock.yaml --check --write --ignore-path .gitignore .",
     "format:package": "sort-package-json",
-    "lint": "ng lint",
+    "lint": "pnpm lint:steiger && pnpm lint:ng && pnpm lint:ngc",
+    "lint:ng": "ng lint",
     "lint:ngc": "ngc --noEmit",
     "lint:steiger": "steiger src",
     "prepare": "husky",
@@ -16,9 +17,7 @@
   },
   "lint-staged": {
     "*.{js,ts}": [
-      "pnpm lint",
-      "pnpm lint:ngc",
-      "pnpm lint:steiger"
+      "pnpm lint"
     ],
     "*.{js,ts,css,scss,less,html,json,md}": [
       "pnpm format"
