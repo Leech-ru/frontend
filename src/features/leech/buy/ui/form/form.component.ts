@@ -28,6 +28,24 @@ import { AppLeechBuyFormStepsFinishComponent } from "../steps/finish/finish.comp
 import { AppLeechBuyFormStepsLeechComponent } from "../steps/leech/leech.component";
 import { AppLeechBuyFormStepsPackageComponent } from "../steps/package/package.component";
 
+const NEED_PLURAR_RULES_RU: Record<Intl.LDMLPluralRule, string> = {
+  zero: "Необходима",
+  one: "Необходима",
+  two: "Необходимо",
+  few: "Необходимо",
+  many: "Необходимо",
+  other: "Необходимо",
+};
+
+const LEECH_PLURAR_RULES_RU: Record<Intl.LDMLPluralRule, string> = {
+  zero: "пиявок",
+  one: "пиявка",
+  two: "пиявки",
+  few: "пиявки",
+  many: "пиявок",
+  other: "пиявок",
+};
+
 @Component({
   selector: "app-leech-buy-form",
   templateUrl: "form.component.html",
@@ -55,6 +73,7 @@ export class AppLeechBuyFormComponent {
   protected readonly route = inject(ActivatedRoute);
   protected readonly router = inject(Router);
   protected readonly breakpoint = toSignal(inject(TuiBreakpointService).pipe());
+  protected readonly plurarRulesRu = new Intl.PluralRules("ru");
 
   protected readonly stepper = new FormStepper([
     {
@@ -63,8 +82,13 @@ export class AppLeechBuyFormComponent {
       control: this.form.leech,
       backLabel: "Назад",
       nextLabel: () => {
+        const remains = LEECH_BUY_MIN_COUNT - this.form.count;
+        const remainsLDMLPluralRule = this.plurarRulesRu.select(remains);
+        const remainsNeedWord = NEED_PLURAR_RULES_RU[remainsLDMLPluralRule];
+        const remainsLeechWord = LEECH_PLURAR_RULES_RU[remainsLDMLPluralRule];
+
         return this.form.count < LEECH_BUY_MIN_COUNT
-          ? `Необходимо ещё ${LEECH_BUY_MIN_COUNT - this.form.count} пиявок`
+          ? `${remainsNeedWord} ещё ${remains} ${remainsLeechWord}`
           : "Далее";
       },
       back: () => this.router.navigateByUrl("/"),
