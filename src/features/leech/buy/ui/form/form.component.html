@@ -112,10 +112,19 @@
 }
 
 <ng-template #stepsTemplate>
-  <ng-container [ngSwitch]="stepper.index()">
-    <app-leech-buy-form-steps-leech *ngSwitchCase="0" />
-    <app-leech-buy-form-steps-package *ngSwitchCase="1" />
-    <app-leech-buy-form-steps-contact *ngSwitchCase="2" />
-    <app-leech-buy-form-steps-finish *ngSwitchCase="3" />
-  </ng-container>
+  @switch (stepper.index()) {
+    @case (0) {
+      <app-leech-buy-form-steps-leech />
+    }
+    @case (1) {
+      <app-leech-buy-form-steps-package />
+    }
+    @case (2) {
+      <app-leech-buy-form-steps-contact />
+    }
+    @case (3) {
+      <app-leech-buy-form-steps-finish />
+    }
+    @default {}
+  }
 </ng-template>

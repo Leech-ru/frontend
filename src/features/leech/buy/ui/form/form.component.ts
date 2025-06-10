@@ -1,4 +1,4 @@
-import { NgSwitch, NgSwitchCase, NgTemplateOutlet } from "@angular/common";
+import { NgTemplateOutlet } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -37,8 +37,6 @@ import { AppLeechBuyFormStepsPackageComponent } from "../steps/package/package.c
     AppLeechBuyFormStepsFinishComponent,
     AppLeechBuyFormStepsLeechComponent,
     AppLeechBuyFormStepsPackageComponent,
-    NgSwitch,
-    NgSwitchCase,
     NgTemplateOutlet,
     TuiAppBar,
     TuiAppearance,
@@ -56,7 +54,8 @@ export class AppLeechBuyFormComponent {
   protected readonly form = inject(LeechBuyForm);
   protected readonly route = inject(ActivatedRoute);
   protected readonly router = inject(Router);
-  protected readonly breakpoint = toSignal(inject(TuiBreakpointService).pipe());
+  protected readonly breakpointService = inject(TuiBreakpointService);
+  protected readonly breakpoint = toSignal(this.breakpointService.pipe());
 
   protected readonly stepper = new FormStepper([
     {
