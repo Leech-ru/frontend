@@ -54,8 +54,7 @@ export class AppLeechBuyFormComponent {
   protected readonly form = inject(LeechBuyForm);
   protected readonly route = inject(ActivatedRoute);
   protected readonly router = inject(Router);
-  protected readonly breakpointService = inject(TuiBreakpointService);
-  protected readonly breakpoint = toSignal(this.breakpointService.pipe());
+  protected readonly breakpoint = toSignal(inject(TuiBreakpointService).pipe());
 
   protected readonly stepper = new FormStepper([
     {
