@@ -1,0 +1,21 @@
+<tui-textfield (pointerdown.capture.stop)="(0)" tuiTextfieldSize="l">
+  <input
+    [formControl]="searchControl"
+    [tuiInputSearch]="search"
+    [(tuiInputSearchOpen)]="open"
+    placeholder="Уже знаете что хотите посмотреть?"
+  />
+</tui-textfield>
+<ng-template #search>
+  <tui-search-results [results]="results | async">
+    <ng-template let-item>
+      <a tuiCell [href]="item.image_link">
+        <tui-avatar [src]="item.image_link || '@tui.file'" />
+        <span tuiTitle>
+          {{ item.name }}
+          <span tuiSubtitle>{{ item.description.slice(0, 120) + "..." }}</span>
+        </span>
+      </a>
+    </ng-template>
+  </tui-search-results>
+</ng-template>

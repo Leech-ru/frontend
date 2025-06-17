@@ -20,11 +20,11 @@ export const FOOTER_CONTENT: FooterContent = {
       items: [
         {
           title: "Каталог косметики",
-          routerLink: "/cosmetics/catalog",
+          routerLink: "/cosmetic/catalog",
         },
         {
           title: "Где купить косметику?",
-          routerLink: "/cosmetics/buy",
+          routerLink: "/cosmetic/buy",
         },
       ],
     },

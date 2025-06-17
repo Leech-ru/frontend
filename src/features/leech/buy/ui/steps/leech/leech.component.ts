@@ -29,8 +29,6 @@ import { LeechBuyForm } from "../../../model/form";
   templateUrl: "leech.component.html",
   styleUrl: "leech.component.less",
   imports: [
-    AppLeechPriceComponent,
-    AppLeechSizeComponent,
     AsyncPipe,
     ReactiveFormsModule,
     TuiAppearance,
@@ -43,6 +41,8 @@ import { LeechBuyForm } from "../../../model/form";
     TuiNotification,
     TuiTextfield,
     TuiTitle,
+    AppLeechPriceComponent,
+    AppLeechSizeComponent,
   ],
   animations: [tuiHeightCollapse],
   changeDetection: ChangeDetectionStrategy.OnPush,

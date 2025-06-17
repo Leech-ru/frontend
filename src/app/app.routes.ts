@@ -21,17 +21,17 @@ export const routes = [
         loadComponent: () => import("@/pages/index"),
       },
       {
-        path: "cosmetics",
+        path: "cosmetic",
         title: "Косметика",
         loadComponent: () => import("@/pages/index"),
       },
       {
-        path: "cosmetics/catalog",
+        path: "cosmetic/catalog",
         title: "Каталог косметики",
         loadComponent: () => import("@/pages/cosmetics/catalog"),
       },
       {
-        path: "cosmetics/buy",
+        path: "cosmetic/buy",
         title: "Купить косметику",
         loadComponent: () => import("@/pages/index"),
       },

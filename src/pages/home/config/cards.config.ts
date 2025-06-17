@@ -11,12 +11,12 @@ export const HOME_PAGE_CARDS: HomePageCard[] = [
     fluid: true,
   },
   {
-    thumbnail: "/assets/cosmetics-catalog.jpg",
+    thumbnail: "/assets/cosmetic-catalog.jpg",
     heading: "Каталог косметики",
     description:
       "Косметические средства линии BAA содержат секрет слюнных желез медицинских пиявок, полученный ручным способом",
     action: "Посмотреть",
-    routerLink: "/cosmetics/catalog",
+    routerLink: "/cosmetic/catalog",
   },
   {
     thumbnail: "/assets/about-our-center.jpg",
