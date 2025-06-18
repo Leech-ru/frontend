@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 
-import { AppCosmeticsSearchComponent } from "@/features/cosmetic/search";
+import { AppCosmeticsSearchComponent } from "@/features/cosmetics/search";
 import { AppCalloutComponent } from "@/shared/ui/callout/ui/callout.component";
 
 @Component({

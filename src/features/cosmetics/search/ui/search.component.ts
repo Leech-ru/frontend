@@ -9,7 +9,7 @@ import { TuiCell, TuiInputSearch } from "@taiga-ui/layout";
 import { filter, map, startWith, switchMap, timer } from "rxjs";
 
 import { CosmeticItem } from "@/entities/cosmetic";
-import { TEST_DATA } from "@/features/cosmetic/search";
+import { TEST_DATA } from "@/features/cosmetics/search";
 
 const DATA = TEST_DATA;
 
