@@ -1,13 +1,13 @@
 export enum CosmeticCategory {
-  Clean = "Clean",
-  Face = "Face",
-  Body = "Body",
-  Hair = "Hair",
-  Man = "Man",
-  Intensive = "Intensive",
-  Lux = "Lux",
-  Exclusive = "Exclusive",
-  Leech = "Leech",
+  Clean = "Очищение",
+  Face = "Лицо и декольте",
+  Body = "Тело",
+  Hair = "Волосы",
+  Man = "Мужская линия",
+  Intensive = "Интенсивный уход",
+  Lux = "Люкс",
+  Exclusive = "Эксклюзив",
+  Leech = "Косметика на пиявках",
 }
 
 interface CosmeticLinks {
@@ -24,7 +24,19 @@ export interface CosmeticItem {
   name: string;
   description: string;
   guide: string;
+  image_link: string;
   features: CosmeticFeatures;
   buy_links: CosmeticLinks;
+}
+
+export interface CosmeticItemCard {
+  id: string;
+  name: string;
+  image_link: string;
+}
+
+export interface CosmeticCategoryCard {
+  id: string;
+  name: `${CosmeticCategory}`;
   image_link: string;
 }

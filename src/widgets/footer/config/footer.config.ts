@@ -20,7 +20,7 @@ export const FOOTER_CONTENT: FooterContent = {
       items: [
         {
           title: "Каталог косметики",
-          routerLink: "/cosmetic/catalog",
+          routerLink: "/cosmetic/category",
         },
         {
           title: "Где купить косметику?",

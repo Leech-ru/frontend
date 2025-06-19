@@ -16,7 +16,7 @@ export const HOME_PAGE_CARDS: HomePageCard[] = [
     description:
       "Косметические средства линии BAA содержат секрет слюнных желез медицинских пиявок, полученный ручным способом",
     action: "Посмотреть",
-    routerLink: "/cosmetic/catalog",
+    routerLink: "/cosmetic/category",
   },
   {
     thumbnail: "/assets/about-our-center.jpg",

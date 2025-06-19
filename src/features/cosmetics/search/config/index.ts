@@ -1,4 +1,4 @@
-import { CosmeticCategory, CosmeticItem } from "../../../../entities/cosmetic";
+import { CosmeticCategory, CosmeticItem } from "@/entities/cosmetic";
 
 export const TEST_DATA: Record<CosmeticCategory, CosmeticItem[]> = {
   [CosmeticCategory.Hair]: [

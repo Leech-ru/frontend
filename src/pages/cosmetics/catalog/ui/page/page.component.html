@@ -3,3 +3,8 @@
   description="Линия «bioenergy, antistress, antiage» (ВАА) — максимальная степень активности БАВ и чистоты слюны пиявок, подчеркнутые оригинальной композицией косметических средств. Эта линия обладает биоэнергетическим, антистрессорным и омолаживающим действием"
 />
 <app-cosmetic-search />
+<main class="cosmetic-category__grid">
+  @for (category of categories; track category.name) {
+    <app-cosmetics-category-card [data]="category" />
+  }
+</main>
