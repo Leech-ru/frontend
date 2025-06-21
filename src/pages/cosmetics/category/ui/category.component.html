@@ -1,5 +1,15 @@
+<header>
+  <tui-breadcrumbs>
+    @for (item of breadcrumbs; track item.title) {
+      <a *tuiItem tuiLink [routerLink]="item.routerLink"> {{ item.title }} </a>
+    }
+    <a *tuiItem tuiLink [routerLink]="['cosmetics/category', id()]">
+      {{ categoryName() }}
+    </a>
+  </tui-breadcrumbs>
+</header>
 <main class="app-cosmetic-category">
-  <h1 class="tui-text_h2">{{ categoryName() }}</h1>
+  <app-callout [heading]="categoryName()" description="" />
   <div role="list" class="app-cosmetic-category__item-list">
     @for (item of items; track item.id) {
       <app-cosmetics-item-card
