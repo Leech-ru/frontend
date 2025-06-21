@@ -1,0 +1,16 @@
+<main class="app-cosmetic-category">
+  <h1 class="tui-text_h2">{{ categoryName() }}</h1>
+  <div role="list" class="app-cosmetic-category__item-list">
+    @for (item of items; track item.id) {
+      <app-cosmetics-item-card
+        [routerLink]="['/cosmetic', item.id]"
+        appearance="floating"
+        [data]="item"
+      />
+    }
+  </div>
+</main>
+<footer>
+  ДОБАВИТЬ СЮДА ОПИСАНИЕ КАТЕГОРИЙ ДОБАВИТЬ СЮДА ОПИСАНИЕ КАТЕГОРИЙ ДОБАВИТЬ
+  СЮДА ОПИСАНИЕ КАТЕГОРИЙ ДОБАВИТЬ СЮДА ОПИСАНИЕ КАТЕГОРИЙ
+</footer>

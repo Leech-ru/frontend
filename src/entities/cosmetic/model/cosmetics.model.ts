@@ -1,14 +1,6 @@
-export enum CosmeticCategory {
-  Clean = "Очищение",
-  Face = "Лицо и декольте",
-  Body = "Тело",
-  Hair = "Волосы",
-  Man = "Мужская линия",
-  Intensive = "Интенсивный уход",
-  Lux = "Люкс",
-  Exclusive = "Эксклюзив",
-  Leech = "Косметика на пиявках",
-}
+import { CosmeticCategories } from "@/shared/config";
+
+export type CosmeticCategory = (typeof CosmeticCategories)[number];
 
 interface CosmeticLinks {
   wildberries?: string[];
@@ -32,11 +24,12 @@ export interface CosmeticItem {
 export interface CosmeticItemCard {
   id: string;
   name: string;
+  desc: string;
   image_link: string;
 }
 
 export interface CosmeticCategoryCard {
   id: string;
-  name: `${CosmeticCategory}`;
+  name: CosmeticCategory;
   image_link: string;
 }

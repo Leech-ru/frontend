@@ -2,8 +2,9 @@ import { Component } from "@angular/core";
 
 import { AppCategoryCardComponent } from "@/entities/cosmetic";
 import { AppCosmeticsSearchComponent } from "@/features/cosmetics/search";
-import { TEST_CATEGORY_CARDS } from "@/pages/cosmetics/catalog/config";
 import { AppCalloutComponent } from "@/shared/ui/callout/ui/callout.component";
+
+import { TEST_CATEGORY_CARDS } from "../../mock";
 
 @Component({
   selector: "app-cosmetic-page",

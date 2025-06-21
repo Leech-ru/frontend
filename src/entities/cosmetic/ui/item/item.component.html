@@ -1,5 +1,9 @@
 <img [alt]="data().name" [ngSrc]="data().image_link" priority fill />
-
 <header tuiHeader>
-  <h2 tuiTitle>{{ data().name }}</h2>
+  <a
+    [routerLink]="['cosmetic/', data().id]"
+    class="tui-text_body-xl tui-text_bold app-cosmetic-item-title"
+  >
+    {{ itemName() }}
+  </a>
 </header>

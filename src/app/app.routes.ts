@@ -31,12 +31,12 @@ export const routes = [
         loadComponent: () => import("@/pages/cosmetics/catalog"),
       },
       {
-        path: "cosmetic/category/:categoryId",
+        path: "cosmetic/category/:id",
         title: "Каталог косметики",
         loadComponent: () => import("@/pages/cosmetics/category"),
       },
       {
-        path: "cosmetic/:itemId",
+        path: "cosmetic/:id",
         loadComponent: () => import("@/pages/cosmetics/item"),
       },
       {

@@ -2,11 +2,12 @@
 
 :host {
   --card-scale: 1;
+  max-height: 17rem;
+  cursor: pointer;
 
-  position: relative;
+  gap: 1rem !important;
   transform: scale3d(var(--card-scale), var(--card-scale), var(--card-scale));
   transition: transform var(--tui-duration) ease-in-out;
-  wrap-option: pretty;
 
   @media (hover: hover) {
     &:hover,
@@ -26,16 +27,26 @@
     inset: unset !important;
     margin-top: calc(var(--t-padding) * -1);
     margin-inline: calc(var(--t-padding) * -1);
-    aspect-ratio: 3 / 1;
+    aspect-ratio: 4 / 3;
   }
 
-  &.fluid {
-    grid-column: 1 / -1;
+  a {
+    position: static;
+    text-decoration-line: none;
+    color: inherit;
+  }
 
-    @media not @tui-mobile {
-      img {
-        aspect-ratio: 6 / 1;
-      }
-    }
+  a::before {
+    all: unset;
+    content: "";
+    position: absolute;
+    inset: 0;
+  }
+
+  a::after {
+    all: unset;
+    content: "";
+    position: absolute;
+    inset: 0;
   }
 }

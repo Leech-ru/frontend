@@ -1,7 +1,7 @@
 import { CosmeticCategory, CosmeticItem } from "@/entities/cosmetic";
 
 export const TEST_DATA: Record<CosmeticCategory, CosmeticItem[]> = {
-  [CosmeticCategory.Hair]: [
+  "Интенсивный уход": [
     {
       name: "Гель Гирудо с экстрактом пиявки",
       description:
@@ -9,7 +9,7 @@ export const TEST_DATA: Record<CosmeticCategory, CosmeticItem[]> = {
       guide:
         "Наносите утром и вечером на очищенную кожу лица легкими массирующими движениями.",
       features: {
-        category: CosmeticCategory.Face,
+        category: "Интенсивный уход",
         size: "50 г",
       },
       buy_links: {
@@ -30,7 +30,7 @@ export const TEST_DATA: Record<CosmeticCategory, CosmeticItem[]> = {
       guide:
         "Нанесите на влажные волосы, вспеньте и смойте теплой водой. При необходимости повторите.",
       features: {
-        category: CosmeticCategory.Hair,
+        category: "Волосы",
         size: "250ml",
       },
       buy_links: {
@@ -39,12 +39,12 @@ export const TEST_DATA: Record<CosmeticCategory, CosmeticItem[]> = {
       image_link: "https://example.com/images/hair-shampoo.jpg",
     },
   ],
-  [CosmeticCategory.Body]: [],
-  [CosmeticCategory.Clean]: [],
-  [CosmeticCategory.Exclusive]: [],
-  [CosmeticCategory.Face]: [],
-  [CosmeticCategory.Intensive]: [],
-  [CosmeticCategory.Leech]: [],
-  [CosmeticCategory.Lux]: [],
-  [CosmeticCategory.Man]: [],
+  "Косметика на пиявках": [],
+  "Лицо и декольте": [],
+  "Мужская линия": [],
+  Тело: [],
+  Эксклюзив: [],
+  Очищение: [],
+  Волосы: [],
+  Люкс: [],
 };
