@@ -3,16 +3,17 @@ import { CosmeticCategories } from "@/shared/config";
 export type CosmeticCategory = (typeof CosmeticCategories)[number];
 
 interface CosmeticLinks {
-  wildberries?: string[];
-  ozon?: string[];
+  wildberries?: string;
+  ozon?: string;
 }
 
 interface CosmeticFeatures {
   category: CosmeticCategory;
-  size: string;
+  size: number; // в мл всегда
 }
 
 export interface CosmeticItem {
+  id: string;
   name: string;
   description: string;
   guide: string;

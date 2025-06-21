@@ -1,0 +1,68 @@
+<header>
+  <tui-breadcrumbs>
+    <a *tuiItem tuiLink routerLink="cosmetics/category">Разделы косметики</a>
+    <a *tuiItem tuiLink [routerLink]="['cosmetics/category', categoryId()]">
+      {{ data().features.category }}
+    </a>
+    <a *tuiItem tuiLink [routerLink]="['cosmetics/', data().id]">
+      {{ data().name }}
+    </a>
+  </tui-breadcrumbs>
+</header>
+<main class="app-cosmetic-item-content">
+  <h1 class="tui-text_body-xl tui-text_bold">{{ data().name }}</h1>
+  <div class="app-cosmetic-item-content__img-container">
+    <img [src]="data().image_link" [alt]="data().name" />
+  </div>
+  <div role="list" class="app-cosmetic-item-content__shops-list">
+    @if (data().buy_links.wildberries) {
+      <a
+        iconStart="@tui.external-link"
+        [href]="data().buy_links.wildberries"
+        type="button"
+        role="listitem"
+        data-shop="wb"
+        tuiButton
+      >
+        wildberries
+      </a>
+    }
+    @if (data().buy_links.ozon) {
+      <a
+        iconStart="@tui.external-link"
+        [href]="data().buy_links.ozon"
+        type="button"
+        role="listitem"
+        data-shop="ozon"
+        tuiButton
+      >
+        OZON
+      </a>
+    }
+  </div>
+  <tui-accordion>
+    <ng-container>
+      <button [tuiAccordion]="true">Характеристики</button>
+      <tui-expand>
+        <div tuiCell>
+          <div tuiTitle>Объём</div>
+          <span tuiTitle>{{ data().features.size }} мл.</span>
+        </div>
+        <hr class="tui-space_bottom-1" />
+        <div tuiCell>
+          <div tuiTitle>Раздел</div>
+          <span tuiTitle>{{ data().features.category }}</span>
+        </div>
+        <hr class="tui-space_bottom-1" />
+      </tui-expand>
+    </ng-container>
+    <ng-container>
+      <button tuiAccordion>Описание</button>
+      <tui-expand>{{ data().description }}</tui-expand>
+    </ng-container>
+    <ng-container>
+      <button tuiAccordion>Способ применения</button>
+      <tui-expand>{{ data().guide }}</tui-expand>
+    </ng-container>
+  </tui-accordion>
+</main>
