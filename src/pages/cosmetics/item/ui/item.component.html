@@ -1,13 +1,27 @@
 <header>
-  <tui-breadcrumbs>
-    <a *tuiItem tuiLink routerLink="cosmetics/category">Разделы косметики</a>
-    <a *tuiItem tuiLink [routerLink]="['cosmetics/category', categoryId()]">
-      {{ data().features.category }}
+  @if (breakpoint() !== "mobile") {
+    <tui-breadcrumbs>
+      <a *tuiItem tuiLink routerLink="cosmetics/category">Разделы косметики</a>
+      <a *tuiItem tuiLink [routerLink]="['cosmetics/category', categoryId()]">
+        {{ data().features.category }}
+      </a>
+      <a *tuiItem tuiLink [routerLink]="['cosmetics/', data().id]">
+        {{ data().name }}
+      </a>
+    </tui-breadcrumbs>
+  } @else {
+    <a
+      iconStart="@tui.chevron-left"
+      tuiButton
+      tuiSlot="left"
+      type="button"
+      appearance="outline-grayscale"
+      size="m"
+      [routerLink]="['/cosmetic/category', categoryId()]"
+    >
+      Назад
     </a>
-    <a *tuiItem tuiLink [routerLink]="['cosmetics/', data().id]">
-      {{ data().name }}
-    </a>
-  </tui-breadcrumbs>
+  }
 </header>
 <main class="app-cosmetic-item-content">
   <h1 class="tui-text_body-xl tui-text_bold">{{ data().name }}</h1>

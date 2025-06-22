@@ -1,9 +1,15 @@
+@import "@taiga-ui/core/styles/taiga-ui-local.less";
+
 :host {
   --ozon-color: #6c86e2;
   --wb-color: #bd65a4;
 
   margin-block: 1rem;
   display: flex;
+
+  @media @tui-mobile {
+    margin-block: 0;
+  }
 
   flex-direction: column;
   gap: 1rem;

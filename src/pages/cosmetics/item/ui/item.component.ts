@@ -1,9 +1,15 @@
-import { Component, computed } from "@angular/core";
+import { Component, computed, inject } from "@angular/core";
+import { toSignal } from "@angular/core/rxjs-interop";
 import { RouterLink } from "@angular/router";
-import { TuiButton, TuiLink, TuiTitle } from "@taiga-ui/core";
+import {
+  TuiBreakpointService,
+  TuiButton,
+  TuiLink,
+  TuiTitle,
+} from "@taiga-ui/core";
 import { TuiAccordion, TuiExpand } from "@taiga-ui/experimental";
 import { TuiBreadcrumbs } from "@taiga-ui/kit";
-import { TuiCell } from "@taiga-ui/layout";
+import { TuiAppBarDirective, TuiCell } from "@taiga-ui/layout";
 
 import { TEST_ITEM_INFO } from "@/pages/cosmetics/item/mock";
 import { CosmeticCategories } from "@/shared/config";
@@ -21,9 +27,11 @@ import { CosmeticCategories } from "@/shared/config";
     TuiExpand,
     TuiCell,
     TuiTitle,
+    TuiAppBarDirective,
   ],
 })
 export class AppCosmeticsItemPageComponent {
+  protected readonly breakpoint = toSignal(inject(TuiBreakpointService));
   protected readonly data = computed(() => TEST_ITEM_INFO);
   protected readonly categoryId = computed(() => {
     return CosmeticCategories.findIndex(
