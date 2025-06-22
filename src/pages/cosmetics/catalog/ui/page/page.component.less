@@ -1,8 +1,14 @@
+@import "@taiga-ui/core/styles/taiga-ui-local.less";
+
 :host {
   display: flex;
   flex-direction: column;
   gap: 4rem;
   margin-block: 4rem;
+  @media @tui-mobile {
+    gap: 2rem;
+    margin-block: 1rem;
+  }
 }
 
 .cosmetic-category-list {
@@ -16,6 +22,9 @@
 .list__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  column-gap: 4rem;
-  row-gap: 4rem;
+  gap: 4rem;
+  @media @tui-mobile {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }

@@ -20,5 +20,9 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
+    @media @tui-mobile {
+      gap: 1rem;
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 }

@@ -2,7 +2,7 @@ import { CosmeticItem } from "@/entities/cosmetic";
 
 export const TEST_ITEM_INFO: CosmeticItem = {
   id: "1",
-  name: "Пиявочная мазь для загара и НЕГРЫ НЕГРЫ НЕГРЫ",
+  name: "Пиявочная мазь для загара",
   buy_links: {
     ozon: "https://www.wildberries.ru/catalog/18677787/detail.aspx",
     wildberries: "https://www.wildberries.ru/catalog/18677787/detail.aspx",

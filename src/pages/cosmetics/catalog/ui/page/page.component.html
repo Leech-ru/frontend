@@ -7,7 +7,11 @@
   <h2 class="list__header tui-text_h3">Разделы</h2>
   <div role="list" class="list__grid">
     @for (category of categories; track category.name) {
-      <app-cosmetics-category-card class="grid__element" [data]="category" />
+      <app-cosmetics-category-card
+        role="listitem"
+        class="grid__element"
+        [data]="category"
+      />
     }
   </div>
 </main>

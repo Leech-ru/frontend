@@ -9,6 +9,10 @@
   transform: scale3d(var(--card-scale), var(--card-scale), var(--card-scale));
   transition: transform var(--tui-duration) ease-in-out;
 
+  @media @tui-mobile {
+    max-height: 16rem;
+  }
+
   @media (hover: hover) {
     &:hover,
     &:has(:focus-visible) {
