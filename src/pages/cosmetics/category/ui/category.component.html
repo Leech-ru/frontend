@@ -14,7 +14,7 @@
       type="button"
       appearance="outline-grayscale"
       size="m"
-      routerLink="/cosmetic/category"
+      routerLink="/cosmetics/category"
     >
       Назад
     </a>
@@ -25,7 +25,7 @@
   <div role="list" class="app-cosmetic-category__item-list">
     @for (item of items; track item.id) {
       <app-cosmetics-item-card
-        [routerLink]="['/cosmetic', item.id]"
+        [routerLink]="['/cosmetics', item.id]"
         appearance="floating"
         [data]="item"
       />

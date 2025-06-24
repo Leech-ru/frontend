@@ -21,26 +21,26 @@ export const routes = [
         loadComponent: () => import("@/pages/index"),
       },
       {
-        path: "cosmetic",
+        path: "cosmetics",
         title: "Косметика",
         loadComponent: () => import("@/pages/index"),
       },
       {
-        path: "cosmetic/category",
+        path: "cosmetics/category",
         title: "Каталог косметики",
         loadComponent: () => import("@/pages/cosmetics/catalog"),
       },
       {
-        path: "cosmetic/category/:id",
+        path: "cosmetics/category/:id",
         title: "Каталог косметики",
         loadComponent: () => import("@/pages/cosmetics/category"),
       },
       {
-        path: "cosmetic/:id",
+        path: "cosmetics/:id",
         loadComponent: () => import("@/pages/cosmetics/item"),
       },
       {
-        path: "cosmetic/buy",
+        path: "cosmetics/buy",
         title: "Купить косметику",
         loadComponent: () => import("@/pages/index"),
       },

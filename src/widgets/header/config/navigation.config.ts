@@ -25,15 +25,15 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
   },
   {
     label: "Косметика",
-    routerLink: "/cosmetic/category",
+    routerLink: "/cosmetics/category",
     children: [
       {
         label: "Каталог косметики",
-        routerLink: "/cosmetic/category",
+        routerLink: "/cosmetics/category",
       },
       {
         label: "Где купить косметику?",
-        routerLink: "/cosmetic/buy",
+        routerLink: "/cosmetics/buy",
       },
     ],
   },
