@@ -12,6 +12,8 @@ import { TuiBreadcrumbs } from "@taiga-ui/kit";
 import { TuiAppBarDirective, TuiCell } from "@taiga-ui/layout";
 
 import { TEST_ITEM_INFO } from "@/pages/cosmetics/item/mock";
+import { AppCosmeticItemAccorditionsComponent } from "@/pages/cosmetics/item/ui/accorditions/accorditions.component";
+import { ShopsComponent } from "@/pages/cosmetics/item/ui/shop/shops.component";
 import { CosmeticCategories } from "@/shared/config";
 
 @Component({
@@ -28,6 +30,8 @@ import { CosmeticCategories } from "@/shared/config";
     TuiCell,
     TuiTitle,
     TuiAppBarDirective,
+    ShopsComponent,
+    AppCosmeticItemAccorditionsComponent,
   ],
 })
 export class AppCosmeticsItemPageComponent {

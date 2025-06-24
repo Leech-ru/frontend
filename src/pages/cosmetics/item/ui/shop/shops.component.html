@@ -1,0 +1,26 @@
+@if (data().wildberries) {
+  <a
+    iconStart="@tui.external-link"
+    [href]="data().wildberries"
+    type="button"
+    role="listitem"
+    data-shop="wb"
+    tuiButton
+    size="m"
+  >
+    wildberries
+  </a>
+}
+@if (data().ozon) {
+  <a
+    iconStart="@tui.external-link"
+    [href]="data().ozon"
+    type="button"
+    role="listitem"
+    data-shop="ozon"
+    tuiButton
+    size="m"
+  >
+    OZON
+  </a>
+}

@@ -2,7 +2,7 @@ import { CosmeticCategories } from "@/shared/config";
 
 export type CosmeticCategory = (typeof CosmeticCategories)[number];
 
-interface CosmeticLinks {
+export interface CosmeticShops {
   wildberries?: string;
   ozon?: string;
 }
@@ -19,7 +19,7 @@ export interface CosmeticItem {
   guide: string;
   image_link: string;
   features: CosmeticFeatures;
-  buy_links: CosmeticLinks;
+  buy_links: CosmeticShops;
 }
 
 export interface CosmeticItemCard {

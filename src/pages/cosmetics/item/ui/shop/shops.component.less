@@ -1,0 +1,19 @@
+@import "@taiga-ui/core/styles/taiga-ui-local.less";
+
+:host {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+
+  a[data-shop="ozon"] {
+    background-color: var(--ozon-color);
+  }
+
+  a[data-shop="wb"] {
+    background-color: var(--wb-color);
+  }
+
+  a:hover {
+    filter: brightness(1.1);
+  }
+}
