@@ -1,19 +1,22 @@
 <tui-accordion>
   <ng-container>
-    <button [tuiAccordion]="true">Характеристики</button>
+    <button tuiAccordion="true">Характеристики</button>
     <tui-expand>
       <div tuiCell>
         <div tuiTitle>Объём</div>
-        <span tuiTitle>{{ data().features.size }} мл.</span>
+        <span class="tui-text_bold">{{ data().features.size }} мл.</span>
       </div>
-      <hr class="tui-space_bottom-1" />
+      <hr />
       <div tuiCell>
         <div tuiTitle>Раздел</div>
-        <span tuiTitle>{{ data().features.category }}</span>
+        <span class="tui-text_bold">{{ data().features.category }}</span>
       </div>
-      <hr class="tui-space_bottom-1" />
+      <hr />
     </tui-expand>
   </ng-container>
+</tui-accordion>
+
+<tui-accordion>
   <ng-container>
     <button tuiAccordion>Описание</button>
     <tui-expand>{{ data().description }}</tui-expand>

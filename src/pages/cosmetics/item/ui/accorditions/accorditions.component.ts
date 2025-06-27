@@ -8,6 +8,7 @@ import { CosmeticItem } from "@/entities/cosmetic";
 @Component({
   selector: "app-cosmetic-item-accorditions",
   templateUrl: "accorditions.component.html",
+  styleUrl: "accorditions.component.less",
   imports: [TuiAccordion, TuiTitle, TuiCell],
 })
 export class AppCosmeticItemAccorditionsComponent {

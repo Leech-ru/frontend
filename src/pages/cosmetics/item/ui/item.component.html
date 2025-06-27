@@ -29,16 +29,14 @@
       <img [src]="data().image_link" [alt]="data().name" />
     </div>
     <div class="app-cosmetic-item-content__info">
-      <div class="app-cosmetic-item-content__text-block">
-        <h1 class="tui-text_body-xl tui-text_bold">
-          {{ data().name }}
-        </h1>
-        <app-cosmetic-item-shops [data]="data().buy_links" />
-      </div>
+      <h1 class="tui-text_h4">
+        {{ data().name }}
+      </h1>
+      <app-cosmetic-item-shops [data]="data().buy_links" />
       <app-cosmetic-item-accorditions [data]="data()" />
     </div>
   } @else {
-    <h1 class="tui-text_body-xl tui-text_bold">{{ data().name }}</h1>
+    <h1 class="tui-text_h4">{{ data().name }}</h1>
     <div class="app-cosmetic-item-content__img-container">
       <img [src]="data().image_link" [alt]="data().name" />
     </div>

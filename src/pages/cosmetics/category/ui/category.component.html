@@ -1,7 +1,7 @@
 <header>
   @if (breakpoint() !== "mobile") {
     <tui-breadcrumbs>
-      <a *tuiItem tuiLink routerLink="cosmetics/category">Разделы косметики</a>
+      <a *tuiItem tuiLink routerLink="/cosmetics/category">Разделы косметики</a>
       <a *tuiItem tuiLink [routerLink]="['cosmetics/category', id()]">
         {{ categoryName() }}
       </a>
