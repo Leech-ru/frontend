@@ -25,7 +25,7 @@
   <div role="list" class="app-cosmetic-category__item-list">
     @for (item of items; track item.id) {
       <app-cosmetics-item-card
-        [routerLink]="['/cosmetics', item.id]"
+        [routerLink]="['/cosmetics/item', item.id]"
         appearance="floating"
         [data]="item"
       />

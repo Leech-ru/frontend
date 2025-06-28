@@ -5,7 +5,7 @@
       <a *tuiItem tuiLink [routerLink]="['/cosmetics/category', categoryId()]">
         {{ data().features.category }}
       </a>
-      <a *tuiItem tuiLink [routerLink]="['cosmetics/', data().id]">
+      <a *tuiItem tuiLink [routerLink]="['/cosmetics/item', data().id]">
         {{ data().name }}
       </a>
     </tui-breadcrumbs>

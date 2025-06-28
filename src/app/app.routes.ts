@@ -36,13 +36,13 @@ export const routes = [
         loadComponent: () => import("@/pages/cosmetics/category"),
       },
       {
-        path: "cosmetics/:id",
+        path: "cosmetics/item/:id",
         loadComponent: () => import("@/pages/cosmetics/item"),
       },
       {
         path: "cosmetics/buy",
         title: "Купить косметику",
-        loadComponent: () => import("@/pages/index"),
+        loadComponent: () => import("@/pages/cosmetics/faqbuy"),
       },
       {
         path: "contact",
