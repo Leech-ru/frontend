@@ -1,0 +1,60 @@
+<app-callout
+  action="Посмотреть розничные цены"
+  link="/cosmetics/buy"
+  heading="Купить косметику"
+  description="Оптовые цены уточняйте у менеджеров по телефонам и электронной почте
+"
+/>
+<div class="app-buy__services">
+  @for (service of services; track service.heading) {
+    <div tuiAppearance="floating" tuiCardLarge [class.fluid]="service.fluid">
+      <header tuiHeader>
+        <h3 tuiTitle>{{ service.heading }}</h3>
+
+        <aside tuiAccessories>
+          <tui-avatar appearance="primary" [src]="service.icon" />
+        </aside>
+      </header>
+
+      <section>
+        @if (service.links) {
+          <ul>
+            @for (link of service.links; track link.href) {
+              <li tuiCell>
+                <a tuiLink [href]="link.href">
+                  {{ link.label }}
+                </a>
+              </li>
+            }
+          </ul>
+        }
+
+        @if (service.schedule?.length) {
+          <ul>
+            @for (schedule of service.schedule; track schedule.days) {
+              <li tuiCell>
+                <div tuiTitle>
+                  <strong>
+                    {{ schedule.days.at(0) }}–{{ schedule.days.at(-1) }}
+                  </strong>
+                </div>
+                <div tuiTitle>
+                  <span [style.font-weight]="500">
+                    {{ schedule.hours.open }}–{{ schedule.hours.close }}
+                  </span>
+                </div>
+              </li>
+            }
+          </ul>
+        }
+
+        <p
+          class="tui-space_top-4 tui-space_bottom-0"
+          tuiAppearance="action-grayscale"
+        >
+          {{ service.description }}
+        </p>
+      </section>
+    </div>
+  }
+</div>

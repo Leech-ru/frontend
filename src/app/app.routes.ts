@@ -52,7 +52,7 @@ export const routes = [
       {
         path: "about",
         title: "О центре",
-        loadComponent: () => import("@/pages/index"),
+        loadComponent: () => import("@/pages/about"),
       },
     ],
   },

@@ -1,0 +1,39 @@
+@import "@taiga-ui/core/styles/taiga-ui-local.less";
+
+:host {
+  margin-block: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.app-buy__services {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+
+  @media @tui-mobile {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    margin: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-wrap-style: pretty;
+
+    [tuiCell] {
+      --t-height: 1em;
+    }
+  }
+
+  [tuiLink] {
+    text-decoration-line: underline;
+  }
+
+  .fluid {
+    grid-column: 1 / -1;
+  }
+}
