@@ -1,0 +1,32 @@
+.app-gallery {
+  width: 100%;
+  .app-gallery__carousel {
+    --tui-carousel-padding: 0.5rem;
+    --tui-carousel-img-height: 20rem;
+
+    width: 100%;
+
+    .app-gallery__carousel__photo {
+      width: 100%;
+      height: var(--tui-carousel-img-height);
+      border-radius: 1rem;
+      object-fit: cover;
+
+      &.app-gallery__carousel__photo--large {
+        width: calc(200% + var(--tui-carousel-padding, 0) * 2);
+      }
+    }
+
+    .app-gallery__carousel__group {
+      display: flex;
+      flex-direction: column;
+      gap: calc(var(--tui-carousel-padding, 0) * 2);
+
+      .app-gallery__carousel__photo {
+        height: calc(
+          var(--tui-carousel-img-height, 0) / 2 - var(--tui-carousel-padding, 0)
+        );
+      }
+    }
+  }
+}

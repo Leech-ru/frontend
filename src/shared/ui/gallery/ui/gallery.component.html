@@ -1,0 +1,44 @@
+<tui-carousel
+  [(index)]="index"
+  [draggable]="true"
+  [itemsCount]="visiblePhotosCount()"
+  class="app-gallery__carousel"
+>
+  @for (item of items(); track isPhotosGroup(item) ? undefined : item.src) {
+    @if (isPhotosGroup(item)) {
+      <div class="app-gallery__carousel__group" *tuiItem>
+        @for (photo of item; track photo.src) {
+          <img
+            [src]="photo.src"
+            [draggable]="false"
+            class="app-gallery__carousel__photo"
+          />
+        }
+      </div>
+    } @else {
+      @if (isLargePhoto(item)) {
+        <img
+          *tuiItem
+          [src]="item.src"
+          [draggable]="false"
+          class="app-gallery__carousel__photo app-gallery__carousel__photo--large"
+        />
+        <div *tuiItem></div>
+      } @else {
+        <img
+          *tuiItem
+          [src]="item.src"
+          [draggable]="false"
+          class="app-gallery__carousel__photo"
+        />
+      }
+    }
+  }
+</tui-carousel>
+
+<tui-pagination
+  size="s"
+  class="tui-space_top-4"
+  [length]="paginatorLength()"
+  [(index)]="index"
+/>
