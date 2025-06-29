@@ -1,15 +1,10 @@
 import { Component, computed, inject } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { RouterLink } from "@angular/router";
-import {
-  TuiBreakpointService,
-  TuiButton,
-  TuiLink,
-  TuiTitle,
-} from "@taiga-ui/core";
-import { TuiAccordion, TuiExpand } from "@taiga-ui/experimental";
+import { TuiBreakpointService, TuiButton, TuiLink } from "@taiga-ui/core";
+import { TuiAccordion } from "@taiga-ui/experimental";
 import { TuiBreadcrumbs } from "@taiga-ui/kit";
-import { TuiAppBarDirective, TuiCell } from "@taiga-ui/layout";
+import { TuiAppBarDirective } from "@taiga-ui/layout";
 
 import { TEST_ITEM_INFO } from "@/pages/cosmetics/item/mock";
 import { AppCosmeticItemAccorditionsComponent } from "@/pages/cosmetics/item/ui/accorditions/accorditions.component";
@@ -26,9 +21,6 @@ import { CosmeticCategories } from "@/shared/config";
     RouterLink,
     TuiButton,
     TuiAccordion,
-    TuiExpand,
-    TuiCell,
-    TuiTitle,
     TuiAppBarDirective,
     ShopsComponent,
     AppCosmeticItemAccorditionsComponent,

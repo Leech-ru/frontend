@@ -6,7 +6,7 @@ import {
   input,
 } from "@angular/core";
 import { RouterLink } from "@angular/router";
-import { TuiAppearance, TuiLink, TuiTitle } from "@taiga-ui/core";
+import { TuiAppearance } from "@taiga-ui/core";
 import { TuiCardLarge, TuiHeader } from "@taiga-ui/layout";
 
 import { CosmeticItemCard } from "@/entities/cosmetic";
@@ -15,7 +15,7 @@ import { CosmeticItemCard } from "@/entities/cosmetic";
   selector: "app-cosmetics-item-card",
   templateUrl: "item.component.html",
   styleUrl: "item.component.less",
-  imports: [NgOptimizedImage, TuiHeader, RouterLink, TuiLink, TuiTitle],
+  imports: [NgOptimizedImage, TuiHeader, RouterLink],
   hostDirectives: [
     { directive: TuiCardLarge },
     { directive: TuiAppearance, inputs: ["tuiAppearance: appearance"] },
