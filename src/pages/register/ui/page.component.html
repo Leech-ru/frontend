@@ -1,0 +1,71 @@
+<form
+  tuiAppearance="floating"
+  tuiCardLarge
+  tuiForm="l"
+  [formGroup]="form.group"
+  (submit)="form.submit()"
+>
+  <header tuiHeader>
+    <h2 tuiTitle>Регистрация</h2>
+  </header>
+
+  <tui-textfield>
+    <label tuiLabel>Имя</label>
+    <input
+      formControlName="name"
+      placeholder="Введите своё имя…"
+      tuiTextfield
+    />
+  </tui-textfield>
+  <tui-error formControlName="name" [error]="[] | tuiFieldError | async" />
+
+  <tui-textfield>
+    <label tuiLabel>Фамилия</label>
+    <input
+      formControlName="surname"
+      placeholder="Введите свою фамилию…"
+      tuiTextfield
+    />
+  </tui-textfield>
+  <tui-error formControlName="surname" [error]="[] | tuiFieldError | async" />
+
+  <tui-textfield>
+    <label tuiLabel>Адрес электронной почты</label>
+    <input
+      formControlName="email"
+      placeholder="Введите свой адрес электронной почты…"
+      tuiTextfield
+    />
+  </tui-textfield>
+  <tui-error formControlName="email" [error]="[] | tuiFieldError | async" />
+
+  <tui-textfield [tuiTextfieldCleaner]="false">
+    <label tuiLabel>Пароль</label>
+    <input
+      formControlName="password"
+      placeholder="Придумайте новый пароль…"
+      type="password"
+      tuiTextfield
+    />
+    <tui-icon tuiPassword />
+  </tui-textfield>
+  <tui-error formControlName="password" [error]="[] | tuiFieldError | async" />
+
+  @if (form.group.errors && form.group.errors["message"]) {
+    <tui-error [error]="form.group.errors['message']" />
+  }
+
+  <footer>
+    <button tuiButton type="submit" [disabled]="form.pending()">
+      {{ form.pending() ? "Выполняется регистрация…" : "Зарегистрироваться" }}
+    </button>
+    <button
+      tuiButton
+      appearance="flat"
+      routerLink="/"
+      iconStart="@tui.arrow-left"
+    >
+      На главную
+    </button>
+  </footer>
+</form>

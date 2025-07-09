@@ -1,1 +1,1 @@
-export * from "./cosmetic";
+export { CosmeticCategories } from "./cosmetic";

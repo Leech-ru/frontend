@@ -65,6 +65,11 @@ export const routes = [
         title: "Заказать пиявок",
         loadComponent: () => import("@/pages/leech/buy"),
       },
+      {
+        path: "register",
+        title: "Регистрация",
+        loadComponent: () => import("@/pages/register"),
+      },
     ],
   },
 ] as const satisfies Routes;
