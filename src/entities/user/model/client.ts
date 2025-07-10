@@ -7,11 +7,11 @@ import {
 } from "../api/types";
 
 @Injectable({ providedIn: "root" })
-export class UserAPIService {
-  protected readonly http = inject(HttpClient);
+export class UserHttpClient {
+  protected readonly client = inject(HttpClient);
 
   public register(body: UserRegisterationRequest) {
-    return this.http.post<UserRegisterationResponse>(
+    return this.client.post<UserRegisterationResponse>(
       "/api/v1/user/register",
       body,
     );

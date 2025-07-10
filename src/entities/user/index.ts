@@ -14,4 +14,4 @@ export {
   USER_SURNAME_MAX_LENGTH,
   USER_SURNAME_MIN_LENGTH,
 } from "./config/surname";
-export { UserAPIService } from "./model/api.service";
+export { UserHttpClient } from "./model/client";

@@ -1,3 +1,4 @@
+import { HttpErrorResponse, HttpStatusCode } from "@angular/common/http";
 import { inject, Injectable, signal } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { tuiMarkControlAsTouchedAndValidate } from "@taiga-ui/cdk";
@@ -12,13 +13,13 @@ import {
   USER_PASSWORD_MIN_LENGTH,
   USER_SURNAME_MAX_LENGTH,
   USER_SURNAME_MIN_LENGTH,
-  UserAPIService,
+  UserHttpClient,
 } from "@/entities/user";
 import * as z from "@/shared/lib/forms/validation";
 
 @Injectable({ providedIn: "root" })
 export class UserRegistrationForm {
-  protected readonly api = inject(UserAPIService);
+  protected readonly client = inject(UserHttpClient);
 
   public readonly pending = signal<boolean>(false);
 
@@ -86,6 +87,14 @@ export class UserRegistrationForm {
     password: this.password,
   });
 
+  protected readonly errorStatusHandlers: Record<number, VoidFunction> = {
+    [HttpStatusCode.Conflict]: () =>
+      this.email.setErrors({
+        message:
+          "Пользователь с таким адресом электронной почты уже существует",
+      }),
+  };
+
   public submit(): void {
     tuiMarkControlAsTouchedAndValidate(this.group);
 
@@ -95,7 +104,7 @@ export class UserRegistrationForm {
 
     this.pending.set(true);
 
-    this.api
+    this.client
       .register({
         name: this.name.value!,
         surname: this.surname.value!,
@@ -112,14 +121,8 @@ export class UserRegistrationForm {
         next: (response) => {
           console.log(response);
         },
-        error: (error) => {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-          if (typeof error.status === "number" && error.status === 409) {
-            this.email.setErrors({
-              message:
-                "Пользователь с таким адресом электронной почты уже существует",
-            });
-          }
+        error: (error: HttpErrorResponse) => {
+          this.errorStatusHandlers[error.status]();
         },
       });
   }
