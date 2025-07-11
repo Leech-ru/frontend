@@ -70,6 +70,11 @@ export const routes = [
         title: "Регистрация",
         loadComponent: () => import("@/pages/register"),
       },
+      {
+        path: "login",
+        title: "Вход",
+        loadComponent: () => import("@/pages/login"),
+      },
     ],
   },
 ] as const satisfies Routes;

@@ -6,28 +6,8 @@
   (submit)="form.submit()"
 >
   <header tuiHeader>
-    <h2 tuiTitle>Регистрация</h2>
+    <h2 tuiTitle>Вход</h2>
   </header>
-
-  <tui-textfield>
-    <label tuiLabel>Имя</label>
-    <input
-      formControlName="name"
-      placeholder="Введите своё имя…"
-      tuiTextfield
-    />
-  </tui-textfield>
-  <tui-error formControlName="name" [error]="[] | tuiFieldError | async" />
-
-  <tui-textfield>
-    <label tuiLabel>Фамилия</label>
-    <input
-      formControlName="surname"
-      placeholder="Введите свою фамилию…"
-      tuiTextfield
-    />
-  </tui-textfield>
-  <tui-error formControlName="surname" [error]="[] | tuiFieldError | async" />
 
   <tui-textfield>
     <label tuiLabel>Адрес электронной почты</label>
@@ -43,7 +23,7 @@
     <label tuiLabel>Пароль</label>
     <input
       formControlName="password"
-      placeholder="Придумайте новый пароль…"
+      placeholder="Введите свой пароль…"
       type="password"
       tuiTextfield
     />
@@ -61,16 +41,19 @@
       type="submit"
       [disabled]="form.pending() || !form.group.dirty || form.group.invalid"
     >
-      {{ form.pending() ? "Выполняется регистрация…" : "Зарегистрироваться" }}
+      {{ form.pending() ? "Выполняется вход…" : "Войти" }}
+    </button>
+    <button type="button" tuiButton appearance="secondary" (click)="logout()">
+      Выйти
     </button>
     <button
       type="button"
       tuiButton
       appearance="flat"
-      routerLink="/login"
+      routerLink="/register"
       iconStart="@tui.arrow-left"
     >
-      К форме входа
+      К форме регистрации
     </button>
   </footer>
 </form>

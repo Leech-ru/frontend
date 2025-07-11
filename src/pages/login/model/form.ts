@@ -6,21 +6,17 @@ import { finalize } from "rxjs";
 
 import {
   createUserEmailFormControl,
-  createUserNameFormControl,
   createUserPasswordFormControl,
-  createUserSurnameFormControl,
 } from "@/entities/user";
 import { UserService } from "@/shared/api/user";
 
 @Injectable({ providedIn: "root" })
-export class UserRegistrationForm {
+export class UserLoginForm {
   protected readonly userService = inject(UserService);
 
   public readonly pending = signal<boolean>(false);
 
   public readonly group = new FormGroup({
-    name: createUserNameFormControl(),
-    surname: createUserSurnameFormControl(),
     email: createUserEmailFormControl(),
     password: createUserPasswordFormControl(),
   });
@@ -35,12 +31,9 @@ export class UserRegistrationForm {
     this.pending.set(true);
 
     this.userService
-      .register({
-        name: this.group.controls.name.value!,
-        surname: this.group.controls.surname.value!,
+      .login({
         email: this.group.controls.email.value!,
         password: this.group.controls.password.value!,
-        role: 0,
       })
       .pipe(
         finalize(() => {
@@ -53,10 +46,9 @@ export class UserRegistrationForm {
         },
         error: (error: HttpErrorResponse) => {
           switch (error.status) {
-            case HttpStatusCode.Conflict:
-              return this.group.controls.email.setErrors({
-                message:
-                  "Пользователь с таким адресом электронной почты уже существует",
+            case HttpStatusCode.Unauthorized:
+              return this.group.setErrors({
+                message: "Неверный адрес электронной почты или пароль",
               });
 
             default:
