@@ -6,6 +6,7 @@ import { Observable, finalize, throwError } from "rxjs";
 export class AuthService {
   private readonly client = inject(HttpClient);
   private readonly refreshing = signal(false);
+  private readonly baseUrl = `/api/v1/auth`;
 
   public refresh(): Observable<unknown> {
     if (this.refreshing()) {
@@ -15,7 +16,7 @@ export class AuthService {
     this.refreshing.set(true);
 
     return this.client
-      .post("/api/v1/auth/refresh", null, {
+      .post(`${this.baseUrl}/refresh`, null, {
         params: { goyda: true },
         withCredentials: true,
       })

@@ -11,27 +11,28 @@ import {
 @Injectable({ providedIn: "root" })
 export class UserService {
   private readonly client = inject(HttpClient);
+  private readonly baseUrl = `/api/v1/user`;
 
   public login(body: UserLoginRequest) {
-    return this.client.post<UserLoginResponse>("/api/v1/user/login", body);
+    return this.client.post<UserLoginResponse>(`${this.baseUrl}/login`, body);
   }
 
   public register(body: UserRegisterationRequest) {
     return this.client.post<UserRegisterationResponse>(
-      "/api/v1/user/register",
+      `${this.baseUrl}/register`,
       body,
     );
   }
 
   public logout() {
     return this.client.post<UserRegisterationResponse>(
-      "/api/v1/user/logout",
+      `${this.baseUrl}/logout`,
       null,
       { withCredentials: true },
     );
   }
 
   public get() {
-    return this.client.get("/api/v1/user", { withCredentials: true });
+    return this.client.get(`${this.baseUrl}`, { withCredentials: true });
   }
 }

@@ -1,7 +1,7 @@
 {
   "/api": {
-    "target": "http://xn--80abcjepbp1bfe2q.xn--p1ai",
-    "secure": false,
+    "target": "https://xn--80abcjepbp1bfe2q.xn--p1ai",
+    "secure": true,
     "changeOrigin": true,
     "logLevel": "debug",
     "pathRewrite": {
