@@ -17,11 +17,11 @@ export {
   USER_SURNAME_MIN_LENGTH,
 } from "./model/constants";
 
-export { UserService } from "./api/service";
+export { UserService } from "./api/user.service";
 export type {
   UserLoginRequest,
   UserRegisterRequest,
   UserRole,
-} from "./api/types";
+} from "./api/user.service.types";
 
 export * from "./store/user.store";

@@ -10,7 +10,7 @@ import {
   UserRegisterRequest,
   UserService,
 } from "@/entities/user";
-import { User } from "@/entities/user/api/types";
+import { User } from "@/entities/user/api/user.service.types";
 
 interface UserState {
   user: User | null;
