@@ -66,6 +66,7 @@
     "@ng-web-apis/resize-observer": "^4.12.0",
     "@ng-web-apis/screen-orientation": "^4.12.0",
     "@ng-web-apis/universal": "^4.12.0",
+    "@ngrx/signals": "^19.2.1",
     "@taiga-ui/addon-commerce": "^4.39.2",
     "@taiga-ui/cdk": "^4.39.2",
     "@taiga-ui/core": "^4.39.2",
