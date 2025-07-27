@@ -46,3 +46,8 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     routerLink: "/about",
   },
 ];
+
+export const ADMIN_NAVIGATION_ITEM: NavigationItem = {
+  label: "Панель управления",
+  routerLink: "/admin",
+};

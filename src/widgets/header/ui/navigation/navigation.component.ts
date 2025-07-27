@@ -1,7 +1,18 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+} from "@angular/core";
+
+import { UserStore } from "@/entities/user";
 
 import { AppHeaderNavigationItemComponent } from "./item/item.component";
-import { NAVIGATION_ITEMS } from "../../config/navigation.config";
+import {
+  ADMIN_NAVIGATION_ITEM,
+  NAVIGATION_ITEMS,
+} from "../../config/navigation.config";
 
 @Component({
   selector: "app-header-navigation",
@@ -10,6 +21,17 @@ import { NAVIGATION_ITEMS } from "../../config/navigation.config";
   imports: [AppHeaderNavigationItemComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppHeaderNavigationComponent {
+export class AppHeaderNavigationComponent implements OnInit {
   protected readonly items = NAVIGATION_ITEMS;
+  protected readonly adminItem = ADMIN_NAVIGATION_ITEM;
+  protected readonly userStore = inject(UserStore);
+  protected readonly user = this.userStore.user;
+  protected readonly isAdmin = computed(() => {
+    const nowUser = this.user();
+    return !!(nowUser && nowUser.role > 0); // !! чтобы преобразовать null в false
+  });
+
+  public ngOnInit() {
+    this.userStore.load();
+  }
 }

@@ -56,6 +56,13 @@ export const routes = [
         title: "О центре",
         loadComponent: () => import("@/pages/about"),
       },
+      {
+        path: "admin",
+        title: "Панель администрации",
+        loadComponent: () => import("@/pages/admin"),
+        canActivate: [adminGuard],
+        canMatch: [adminGuard],
+      },
     ],
   },
   {
@@ -80,13 +87,6 @@ export const routes = [
         loadComponent: () => import("@/pages/login"),
         canActivate: [authGuard],
         canMatch: [authGuard],
-      },
-      {
-        path: "admin",
-        title: "Панель администрации",
-        loadComponent: () => import("@/pages/admin"),
-        canActivate: [adminGuard],
-        canMatch: [adminGuard],
       },
     ],
   },

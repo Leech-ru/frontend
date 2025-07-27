@@ -1,11 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 
-import {
-  User,
-  UserLoginRequest,
-  UserRegisterRequest,
-} from "./user.service.types";
+import { User, UserLoginRequest, UserRegisterRequest } from "@/entities/user";
 
 @Injectable({ providedIn: "root" })
 export class UserService {

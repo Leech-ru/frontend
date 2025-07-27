@@ -4,4 +4,9 @@
       <app-header-navigation-item [item]="item" />
     </li>
   }
+  @if (isAdmin()) {
+    <li>
+      <app-header-navigation-item [item]="adminItem" />
+    </li>
+  }
 </ul>
