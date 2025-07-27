@@ -1,5 +1,7 @@
 import { Routes } from "@angular/router";
 
+import { adminGuard, authGuard } from "./guards";
+
 export const routes = [
   {
     path: "",
@@ -69,11 +71,22 @@ export const routes = [
         path: "register",
         title: "Регистрация",
         loadComponent: () => import("@/pages/register"),
+        canActivate: [authGuard],
+        canMatch: [authGuard],
       },
       {
         path: "login",
         title: "Вход",
         loadComponent: () => import("@/pages/login"),
+        canActivate: [authGuard],
+        canMatch: [authGuard],
+      },
+      {
+        path: "admin",
+        title: "Панель администрации",
+        loadComponent: () => import("@/pages/admin"),
+        canActivate: [adminGuard],
+        canMatch: [adminGuard],
       },
     ],
   },

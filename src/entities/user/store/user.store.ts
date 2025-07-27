@@ -3,7 +3,7 @@ import { inject } from "@angular/core";
 import { tapResponse } from "@ngrx/operators";
 import { patchState, signalStore, withMethods, withState } from "@ngrx/signals";
 import { rxMethod } from "@ngrx/signals/rxjs-interop";
-import { pipe, switchMap, tap } from "rxjs";
+import { distinctUntilChanged, pipe, switchMap, tap } from "rxjs";
 
 import {
   UserLoginRequest,
@@ -28,26 +28,23 @@ export const UserStore = signalStore(
   { providedIn: "root" },
   withState(initialState),
   withMethods((store, userService = inject(UserService)) => ({
-    loadUser: rxMethod<void>(
+    load: rxMethod<void>(
       pipe(
-        tap(() => patchState(store, { isLoading: true, error: null })),
+        distinctUntilChanged(),
+        tap(() => patchState(store, { isLoading: true })),
         switchMap(() =>
           userService.get().pipe(
-            tapResponse(
-              (user) => {
-                patchState(store, {
-                  user,
-                  isLoading: false,
-                });
+            tapResponse({
+              next: (user) => {
+                patchState(store, { user });
               },
-              (error: HttpErrorResponse) => {
-                patchState(store, {
-                  user: null,
-                  isLoading: false,
-                  error: error.message,
-                });
+              error: (error: HttpErrorResponse) => {
+                patchState(store, { error: error.message });
               },
-            ),
+              finalize: () => {
+                patchState(store, { isLoading: false });
+              },
+            }),
           ),
         ),
       ),
@@ -55,24 +52,21 @@ export const UserStore = signalStore(
 
     login: rxMethod<UserLoginRequest>(
       pipe(
+        distinctUntilChanged(),
         tap(() => patchState(store, { isLoading: true, error: null })),
         switchMap((credentials) =>
           userService.login(credentials).pipe(
-            switchMap(() => userService.get()),
-            tapResponse(
-              (user) => {
-                patchState(store, {
-                  user,
-                  isLoading: false,
-                });
+            tapResponse({
+              next: (user) => {
+                patchState(store, { user });
               },
-              (error: HttpErrorResponse) => {
-                patchState(store, {
-                  isLoading: false,
-                  error: error.message,
-                });
+              error: (error: HttpErrorResponse) => {
+                patchState(store, { error: error.message });
               },
-            ),
+              finalize: () => {
+                patchState(store, { isLoading: false });
+              },
+            }),
           ),
         ),
       ),
@@ -80,24 +74,21 @@ export const UserStore = signalStore(
 
     register: rxMethod<UserRegisterRequest>(
       pipe(
+        distinctUntilChanged(),
         tap(() => patchState(store, { isLoading: true, error: null })),
         switchMap((userData) =>
           userService.register(userData).pipe(
-            switchMap(() => userService.get()),
-            tapResponse(
-              (user) => {
-                patchState(store, {
-                  user,
-                  isLoading: false,
-                });
+            tapResponse({
+              next: (user) => {
+                patchState(store, { user });
               },
-              (error: HttpErrorResponse) => {
-                patchState(store, {
-                  isLoading: false,
-                  error: error.message,
-                });
+              error: (error: HttpErrorResponse) => {
+                patchState(store, { error: error.message });
               },
-            ),
+              finalize: () => {
+                patchState(store, { isLoading: false });
+              },
+            }),
           ),
         ),
       ),
@@ -105,23 +96,21 @@ export const UserStore = signalStore(
 
     logout: rxMethod<void>(
       pipe(
+        distinctUntilChanged(),
         tap(() => patchState(store, { isLoading: true, error: null })),
         switchMap(() =>
           userService.logout().pipe(
-            tapResponse(
-              () => {
-                patchState(store, {
-                  user: null,
-                  isLoading: false,
-                });
+            tapResponse({
+              next: () => {
+                patchState(store, { user: null });
               },
-              (error: HttpErrorResponse) => {
-                patchState(store, {
-                  isLoading: false,
-                  error: error.message,
-                });
+              error: (error: HttpErrorResponse) => {
+                patchState(store, { error: error.message });
               },
-            ),
+              finalize: () => {
+                patchState(store, { isLoading: false });
+              },
+            }),
           ),
         ),
       ),
