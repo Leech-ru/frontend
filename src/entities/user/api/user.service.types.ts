@@ -1,4 +1,4 @@
-import type { USER_ROLES } from "../model/constants";
+import type { USER_ROLES } from "@/entities/user";
 
 export type UserRole = (typeof USER_ROLES)[number];
 

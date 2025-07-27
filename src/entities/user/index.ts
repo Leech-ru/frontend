@@ -22,6 +22,7 @@ export type {
   UserLoginRequest,
   UserRegisterRequest,
   UserRole,
+  User,
 } from "./api/user.service.types";
 
 export * from "./store/user.store";
