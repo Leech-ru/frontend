@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-  OnInit,
-} from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 
 import { UserStore } from "@/entities/user";
 
@@ -21,17 +15,9 @@ import {
   imports: [AppHeaderNavigationItemComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppHeaderNavigationComponent implements OnInit {
+export class AppHeaderNavigationComponent {
   protected readonly items = NAVIGATION_ITEMS;
   protected readonly adminItem = ADMIN_NAVIGATION_ITEM;
   protected readonly userStore = inject(UserStore);
-  protected readonly user = this.userStore.user;
-  protected readonly isAdmin = computed(() => {
-    const nowUser = this.user();
-    return !!(nowUser && nowUser.role > 0); // !! чтобы преобразовать null в false
-  });
-
-  public ngOnInit() {
-    this.userStore.load();
-  }
+  protected readonly isAdmin = this.userStore.isAdmin;
 }

@@ -1,7 +1,14 @@
 import { HttpErrorResponse } from "@angular/common/http";
-import { inject } from "@angular/core";
+import { computed, inject } from "@angular/core";
 import { tapResponse } from "@ngrx/operators";
-import { patchState, signalStore, withMethods, withState } from "@ngrx/signals";
+import {
+  patchState,
+  signalStore,
+  withComputed,
+  withHooks,
+  withMethods,
+  withState,
+} from "@ngrx/signals";
 import { rxMethod } from "@ngrx/signals/rxjs-interop";
 import { distinctUntilChanged, pipe, switchMap, tap } from "rxjs";
 
@@ -119,5 +126,23 @@ export const UserStore = signalStore(
     clearError: () => {
       patchState(store, { error: null });
     },
+  })),
+
+  withHooks({
+    onInit(store) {
+      store.load();
+    },
+  }),
+
+  withComputed((store) => ({
+    isAdmin: computed(() => {
+      const user = store.user();
+      return !!(user && user.role > 0);
+    }),
+
+    isSuperAdmin: computed(() => {
+      const user = store.user();
+      return !!(user && user.role === 3);
+    }),
   })),
 );

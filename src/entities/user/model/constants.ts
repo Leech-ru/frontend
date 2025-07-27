@@ -1,4 +1,4 @@
-export const USER_ROLES = [0, 1, 2] as const;
+export const USER_ROLES = [0, 1, 2, 3] as const;
 
 export const USER_NAME_MIN_LENGTH = 2;
 export const USER_NAME_MAX_LENGTH = 100;
