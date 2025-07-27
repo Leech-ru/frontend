@@ -9,7 +9,7 @@ import {
   USER_PASSWORD_MIN_LENGTH,
   USER_SURNAME_MAX_LENGTH,
   USER_SURNAME_MIN_LENGTH,
-} from "@/shared/api/user";
+} from "@/entities/user";
 import * as z from "@/shared/lib/forms/validation";
 
 export const createUserNameFormControl = () => {

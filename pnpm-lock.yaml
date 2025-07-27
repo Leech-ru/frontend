@@ -74,9 +74,12 @@ importers:
       '@ng-web-apis/universal':
         specifier: ^4.12.0
         version: 4.12.0(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0))(@ng-web-apis/common@4.12.0(@angular/common@20.0.0(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@types/node@22.15.29)(rxjs@7.8.2)
+      '@ngrx/operators':
+        specifier: 19.2.1
+        version: 19.2.1(rxjs@7.8.2)
       '@ngrx/signals':
-        specifier: ^19.2.1
-        version: 19.2.1(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2)
+        specifier: 20.0.0-rc.0
+        version: 20.0.0-rc.0(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2)
       '@taiga-ui/addon-commerce':
         specifier: ^4.39.2
         version: 4.39.2(0ba7292e48bc527f6835e92fb93db7ea)
@@ -1104,10 +1107,15 @@ packages:
       '@types/node': '>=22.13.14'
       rxjs: '>=7.0.0'
 
-  '@ngrx/signals@19.2.1':
-    resolution: {integrity: sha512-Tajd2TVjkxxyFMhnMSWLa5pAWfynjP0VM0B/BCMaLiBrwBBxybxRVENoUDU5tGyiKSax/2tBJC3+sOglmxm27A==}
+  '@ngrx/operators@19.2.1':
+    resolution: {integrity: sha512-umjSny5nWe7+a3XPeyMfE8vjhXD4ec6nA/KSV7bQA43Yt3eW8cQQr5ng7UZOkC0rbqcBGpSsJPt5thTeXiMXQg==}
     peerDependencies:
-      '@angular/core': ^19.0.0
+      rxjs: ^6.5.3 || ^7.4.0
+
+  '@ngrx/signals@20.0.0-rc.0':
+    resolution: {integrity: sha512-c+ADG19ucRZbJ0Hh51YOc5122i4JCvheoZkcRJX9u5ovP6TD1P4uMrN0Yku6mJg85/eHKK/VWUCoM1KSxkL54w==}
+    peerDependencies:
+      '@angular/core': ^20.0.0
       rxjs: ^6.5.3 || ^7.4.0
     peerDependenciesMeta:
       rxjs:
@@ -5036,7 +5044,12 @@ snapshots:
       rxjs: 7.8.2
       tslib: 2.8.1
 
-  '@ngrx/signals@19.2.1(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2)':
+  '@ngrx/operators@19.2.1(rxjs@7.8.2)':
+    dependencies:
+      rxjs: 7.8.2
+      tslib: 2.8.1
+
+  '@ngrx/signals@20.0.0-rc.0(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2)':
     dependencies:
       '@angular/core': 20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0)
       tslib: 2.8.1

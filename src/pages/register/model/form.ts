@@ -9,21 +9,19 @@ import {
   createUserNameFormControl,
   createUserPasswordFormControl,
   createUserSurnameFormControl,
+  UserService,
 } from "@/entities/user";
-import { UserService } from "@/shared/api/user";
 
 @Injectable({ providedIn: "root" })
 export class UserRegistrationForm {
-  protected readonly userService = inject(UserService);
-
   public readonly pending = signal<boolean>(false);
-
   public readonly group = new FormGroup({
     name: createUserNameFormControl(),
     surname: createUserSurnameFormControl(),
     email: createUserEmailFormControl(),
     password: createUserPasswordFormControl(),
   });
+  protected readonly userService = inject(UserService);
 
   public submit(): void {
     tuiMarkControlAsTouchedAndValidate(this.group);

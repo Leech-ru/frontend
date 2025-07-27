@@ -13,10 +13,9 @@ import {
 import { TuiFieldErrorPipe, TuiPassword } from "@taiga-ui/kit";
 import { TuiCardLarge, TuiForm, TuiHeader } from "@taiga-ui/layout";
 
+import { UserService } from "@/entities/user";
+import { UserLoginForm } from "@/pages/login/model/form";
 import { AuthService } from "@/shared/api/auth";
-import { UserService } from "@/shared/api/user";
-
-import { UserLoginForm } from "../model/form";
 
 @Component({
   selector: "app-login-page",

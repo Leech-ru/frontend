@@ -7,19 +7,17 @@ import { finalize } from "rxjs";
 import {
   createUserEmailFormControl,
   createUserPasswordFormControl,
+  UserService,
 } from "@/entities/user";
-import { UserService } from "@/shared/api/user";
 
 @Injectable({ providedIn: "root" })
 export class UserLoginForm {
-  protected readonly userService = inject(UserService);
-
   public readonly pending = signal<boolean>(false);
-
   public readonly group = new FormGroup({
     email: createUserEmailFormControl(),
     password: createUserPasswordFormControl(),
   });
+  protected readonly userService = inject(UserService);
 
   public submit(): void {
     tuiMarkControlAsTouchedAndValidate(this.group);
