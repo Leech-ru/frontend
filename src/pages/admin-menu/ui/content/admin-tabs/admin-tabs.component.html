@@ -1,0 +1,7 @@
+<tui-tabs-with-more [activeItemIndex]="store.selectedTabIndex()">
+  @for (tab of tabs; track tab.name) {
+    <button *tuiItem (click)="store.setSelectedTab(tab.name)" tuiTab>
+      {{ tab.name }}
+    </button>
+  }
+</tui-tabs-with-more>

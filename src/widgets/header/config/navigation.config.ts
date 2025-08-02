@@ -49,5 +49,5 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 
 export const ADMIN_NAVIGATION_ITEM: NavigationItem = {
   label: "Панель управления",
-  routerLink: "/admin",
+  routerLink: "/admin-menu",
 };

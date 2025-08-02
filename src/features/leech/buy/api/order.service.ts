@@ -9,6 +9,7 @@ export class OrderService {
   private readonly baseUrl = `/api/v1/order`;
 
   public create(body: CreateOrderRequest) {
+    console.log("Сервис пиявок отправил запрос");
     return this.client.post<Order>(this.baseUrl, body);
   }
 }

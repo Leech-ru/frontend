@@ -57,9 +57,9 @@ export const routes = [
         loadComponent: () => import("@/pages/about"),
       },
       {
-        path: "admin",
+        path: "admin-menu",
         title: "Панель администрации",
-        loadComponent: () => import("@/pages/admin"),
+        loadComponent: () => import("@/pages/admin-menu"),
         canActivate: [adminGuard],
         canMatch: [adminGuard],
       },

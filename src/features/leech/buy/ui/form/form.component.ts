@@ -19,6 +19,11 @@ import {
 import { TuiElasticContainer, TuiStepper } from "@taiga-ui/kit";
 import { TuiAppBar, TuiCardLarge, TuiHeader } from "@taiga-ui/layout";
 
+import {
+  CreateOrderRequest,
+  OrderStore,
+  PackageType,
+} from "@/features/leech/buy";
 import { FormStepper } from "@/shared/lib/forms";
 
 import { LEECH_BUY_MIN_COUNT } from "../../config";
@@ -74,7 +79,6 @@ export class AppLeechBuyFormComponent {
   protected readonly router = inject(Router);
   protected readonly breakpoint = toSignal(inject(TuiBreakpointService).pipe());
   protected readonly plurarRulesRu = new Intl.PluralRules("ru");
-
   protected readonly stepper = new FormStepper([
     {
       title: "Выбор пиявок",
@@ -122,12 +126,12 @@ export class AppLeechBuyFormComponent {
       next: () => this.router.navigateByUrl("/"),
     },
   ]);
+  private readonly store = inject(OrderStore);
 
   public constructor() {
     if (this.form.submitted()) {
       this.form.reset();
     }
-
     this.route.queryParams.subscribe((params) => {
       const step = Number.parseInt(params["step"] as string) - 1;
 
@@ -159,6 +163,12 @@ export class AppLeechBuyFormComponent {
     });
 
     effect(() => {
+      if (this.form.submitted()) {
+        this.createOrder();
+      }
+    });
+
+    effect(() => {
       if (
         !this.form.submitted() &&
         this.stepper.index() === this.stepper.steps.length - 1
@@ -167,5 +177,25 @@ export class AppLeechBuyFormComponent {
         this.stepper.index.set(0);
       }
     });
+  }
+
+  private createOrder() {
+    const data: CreateOrderRequest = {
+      customer_info: {
+        fio: this.form.contact.get("name")?.value || "",
+        address: this.form.contact.get("address")?.value || "",
+        comment: this.form.contact.get("comment")?.value || undefined,
+        email: this.form.contact.get("email")?.value || "",
+        phone_number: this.form.contact.get("phone")?.value || "",
+      },
+      order_details: {
+        leech_size_1: this.form.leech.get("small")?.value || 0,
+        leech_size_2: this.form.leech.get("medium")?.value || 0,
+        leech_size_3: this.form.leech.get("large")?.value || 0,
+        package_type: this.form.group.get("package")
+          ?.value as unknown as PackageType,
+      },
+    };
+    this.store.create(data);
   }
 }
