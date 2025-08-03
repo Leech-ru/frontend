@@ -8,7 +8,7 @@ export const LEECH_BUY_COMMENT_MAX_LENGTH = 512;
 
 export const LEECH_BUY_PACKAGES: LeechBuyPackage[] = [
   {
-    id: 1,
+    id: 0,
     icon: "@tui.waves",
     name: "Вода",
     description: "Транспортировка не более 1-х суток",
@@ -16,7 +16,7 @@ export const LEECH_BUY_PACKAGES: LeechBuyPackage[] = [
     background: "#526ed3",
   },
   {
-    id: 2,
+    id: 1,
     icon: "@tui.droplet",
     name: "Гель",
     description: "Транспортировка не более 5 суток",
@@ -24,7 +24,7 @@ export const LEECH_BUY_PACKAGES: LeechBuyPackage[] = [
     background: "#2fad96",
   },
   {
-    id: 3,
+    id: 2,
     icon: "@tui.earth",
     name: "Торф",
     description: "Транспортировка не более 5 суток",

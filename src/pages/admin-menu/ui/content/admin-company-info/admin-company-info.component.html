@@ -1,1 +1,40 @@
-<p>admin-company-info works!</p>
+<tui-elastic-container class="container">
+  <div tuiAppearance="outline" tuiCardLarge>
+    <header tuiHeader>
+      <h3>Телефоны</h3>
+    </header>
+    <tui-textfield tuiTextfieldSize="m">
+      <label tuiLabel>Сохранненый телефон</label>
+      <input
+        [disabled]="true"
+        tuiTextfield
+        type="tel"
+        value="495-233-222-666"
+      />
+    </tui-textfield>
+    @for (value of phoneItems; track $index) {
+      <div class="input-with-delete" tuiGroup>
+        <tui-textfield tuiTextfieldSize="m">
+          <label tuiLabel>Введите новый телефон</label>
+          <input [ngModel]="value" tuiTextfield type="tel" />
+        </tui-textfield>
+        <button size="m" (click)="deletePhone($index)" tuiIconButton>
+          <tui-icon icon="@tui.trash" />
+        </button>
+      </div>
+    }
+    <button (click)="addPhone()" size="m" tuiButton>Добавить</button>
+  </div>
+</tui-elastic-container>
+
+<tui-elastic-container class="container">
+  <div tuiCardLarge>
+    <header tuiHeader>
+      <h3>Почта</h3>
+    </header>
+    <tui-textfield>
+      <label tuiLabel>Введите новую почту</label>
+      <input tuiTextfield type="email" />
+    </tui-textfield>
+  </div>
+</tui-elastic-container>

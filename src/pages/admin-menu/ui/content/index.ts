@@ -1,1 +1,1 @@
-export * from "./admin-tabs/admin-tabs.component";
+export { AdminTabsComponent as default } from "@/pages/admin-menu/ui/content/admin-tabs/admin-tabs.component";
