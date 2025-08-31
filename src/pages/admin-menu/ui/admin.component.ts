@@ -2,7 +2,8 @@ import { NgComponentOutlet } from "@angular/common";
 import { Component, inject } from "@angular/core";
 
 import { ADMIN_TABS, AdminMenuTabsStore } from "@/pages/admin-menu";
-import AdminTabsComponent from "@/pages/admin-menu/ui/content";
+
+import { AdminTabsComponent } from "../ui/content/admin-tabs/admin-tabs.component";
 
 @Component({
   selector: "app-admin-menu-page",

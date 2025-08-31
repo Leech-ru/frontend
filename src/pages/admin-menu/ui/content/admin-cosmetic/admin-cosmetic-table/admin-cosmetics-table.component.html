@@ -1,0 +1,39 @@
+<table tuiTable size="l" [style.width.rem]="58">
+  <thead>
+    <tr>
+      <th tuiTh></th>
+      <th tuiTh>Название</th>
+      <th tuiTh>Категория</th>
+      <th tuiTh>Действия</th>
+    </tr>
+  </thead>
+  <tbody tuiTbody>
+    @for (cosmetic of store.cosmeticCards(); track cosmetic.id) {
+      <tr>
+        <td tuiTd>
+          <tui-avatar [src]="cosmetic.image_link" />
+        </td>
+        <td tuiTd>
+          <span>{{ cosmetic.name }}</span>
+        </td>
+        <td tuiTd>
+          <span>{{ cosmetic.category }}</span>
+        </td>
+        <td tuiTd>
+          <div tuiGroup class="action-list">
+            <button
+              [routerLink]="[AdminRoutes.editCosmeticById, cosmetic.id]"
+              iconStart="@tui.pencil"
+              tuiButton
+            >
+              Редактировать
+            </button>
+            <button appearance="negative" iconStart="@tui.trash" tuiButton>
+              Удалить
+            </button>
+          </div>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

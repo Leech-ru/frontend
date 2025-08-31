@@ -1,5 +1,6 @@
 import { AdminMenuBuyInfoComponent } from "../ui/content/admin-buy-info/admin-buy-info.component";
 import { AdminCompanyInfoComponent } from "../ui/content/admin-company-info/admin-company-info.component";
+import { AdminCosmeticsComponent } from "../ui/content/admin-cosmetic/admin-cosmetics.component";
 
 export interface AdminTab {
   name: string;
@@ -13,7 +14,7 @@ export const ADMIN_TABS = [
   },
   {
     name: "Косметика",
-    content: AdminMenuBuyInfoComponent,
+    content: AdminCosmeticsComponent,
   },
   {
     name: "Партнеры",

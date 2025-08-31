@@ -1,7 +1,13 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { inject } from "@angular/core";
 import { tapResponse } from "@ngrx/operators";
-import { patchState, signalStore, withMethods, withState } from "@ngrx/signals";
+import {
+  patchState,
+  signalStore,
+  withHooks,
+  withMethods,
+  withState,
+} from "@ngrx/signals";
 import { rxMethod } from "@ngrx/signals/rxjs-interop";
 import { distinctUntilChanged, pipe, switchMap, tap } from "rxjs";
 
@@ -165,4 +171,9 @@ export const PartnerStore = signalStore(
       patchState(store, { selectedItem: null });
     },
   })),
+  withHooks({
+    onInit(store) {
+      store.loadAll(undefined);
+    },
+  }),
 );

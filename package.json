@@ -69,6 +69,7 @@
     "@ngrx/operators": "19.2.1",
     "@ngrx/signals": "20.0.0-rc.0",
     "@taiga-ui/addon-commerce": "^4.39.2",
+    "@taiga-ui/addon-table": "^4.51.0",
     "@taiga-ui/cdk": "^4.39.2",
     "@taiga-ui/core": "^4.39.2",
     "@taiga-ui/event-plugins": "^4.6.0",

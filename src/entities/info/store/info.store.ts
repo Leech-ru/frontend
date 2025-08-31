@@ -1,7 +1,14 @@
 import { HttpErrorResponse } from "@angular/common/http";
-import { inject } from "@angular/core";
+import { computed, inject } from "@angular/core";
 import { tapResponse } from "@ngrx/operators";
-import { patchState, signalStore, withMethods, withState } from "@ngrx/signals";
+import {
+  patchState,
+  signalStore,
+  withComputed,
+  withHooks,
+  withMethods,
+  withState,
+} from "@ngrx/signals";
 import { rxMethod } from "@ngrx/signals/rxjs-interop";
 import { distinctUntilChanged, pipe, switchMap, tap } from "rxjs";
 
@@ -9,6 +16,9 @@ import {
   CorporationInfo,
   InfoService,
   UpdateInfoRequest,
+  getEmailFromDto,
+  getPhonesFromDto,
+  getSitesFromDto,
 } from "@/entities/info";
 
 interface InfoState {
@@ -75,4 +85,32 @@ export const InfoStore = signalStore(
       patchState(store, { error: null });
     },
   })),
+  withComputed(({ info }) => ({
+    phones: computed(() => {
+      const links = info()?.links;
+      if (links) {
+        return getPhonesFromDto(links);
+      }
+      return [];
+    }),
+    email: computed(() => {
+      const links = info()?.links;
+      if (links) {
+        return getEmailFromDto(links);
+      }
+      return [];
+    }),
+    sites: computed(() => {
+      const links = info()?.links;
+      if (links) {
+        return getSitesFromDto(links);
+      }
+      return [];
+    }),
+  })),
+  withHooks({
+    onInit(store) {
+      store.load();
+    },
+  }),
 );

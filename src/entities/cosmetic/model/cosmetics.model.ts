@@ -1,15 +1,15 @@
-import { CosmeticCategories } from "@/shared/config";
-
-export type CosmeticCategory = (typeof CosmeticCategories)[number];
-
-export interface CosmeticShops {
-  wildberries?: string;
-  ozon?: string;
-}
+import { Links } from "@/entities/cosmetic";
 
 interface CosmeticFeatures {
-  category: CosmeticCategory;
-  size: number; // в мл всегда
+  /**
+   * @summary Категория косметики
+   */
+  category: string;
+
+  /**
+   * @summary Размер в миллитрах
+   */
+  size?: number;
 }
 
 export interface CosmeticItem {
@@ -19,7 +19,7 @@ export interface CosmeticItem {
   guide: string;
   image_link: string;
   features: CosmeticFeatures;
-  buy_links: CosmeticShops;
+  buy_links?: Links;
 }
 
 export interface CosmeticItemCard {
@@ -27,10 +27,11 @@ export interface CosmeticItemCard {
   name: string;
   desc: string;
   image_link: string;
+  category: string;
 }
 
 export interface CosmeticCategoryCard {
   id: string;
-  name: CosmeticCategory;
+  name: string;
   image_link: string;
 }

@@ -83,6 +83,9 @@ importers:
       '@taiga-ui/addon-commerce':
         specifier: ^4.39.2
         version: 4.39.2(0ba7292e48bc527f6835e92fb93db7ea)
+      '@taiga-ui/addon-table':
+        specifier: ^4.51.0
+        version: 4.51.0(4e68b93430c4e3933c33c0adba56e81f)
       '@taiga-ui/cdk':
         specifier: ^4.39.2
         version: 4.39.2(23174c2e86eddf0745fed9392c9d1493)
@@ -1409,6 +1412,19 @@ packages:
       '@taiga-ui/core': ^4.39.2
       '@taiga-ui/i18n': ^4.39.2
       '@taiga-ui/kit': ^4.39.2
+      '@taiga-ui/polymorpheus': ^4.9.0
+      rxjs: '>=7.0.0'
+
+  '@taiga-ui/addon-table@4.51.0':
+    resolution: {integrity: sha512-NTt11Yzcjts08qzlTvnFlMG2ANXu0Tk9w6aOnNRpKbZzlkEVGLFdkYazg10RDei1909PnbkF7TgdZ83IM+3c6w==}
+    peerDependencies:
+      '@angular/common': '>=16.0.0'
+      '@angular/core': '>=16.0.0'
+      '@ng-web-apis/intersection-observer': ^4.12.0
+      '@taiga-ui/cdk': ^4.51.0
+      '@taiga-ui/core': ^4.51.0
+      '@taiga-ui/i18n': ^4.51.0
+      '@taiga-ui/kit': ^4.51.0
       '@taiga-ui/polymorpheus': ^4.9.0
       rxjs: '>=7.0.0'
 
@@ -5314,6 +5330,19 @@ snapshots:
       '@maskito/core': 3.8.0
       '@maskito/kit': 3.8.0(@maskito/core@3.8.0)
       '@ng-web-apis/common': 4.12.0(@angular/common@20.0.0(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2)
+      '@taiga-ui/cdk': 4.39.2(23174c2e86eddf0745fed9392c9d1493)
+      '@taiga-ui/core': 4.39.2(eb77b865c54f28a3850e6768d4ac0618)
+      '@taiga-ui/i18n': 4.39.2(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0))(@ng-web-apis/common@4.12.0(@angular/common@20.0.0(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(rxjs@7.8.2)
+      '@taiga-ui/kit': 4.39.2(6e1717b05c13ec3d4703edbdb32fd942)
+      '@taiga-ui/polymorpheus': 4.9.0(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0))(@angular/platform-browser@20.0.0(@angular/animations@20.0.0(@angular/common@20.0.0(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0)))(@angular/common@20.0.0(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0)))
+      rxjs: 7.8.2
+      tslib: 2.8.1
+
+  '@taiga-ui/addon-table@4.51.0(4e68b93430c4e3933c33c0adba56e81f)':
+    dependencies:
+      '@angular/common': 20.0.0(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2)
+      '@angular/core': 20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0)
+      '@ng-web-apis/intersection-observer': 4.12.0(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0))(@ng-web-apis/common@4.12.0(@angular/common@20.0.0(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))
       '@taiga-ui/cdk': 4.39.2(23174c2e86eddf0745fed9392c9d1493)
       '@taiga-ui/core': 4.39.2(eb77b865c54f28a3850e6768d4ac0618)
       '@taiga-ui/i18n': 4.39.2(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0))(@ng-web-apis/common@4.12.0(@angular/common@20.0.0(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@20.0.0(@angular/compiler@20.0.0)(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(rxjs@7.8.2)

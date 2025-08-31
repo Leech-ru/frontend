@@ -1,4 +1,4 @@
-import { Component, signal } from "@angular/core";
+import { Component, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { tuiArrayRemove } from "@taiga-ui/cdk";
 import {
@@ -13,6 +13,8 @@ import {
 } from "@taiga-ui/core";
 import { TuiElasticContainer } from "@taiga-ui/kit";
 import { TuiCardLarge, TuiHeader } from "@taiga-ui/layout";
+
+import { InfoStore } from "@/entities/info";
 
 @Component({
   selector: "app-admin-menu-company-info",
@@ -36,6 +38,7 @@ import { TuiCardLarge, TuiHeader } from "@taiga-ui/layout";
 export class AdminCompanyInfoComponent {
   protected readonly isEditingMode = signal(false);
   protected phoneItems: string[] = [];
+  protected store = inject(InfoStore);
 
   protected addPhone() {
     this.phoneItems.push("");

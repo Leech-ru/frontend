@@ -10,7 +10,7 @@ export interface ScheduleEntry {
   hours: Hours;
 }
 
-export interface InfoLinks {
+export interface InfoLink {
   label: string;
   href: string;
 }
@@ -20,7 +20,7 @@ export interface CorporationInfo {
   description: string;
   fluid?: boolean;
   schedule?: ScheduleEntry[];
-  links?: InfoLinks[];
+  links?: InfoLink[];
 }
 
 export interface UpdateInfoRequest {
@@ -28,5 +28,5 @@ export interface UpdateInfoRequest {
   description?: string;
   fluid?: boolean;
   schedule?: ScheduleEntry[];
-  links?: InfoLinks[];
+  links?: InfoLink[];
 }

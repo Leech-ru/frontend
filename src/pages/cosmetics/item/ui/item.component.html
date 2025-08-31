@@ -32,7 +32,7 @@
       <h1 class="tui-text_h4">
         {{ data().name }}
       </h1>
-      <app-cosmetic-item-shops [data]="data().buy_links" />
+      <app-cosmetic-item-shops />
       <app-cosmetic-item-accorditions [data]="data()" />
     </div>
   } @else {
@@ -40,7 +40,7 @@
     <div class="app-cosmetic-item-content__img-container">
       <img [src]="data().image_link" [alt]="data().name" />
     </div>
-    <app-cosmetic-item-shops [data]="data().buy_links" />
+    <app-cosmetic-item-shops />
     <app-cosmetic-item-accorditions [data]="data()" />
   }
 </main>

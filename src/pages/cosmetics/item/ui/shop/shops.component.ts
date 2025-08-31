@@ -2,7 +2,7 @@ import { Component, input } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { TuiButton } from "@taiga-ui/core";
 
-import { CosmeticShops } from "@/entities/cosmetic";
+import { Links } from "@/entities/cosmetic";
 
 @Component({
   selector: "app-cosmetic-item-shops",
@@ -11,5 +11,5 @@ import { CosmeticShops } from "@/entities/cosmetic";
   imports: [TuiButton, RouterLink],
 })
 export class ShopsComponent {
-  public data = input<CosmeticShops>({} as CosmeticShops);
+  public data = input<Links>({} as Links);
 }

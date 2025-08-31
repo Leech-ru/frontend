@@ -19,7 +19,7 @@ import { UserStore } from "@/entities/user";
  * - Если пользователь не админ → редирект на главную
  * - Если все проверки пройдены → разрешает доступ к маршруту
  *
- * @returns Observable<boolean> - разрешение/запрет доступа к маршруту
+ * @returns (Observable) разрешение/запрет доступа к маршруту
  *
  * @see https://angular.dev/guide/routing/route-guards#route-guard-return-types
  */
@@ -36,14 +36,8 @@ export const adminGuard: CanActivateFn = () => {
       const user = userStore.user();
       const error = userStore.error();
 
-      if (error) {
-        router.navigate(["/login"]);
-        return false;
-      }
-
-      if (!user) {
-        router.navigate(["/login"]);
-        return false;
+      if (error || !user) {
+        return router.createUrlTree(["/login"]);
       }
 
       return user.role !== 0;
