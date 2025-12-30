@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from "@angular/common/http";
 import { inject } from "@angular/core";
-import { ResolveFn } from "@angular/router";
-import { map } from "rxjs";
+import { ResolveFn, Router } from "@angular/router";
+import { TuiAlertService } from "@taiga-ui/core";
+import { catchError, EMPTY, map } from "rxjs";
 
 import {
   CosmeticItem,
@@ -10,9 +12,20 @@ import {
 
 export const cosmeticItemResolver: ResolveFn<CosmeticItem> = (route) => {
   const service = inject(CosmeticsService);
+  const router = inject(Router);
+  const alerts = inject(TuiAlertService);
   const id = route.paramMap.get("id")!;
 
-  return service
-    .getById(id)
-    .pipe(map((dto) => getSelectedCosmeticFromDto(dto)));
+  return service.getById(id).pipe(
+    map((dto) => getSelectedCosmeticFromDto(dto)),
+    catchError((error: HttpErrorResponse) => {
+      if (error.status === 404) {
+        alerts
+          .open("Товар не найден", { label: "Ошибка", appearance: "negative" })
+          .subscribe();
+        router.navigate(["/cosmetics/category"]);
+      }
+      return EMPTY;
+    }),
+  );
 };
