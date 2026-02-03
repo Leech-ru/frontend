@@ -2,15 +2,20 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
+  inject,
   input,
   signal,
   ViewEncapsulation,
 } from "@angular/core";
+import { toSignal } from "@angular/core/rxjs-interop";
+import { TuiBreakpointService } from "@taiga-ui/core";
 import { TuiCarousel, TuiPagination } from "@taiga-ui/kit";
 
 import {
   AppGalleryCarouselItem,
   AppGalleryCarouselLargePhoto,
+  AppGalleryCarouselPhotoGroup,
 } from "../model/types";
 
 @Component({
@@ -26,20 +31,44 @@ import {
   },
 })
 export class AppGalleryComponent {
+  protected readonly breakpoint = toSignal(inject(TuiBreakpointService), {
+    requireSync: true,
+  });
+
   public readonly items = input<AppGalleryCarouselItem[]>([]);
   public readonly visiblePhotosCount = input<number>(1);
 
   public readonly index = signal<number>(0);
 
+  public readonly responsiveVisiblePhotosCount = computed(() =>
+    this.breakpoint() === "mobile" ? 1 : this.visiblePhotosCount(),
+  );
+
+  public readonly smallPhotoSize = 1;
+  public readonly largePhotoSize = computed(() =>
+    this.breakpoint() === "mobile" ? 1 : 2,
+  );
+
   public readonly paginatorLength = computed(
     () =>
-      this.items().reduce(
-        (total, item) => total + (this.isLargePhoto(item) ? 2 : 1),
-        0,
-      ) -
-      this.visiblePhotosCount() +
+      this.items().reduce((total, item) => total + this.getItemSize(item), 0) -
+      this.responsiveVisiblePhotosCount() +
       1,
   );
+
+  public constructor() {
+    effect(() => {
+      if (this.index() > this.paginatorLength() - 1) {
+        this.index.set(this.paginatorLength() - 1);
+      }
+    });
+  }
+
+  protected getItemSize(item: AppGalleryCarouselItem): number {
+    return this.isLargePhoto(item)
+      ? this.largePhotoSize()
+      : this.smallPhotoSize;
+  }
 
   protected isLargePhoto(
     item: AppGalleryCarouselItem,
@@ -47,7 +76,9 @@ export class AppGalleryComponent {
     return "large" in item;
   }
 
-  protected isPhotosGroup(item: AppGalleryCarouselItem) {
+  protected isPhotosGroup(
+    item: AppGalleryCarouselItem,
+  ): item is AppGalleryCarouselPhotoGroup {
     return Array.isArray(item);
   }
 }

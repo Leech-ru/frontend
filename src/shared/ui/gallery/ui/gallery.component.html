@@ -1,10 +1,10 @@
 <tui-carousel
   [(index)]="index"
   [draggable]="true"
-  [itemsCount]="visiblePhotosCount()"
+  [itemsCount]="responsiveVisiblePhotosCount()"
   class="app-gallery__carousel"
 >
-  @for (item of items(); track isPhotosGroup(item) ? undefined : item.src) {
+  @for (item of items(); track isPhotosGroup(item) ? item.length : item.src) {
     @if (isPhotosGroup(item)) {
       <div class="app-gallery__carousel__group" *tuiItem>
         @for (photo of item; track photo.src) {
@@ -16,7 +16,7 @@
         }
       </div>
     } @else {
-      @if (isLargePhoto(item)) {
+      @if (isLargePhoto(item) && breakpoint() !== "mobile") {
         <img
           *tuiItem
           [src]="item.src"
