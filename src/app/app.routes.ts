@@ -1,5 +1,7 @@
 import { Routes } from "@angular/router";
 
+import { cosmeticItemResolver } from "@/pages/cosmetics/item";
+
 import { adminGuard, authGuard } from "./guards";
 
 export const routes = [
@@ -40,6 +42,9 @@ export const routes = [
       {
         path: "cosmetics/item/:id",
         loadComponent: () => import("@/pages/cosmetics/item"),
+        resolve: {
+          item: cosmeticItemResolver,
+        },
       },
       {
         path: "cosmetics/buy",
