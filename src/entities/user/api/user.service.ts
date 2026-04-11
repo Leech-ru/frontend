@@ -1,12 +1,16 @@
+import { API_URL } from "@/shared/api";
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-
-import { User, UserLoginRequest, UserRegisterRequest } from "@/entities/user";
+import {
+  User,
+  UserLoginRequest,
+  UserRegisterRequest,
+} from "./user.service.types";
 
 @Injectable({ providedIn: "root" })
 export class UserService {
   private readonly client = inject(HttpClient);
-  private readonly baseUrl = `/api/v1/user`;
+  private readonly baseUrl = `${API_URL}/v1/user`;
 
   public login(body: UserLoginRequest) {
     return this.client.post<User>(`${this.baseUrl}/login`, body);
@@ -17,7 +21,7 @@ export class UserService {
   }
 
   public logout() {
-    return this.client.post<User>(`${this.baseUrl}/logout`, null, {
+    return this.client.post<null>(`${this.baseUrl}/logout`, null, {
       withCredentials: true,
     });
   }

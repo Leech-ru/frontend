@@ -1,0 +1,23 @@
+<app-hero
+  heading="Международный центр медицинской пиявки"
+  description="Старейшее предприятии в России и в мире, которое более 80 лет занимается выращиванием сертифицированной медицинской пиявки"
+  action="Оформить заказ"
+  link="/leech/order"
+/>
+
+<section class="cards">
+  @for (card of cards; track card.routerLink) {
+    <app-home-page-card [card]="card" />
+  }
+</section>
+
+<app-home-page-quality />
+
+<app-home-page-contact />
+
+<app-hero
+  heading="Готовы сделать заказ?"
+  description="Старейшее предприятии в России и в мире, которое более 80 лет занимается выращиванием сертифицированной медицинской пиявки"
+  action="Оформить заказ"
+  link="/leech/order"
+/>

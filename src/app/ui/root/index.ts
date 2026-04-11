@@ -1,0 +1,1 @@
+export { AppRootComponent } from "./root";

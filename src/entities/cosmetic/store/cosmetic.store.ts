@@ -11,24 +11,22 @@ import {
 } from "@ngrx/signals";
 import { rxMethod } from "@ngrx/signals/rxjs-interop";
 import { distinctUntilChanged, pipe, switchMap, tap } from "rxjs";
-
+import { CosmeticsService, CategoryService } from "../api/cosmetic.service";
 import {
-  CategoryDto,
-  CategoryFiltersDto,
-  CategoryService,
   CosmeticDto,
+  CategoryDto,
   CosmeticsFiltersDto,
-  CosmeticsService,
-  CreateCategoryRequestDto,
+  CategoryFiltersDto,
   CreateCosmeticsRequestDto,
-  UpdateCategoryRequestDto,
   UpdateCosmeticsRequestDto,
-} from "@/entities/cosmetic";
+  CreateCategoryRequestDto,
+  UpdateCategoryRequestDto,
+} from "../api/cosmetic.service.types";
 import {
-  getCategoriesCardsFromDto,
   getCosmeticCardsFromDto,
+  getCategoriesCardsFromDto,
   getSelectedCosmeticFromDto,
-} from "@/entities/cosmetic/model/cosmetic.converter";
+} from "../model/cosmetic.converter";
 
 interface CosmeticsState {
   items: CosmeticDto[];

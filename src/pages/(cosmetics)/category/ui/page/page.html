@@ -1,0 +1,38 @@
+<header>
+  @if (breakpoint() !== "mobile") {
+    <tui-breadcrumbs>
+      <a *tuiItem tuiLink routerLink="/cosmetics">Разделы косметики</a>
+      <strong *tuiItem>
+        {{ categoryName() }}
+      </strong>
+    </tui-breadcrumbs>
+  } @else {
+    <a
+      iconStart="@tui.chevron-left"
+      tuiButton
+      tuiSlot="left"
+      type="button"
+      appearance="outline-grayscale"
+      size="m"
+      routerLink="/cosmetics"
+    >
+      Назад
+    </a>
+  }
+</header>
+<main class="app-cosmetic-category">
+  <app-hero [heading]="categoryName()" description="" />
+  <div role="list" class="app-cosmetic-category__item-list">
+    @for (item of items; track item.id) {
+      <app-cosmetics-item-card
+        [routerLink]="['/cosmetics', item.id]"
+        appearance="floating"
+        [data]="item"
+      />
+    }
+  </div>
+</main>
+<footer>
+  ДОБАВИТЬ СЮДА ОПИСАНИЕ КАТЕГОРИЙ ДОБАВИТЬ СЮДА ОПИСАНИЕ КАТЕГОРИЙ ДОБАВИТЬ
+  СЮДА ОПИСАНИЕ КАТЕГОРИЙ ДОБАВИТЬ СЮДА ОПИСАНИЕ КАТЕГОРИЙ
+</footer>

@@ -1,4 +1,4 @@
-import { InfoLink } from "@/entities/info";
+import { InfoLink } from "../api/info.service.types";
 
 const PHONE_START_WITH = "tel:";
 const EMAIL_START_WITH = "mailto:";
@@ -8,9 +8,6 @@ export interface ContactInfo {
   disabled: boolean;
 }
 
-/**
- * @summary Функция, которая получает телефоны массивом строк и преобразует в строку+ссылку для бэкенда
- */
 export function convertPhonesToDto(phones: string[]): InfoLink[] {
   return phones.map(
     (phone): InfoLink => ({
@@ -20,9 +17,6 @@ export function convertPhonesToDto(phones: string[]): InfoLink[] {
   );
 }
 
-/**
- * @summary Функция, которая преобразует ответ с бэкенда в телефоны компании
- */
 export function getPhonesFromDto(infoLinks: InfoLink[]): ContactInfo[] {
   return infoLinks
     .filter((infoLink) => infoLink.href.startsWith(PHONE_START_WITH))
@@ -32,9 +26,6 @@ export function getPhonesFromDto(infoLinks: InfoLink[]): ContactInfo[] {
     }));
 }
 
-/**
- * @summary Берет почты массивом строк и преобразует в строку+ссылку для бэкенда
- */
 export function convertEmailsToDto(emails: string[]): InfoLink[] {
   return emails.map((email) => ({
     label: email,
@@ -42,9 +33,6 @@ export function convertEmailsToDto(emails: string[]): InfoLink[] {
   }));
 }
 
-/**
- * @summary Функция, которая преобразует ответ с бэкенда в почту компании
- */
 export function getEmailFromDto(infoLinks: InfoLink[]): ContactInfo {
   return infoLinks
     .filter((infoLink) => infoLink.href.startsWith(EMAIL_START_WITH))
@@ -54,9 +42,6 @@ export function getEmailFromDto(infoLinks: InfoLink[]): ContactInfo {
     }))[0];
 }
 
-/**
- * @summary Функция, которая преобразует ответ с бэкенда в сайты компании
- */
 export function getSitesFromDto(infoLinks: InfoLink[]): InfoLink[] {
   return infoLinks.filter(
     (infoLink) =>

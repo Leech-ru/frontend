@@ -1,0 +1,39 @@
+:root {
+  --tui-text-action: #706900;
+  --tui-text-action-hover: #807700;
+  --tui-background-accent-1: #706900;
+  --tui-background-accent-1-hover: #807700;
+  --tui-background-accent-1-pressed: #918700;
+  --app-max-width: 1024px;
+  --app-header-z-index: 1;
+}
+
+.t-root-content {
+  display: flex;
+  min-height: 100dvh;
+  background: var(--tui-background-base-alt);
+  flex-direction: column;
+}
+
+html {
+  touch-action: manipulation;
+}
+
+body:has(tui-drawer) {
+  overflow: hidden;
+
+  tui-scroll-controls {
+    display: none !important;
+  }
+}
+
+// TODO: Taiga UI 5.0 пока не поддерживает Signal Forms, поэтому костыль
+[tuiAppearance][data-appearance="textfield"][data-mode~="invalid"]:not(
+    :has(+ tui-error .t-message-text)
+  ) {
+  outline-color: var(--tui-border-normal);
+
+  &:has(input:focus) {
+    outline-color: var(--tui-background-accent-1);
+  }
+}

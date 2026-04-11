@@ -1,12 +1,12 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-
-import { CorporationInfo, UpdateInfoRequest } from "@/entities/info";
+import { API_URL } from "@/shared/api";
+import { CorporationInfo, UpdateInfoRequest } from "./info.service.types";
 
 @Injectable({ providedIn: "root" })
 export class InfoService {
   private readonly client = inject(HttpClient);
-  private readonly baseUrl = `/api/v1/info/corporation`;
+  private readonly baseUrl = `${API_URL}/v1/info/corporation`;
 
   public get() {
     return this.client.get<CorporationInfo>(this.baseUrl);

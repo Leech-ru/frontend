@@ -7,7 +7,7 @@ export const FOOTER_CONTENT: FooterContent = {
       items: [
         {
           title: "Заказать пиявок",
-          routerLink: "/leech/buy",
+          routerLink: "/leech/order",
         },
         {
           title: "О пиявках",
@@ -20,7 +20,7 @@ export const FOOTER_CONTENT: FooterContent = {
       items: [
         {
           title: "Каталог косметики",
-          routerLink: "/cosmetics/category",
+          routerLink: "/cosmetics",
         },
         {
           title: "Где купить косметику?",

@@ -1,1 +1,1 @@
-export { AppHomePageComponent as default } from "./ui/page/page.component";
+export { AppHomePageComponent as default } from "./ui/page";

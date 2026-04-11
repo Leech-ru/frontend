@@ -1,4 +1,4 @@
-import type { USER_ROLES } from "@/entities/user";
+import { USER_ROLES } from "../model/constants";
 
 export type UserRole = (typeof USER_ROLES)[number];
 
@@ -15,7 +15,6 @@ export interface UserRegisterRequest {
   surname: string;
   email: string;
   password: string;
-  role: UserRole;
 }
 
 export type UserLoginRequest = {

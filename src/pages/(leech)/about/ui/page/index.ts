@@ -1,0 +1,1 @@
+export { AppLeechAboutPageComponent } from "./page";

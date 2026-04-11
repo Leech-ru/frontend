@@ -1,0 +1,58 @@
+<div
+  #carousel="emblaCarousel"
+  class="embla"
+  emblaCarousel
+  [options]="{ align: 'start' }"
+  [eventsThrottleTime]="0"
+  [subscribeToEvents]="['select', 'init', 'reInit']"
+  (emblaChange)="handleEmblaChange()"
+>
+  <div class="embla__container">
+    @for (item of items(); track $index) {
+      @if (isPhotosGroup(item)) {
+        <div class="embla__slide embla__slide--group">
+          @for (photo of item; track photo.src) {
+            <img [src]="photo.src" draggable="false" />
+          }
+        </div>
+      } @else {
+        @let isLarge = isLargePhoto(item) && breakpoint() !== "mobile";
+
+        <div class="embla__slide" [class.embla__slide--large]="isLarge">
+          <img [src]="item.src" draggable="false" />
+        </div>
+
+        @if (isLarge) {
+          <div class="embla__slide embla__slide--placeholder"></div>
+        }
+      }
+    }
+  </div>
+</div>
+
+<div class="embla__controls">
+  <button
+    appearance="action"
+    iconStart="@tui.chevron-left"
+    tuiIconButton
+    type="button"
+    [disabled]="false"
+    (click)="carousel.scrollPrev()"
+  >
+    Предыдущий слайд
+  </button>
+  <tui-pager
+    [count]="carouselScrollSnapLength()"
+    [index]="carouselSelectedScrollSnap()"
+  />
+  <button
+    appearance="action"
+    iconStart="@tui.chevron-right"
+    tuiIconButton
+    type="button"
+    [disabled]="false"
+    (click)="carousel.scrollNext()"
+  >
+    Следующий слайд
+  </button>
+</div>

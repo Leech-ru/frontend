@@ -1,10 +1,12 @@
-export {
-  createUserEmailFormControl,
-  createUserNameFormControl,
-  createUserPasswordFormControl,
-  createUserSurnameFormControl,
-} from "./model/forms";
-
+export { UserService } from "./api/user.service";
+export type {
+  User,
+  UserLoginRequest,
+  UserRegisterRequest,
+  UserRole,
+} from "./api/user.service.types";
+export { adminGuard } from "./lib/admin.guard";
+export { authGuard } from "./lib/auth.guard";
 export {
   USER_EMAIL_MAX_LENGTH,
   USER_EMAIL_MIN_LENGTH,
@@ -16,13 +18,4 @@ export {
   USER_SURNAME_MAX_LENGTH,
   USER_SURNAME_MIN_LENGTH,
 } from "./model/constants";
-
-export { UserService } from "./api/user.service";
-export type {
-  UserLoginRequest,
-  UserRegisterRequest,
-  UserRole,
-  User,
-} from "./api/user.service.types";
-
-export * from "./store/user.store";
+export { UserStore } from "./store/user.store";

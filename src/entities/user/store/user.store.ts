@@ -11,13 +11,12 @@ import {
 } from "@ngrx/signals";
 import { rxMethod } from "@ngrx/signals/rxjs-interop";
 import { distinctUntilChanged, pipe, switchMap, tap } from "rxjs";
-
 import {
+  User,
   UserLoginRequest,
   UserRegisterRequest,
-  UserService,
-} from "@/entities/user";
-import { User } from "@/entities/user/api/user.service.types";
+} from "../api/user.service.types";
+import { UserService } from "../api/user.service";
 
 interface UserState {
   user: User | null;
@@ -123,6 +122,10 @@ export const UserStore = signalStore(
       ),
     ),
 
+    setUser: (user: User) => {
+      patchState(store, { user: user });
+    },
+
     clearError: () => {
       patchState(store, { error: null });
     },
@@ -135,6 +138,11 @@ export const UserStore = signalStore(
   }),
 
   withComputed((store) => ({
+    displayName: computed(() => {
+      const user = store.user();
+      return user ? `${user.name} ${user.surname}` : null;
+    }),
+
     isAdmin: computed(() => {
       const user = store.user();
       return !!(user && user.role > 0);

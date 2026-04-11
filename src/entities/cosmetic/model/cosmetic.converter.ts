@@ -1,17 +1,11 @@
+import { CategoryDto, CosmeticDto } from "../api/cosmetic.service.types";
 import {
-  CategoryDto,
   CosmeticCategoryCard,
-  CosmeticDto,
   CosmeticItem,
   CosmeticItemCard,
-} from "@/entities/cosmetic";
-import { getImageUrlById } from "@/shared/model";
+} from "./cosmetics.model";
+import { getImageUrlById } from "./imagesUrl";
 
-/**
- * @summary Преобразует список DTO косметики в карточки для отображения.
- * @param {CosmeticDto[]} cosmeticsDtoList Список DTO косметики.
- * @returns {CosmeticItemCard[]} Массив карточек косметики.
- */
 export function getCosmeticCardsFromDto(
   cosmeticsDtoList: CosmeticDto[],
 ): CosmeticItemCard[] {
@@ -24,11 +18,6 @@ export function getCosmeticCardsFromDto(
   }));
 }
 
-/**
- * @summary Формирует детальную модель косметики из DTO.
- * @param {CosmeticDto} cosmeticDto DTO косметики.
- * @returns {CosmeticItem} Детальная модель косметики.
- */
 export function getSelectedCosmeticFromDto(
   cosmeticDto: CosmeticDto,
 ): CosmeticItem {
@@ -46,11 +35,6 @@ export function getSelectedCosmeticFromDto(
   };
 }
 
-/**
- * @summary Преобразует список DTO категорий в карточки категорий.
- * @param {CategoryDto[]} categoryDtoList Список DTO категорий.
- * @returns {CosmeticCategoryCard[]} Массив карточек категорий.
- */
 export function getCategoriesCardsFromDto(
   categoryDtoList: CategoryDto[],
 ): CosmeticCategoryCard[] {

@@ -1,6 +1,6 @@
+import { API_URL } from "@/shared/api";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-
 import {
   CategoryDto,
   CategoryFiltersDto,
@@ -10,12 +10,12 @@ import {
   CreateCosmeticsRequestDto,
   UpdateCategoryRequestDto,
   UpdateCosmeticsRequestDto,
-} from "@/entities/cosmetic";
+} from "./cosmetic.service.types";
 
 @Injectable({ providedIn: "root" })
 export class CosmeticsService {
   private readonly client = inject(HttpClient);
-  private readonly baseUrl = `/api/v1/cosmetics`;
+  private readonly baseUrl = `${API_URL}/v1/cosmetics`;
 
   public getAll(filters?: CosmeticsFiltersDto) {
     return this.client.get<CosmeticDto[]>(this.baseUrl, {
@@ -59,7 +59,7 @@ export class CosmeticsService {
 @Injectable({ providedIn: "root" })
 export class CategoryService {
   private readonly client = inject(HttpClient);
-  private readonly baseUrl = `/api/v1/category`;
+  private readonly baseUrl = `${API_URL}/v1/category`;
 
   public getAll(filters?: CategoryFiltersDto) {
     return this.client.get<CategoryDto[]>(this.baseUrl, {

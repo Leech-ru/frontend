@@ -1,0 +1,59 @@
+@import "@taiga-ui/styles/utils.less";
+
+.embla {
+  --tui-carousel-slide-height: 20rem;
+  --tui-carousel-slide-padding: 0.5rem;
+
+  cursor: grab;
+  overflow: hidden;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.embla__container {
+  display: flex;
+}
+
+.embla__slide {
+  flex: 0 0 25%;
+  height: var(--tui-carousel-slide-height);
+  padding: var(--tui-carousel-slide-padding);
+  box-sizing: border-box;
+
+  @media @tui-mobile {
+    flex: 0 0 100%;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--tui-radius-l);
+    object-fit: cover;
+  }
+
+  &--large img {
+    width: calc(200% + var(--tui-carousel-slide-padding) * 2);
+  }
+
+  &--group {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--tui-carousel-slide-padding) * 2);
+
+    img {
+      height: calc(
+        var(--tui-carousel-slide-height) / 2 -
+          var(--tui-carousel-slide-padding) * 2
+      );
+    }
+  }
+}
+
+.embla__controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}

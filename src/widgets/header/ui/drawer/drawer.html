@@ -1,0 +1,27 @@
+<button
+  tuiIconButton
+  appearance="flat-grayscale"
+  [iconStart]="open() ? '@tui.x' : '@tui.menu'"
+  size="m"
+  type="button"
+  (click)="open.update(open => !open)"
+>
+  Открыть навигацию
+</button>
+
+<tui-drawer *tuiPopup="open()">
+  <tui-data-list>
+    @for (item of items; track item.routerLink) {
+      <a
+        #rla="routerLinkActive"
+        [tuiAppearance]="rla.isActive ? 'flat' : 'initial'"
+        tuiOption
+        [routerLink]="item.routerLink"
+        routerLinkActive
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        {{ item.label }}
+      </a>
+    }
+  </tui-data-list>
+</tui-drawer>

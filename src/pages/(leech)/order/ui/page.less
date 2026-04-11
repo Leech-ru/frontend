@@ -1,0 +1,21 @@
+@import "@taiga-ui/styles/utils.less";
+
+:host {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: var(--app-max-width);
+  margin: auto;
+  width: 100%;
+
+  @media not @tui-mobile {
+    width: calc(100% - 3rem);
+    padding: 1rem 1.5rem;
+  }
+}

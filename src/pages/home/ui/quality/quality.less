@@ -1,0 +1,25 @@
+@import "@taiga-ui/styles/utils.less";
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+
+  @media @tui-mobile {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.quality-product {
+  text-wrap: balance;
+
+  h2 {
+    font: var(--tui-typography-heading-h2);
+    font-weight: 700;
+    text-align: center;
+
+    @media @tui-mobile {
+      font: var(--tui-typography-heading-h3);
+    }
+  }
+}

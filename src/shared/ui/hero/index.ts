@@ -1,0 +1,1 @@
+export { AppHeroComponent } from "./hero";

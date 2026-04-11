@@ -1,0 +1,1 @@
+export { AppCosmeticItemAccordionsComponent } from "./accordions";

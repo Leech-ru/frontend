@@ -1,0 +1,77 @@
+@import "@taiga-ui/styles/utils.less";
+
+app-leech-order-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  tui-stepper {
+    button {
+      margin: 0 !important;
+      width: fit-content !important;
+    }
+
+    margin-bottom: -1rem;
+  }
+
+  tui-app-bar {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    z-index: 1;
+    flex: unset;
+    background: var(--tui-background-base);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: var(--tui-border-normal);
+    transition-property: background-color, border-color;
+    transition-duration: var(--tui-duration);
+    transition-timing-function: ease-in-out;
+  }
+
+  footer,
+  .t-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+
+    :only-child {
+      margin: auto;
+    }
+  }
+
+  tui-elastic-container {
+    flex: 1;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  footer {
+    text-wrap-style: pretty;
+    font: var(--tui-typography-ui-s);
+    color: var(--tui-text-secondary);
+
+    @media @tui-mobile {
+      position: sticky;
+      bottom: 0;
+      z-index: 1;
+      padding-top: 0.75rem;
+      padding-bottom: calc(1rem + env(safe-area-inset-bottom, 1rem));
+      padding-inline: 1rem;
+      margin-top: auto;
+      border-top-width: 1px;
+      border-top-style: solid;
+      border-top-color: var(--tui-border-normal);
+      background-color: var(--tui-background-base);
+
+      .t-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+      }
+    }
+  }
+}

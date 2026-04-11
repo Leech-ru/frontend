@@ -1,1 +1,1 @@
-export { AppFullLayoutComponent as default } from "./full.component";
+export { AppFullLayoutComponent as default } from "./full";

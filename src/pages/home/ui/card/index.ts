@@ -1,0 +1,1 @@
+export { AppHomePageCardComponent } from "./card";

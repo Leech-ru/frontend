@@ -1,0 +1,23 @@
+<form tuiForm="l" [formGroup]="form.group">
+  <div tuiGroup orientation="vertical" [collapsed]="true">
+    @for (package of packages; track package.id) {
+      <label tuiBlock>
+        <div
+          [tuiAvatar]="package.icon"
+          [style.color]="package.color"
+          [style.background]="package.background"
+        ></div>
+        <span tuiTitle>
+          <strong>{{ package.name }}</strong>
+          <span tuiSubtitle>{{ package.description }}</span>
+        </span>
+        <input
+          formControlName="package"
+          tuiRadio
+          type="radio"
+          [value]="package.id"
+        />
+      </label>
+    }
+  </div>
+</form>

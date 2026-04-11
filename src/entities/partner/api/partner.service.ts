@@ -1,17 +1,17 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-
+import { API_URL } from "@/shared/api";
 import {
   CreatePartnerRequest,
   Partner,
   PartnerFilters,
   UpdatePartnerRequest,
-} from "@/entities/partner";
+} from "./partner.service.types";
 
 @Injectable({ providedIn: "root" })
 export class PartnerService {
   private readonly client = inject(HttpClient);
-  private readonly baseUrl = `/api/v1/partner`;
+  private readonly baseUrl = `${API_URL}/v1/partner`;
 
   public getAll(filters?: PartnerFilters) {
     return this.client.get<Partner[]>(this.baseUrl, {

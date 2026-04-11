@@ -1,14 +1,7 @@
-import { Links } from "@/entities/cosmetic";
+import { Links } from "../api/cosmetic.service.types";
 
 interface CosmeticFeatures {
-  /**
-   * @summary Категория косметики
-   */
   category: string;
-
-  /**
-   * @summary Размер в миллитрах
-   */
   size?: number;
 }
 

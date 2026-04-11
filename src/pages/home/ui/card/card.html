@@ -1,0 +1,27 @@
+<a [routerLink]="card().routerLink" tuiCardLarge appearance="floating">
+  <img
+    [alt]="card().heading"
+    [src]="card().thumbnail"
+    loading="eager"
+    draggable="false"
+    fetchpriority="high"
+  />
+
+  <header tuiHeader>
+    <h2 tuiTitle>
+      {{ card().heading }}
+    </h2>
+  </header>
+
+  <section>
+    <span>
+      {{ card().description }}
+    </span>
+  </section>
+
+  <footer>
+    <span tuiAppearance="flat">
+      {{ card().action }}
+    </span>
+  </footer>
+</a>

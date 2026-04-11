@@ -11,15 +11,13 @@ import {
 } from "@ngrx/signals";
 import { rxMethod } from "@ngrx/signals/rxjs-interop";
 import { distinctUntilChanged, pipe, switchMap, tap } from "rxjs";
-
+import { CorporationInfo, UpdateInfoRequest } from "../api/info.service.types";
+import { InfoService } from "../api/info.service";
 import {
-  CorporationInfo,
-  InfoService,
-  UpdateInfoRequest,
-  getEmailFromDto,
   getPhonesFromDto,
+  getEmailFromDto,
   getSitesFromDto,
-} from "@/entities/info";
+} from "../model/converters";
 
 interface InfoState {
   info: CorporationInfo | null;

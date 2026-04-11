@@ -1,2 +1,8 @@
-export * from "./api/partner.service.types";
-export * from "./api/partner.service";
+export { PartnerService } from "./api/partner.service";
+export type {
+  CreatePartnerRequest,
+  Partner,
+  PartnerFilters,
+  UpdatePartnerRequest,
+} from "./api/partner.service.types";
+export { PartnerStore } from "./store/partner.store";

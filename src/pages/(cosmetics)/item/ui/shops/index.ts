@@ -1,0 +1,1 @@
+export { AppCosmeticsItemShopsComponent } from "./shops";

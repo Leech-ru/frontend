@@ -1,0 +1,1 @@
+export { AppLoginPageComponent } from "./page";

@@ -1,0 +1,54 @@
+<form [formRoot]="form" tuiForm>
+  <header tuiHeader>
+    <h2 tuiTitle>
+      Вход
+      <span tuiSubtitle>
+        Войдите в аккаунт или
+        <a routerLink="/register" tuiLink>создайте новый</a>
+      </span>
+    </h2>
+  </header>
+
+  <tui-textfield [tuiTextfieldCleaner]="false">
+    <input
+      tuiInput
+      tuiAutoFocus
+      placeholder="Адрес электронной почты"
+      autocomplete="email"
+      [formField]="form.email"
+    />
+  </tui-textfield>
+  <tui-error
+    [error]="
+      form.email().touched()
+        ? (form.email().errors()[0]?.message ?? null)
+        : null
+    "
+  />
+
+  <tui-textfield [tuiTextfieldCleaner]="false">
+    <input
+      tuiInput
+      type="password"
+      placeholder="Пароль"
+      autocomplete="current-password"
+      [formField]="form.password"
+    />
+    <tui-icon tuiPassword />
+  </tui-textfield>
+  <tui-error
+    [error]="
+      form.password().touched()
+        ? (form.password().errors()[0]?.message ?? null)
+        : null
+    "
+  />
+
+  <tui-error [error]="form().errors()[0]?.message ?? null" />
+
+  <footer>
+    <button tuiButton type="submit" [loading]="form().submitting()">
+      Войти
+    </button>
+  </footer>
+</form>

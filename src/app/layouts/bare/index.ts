@@ -1,1 +1,1 @@
-export { AppBareLayoutComponent as default } from "./bare.component";
+export { AppBareLayoutComponent as default } from "./bare";

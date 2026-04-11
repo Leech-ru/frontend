@@ -1,0 +1,1 @@
+export { AppHomePageComponent } from "./page";

@@ -1,0 +1,84 @@
+<form [formRoot]="form" tuiForm>
+  <header tuiHeader>
+    <h2 tuiTitle>
+      Регистрация
+      <span tuiSubtitle>
+        Создайте новый аккаунт или
+        <a routerLink="/login" tuiLink>войдите</a>
+      </span>
+    </h2>
+  </header>
+
+  <tui-textfield [tuiTextfieldCleaner]="false">
+    <input
+      tuiInput
+      tuiAutoFocus
+      placeholder="Имя"
+      autocomplete="given-name"
+      [formField]="form.name"
+    />
+  </tui-textfield>
+  <tui-error
+    [error]="
+      form.name().touched() ? (form.name().errors()[0]?.message ?? null) : null
+    "
+  />
+
+  <tui-textfield [tuiTextfieldCleaner]="false">
+    <input
+      tuiInput
+      placeholder="Фамилия"
+      autocomplete="family-name"
+      [formField]="form.surname"
+    />
+  </tui-textfield>
+  <tui-error
+    [error]="
+      form.surname().touched()
+        ? (form.surname().errors()[0]?.message ?? null)
+        : null
+    "
+  />
+
+  <tui-textfield [tuiTextfieldCleaner]="false">
+    <input
+      tuiInput
+      placeholder="Адрес электронной почты"
+      autocomplete="email"
+      [formField]="form.email"
+    />
+  </tui-textfield>
+  <tui-error
+    [error]="
+      form.email().touched()
+        ? (form.email().errors()[0]?.message ?? null)
+        : null
+    "
+  />
+
+  <tui-textfield [tuiTextfieldCleaner]="false">
+    <input
+      tuiInput
+      type="password"
+      placeholder="Пароль"
+      autocomplete="new-password"
+      [formField]="form.password"
+    />
+    <tui-icon tuiPassword />
+  </tui-textfield>
+  <tui-error
+    [error]="
+      form.password().touched()
+        ? (form.password().errors()[0]?.message ?? null)
+        : null
+    "
+  />
+
+  <tui-error [error]="form().errors()[0]?.message ?? null" />
+
+  <footer>
+    <button tuiButton type="submit" [loading]="form().submitting()">
+      Зарегистрироваться
+    </button>
+  </footer>
+</form>

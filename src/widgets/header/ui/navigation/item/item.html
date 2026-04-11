@@ -1,0 +1,12 @@
+<a
+  #rla="routerLinkActive"
+  class="app-header-navigation-link"
+  tuiButton
+  size="m"
+  [appearance]="rla.isActive ? 'flat' : 'flat-grayscale'"
+  [routerLink]="item().routerLink"
+  routerLinkActive
+  [routerLinkActiveOptions]="{ exact: true }"
+>
+  {{ item().label }}
+</a>

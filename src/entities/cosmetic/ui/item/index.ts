@@ -1,0 +1,1 @@
+export { AppCosmeticItemCardComponent } from "./item";

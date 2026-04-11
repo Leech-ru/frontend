@@ -1,0 +1,1 @@
+export { AppHomePageContactComponent } from "./contact";

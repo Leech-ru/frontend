@@ -1,0 +1,30 @@
+@import "@taiga-ui/styles/utils.less";
+
+:host {
+  flex: 1;
+  display: flex;
+  width: 100%;
+  max-width: 32rem;
+  margin: 2rem auto;
+}
+
+form {
+  width: 100%;
+  padding: 0.75rem;
+
+  header {
+    text-wrap: pretty;
+  }
+
+  @media not @tui-mobile {
+    padding: 1.5rem;
+    margin-block: auto;
+    background: var(--tui-background-elevation-1);
+    box-shadow: var(--tui-shadow-medium);
+    border-radius: 1.5rem;
+  }
+
+  footer {
+    display: grid;
+  }
+}

@@ -1,0 +1,1 @@
+export { AppCosmeticsItemPageComponent } from "./page";

@@ -1,0 +1,26 @@
+@import "@taiga-ui/styles/utils.less";
+
+:host {
+  text-wrap: pretty;
+
+  img {
+    position: static !important;
+    display: block;
+    width: calc(100% + (var(--t-padding) * 2)) !important;
+    margin-top: calc(var(--t-padding) * -1);
+    margin-inline: calc(var(--t-padding) * -1);
+    aspect-ratio: 3 / 1;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &.fluid {
+    grid-column: 1 / -1;
+
+    @media not @tui-mobile {
+      img {
+        aspect-ratio: 6 / 1;
+      }
+    }
+  }
+}

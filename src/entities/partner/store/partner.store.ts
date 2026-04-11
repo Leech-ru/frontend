@@ -10,14 +10,13 @@ import {
 } from "@ngrx/signals";
 import { rxMethod } from "@ngrx/signals/rxjs-interop";
 import { distinctUntilChanged, pipe, switchMap, tap } from "rxjs";
-
 import {
   CreatePartnerRequest,
   Partner,
   PartnerFilters,
-  PartnerService,
   UpdatePartnerRequest,
-} from "@/entities/partner";
+} from "../api/partner.service.types";
+import { PartnerService } from "../api/partner.service";
 
 interface PartnerState {
   items: Partner[];

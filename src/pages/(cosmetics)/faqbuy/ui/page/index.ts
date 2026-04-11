@@ -1,0 +1,1 @@
+export { AppCosmeticsFaqbuyPageComponent } from "./page";

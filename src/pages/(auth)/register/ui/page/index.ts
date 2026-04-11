@@ -1,0 +1,1 @@
+export { AppRegisterPageComponent } from "./page";

@@ -1,0 +1,41 @@
+@import "@taiga-ui/styles/utils.less";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  text-align: center;
+
+  @media @tui-mobile {
+    gap: 1rem;
+  }
+
+  @media not @tui-mobile {
+    padding-inline: 2rem;
+  }
+}
+
+h1,
+p {
+  margin: 0;
+  text-wrap-style: balance;
+}
+
+h1 {
+  font: var(--tui-typography-heading-h2);
+  font-weight: 700;
+
+  @media @tui-mobile {
+    font: var(--tui-typography-heading-h3);
+  }
+}
+
+p {
+  font: var(--tui-typography-ui-l);
+}
+
+button {
+  font-weight: 500;
+}

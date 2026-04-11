@@ -1,0 +1,50 @@
+<header>
+  @if (breakpoint() !== "mobile") {
+    <tui-breadcrumbs>
+      <a *tuiItem tuiLink routerLink="/cosmetics">Разделы косметики</a>
+      <a
+        *tuiItem
+        tuiLink
+        [routerLink]="['/cosmetics/categories', categoryId()]"
+      >
+        {{ data().features.category }}
+      </a>
+      <a *tuiItem tuiLink [routerLink]="['/cosmetics', data().id]">
+        {{ data().name }}
+      </a>
+    </tui-breadcrumbs>
+  } @else {
+    <a
+      iconStart="@tui.chevron-left"
+      tuiButton
+      tuiSlot="left"
+      type="button"
+      appearance="outline-grayscale"
+      size="m"
+      [routerLink]="['/cosmetics/categories', categoryId()]"
+    >
+      Назад
+    </a>
+  }
+</header>
+<main class="app-cosmetic-item-content">
+  @if (breakpoint() !== "mobile") {
+    <div class="app-cosmetic-item-content__img-container">
+      <img [src]="data().image_link" [alt]="data().name" />
+    </div>
+    <div class="app-cosmetic-item-content__info">
+      <h1 class="tui-text_h4">
+        {{ data().name }}
+      </h1>
+      <app-cosmetic-item-shops />
+      <app-cosmetic-item-accorditions [data]="data()" />
+    </div>
+  } @else {
+    <h1 class="tui-text_h4">{{ data().name }}</h1>
+    <div class="app-cosmetic-item-content__img-container">
+      <img [src]="data().image_link" [alt]="data().name" />
+    </div>
+    <app-cosmetic-item-shops />
+    <app-cosmetic-item-accorditions [data]="data()" />
+  }
+</main>

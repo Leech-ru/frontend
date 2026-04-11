@@ -9,7 +9,6 @@ import {
 import { inject, Injectable, InjectionToken } from "@angular/core";
 import { Router } from "@angular/router";
 import { catchError, EMPTY, Observable, switchMap, throwError } from "rxjs";
-
 import { AuthService } from "./service";
 
 export const AUTH_REFRESH_FALLBACK_URL = new InjectionToken<string>(
@@ -44,11 +43,6 @@ export class AuthRefreshHttpInterceptor implements HttpInterceptor {
         return this.authService.refresh().pipe(
           switchMap(() => handler.handle(request)),
           catchError(() => {
-            /**
-             * @todo Починить навигацию (сейчас при заходе на сайт сразу кидает на логин)
-             */
-            //this.router.navigate([this.fallbackUrl]);
-
             return EMPTY;
           }),
         );

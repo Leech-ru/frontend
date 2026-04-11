@@ -1,1 +1,1 @@
-export { AppFooterComponent } from "./ui/footer.component";
+export { AppFooterComponent } from "./ui/footer";

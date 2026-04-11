@@ -1,0 +1,26 @@
+<header class="app-header">
+  <div class="app-header__wrapper">
+    <app-header-logo />
+    <app-header-navigation
+      [style.margin-left.rem]="3"
+      class="app-header__navigation"
+    />
+    @if (userStore.isAdmin() || userStore.isSuperAdmin()) {
+      <app-header-navigation-item
+        [style.margin-left]="'auto'"
+        [item]="{ label: 'Панель управления', routerLink: 'admin' }"
+      />
+    } @else if (!!userStore.user()) {
+      <app-header-navigation-item
+        [style.margin-left]="'auto'"
+        [item]="{ label: 'Личный кабинет', routerLink: 'cabinet' }"
+      />
+    } @else {
+      <app-header-navigation-item
+        [style.margin-left]="'auto'"
+        [item]="{ label: 'Личный кабинет', routerLink: 'login' }"
+      />
+    }
+    <app-header-drawer class="app-header__drawer" />
+  </div>
+</header>

@@ -1,4 +1,0 @@
-{
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "conventionalCommits.scopes": ["leech/buy", "cosmetics/catalog", "eslint"]
-}

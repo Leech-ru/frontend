@@ -1,0 +1,1 @@
+export { AppCosmeticCategoryCardComponent } from "./category";
