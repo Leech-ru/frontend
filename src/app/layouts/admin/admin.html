@@ -1,8 +1,10 @@
 @if (isServer()) {
   <tui-block-status>
     <tui-loader size="xl" tuiSlot="top" [loading]="true" />
-    <h4>Загружаем страницу</h4>
-    Это может занять несколько секунд
+    <h4 [style.font]="'var(--tui-typography-heading-h5)'">
+      Загружаем страницу
+    </h4>
+    <p>Это может занять несколько секунд</p>
   </tui-block-status>
 } @else {
   <app-header />
