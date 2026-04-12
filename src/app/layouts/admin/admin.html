@@ -7,19 +7,16 @@
     <p>Это может занять несколько секунд</p>
   </tui-block-status>
 } @else {
-  <app-header />
+  <app-header>
+    <tui-tabs tuiFade [style.margin-bottom.px]="-1" [style.box-shadow]="'none'">
+      <a tuiTab routerLink="" routerLinkActive>Информация</a>
+      <a tuiTab routerLink="cosmetics" routerLinkActive>Косметика</a>
+      <a tuiTab routerLink="partners" routerLinkActive>Партнёры</a>
+      <a tuiTab routerLink="users" routerLinkActive>Пользователи</a>
+    </tui-tabs>
+  </app-header>
 
   <main>
-    <header tuiHeader>
-      <h1 tuiTitle>Панель управления</h1>
-    </header>
-
-    <tui-tabs tuiFade>
-      <button iconStart="@tui.store" tuiTab routerLink="cosmetics">
-        Косметика
-      </button>
-    </tui-tabs>
-
     <router-outlet />
   </main>
 }

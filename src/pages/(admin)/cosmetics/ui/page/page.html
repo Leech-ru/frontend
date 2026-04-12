@@ -1,1 +1,16 @@
-<p>Управление косметикой</p>
+<header tuiHeader="h4">
+  <h1 tuiTitle>Категории</h1>
+  <aside tuiAccessories>
+    <button tuiButton type="button">Создать</button>
+  </aside>
+</header>
+
+<div role="list" class="list__grid">
+  @for (category of categories; track category.name) {
+    <app-cosmetics-category-card
+      role="listitem"
+      class="grid__element"
+      [data]="category"
+    />
+  }
+</div>

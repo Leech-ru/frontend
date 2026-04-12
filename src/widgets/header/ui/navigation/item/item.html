@@ -6,8 +6,9 @@
   [appearance]="rla.isActive ? 'flat' : 'flat-grayscale'"
   [routerLink]="item().routerLink"
   routerLinkActive
-  [routerLinkActiveOptions]="{ exact: true }"
-  [tuiSkeleton]="loading()"
+  [routerLinkActiveOptions]="{
+    exact: item().routerLink === '/' ? true : false,
+  }"
 >
   {{ item().label }}
 </a>

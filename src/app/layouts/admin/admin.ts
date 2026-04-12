@@ -7,10 +7,10 @@ import {
   inject,
   PLATFORM_ID,
 } from "@angular/core";
-import { RouterLink, RouterOutlet } from "@angular/router";
-import { TuiLoader, TuiTitle } from "@taiga-ui/core";
+import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
+import { TuiLoader } from "@taiga-ui/core";
 import { TuiFade, TuiTabs } from "@taiga-ui/kit";
-import { TuiBlockStatusComponent, TuiHeader } from "@taiga-ui/layout";
+import { TuiBlockStatusComponent } from "@taiga-ui/layout";
 
 @Component({
   templateUrl: "admin.html",
@@ -18,13 +18,12 @@ import { TuiBlockStatusComponent, TuiHeader } from "@taiga-ui/layout";
   imports: [
     AppHeaderComponent,
     RouterLink,
+    RouterLinkActive,
     RouterOutlet,
     TuiBlockStatusComponent,
     TuiFade,
-    TuiHeader,
     TuiLoader,
     TuiTabs,
-    TuiTitle,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

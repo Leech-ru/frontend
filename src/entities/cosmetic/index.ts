@@ -10,6 +10,8 @@ export type {
   UpdateCategoryRequestDto,
   UpdateCosmeticsRequestDto,
 } from "./api/cosmetic.service.types";
+export { TEST_CATEGORY_CARDS } from "./api/mock";
+export { COSMETIC_CATEGORIES } from "./config/categories";
 export {
   getCategoriesCardsFromDto,
   getCosmeticCardsFromDto,
@@ -24,4 +26,3 @@ export { getImageUrlById } from "./model/imagesUrl";
 export { CosmeticsStore } from "./store/cosmetic.store";
 export { AppCosmeticCategoryCardComponent } from "./ui/category";
 export { AppCosmeticItemCardComponent } from "./ui/item";
-export { COSMETIC_CATEGORIES } from "./config/categories";

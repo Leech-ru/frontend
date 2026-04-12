@@ -1,82 +1,70 @@
 <header class="app-header">
-  <div class="app-header__wrapper">
-    <app-header-logo />
+  <div class="app-header__row">
+    <app-header-logo class="app-header__logo" />
 
-    <app-header-navigation
-      [style.margin-left.rem]="3"
-      class="app-header__navigation"
-    />
+    <app-header-navigation class="app-header__navigation" />
 
-    @if (userResource.value(); as user) {
-      <button
-        type="button"
-        tuiDropdownRole="menu"
-        tuiDropdownSheet="Меню"
-        tuiDropdownAlign="end"
-        [tuiAvatar]="`${user.name} ${user.surname}` | tuiInitials"
-        [tuiDropdown]="dropdownContent"
-        [tuiDropdownManual]="userDropdownOpen()"
-        (click)="userDropdownOpen.update(open => !open)"
-        (tuiActiveZoneChange)="!isMobile && userDropdownOpen.set(false)"
-        [attr.aria-expanded]="userDropdownOpen()"
-        [style.margin-left]="'auto'"
-        [style.margin-right.rem]="0.5"
-      ></button>
-      <ng-template #dropdownContent>
-        <sheet-spy (destroyed)="userDropdownOpen.set(false)" />
-        <tui-data-list>
-          <button
-            type="button"
-            tuiOption
-            iconStart="@tui.user"
-            (click)="userDropdownOpen.set(false)"
-          >
-            <span tuiTitle>
-              <span
-                [style.display]="'flex'"
-                [style.gap.rem]="0.25"
-                [style.justify-items]="'center'"
-              >
-                {{ `${user.name} ${user.surname}` }}
-                @if (user.role == 2 || user.role == 3) {
-                  <span appearance="primary" tuiBadge size="m"> Админ </span>
-                }
-              </span>
-              <span tuiSubtitle tuiFade>
-                {{ user.email }}
-              </span>
-            </span>
-          </button>
-          <hr />
-          @if (user.role == 2 || user.role == 3) {
-            <a
+    @if (!isServer()) {
+      @if (userResource.value(); as user) {
+        <button
+          type="button"
+          tuiDropdownRole="menu"
+          tuiDropdownSheet="Меню"
+          tuiDropdownAlign="end"
+          [tuiAvatar]="`${user.name} ${user.surname}` | tuiInitials"
+          [tuiDropdown]="dropdownContent"
+          [tuiDropdownManual]="userDropdownOpen()"
+          (click)="userDropdownOpen.update(open => !open)"
+          (tuiActiveZoneChange)="!isMobile && userDropdownOpen.set(false)"
+          [attr.aria-expanded]="userDropdownOpen()"
+        ></button>
+        <ng-template #dropdownContent>
+          <sheet-spy (destroyed)="userDropdownOpen.set(false)" />
+          <tui-data-list>
+            <button
+              type="button"
               tuiOption
-              iconStart="@tui.layout-dashboard"
-              routerLink="/admin"
+              iconStart="@tui.user"
               (click)="userDropdownOpen.set(false)"
             >
-              <span tuiTitle>Панель управления</span>
-            </a>
+              <span tuiTitle>
+                <span
+                  [style.display]="'flex'"
+                  [style.gap.rem]="0.25"
+                  [style.justify-items]="'center'"
+                >
+                  {{ `${user.name} ${user.surname}` }}
+                  @if (user.role == 2 || user.role == 3) {
+                    <span appearance="primary" tuiBadge size="m"> Админ </span>
+                  }
+                </span>
+                <span tuiSubtitle tuiFade>
+                  {{ user.email }}
+                </span>
+              </span>
+            </button>
             <hr />
-          }
-          <button
-            tuiOption
-            type="button"
-            iconStart="@tui.log-out"
-            (click)="logoutService.logout(); userDropdownOpen.set(false)"
-          >
-            <span tuiTitle>Выйти</span>
-          </button>
-        </tui-data-list>
-      </ng-template>
-    } @else {
-      <app-header-navigation-item
-        [style.margin-left]="'auto'"
-        [item]="{ label: 'Личный кабинет', routerLink: 'login' }"
-        [loading]="isServer() || userResource.isLoading()"
-      />
+            <button
+              tuiOption
+              type="button"
+              iconStart="@tui.log-out"
+              (click)="logoutService.logout(); userDropdownOpen.set(false)"
+            >
+              <span tuiTitle>Выйти</span>
+            </button>
+          </tui-data-list>
+        </ng-template>
+      } @else if (!userResource.isLoading()) {
+        <app-header-navigation-item
+          [style.margin-left]="'auto'"
+          [item]="{ label: 'Личный кабинет', routerLink: 'login' }"
+        />
+      }
     }
 
     <app-header-drawer class="app-header__drawer" />
+  </div>
+  <div class="app-header__row">
+    <ng-content></ng-content>
   </div>
 </header>

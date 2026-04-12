@@ -18,7 +18,9 @@
         tuiOption
         [routerLink]="item.routerLink"
         routerLinkActive
-        [routerLinkActiveOptions]="{ exact: true }"
+        [routerLinkActiveOptions]="{
+          exact: item.routerLink === '/' ? true : false,
+        }"
       >
         {{ item.label }}
       </a>

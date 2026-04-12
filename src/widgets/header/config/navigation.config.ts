@@ -17,4 +17,9 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: "О центре",
     routerLink: "/about",
   },
+  {
+    label: "Управление",
+    routerLink: "/admin",
+    roles: [2, 3],
+  },
 ];

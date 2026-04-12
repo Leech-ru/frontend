@@ -1,7 +1,9 @@
-import { AppCosmeticCategoryCardComponent } from "@/entities/cosmetic";
+import {
+  AppCosmeticCategoryCardComponent,
+  TEST_CATEGORY_CARDS,
+} from "@/entities/cosmetic";
 import { AppHeroComponent } from "@/shared/ui";
 import { Component } from "@angular/core";
-import { TEST_CATEGORY_CARDS } from "../../mock";
 
 @Component({
   templateUrl: "page.html",
