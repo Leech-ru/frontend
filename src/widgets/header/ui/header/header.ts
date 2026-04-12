@@ -13,7 +13,6 @@ import {
 } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { TuiDropdownSheet } from "@taiga-ui/addon-mobile";
-import { TuiActiveZone, TuiObscured } from "@taiga-ui/cdk";
 import { TuiDataList, TuiDropdown, TuiTitle } from "@taiga-ui/core";
 import { TuiAvatar, TuiBadge, TuiFade, TuiInitialsPipe } from "@taiga-ui/kit";
 import { AppHeaderDrawerComponent } from "../drawer";
@@ -45,7 +44,6 @@ export class SheetSpy implements OnDestroy {
     AppHeaderNavigationItemComponent,
     RouterLink,
     SheetSpy,
-    TuiActiveZone,
     TuiAvatar,
     TuiBadge,
     TuiDataList,
@@ -53,7 +51,6 @@ export class SheetSpy implements OnDestroy {
     TuiDropdownSheet,
     TuiFade,
     TuiInitialsPipe,
-    TuiObscured,
     TuiTitle,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
