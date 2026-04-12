@@ -17,6 +17,7 @@
         [tuiDropdown]="dropdownContent"
         [tuiDropdownManual]="userDropdownOpen()"
         (click)="userDropdownOpen.update(open => !open)"
+        (tuiActiveZoneChange)="!isMobile && userDropdownOpen.set(false)"
         [attr.aria-expanded]="userDropdownOpen()"
         [style.margin-left]="'auto'"
         [style.margin-right.rem]="0.5"

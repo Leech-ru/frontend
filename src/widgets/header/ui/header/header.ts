@@ -12,7 +12,9 @@ import {
   signal,
 } from "@angular/core";
 import { RouterLink } from "@angular/router";
+import { WA_IS_MOBILE } from "@ng-web-apis/platform";
 import { TuiDropdownSheet } from "@taiga-ui/addon-mobile";
+import { TuiActiveZone } from "@taiga-ui/cdk";
 import { TuiDataList, TuiDropdown, TuiTitle } from "@taiga-ui/core";
 import { TuiAvatar, TuiBadge, TuiFade, TuiInitialsPipe } from "@taiga-ui/kit";
 import { AppHeaderDrawerComponent } from "../drawer";
@@ -49,6 +51,7 @@ export class SheetSpy implements OnDestroy {
     TuiDataList,
     TuiDropdown,
     TuiDropdownSheet,
+    TuiActiveZone,
     TuiFade,
     TuiInitialsPipe,
     TuiTitle,
@@ -61,4 +64,5 @@ export class AppHeaderComponent {
   protected readonly platform = inject(PLATFORM_ID);
   protected readonly isServer = computed(() => isPlatformServer(this.platform));
   protected readonly userDropdownOpen = signal(false);
+  protected readonly isMobile = inject(WA_IS_MOBILE);
 }
