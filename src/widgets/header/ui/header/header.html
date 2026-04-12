@@ -8,10 +8,10 @@
       @if (userResource.value(); as user) {
         <button
           type="button"
+          tuiAvatar="@tui.user"
           tuiDropdownRole="menu"
           tuiDropdownSheet="Меню"
           tuiDropdownAlign="end"
-          [tuiAvatar]="`${user.name} ${user.surname}` | tuiInitials"
           [tuiDropdown]="dropdownContent"
           [tuiDropdownManual]="userDropdownOpen()"
           (click)="userDropdownOpen.update(open => !open)"

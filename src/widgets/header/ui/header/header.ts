@@ -15,7 +15,7 @@ import { WA_IS_MOBILE } from "@ng-web-apis/platform";
 import { TuiDropdownSheet } from "@taiga-ui/addon-mobile";
 import { TuiActiveZone } from "@taiga-ui/cdk";
 import { TuiDataList, TuiDropdown, TuiTitle } from "@taiga-ui/core";
-import { TuiAvatar, TuiBadge, TuiFade, TuiInitialsPipe } from "@taiga-ui/kit";
+import { TuiAvatar, TuiBadge, TuiFade } from "@taiga-ui/kit";
 import { AppHeaderDrawerComponent } from "../drawer";
 import { AppHeaderLogoComponent } from "../logo";
 import { AppHeaderNavigationComponent } from "../navigation";
@@ -51,7 +51,6 @@ export class SheetSpy implements OnDestroy {
     TuiDropdownSheet,
     TuiActiveZone,
     TuiFade,
-    TuiInitialsPipe,
     TuiTitle,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
