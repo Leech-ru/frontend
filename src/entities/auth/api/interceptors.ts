@@ -1,17 +1,28 @@
-import { HttpErrorResponse, HttpInterceptorFn } from "@angular/common/http";
-import { inject } from "@angular/core";
+import { isPlatformServer } from "@angular/common";
+import {
+  HttpErrorResponse,
+  HttpInterceptorFn,
+  HttpStatusCode,
+} from "@angular/common/http";
+import { inject, PLATFORM_ID } from "@angular/core";
 import { catchError, switchMap, throwError } from "rxjs";
 import { AuthService } from "./service";
 
 export const authInterceptor: HttpInterceptorFn = (request, next) => {
-  const authService = inject(AuthService);
+  const auth = inject(AuthService);
+  const platform = inject(PLATFORM_ID);
+  const isServer = isPlatformServer(platform);
 
   return next(request).pipe(
     catchError((error: HttpErrorResponse) => {
-      if (error.status === 401 && !request.url.includes("/login")) {
-        return authService.refresh().pipe(switchMap(() => next(request)));
+      if (
+        isServer ||
+        error.status !== HttpStatusCode.Unauthorized ||
+        request.url.includes("/auth/refresh")
+      ) {
+        return throwError(() => error);
       }
-      return throwError(() => error);
+      return auth.refresh().pipe(switchMap(() => next(request)));
     }),
   );
 };

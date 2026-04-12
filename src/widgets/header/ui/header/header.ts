@@ -1,11 +1,14 @@
 import { USER_RESOURCE } from "@/entities/user";
 import { LogoutService } from "@/features/(auth)/logout";
+import { isPlatformServer } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
   OnDestroy,
   output,
+  PLATFORM_ID,
   signal,
 } from "@angular/core";
 import { RouterLink } from "@angular/router";
@@ -21,6 +24,7 @@ import { AppHeaderNavigationItemComponent } from "../navigation/item";
 @Component({
   selector: "sheet-spy",
   template: "",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SheetSpy implements OnDestroy {
   public readonly destroyed = output<void>();
@@ -39,8 +43,8 @@ export class SheetSpy implements OnDestroy {
     AppHeaderLogoComponent,
     AppHeaderNavigationComponent,
     AppHeaderNavigationItemComponent,
-    SheetSpy,
     RouterLink,
+    SheetSpy,
     TuiActiveZone,
     TuiAvatar,
     TuiBadge,
@@ -57,5 +61,7 @@ export class SheetSpy implements OnDestroy {
 export class AppHeaderComponent {
   protected readonly logoutService = inject(LogoutService);
   protected readonly userResource = inject(USER_RESOURCE);
+  protected readonly platform = inject(PLATFORM_ID);
+  protected readonly isServer = computed(() => isPlatformServer(this.platform));
   protected readonly userDropdownOpen = signal(false);
 }

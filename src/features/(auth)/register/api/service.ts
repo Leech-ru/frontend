@@ -1,4 +1,3 @@
-import { AuthService } from "@/entities/auth";
 import {
   USER_RESOURCE,
   UserRegisterRequest,
@@ -12,13 +11,11 @@ import { lastValueFrom } from "rxjs";
 export class RegisterService {
   private readonly router = inject(Router);
   private readonly userService = inject(UserService);
-  private readonly authService = inject(AuthService);
   private readonly userResource = inject(USER_RESOURCE);
 
   public async register(body: UserRegisterRequest) {
     const user = await lastValueFrom(this.userService.register(body));
     this.userResource.set(user);
-    await lastValueFrom(this.authService.refresh());
     this.router.navigateByUrl("/");
   }
 }

@@ -75,6 +75,7 @@
       <app-header-navigation-item
         [style.margin-left]="'auto'"
         [item]="{ label: 'Личный кабинет', routerLink: 'login' }"
+        [loading]="isServer() || userResource.isLoading()"
       />
     }
 
