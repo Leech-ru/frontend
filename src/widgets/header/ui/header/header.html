@@ -17,14 +17,15 @@
         [tuiDropdown]="dropdownContent"
         [tuiDropdownManual]="userDropdownOpen()"
         [tuiObscuredEnabled]="userDropdownOpen()"
-        (click)="userDropdownOpen.update((open) => !open)"
+        (click)="userDropdownOpen.update(open => !open)"
         (tuiActiveZoneChange)="!$event && userDropdownOpen.set(false)"
         (tuiObscured)="$event && userDropdownOpen.set(false)"
+        [attr.aria-expanded]="userDropdownOpen()"
         [style.margin-left]="'auto'"
         [style.margin-right.rem]="0.5"
-        [attr.aria-expanded]="userDropdownOpen()"
       ></button>
       <ng-template #dropdownContent>
+        <sheet-spy (destroyed)="userDropdownOpen.set(false)" />
         <tui-data-list>
           <button
             type="button"
