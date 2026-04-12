@@ -1,16 +1,11 @@
-import { API_URL } from "@/shared/api";
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import {
-  User,
-  UserLoginRequest,
-  UserRegisterRequest,
-} from "./user.service.types";
+import { User, UserLoginRequest, UserRegisterRequest } from "./types";
 
 @Injectable({ providedIn: "root" })
 export class UserService {
   private readonly client = inject(HttpClient);
-  private readonly baseUrl = `${API_URL}/v1/user`;
+  private readonly baseUrl = `/api/v1/user`;
 
   public login(body: UserLoginRequest) {
     return this.client.post<User>(`${this.baseUrl}/login`, body);

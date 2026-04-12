@@ -1,5 +1,5 @@
-import { UserService, UserStore } from "@/entities/user";
-import { AuthService } from "@/shared/api";
+import { userEmail, userName, userPassword, userSurame } from "@/entities/user";
+import { RegisterService } from "@/features/(auth)/register";
 import { HttpErrorResponse, HttpStatusCode } from "@angular/common/http";
 import {
   ChangeDetectionStrategy,
@@ -7,14 +7,8 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import {
-  email,
-  form,
-  FormField,
-  FormRoot,
-  required,
-} from "@angular/forms/signals";
-import { Router, RouterLink } from "@angular/router";
+import { form, FormField, FormRoot } from "@angular/forms/signals";
+import { RouterLink } from "@angular/router";
 import { TuiAutoFocus } from "@taiga-ui/cdk";
 import {
   TuiAppearance,
@@ -28,7 +22,6 @@ import {
 } from "@taiga-ui/core";
 import { TuiButtonLoading, TuiPassword } from "@taiga-ui/kit";
 import { TuiForm, TuiHeader } from "@taiga-ui/layout";
-import { lastValueFrom } from "rxjs";
 
 @Component({
   imports: [
@@ -54,10 +47,12 @@ import { lastValueFrom } from "rxjs";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppRegisterPageComponent {
-  private readonly router = inject(Router);
-  private readonly userStore = inject(UserStore);
-  private readonly userService = inject(UserService);
-  private readonly authService = inject(AuthService);
+  private readonly registerService = inject(RegisterService);
+
+  private readonly serverErrorMap: Record<number, string> = {
+    [HttpStatusCode.Conflict]:
+      "Пользователь с таким адресом электронной почты уже существует",
+  };
 
   protected readonly form = form(
     signal({
@@ -67,32 +62,24 @@ export class AppRegisterPageComponent {
       password: "",
     }),
     (schema) => {
-      required(schema.name, { message: "Введите имя" });
-      required(schema.surname, { message: "Введите фамилию" });
-      required(schema.email, { message: "Введите адрес электронной почты" });
-      email(schema.email, { message: "Некорректный адрес электронной почты" });
-      required(schema.password, { message: "Введите пароль" });
+      userName(schema.name);
+      userSurame(schema.surname);
+      userEmail(schema.email);
+      userPassword(schema.password);
     },
     {
       submission: {
         action: async (form) => {
           try {
-            const user = await lastValueFrom(
-              this.userService.register(form().value()),
-            );
-            await lastValueFrom(this.authService.refresh());
-            this.userStore.setUser(user);
-            this.router.navigateByUrl("/");
+            await this.registerService.register(form().value());
           } catch (error) {
-            if (error instanceof HttpErrorResponse) {
-              return {
-                kind: "server",
-                message:
-                  error.status === HttpStatusCode.Conflict
-                    ? "Пользователь с таким адресом электронной почты уже существует"
-                    : "Неизвестная ошибка, попробуйте ещё раз",
-              };
-            }
+            return {
+              kind: "server",
+              message:
+                error instanceof HttpErrorResponse
+                  ? this.serverErrorMap[error.status]
+                  : "Произошла неизвестная ошибка, попробуйте ещё раз",
+            };
           }
           return null;
         },

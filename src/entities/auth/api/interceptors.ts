@@ -6,24 +6,15 @@ import {
   HttpRequest,
   HttpStatusCode,
 } from "@angular/common/http";
-import { inject, Injectable, InjectionToken } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { catchError, EMPTY, Observable, switchMap, throwError } from "rxjs";
 import { AuthService } from "./service";
-
-export const AUTH_REFRESH_FALLBACK_URL = new InjectionToken<string>(
-  "Login page URL",
-  {
-    providedIn: "root",
-    factory: () => "/",
-  },
-);
 
 @Injectable()
 export class AuthRefreshHttpInterceptor implements HttpInterceptor {
   protected readonly router = inject(Router);
   protected readonly authService = inject(AuthService);
-  protected readonly fallbackUrl = inject(AUTH_REFRESH_FALLBACK_URL);
 
   public intercept(
     request: HttpRequest<unknown>,

@@ -1,26 +1,22 @@
+import { USER_RESOURCE } from "@/entities/user";
 import { inject } from "@angular/core";
 import { toObservable } from "@angular/core/rxjs-interop";
 import { CanActivateFn, Router } from "@angular/router";
 import { filter, map, take } from "rxjs";
-import { UserStore } from "../store/user.store";
 
 export const adminGuard: CanActivateFn = () => {
-  const userStore = inject(UserStore);
+  const userResource = inject(USER_RESOURCE);
   const router = inject(Router);
-  userStore.load();
 
-  return toObservable(userStore.isLoading).pipe(
-    filter((isLoading) => !isLoading),
+  return toObservable(userResource.isLoading).pipe(
+    filter((loading) => !loading),
     take(1),
-    map(() => {
-      const user = userStore.user();
-      const error = userStore.error();
-
-      if (error || !user) {
+    map(() => userResource.value()),
+    map((user) => {
+      if (!user) {
         return router.createUrlTree(["/login"]);
       }
-
-      return user.role !== 0;
+      return user.role > 0 || router.createUrlTree(["/"]);
     }),
   );
 };

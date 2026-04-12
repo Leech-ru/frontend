@@ -1,5 +1,5 @@
-import { UserService, UserStore } from "@/entities/user";
-import { AuthService } from "@/shared/api";
+import { userEmail, userPassword } from "@/entities/user";
+import { LoginService } from "@/features/(auth)/login";
 import { HttpErrorResponse, HttpStatusCode } from "@angular/common/http";
 import {
   ChangeDetectionStrategy,
@@ -7,17 +7,10 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import {
-  email,
-  form,
-  FormField,
-  FormRoot,
-  required,
-} from "@angular/forms/signals";
-import { Router, RouterLink } from "@angular/router";
+import { form, FormField, FormRoot } from "@angular/forms/signals";
+import { RouterLink } from "@angular/router";
 import { TuiAutoFocus } from "@taiga-ui/cdk";
 import {
-  TUI_BREAKPOINT,
   TuiAppearance,
   TuiButton,
   TuiError,
@@ -28,7 +21,6 @@ import {
 } from "@taiga-ui/core";
 import { TuiButtonLoading, TuiPassword } from "@taiga-ui/kit";
 import { TuiForm, TuiHeader } from "@taiga-ui/layout";
-import { lastValueFrom } from "rxjs";
 
 @Component({
   imports: [
@@ -53,12 +45,12 @@ import { lastValueFrom } from "rxjs";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppLoginPageComponent {
-  private readonly router = inject(Router);
-  private readonly userStore = inject(UserStore);
-  private readonly userService = inject(UserService);
-  private readonly authService = inject(AuthService);
+  private readonly loginService = inject(LoginService);
 
-  protected readonly breakpoint = inject(TUI_BREAKPOINT);
+  private readonly serverErrorMap: Record<number, string> = {
+    [HttpStatusCode.Unauthorized]:
+      "Неверный адрес электронной почты или пароль",
+  };
 
   protected readonly form = form(
     signal({
@@ -66,30 +58,22 @@ export class AppLoginPageComponent {
       password: "",
     }),
     (schema) => {
-      required(schema.email, { message: "Введите адрес электронной почты" });
-      email(schema.email, { message: "Некорректный адрес электронной почты" });
-      required(schema.password, { message: "Введите пароль" });
+      userEmail(schema.email);
+      userPassword(schema.password);
     },
     {
       submission: {
         action: async (form) => {
           try {
-            const user = await lastValueFrom(
-              this.userService.login(form().value()),
-            );
-            await lastValueFrom(this.authService.refresh());
-            this.userStore.setUser(user);
-            this.router.navigateByUrl("/");
+            await this.loginService.login(form().value());
           } catch (error) {
-            if (error instanceof HttpErrorResponse) {
-              return {
-                kind: "server",
-                message:
-                  error.status === HttpStatusCode.Unauthorized
-                    ? "Неверный адрес электронной почты или пароль"
-                    : "Неизвестная ошибка, попробуйте ещё раз",
-              };
-            }
+            return {
+              kind: "server",
+              message:
+                error instanceof HttpErrorResponse
+                  ? this.serverErrorMap[error.status]
+                  : "Произошла неизвестная ошибка, попробуйте ещё раз",
+            };
           }
           return null;
         },

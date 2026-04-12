@@ -1,7 +1,4 @@
-import {
-  AUTH_REFRESH_FALLBACK_URL,
-  AuthRefreshHttpInterceptor,
-} from "@/shared/api";
+import { AuthRefreshHttpInterceptor } from "@/entities/auth";
 import {
   HTTP_INTERCEPTORS,
   provideHttpClient,
@@ -36,10 +33,6 @@ export const browserConfig: ApplicationConfig = {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthRefreshHttpInterceptor,
       multi: true,
-    },
-    {
-      provide: AUTH_REFRESH_FALLBACK_URL,
-      useValue: "http://localhost:4201/login",
     },
     {
       provide: TUI_LANGUAGE,

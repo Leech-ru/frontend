@@ -60,6 +60,9 @@
               "buildTarget": "frontend:build:development"
             }
           },
+          "options": {
+            "proxyConfig": "proxy.json"
+          },
           "defaultConfiguration": "development"
         }
       }

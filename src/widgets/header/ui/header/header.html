@@ -1,26 +1,78 @@
 <header class="app-header">
   <div class="app-header__wrapper">
     <app-header-logo />
+
     <app-header-navigation
       [style.margin-left.rem]="3"
       class="app-header__navigation"
     />
-    @if (userStore.isAdmin() || userStore.isSuperAdmin()) {
-      <app-header-navigation-item
+
+    @if (userResource.value(); as user) {
+      <button
+        type="button"
+        tuiDropdownRole="menu"
+        tuiDropdownSheet
+        tuiDropdownAlign="end"
+        [tuiAvatar]="`${user.name} ${user.surname}` | tuiInitials"
+        [tuiDropdown]="dropdownContent"
+        [(tuiDropdownOpen)]="userDropdownOpen"
         [style.margin-left]="'auto'"
-        [item]="{ label: 'Панель управления', routerLink: 'admin' }"
-      />
-    } @else if (!!userStore.user()) {
-      <app-header-navigation-item
-        [style.margin-left]="'auto'"
-        [item]="{ label: 'Личный кабинет', routerLink: 'cabinet' }"
-      />
+        [style.margin-right.rem]="0.5"
+        [attr.aria-expanded]="userDropdownOpen()"
+      ></button>
+      <ng-template #dropdownContent>
+        <tui-data-list>
+          <button
+            type="button"
+            tuiOption
+            iconStart="@tui.user"
+            (click)="userDropdownOpen.set(false)"
+          >
+            <span tuiTitle>
+              <span
+                [style.display]="'flex'"
+                [style.gap.rem]="0.25"
+                [style.justify-items]="'center'"
+              >
+                {{ `${user.name} ${user.surname}` }}
+                @if (user.role == 2 || user.role == 3) {
+                  <span appearance="primary" tuiBadge size="m"> Админ </span>
+                }
+              </span>
+              <span tuiSubtitle tuiFade>
+                {{ user.email }}
+              </span>
+            </span>
+          </button>
+          <hr />
+          @if (user.role == 2 || user.role == 3) {
+            <a
+              tuiOption
+              iconStart="@tui.layout-dashboard"
+              routerLink="/admin"
+              (click)="userDropdownOpen.set(false)"
+            >
+              <span tuiTitle>Панель управления</span>
+            </a>
+            <hr />
+          }
+          <button
+            tuiOption
+            type="button"
+            iconStart="@tui.log-out"
+            (click)="logoutService.logout(); userDropdownOpen.set(false)"
+          >
+            <span tuiTitle>Выйти</span>
+          </button>
+        </tui-data-list>
+      </ng-template>
     } @else {
       <app-header-navigation-item
         [style.margin-left]="'auto'"
         [item]="{ label: 'Личный кабинет', routerLink: 'login' }"
       />
     }
+
     <app-header-drawer class="app-header__drawer" />
   </div>
 </header>

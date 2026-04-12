@@ -47,7 +47,12 @@
   <tui-error [error]="form().errors()[0]?.message ?? null" />
 
   <footer>
-    <button tuiButton type="submit" [loading]="form().submitting()">
+    <button
+      tuiButton
+      type="submit"
+      [loading]="form().submitting()"
+      [disabled]="!!form().errors().length"
+    >
       Войти
     </button>
   </footer>

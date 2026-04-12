@@ -1,6 +1,7 @@
-import { authGuard } from "@/entities/user";
 import { cosmeticItemResolver } from "@/pages/(cosmetics)/item";
 import { Routes } from "@angular/router";
+import { adminGuard } from "../guards/admin";
+import { authGuard } from "../guards/auth";
 
 export const routes: Routes = [
   {
@@ -46,8 +47,8 @@ export const routes: Routes = [
       },
       {
         path: "admin",
-        // canMatch: [adminGuard],
-        // canActivate: [adminGuard],
+        canMatch: [adminGuard],
+        canActivate: [adminGuard],
         loadComponent: () => import("@/app/layouts/admin"),
         children: [
           {
