@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "http://xn--80abcjepbp1bfe2q.xn--p1ai/api/:path*"
+      "destination": "https://xn--80abcjepbp1bfe2q.xn--p1ai/api/:path*"
     }
   ]
 }

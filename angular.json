@@ -61,7 +61,7 @@
             }
           },
           "options": {
-            "proxyConfig": "proxy.json"
+            "proxyConfig": "src/app/proxy.ts"
           },
           "defaultConfiguration": "development"
         }
