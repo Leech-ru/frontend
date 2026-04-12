@@ -1,5 +1,6 @@
 import { USER_RESOURCE } from "@/entities/user";
-import { inject } from "@angular/core";
+import { isPlatformServer } from "@angular/common";
+import { computed, inject, PLATFORM_ID } from "@angular/core";
 import { toObservable } from "@angular/core/rxjs-interop";
 import { CanActivateFn, Router } from "@angular/router";
 import { filter, map, take } from "rxjs";
@@ -7,6 +8,12 @@ import { filter, map, take } from "rxjs";
 export const adminGuard: CanActivateFn = () => {
   const userResource = inject(USER_RESOURCE);
   const router = inject(Router);
+  const platform = inject(PLATFORM_ID);
+  const isServer = computed(() => isPlatformServer(platform));
+
+  if (isServer()) {
+    return true;
+  }
 
   return toObservable(userResource.isLoading).pipe(
     filter((loading) => !loading),

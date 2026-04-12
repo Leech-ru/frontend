@@ -1,4 +1,10 @@
-<tui-loader size="xl" [overlay]="true" [loading]="isServer()">
+@if (isServer()) {
+  <tui-block-status>
+    <tui-loader size="xl" tuiSlot="top" [loading]="true" />
+    <h4>Загружаем страницу</h4>
+    Это может занять несколько секунд
+  </tui-block-status>
+} @else {
   <a
     tuiButton
     appearance="flat"
@@ -10,4 +16,4 @@
   </a>
 
   <router-outlet />
-</tui-loader>
+}

@@ -45,24 +45,6 @@ export const routes: Routes = [
         title: "О центре",
         loadComponent: () => import("@/pages/about"),
       },
-      {
-        path: "admin",
-        canMatch: [adminGuard],
-        canActivate: [adminGuard],
-        loadComponent: () => import("@/app/layouts/admin"),
-        children: [
-          {
-            path: "",
-            redirectTo: "cosmetics",
-            pathMatch: "full",
-          },
-          {
-            path: "cosmetics",
-            title: "Косметика",
-            loadComponent: () => import("@/pages/(admin)/cosmetics"),
-          },
-        ],
-      },
     ],
   },
   {
@@ -78,9 +60,8 @@ export const routes: Routes = [
   },
   {
     path: "",
-    canMatch: [authGuard],
     canActivate: [authGuard],
-    loadComponent: () => import("../layouts/auth"),
+    loadComponent: () => import("@/app/layouts/auth"),
     children: [
       {
         path: "login",
@@ -91,6 +72,23 @@ export const routes: Routes = [
         path: "register",
         title: "Регистрация",
         loadComponent: () => import("@/pages/(auth)/register"),
+      },
+    ],
+  },
+  {
+    path: "admin",
+    canActivate: [adminGuard],
+    loadComponent: () => import("@/app/layouts/admin"),
+    children: [
+      {
+        path: "",
+        redirectTo: "cosmetics",
+        pathMatch: "full",
+      },
+      {
+        path: "cosmetics",
+        title: "Косметика",
+        loadComponent: () => import("@/pages/(admin)/cosmetics"),
       },
     ],
   },

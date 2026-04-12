@@ -1,13 +1,23 @@
-<section>
-  <header tuiHeader>
-    <h1 tuiTitle>Панель управления</h1>
-  </header>
+@if (isServer()) {
+  <tui-block-status>
+    <tui-loader size="xl" tuiSlot="top" [loading]="true" />
+    <h4>Загружаем страницу</h4>
+    Это может занять несколько секунд
+  </tui-block-status>
+} @else {
+  <app-header />
 
-  <tui-tabs tuiFade>
-    <button iconStart="@tui.store" tuiTab routerLink="cosmetics">
-      Косметика
-    </button>
-  </tui-tabs>
+  <main>
+    <header tuiHeader>
+      <h1 tuiTitle>Панель управления</h1>
+    </header>
 
-  <router-outlet />
-</section>
+    <tui-tabs tuiFade>
+      <button iconStart="@tui.store" tuiTab routerLink="cosmetics">
+        Косметика
+      </button>
+    </tui-tabs>
+
+    <router-outlet />
+  </main>
+}

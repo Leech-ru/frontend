@@ -1,14 +1,9 @@
 @import "@taiga-ui/styles/utils.less";
 
-::ng-deep {
-  tui-loader > fieldset.t-content {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-  }
-}
-
-tui-loader {
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
   height: 100dvh;
   padding: 0.5rem;
   box-sizing: border-box;
