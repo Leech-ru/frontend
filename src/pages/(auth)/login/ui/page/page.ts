@@ -1,4 +1,5 @@
 import { UserService, UserStore } from "@/entities/user";
+import { AuthService } from "@/shared/api";
 import { HttpErrorResponse, HttpStatusCode } from "@angular/common/http";
 import {
   ChangeDetectionStrategy,
@@ -55,6 +56,7 @@ export class AppLoginPageComponent {
   private readonly router = inject(Router);
   private readonly userStore = inject(UserStore);
   private readonly userService = inject(UserService);
+  private readonly authService = inject(AuthService);
 
   protected readonly breakpoint = inject(TUI_BREAKPOINT);
 
@@ -75,6 +77,7 @@ export class AppLoginPageComponent {
             const user = await lastValueFrom(
               this.userService.login(form().value()),
             );
+            await lastValueFrom(this.authService.refresh());
             this.userStore.setUser(user);
             this.router.navigateByUrl("/");
           } catch (error) {

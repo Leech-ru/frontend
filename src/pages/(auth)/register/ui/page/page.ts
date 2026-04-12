@@ -1,4 +1,5 @@
 import { UserService, UserStore } from "@/entities/user";
+import { AuthService } from "@/shared/api";
 import { HttpErrorResponse, HttpStatusCode } from "@angular/common/http";
 import {
   ChangeDetectionStrategy,
@@ -56,6 +57,7 @@ export class AppRegisterPageComponent {
   private readonly router = inject(Router);
   private readonly userStore = inject(UserStore);
   private readonly userService = inject(UserService);
+  private readonly authService = inject(AuthService);
 
   protected readonly form = form(
     signal({
@@ -78,6 +80,7 @@ export class AppRegisterPageComponent {
             const user = await lastValueFrom(
               this.userService.register(form().value()),
             );
+            await lastValueFrom(this.authService.refresh());
             this.userStore.setUser(user);
             this.router.navigateByUrl("/");
           } catch (error) {
