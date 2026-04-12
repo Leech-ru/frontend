@@ -1,9 +1,8 @@
-import { AuthRefreshHttpInterceptor } from "@/entities/auth";
+import { authInterceptor } from "@/entities/auth";
 import {
-  HTTP_INTERCEPTORS,
   provideHttpClient,
   withFetch,
-  withInterceptorsFromDi,
+  withInterceptors,
 } from "@angular/common/http";
 import { ApplicationConfig, signal } from "@angular/core";
 import {
@@ -26,14 +25,9 @@ export const browserConfig: ApplicationConfig = {
       withInMemoryScrolling({ scrollPositionRestoration: "top" }),
       withComponentInputBinding(),
     ),
-    provideHttpClient(withFetch(), withInterceptorsFromDi()),
+    provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
     provideClientHydration(withEventReplay()),
     provideTaiga({ mode: "light" }),
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthRefreshHttpInterceptor,
-      multi: true,
-    },
     {
       provide: TUI_LANGUAGE,
       useValue: signal(TUI_RUSSIAN_LANGUAGE),

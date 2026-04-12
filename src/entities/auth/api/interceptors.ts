@@ -1,43 +1,17 @@
-import {
-  HttpErrorResponse,
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest,
-  HttpStatusCode,
-} from "@angular/common/http";
-import { inject, Injectable } from "@angular/core";
-import { Router } from "@angular/router";
-import { catchError, EMPTY, Observable, switchMap, throwError } from "rxjs";
+import { HttpErrorResponse, HttpInterceptorFn } from "@angular/common/http";
+import { inject } from "@angular/core";
+import { catchError, switchMap, throwError } from "rxjs";
 import { AuthService } from "./service";
 
-@Injectable()
-export class AuthRefreshHttpInterceptor implements HttpInterceptor {
-  protected readonly router = inject(Router);
-  protected readonly authService = inject(AuthService);
+export const authInterceptor: HttpInterceptorFn = (request, next) => {
+  const authService = inject(AuthService);
 
-  public intercept(
-    request: HttpRequest<unknown>,
-    handler: HttpHandler,
-  ): Observable<HttpEvent<unknown>> {
-    return handler.handle(request).pipe(
-      catchError((error: HttpErrorResponse) => {
-        if (
-          error.status !== HttpStatusCode.Unauthorized ||
-          error.url?.includes("/login") ||
-          error.url?.includes("/register") ||
-          error.url?.includes("/logout")
-        ) {
-          return throwError(() => error);
-        }
-
-        return this.authService.refresh().pipe(
-          switchMap(() => handler.handle(request)),
-          catchError(() => {
-            return EMPTY;
-          }),
-        );
-      }),
-    );
-  }
-}
+  return next(request).pipe(
+    catchError((error: HttpErrorResponse) => {
+      if (error.status === 401 && !request.url.includes("/login")) {
+        return authService.refresh().pipe(switchMap(() => next(request)));
+      }
+      return throwError(() => error);
+    }),
+  );
+};
