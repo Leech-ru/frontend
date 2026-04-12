@@ -8,6 +8,7 @@ import {
 } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { TuiDropdownSheet } from "@taiga-ui/addon-mobile";
+import { TuiObscured } from "@taiga-ui/cdk";
 import { TuiDataList, TuiDropdown, TuiTitle } from "@taiga-ui/core";
 import { TuiAvatar, TuiBadge, TuiFade, TuiInitialsPipe } from "@taiga-ui/kit";
 import { AppHeaderDrawerComponent } from "../drawer";
@@ -32,6 +33,7 @@ import { AppHeaderNavigationItemComponent } from "../navigation/item";
     TuiDropdownSheet,
     TuiFade,
     TuiInitialsPipe,
+    TuiObscured,
     TuiTitle,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,

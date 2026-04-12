@@ -11,11 +11,15 @@
       <button
         type="button"
         tuiDropdownRole="menu"
-        tuiDropdownSheet
+        tuiDropdownSheet="Меню"
         tuiDropdownAlign="end"
         [tuiAvatar]="`${user.name} ${user.surname}` | tuiInitials"
         [tuiDropdown]="dropdownContent"
-        [(tuiDropdownOpen)]="userDropdownOpen"
+        [tuiDropdownManual]="userDropdownOpen()"
+        [tuiObscuredEnabled]="userDropdownOpen()"
+        (click)="userDropdownOpen.update((open) => !open)"
+        (tuiActiveZoneChange)="!$event && userDropdownOpen.set(false)"
+        (tuiObscured)="$event && userDropdownOpen.set(false)"
         [style.margin-left]="'auto'"
         [style.margin-right.rem]="0.5"
         [attr.aria-expanded]="userDropdownOpen()"
