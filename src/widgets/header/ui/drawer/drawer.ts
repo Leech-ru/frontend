@@ -1,3 +1,4 @@
+import { USER_RESOURCE } from "@/entities/user";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -33,6 +34,7 @@ export class AppHeaderDrawerComponent {
   protected readonly router = inject(Router);
   protected readonly items = NAVIGATION_ITEMS;
   protected readonly open = signal(false);
+  protected readonly userResource = inject(USER_RESOURCE);
 
   public constructor() {
     this.router.events.subscribe(() => {

@@ -12,18 +12,22 @@
 <tui-drawer *tuiPopup="open()">
   <tui-data-list>
     @for (item of items; track item.routerLink) {
-      <a
-        #rla="routerLinkActive"
-        [tuiAppearance]="rla.isActive ? 'flat' : 'initial'"
-        tuiOption
-        [routerLink]="item.routerLink"
-        routerLinkActive
-        [routerLinkActiveOptions]="{
-          exact: item.routerLink === '/' ? true : false,
-        }"
-      >
-        {{ item.label }}
-      </a>
+      @let user = userResource.value();
+
+      @if (!item.roles || (user && item.roles.includes(user.role))) {
+        <a
+          #rla="routerLinkActive"
+          [tuiAppearance]="rla.isActive ? 'flat' : 'initial'"
+          tuiOption
+          [routerLink]="item.routerLink"
+          routerLinkActive
+          [routerLinkActiveOptions]="{
+            exact: item.routerLink === '/' ? true : false,
+          }"
+        >
+          {{ item.label }}
+        </a>
+      }
     }
   </tui-data-list>
 </tui-drawer>

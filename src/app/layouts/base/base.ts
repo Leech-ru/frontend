@@ -31,7 +31,7 @@ export class AppBaseLayoutComponent {
   protected readonly platform = inject(PLATFORM_ID);
   protected readonly isServer = computed(() => isPlatformServer(this.platform));
 
-  private readonly data = inject(RouterDataService);
+  protected readonly data = inject(RouterDataService);
 
   protected readonly showHeader = this.data.get("showHeader", true);
   protected readonly showFooter = this.data.get("showFooter", true);
