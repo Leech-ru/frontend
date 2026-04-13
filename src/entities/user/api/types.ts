@@ -21,3 +21,8 @@ export interface UserRegisterRequest {
   email: string;
   password: string;
 }
+
+export interface UserGetAllParams {
+  search?: string;
+  role?: UserRole;
+}

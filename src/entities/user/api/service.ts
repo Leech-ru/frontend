@@ -1,6 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { User, UserLoginRequest, UserRegisterRequest } from "./types";
+import {
+  User,
+  UserGetAllParams,
+  UserLoginRequest,
+  UserRegisterRequest,
+} from "./types";
 
 @Injectable({ providedIn: "root" })
 export class UserService {
@@ -23,5 +28,12 @@ export class UserService {
 
   public get() {
     return this.client.get<User>(`${this.baseUrl}`, { withCredentials: true });
+  }
+
+  public getAll(params: UserGetAllParams) {
+    return this.client.get<User[]>(`${this.baseUrl}/all`, {
+      withCredentials: true,
+      params: JSON.parse(JSON.stringify(params)),
+    });
   }
 }

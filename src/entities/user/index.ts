@@ -1,4 +1,5 @@
 export { CURRENT_USER_RESOURCE } from "./api/resources/current-user";
+export { USERS_RESOURCE } from "./api/resources/users";
 export { UserService } from "./api/service";
 export type {
   User,
@@ -21,3 +22,4 @@ export { userEmail } from "./model/email";
 export { userName } from "./model/name";
 export { userPassword } from "./model/password";
 export { userSurame } from "./model/surname";
+export { AppUserRoleBadgeComponent } from "./ui/role-badge";

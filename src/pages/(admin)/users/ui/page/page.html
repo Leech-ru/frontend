@@ -1,3 +1,36 @@
 <header tuiHeader="h4">
   <h1 tuiTitle>Пользователи</h1>
 </header>
+
+<search tuiSearch>
+  <form [formGroup]="form">
+    <fieldset tuiTextfieldSize="m">
+      <tui-textfield iconStart="@tui.search">
+        <input formControlName="search" placeholder="Поиск" tuiInput />
+      </tui-textfield>
+      <tui-textfield
+        tuiChevron
+        tuiDropdownSheet="Выберите роль"
+        [tuiTextfieldCleaner]="false"
+      >
+        <input formControlName="role" placeholder="Роль" tuiSelect />
+        <tui-data-list-wrapper *tuiDropdown [items]="items" />
+      </tui-textfield>
+    </fieldset>
+  </form>
+</search>
+
+<tui-loader [loading]="usersResource.isLoading()">
+  <div tuiCardLarge="compact" appearance="outline">
+    @for (user of users(); track user.id) {
+      <button type="button" tuiCell>
+        <div tuiAvatar="@tui.user"></div>
+        <div tuiTitle tuiFade>
+          {{ `${user.name} ${user.surname}` }}
+          <span tuiSubtitle>{{ user.email }}</span>
+        </div>
+        <app-user-role-badge [role]="user.role" />
+      </button>
+    }
+  </div>
+</tui-loader>
