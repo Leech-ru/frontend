@@ -1,0 +1,1 @@
+export { AppAdminPartnersPageComponent } from "./page";

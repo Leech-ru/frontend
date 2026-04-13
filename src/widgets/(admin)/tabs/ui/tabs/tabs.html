@@ -1,6 +1,13 @@
-<tui-tabs tuiFade [style.margin-bottom.px]="-1" [style.box-shadow]="'none'">
-  <a tuiTab routerLink="" routerLinkActive>Информация</a>
-  <a tuiTab routerLink="cosmetics" routerLinkActive>Косметика</a>
-  <a tuiTab routerLink="partners" routerLinkActive>Партнёры</a>
-  <a tuiTab routerLink="users" routerLinkActive>Пользователи</a>
+<tui-tabs tuiFade>
+  <a
+    tuiTab
+    routerLink="/admin/"
+    routerLinkActive
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    Информация
+  </a>
+  <a tuiTab routerLink="/admin/cosmetics" routerLinkActive>Косметика</a>
+  <a tuiTab routerLink="/admin/partners" routerLinkActive>Партнёры</a>
+  <a tuiTab routerLink="/admin/users" routerLinkActive>Пользователи</a>
 </tui-tabs>

@@ -1,0 +1,1 @@
+export { AppAdminInfoPageComponent } from "./page";

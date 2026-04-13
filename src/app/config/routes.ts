@@ -95,13 +95,23 @@ export const routes: Routes = [
               },
               {
                 path: "",
-                redirectTo: "cosmetics",
-                pathMatch: "full",
+                title: "Информация",
+                loadComponent: () => import("@/pages/(admin)/info"),
               },
               {
                 path: "cosmetics",
                 title: "Косметика",
                 loadComponent: () => import("@/pages/(admin)/cosmetics"),
+              },
+              {
+                path: "partners",
+                title: "Партнёры",
+                loadComponent: () => import("@/pages/(admin)/partners"),
+              },
+              {
+                path: "users",
+                title: "Пользователи",
+                loadComponent: () => import("@/pages/(admin)/users"),
               },
             ],
           },
