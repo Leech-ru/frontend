@@ -1,8 +1,10 @@
 <ul class="app-header-navigation__list">
   @for (item of items; track item.routerLink) {
-    @let user = userResource.value();
+    @let currentUser = currentUserResource.value();
 
-    @if (!item.roles || (user && item.roles.includes(user.role))) {
+    @if (
+      !item.roles || (currentUser && item.roles.includes(currentUser.role))
+    ) {
       <li>
         <app-header-navigation-item [item]="item" />
       </li>

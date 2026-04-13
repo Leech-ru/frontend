@@ -12,9 +12,11 @@
 <tui-drawer *tuiPopup="open()">
   <tui-data-list>
     @for (item of items; track item.routerLink) {
-      @let user = userResource.value();
+      @let currentUser = currentUserResource.value();
 
-      @if (!item.roles || (user && item.roles.includes(user.role))) {
+      @if (
+        !item.roles || (currentUser && item.roles.includes(currentUser.role))
+      ) {
         <a
           #rla="routerLinkActive"
           [tuiAppearance]="rla.isActive ? 'flat' : 'initial'"

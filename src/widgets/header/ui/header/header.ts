@@ -1,4 +1,4 @@
-import { USER_RESOURCE } from "@/entities/user";
+import { CURRENT_USER_RESOURCE } from "@/entities/user";
 import { LogoutService } from "@/features/(auth)/logout";
 import { isPlatformServer } from "@angular/common";
 import {
@@ -59,9 +59,11 @@ export class SheetSpy implements OnDestroy {
 })
 export class AppHeaderComponent {
   protected readonly logoutService = inject(LogoutService);
-  protected readonly userResource = inject(USER_RESOURCE);
-  protected readonly platform = inject(PLATFORM_ID);
-  protected readonly isServer = computed(() => isPlatformServer(this.platform));
-  protected readonly userDropdownOpen = signal(false);
+  protected readonly currentUserResource = inject(CURRENT_USER_RESOURCE);
   protected readonly isMobile = inject(WA_IS_MOBILE);
+  protected readonly platformId = inject(PLATFORM_ID);
+  protected readonly isServer = computed(() =>
+    isPlatformServer(this.platformId),
+  );
+  protected readonly userDropdownOpen = signal(false);
 }

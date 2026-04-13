@@ -1,4 +1,4 @@
-export { USER_RESOURCE } from "./api/resource";
+export { CURRENT_USER_RESOURCE } from "./api/resources/current-user";
 export { UserService } from "./api/service";
 export type {
   User,

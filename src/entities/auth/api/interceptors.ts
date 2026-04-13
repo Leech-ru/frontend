@@ -10,8 +10,8 @@ import { AuthService } from "./service";
 
 export const authInterceptor: HttpInterceptorFn = (request, next) => {
   const auth = inject(AuthService);
-  const platform = inject(PLATFORM_ID);
-  const isServer = isPlatformServer(platform);
+  const platformId = inject(PLATFORM_ID);
+  const isServer = isPlatformServer(platformId);
 
   return next(request).pipe(
     catchError((error: HttpErrorResponse) => {

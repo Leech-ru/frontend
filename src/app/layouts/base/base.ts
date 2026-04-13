@@ -28,8 +28,10 @@ import { RouterDataService } from "./data";
 export class AppBaseLayoutComponent {
   protected readonly breakpoint = inject(TUI_BREAKPOINT);
 
-  protected readonly platform = inject(PLATFORM_ID);
-  protected readonly isServer = computed(() => isPlatformServer(this.platform));
+  protected readonly platformId = inject(PLATFORM_ID);
+  protected readonly isServer = computed(() =>
+    isPlatformServer(this.platformId),
+  );
 
   protected readonly data = inject(RouterDataService);
 

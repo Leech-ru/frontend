@@ -1,4 +1,4 @@
-import { USER_RESOURCE } from "@/entities/user";
+import { CURRENT_USER_RESOURCE } from "@/entities/user";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { NAVIGATION_ITEMS } from "../../config/navigation.config";
 import { AppHeaderNavigationItemComponent } from "./item";
@@ -11,6 +11,6 @@ import { AppHeaderNavigationItemComponent } from "./item";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppHeaderNavigationComponent {
-  protected readonly userResource = inject(USER_RESOURCE);
+  protected readonly currentUserResource = inject(CURRENT_USER_RESOURCE);
   protected readonly items = NAVIGATION_ITEMS;
 }

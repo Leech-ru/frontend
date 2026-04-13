@@ -5,7 +5,7 @@
     <app-header-navigation class="app-header__navigation" />
 
     @if (!isServer()) {
-      @if (userResource.value(); as user) {
+      @if (currentUserResource.value(); as currentUser) {
         <button
           type="button"
           tuiAvatar="@tui.user"
@@ -33,13 +33,13 @@
                   [style.gap.rem]="0.25"
                   [style.justify-items]="'center'"
                 >
-                  {{ `${user.name} ${user.surname}` }}
-                  @if (user.role == 2 || user.role == 3) {
+                  {{ `${currentUser.name} ${currentUser.surname}` }}
+                  @if (currentUser.role == 2 || currentUser.role == 3) {
                     <span appearance="primary" tuiBadge size="m"> Админ </span>
                   }
                 </span>
                 <span tuiSubtitle tuiFade>
-                  {{ user.email }}
+                  {{ currentUser.email }}
                 </span>
               </span>
             </button>
@@ -54,7 +54,7 @@
             </button>
           </tui-data-list>
         </ng-template>
-      } @else if (!userResource.isLoading()) {
+      } @else if (!currentUserResource.isLoading()) {
         <app-header-navigation-item
           [style.margin-left]="'auto'"
           [item]="{ label: 'Личный кабинет', routerLink: 'login' }"

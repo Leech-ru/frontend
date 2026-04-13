@@ -1,5 +1,5 @@
 import {
-  USER_RESOURCE,
+  CURRENT_USER_RESOURCE,
   UserRegisterRequest,
   UserService,
 } from "@/entities/user";
@@ -11,11 +11,11 @@ import { lastValueFrom } from "rxjs";
 export class RegisterService {
   private readonly router = inject(Router);
   private readonly userService = inject(UserService);
-  private readonly userResource = inject(USER_RESOURCE);
+  private readonly currentUserResource = inject(CURRENT_USER_RESOURCE);
 
   public async register(body: UserRegisterRequest) {
     const user = await lastValueFrom(this.userService.register(body));
-    this.userResource.set(user);
+    this.currentUserResource.set(user);
     this.router.navigateByUrl("/");
   }
 }
