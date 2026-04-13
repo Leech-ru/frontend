@@ -6,7 +6,7 @@ import { authGuard } from "../guards/auth";
 export const routes: Routes = [
   {
     path: "",
-    loadComponent: () => import("@/app/layouts/full"),
+    loadComponent: () => import("@/app/layouts/base"),
     children: [
       {
         path: "",
@@ -17,6 +17,12 @@ export const routes: Routes = [
         path: "leech",
         title: "Пиявки",
         loadComponent: () => import("@/pages/(leech)/about"),
+      },
+      {
+        path: "leech/order",
+        data: { showHeaderMobile: false, showFooter: false },
+        title: "Заказать пиявок",
+        loadComponent: () => import("@/pages/(leech)/order"),
       },
       {
         path: "cosmetics",
@@ -45,50 +51,51 @@ export const routes: Routes = [
         title: "О центре",
         loadComponent: () => import("@/pages/about"),
       },
-    ],
-  },
-  {
-    path: "",
-    loadComponent: () => import("@/app/layouts/bare"),
-    children: [
-      {
-        path: "leech/order",
-        title: "Заказать пиявок",
-        loadComponent: () => import("@/pages/(leech)/order"),
-      },
-    ],
-  },
-  {
-    path: "",
-    canActivate: [authGuard],
-    loadComponent: () => import("@/app/layouts/auth"),
-    children: [
-      {
-        path: "login",
-        title: "Вход",
-        loadComponent: () => import("@/pages/(auth)/login"),
-      },
-      {
-        path: "register",
-        title: "Регистрация",
-        loadComponent: () => import("@/pages/(auth)/register"),
-      },
-    ],
-  },
-  {
-    path: "admin",
-    canActivate: [adminGuard],
-    loadComponent: () => import("@/app/layouts/admin"),
-    children: [
       {
         path: "",
-        redirectTo: "cosmetics",
-        pathMatch: "full",
-      },
-      {
-        path: "cosmetics",
-        title: "Косметика",
-        loadComponent: () => import("@/pages/(admin)/cosmetics"),
+        data: { showServerLoading: true },
+        children: [
+          {
+            path: "",
+            canActivate: [authGuard],
+            data: { showHeader: false, showFooter: false },
+            loadComponent: () => import("@/app/layouts/auth"),
+            children: [
+              {
+                path: "login",
+                title: "Вход",
+                loadComponent: () => import("@/pages/(auth)/login"),
+              },
+              {
+                path: "register",
+                title: "Регистрация",
+                loadComponent: () => import("@/pages/(auth)/register"),
+              },
+            ],
+          },
+          {
+            path: "admin",
+            data: { showFooter: false },
+            canActivate: [adminGuard],
+            children: [
+              {
+                path: "",
+                outlet: "subHeader",
+                loadComponent: () => import("@/widgets/(admin)/tabs"),
+              },
+              {
+                path: "",
+                redirectTo: "cosmetics",
+                pathMatch: "full",
+              },
+              {
+                path: "cosmetics",
+                title: "Косметика",
+                loadComponent: () => import("@/pages/(admin)/cosmetics"),
+              },
+            ],
+          },
+        ],
       },
     ],
   },

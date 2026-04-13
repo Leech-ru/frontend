@@ -1,21 +1,11 @@
-@if (isServer()) {
-  <tui-block-status>
-    <tui-loader size="xl" tuiSlot="top" [loading]="true" />
-    <h4 [style.font]="'var(--tui-typography-heading-h5)'">
-      Загружаем страницу
-    </h4>
-    <p>Это может занять несколько секунд</p>
-  </tui-block-status>
-} @else {
-  <a
-    tuiButton
-    appearance="flat"
-    size="m"
-    routerLink="/"
-    iconStart="@tui.chevron-left"
-  >
-    Назад
-  </a>
+<a
+  tuiButton
+  appearance="flat"
+  size="m"
+  routerLink="/"
+  iconStart="@tui.chevron-left"
+>
+  Назад
+</a>
 
-  <router-outlet />
-}
+<router-outlet />

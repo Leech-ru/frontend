@@ -5,23 +5,12 @@
   flex-direction: column;
   align-items: start;
   height: 100dvh;
+  flex: 1;
   padding: 0.5rem;
   box-sizing: border-box;
   background: var(--tui-background-base);
 
   @media not @tui-mobile {
     background: var(--tui-background-base-alt);
-  }
-}
-
-tui-block-status {
-  ::ng-deep {
-    .t-block-text {
-      margin-top: 0rem !important;
-    }
-
-    .t-block-image {
-      margin-bottom: 2rem !important;
-    }
   }
 }

@@ -1,0 +1,21 @@
+@if (showServerLoading() && isServer()) {
+  <tui-block-status class="loader">
+    <tui-loader size="xl" tuiSlot="top" [loading]="true" />
+    <h4 [style.font]="'var(--tui-typography-heading-h5)'">
+      Загружаем страницу
+    </h4>
+    <p>Это может занять несколько секунд</p>
+  </tui-block-status>
+} @else {
+  @if (isHeaderVisible()) {
+    <app-header />
+  }
+
+  <main [class.full-width]="isFullWidth()">
+    <router-outlet />
+  </main>
+
+  @if (isFooterVisible()) {
+    <app-footer />
+  }
+}

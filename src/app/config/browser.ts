@@ -13,6 +13,7 @@ import {
   provideRouter,
   withComponentInputBinding,
   withInMemoryScrolling,
+  withRouterConfig,
 } from "@angular/router";
 import { provideTaiga } from "@taiga-ui/core";
 import { TUI_LANGUAGE, TUI_RUSSIAN_LANGUAGE } from "@taiga-ui/i18n";
@@ -22,6 +23,7 @@ export const browserConfig: ApplicationConfig = {
   providers: [
     provideRouter(
       routes,
+      withRouterConfig({ paramsInheritanceStrategy: "always" }),
       withInMemoryScrolling({ scrollPositionRestoration: "top" }),
       withComponentInputBinding(),
     ),
