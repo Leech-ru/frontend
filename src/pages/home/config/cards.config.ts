@@ -6,7 +6,7 @@ export const HOME_PAGE_CARDS: HomePageCard[] = [
     heading: "Медицинская пиявка оптом",
     description:
       "Выращенная в искусственно созданных условиях медицинская пиявка (Hirudo medicinalis)",
-    action: "К пиявкам",
+    action: "О пиявке",
     routerLink: "/leech",
     fluid: true,
   },

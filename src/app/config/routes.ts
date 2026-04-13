@@ -15,36 +15,46 @@ export const routes: Routes = [
       },
       {
         path: "leech",
-        title: "Пиявки",
-        loadComponent: () => import("@/pages/(leech)/about"),
-      },
-      {
-        path: "leech/order",
-        data: { showHeaderMobile: false, showFooter: false },
-        title: "Заказать пиявок",
-        loadComponent: () => import("@/pages/(leech)/order"),
+        children: [
+          {
+            path: "",
+            title: "О пиявке",
+            loadComponent: () => import("@/pages/(leech)/about"),
+          },
+          {
+            path: "order",
+            data: { showHeaderMobile: false, showFooter: false },
+            title: "Заказать пиявок",
+            loadComponent: () => import("@/pages/(leech)/order"),
+          },
+        ],
       },
       {
         path: "cosmetics",
-        title: "Каталог косметики",
-        loadComponent: () => import("@/pages/(cosmetics)/catalog"),
-      },
-      {
-        path: "cosmetics/categories/:id",
-        title: "Каталог косметики",
-        loadComponent: () => import("@/pages/(cosmetics)/category"),
-      },
-      {
-        path: "cosmetics/:id",
-        loadComponent: () => import("@/pages/(cosmetics)/item"),
-        resolve: {
-          item: cosmeticItemResolver,
-        },
-      },
-      {
-        path: "cosmetics/buy",
-        title: "Купить косметику",
-        loadComponent: () => import("@/pages/(cosmetics)/faqbuy"),
+        children: [
+          {
+            path: "",
+            title: "Каталог косметики",
+            loadComponent: () => import("@/pages/(cosmetics)/catalog"),
+          },
+          {
+            path: "buy",
+            title: "Купить косметику",
+            loadComponent: () => import("@/pages/(cosmetics)/faqbuy"),
+          },
+          {
+            path: "categories/:id",
+            title: "Каталог косметики",
+            loadComponent: () => import("@/pages/(cosmetics)/category"),
+          },
+          {
+            path: ":id",
+            loadComponent: () => import("@/pages/(cosmetics)/item"),
+            resolve: {
+              item: cosmeticItemResolver,
+            },
+          },
+        ],
       },
       {
         path: "about",
