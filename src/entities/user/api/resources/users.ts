@@ -15,8 +15,6 @@ export const USERS_RESOURCE = new InjectionToken("Users Resource", {
       resource({
         params: () => ({ search: search(), role: role() }),
         loader: async ({ params }) => {
-          console.log(params.search);
-
           try {
             return await lastValueFrom(userService.getAll(params));
           } catch {
