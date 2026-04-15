@@ -7,7 +7,7 @@ import {
   linkedSignal,
   signal,
 } from "@angular/core";
-import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { takeUntilDestroyed, toObservable } from "@angular/core/rxjs-interop";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import {
   TuiDropdownSheet,
@@ -22,9 +22,9 @@ import {
   TUI_BREAKPOINT,
   TuiButton,
   TuiCell,
+  TuiDialogService,
   TuiDropdown,
   TuiHint,
-  TuiIcon,
   TuiInput,
   TuiLoader,
   TuiTextfield,
@@ -33,9 +33,11 @@ import {
 import {
   TuiAvatar,
   TuiChevron,
+  TuiConfirmService,
   TuiDataListWrapper,
   TuiFade,
   TuiSelect,
+  TuiStringifyContentPipe,
 } from "@taiga-ui/kit";
 import {
   TuiBlockStatusComponent,
@@ -44,8 +46,11 @@ import {
   TuiSearch,
 } from "@taiga-ui/layout";
 import { PolymorpheusComponent } from "@taiga-ui/polymorpheus";
-import { debounceTime, distinctUntilChanged } from "rxjs";
-import { AppAdminUsersEditUserFormComponent } from "../edit-user-form";
+import { debounceTime, distinctUntilChanged, map, of, switchMap } from "rxjs";
+import {
+  AppAdminUsersEditUserFormComponent,
+  EDIT_USER_FORM_STATE,
+} from "../edit-user-form";
 
 @Component({
   templateUrl: "page.html",
@@ -64,11 +69,11 @@ import { AppAdminUsersEditUserFormComponent } from "../edit-user-form";
     TuiFade,
     TuiHeader,
     TuiHint,
-    TuiIcon,
     TuiInput,
     TuiLoader,
     TuiSearch,
     TuiSelect,
+    TuiStringifyContentPipe,
     TuiTablePagination,
     TuiTextfield,
     TuiTitle,
@@ -82,12 +87,22 @@ import { AppAdminUsersEditUserFormComponent } from "../edit-user-form";
         pages: "Страниц",
       }),
     },
+    TuiConfirmService,
+    {
+      provide: TuiDialogService,
+      useExisting: TuiResponsiveDialogService,
+    },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppAdminUsersPageComponent {
   protected readonly dialogs = inject(TuiResponsiveDialogService);
   protected readonly breakpoint = inject(TUI_BREAKPOINT);
+  protected readonly editUserFormState = inject(EDIT_USER_FORM_STATE);
+  protected readonly confirm = inject(TuiConfirmService);
+  protected readonly editUserFormClosable = toObservable(
+    this.editUserFormState.isLoading,
+  ).pipe(map((loading) => !loading));
 
   protected readonly usersResource = inject(USERS_RESOURCE);
 
@@ -100,10 +115,10 @@ export class AppAdminUsersPageComponent {
 
   protected readonly form = new FormGroup({
     q: new FormControl(),
-    role: new FormControl("Все роли"),
+    role: new FormControl(null),
   });
 
-  protected readonly items = ["Все роли", "Пользователь", "Админ"];
+  protected readonly items = [0, 3];
 
   constructor() {
     this.usersResource.reload();
@@ -117,9 +132,9 @@ export class AppAdminUsersPageComponent {
 
     this.form.controls.role.valueChanges
       .pipe(distinctUntilChanged(), takeUntilDestroyed())
-      .subscribe((roleName) => {
+      .subscribe((role) => {
         this.usersResource.params.offset.set(0);
-        this.usersResource.params.role.set(this.mapRole(roleName));
+        this.usersResource.params.role.set(role ?? undefined);
       });
 
     effect(() => {
@@ -127,19 +142,21 @@ export class AppAdminUsersPageComponent {
         this.loaded.set(true);
       }
     });
+
+    effect(() => {
+      if (this.editUserFormState.touched()) {
+        this.confirm.markAsDirty();
+      }
+    });
   }
 
-  private mapRole(roleName: string | null | undefined): UserRole | undefined {
-    if (roleName === "Админ") return 3;
-    if (roleName === "Пользователь") return 0;
-    return undefined;
-  }
+  protected readonly stringifyRole = (role: UserRole): string =>
+    role === 3 ? "Админ" : "Пользователь";
 
   protected resetFilters() {
-    this.form.reset({ q: "", role: "Все роли" });
+    this.form.reset({ q: "", role: null });
     this.usersResource.params.q.set(undefined);
-    this.usersResource.params.role.set(this.mapRole("Все роли"));
-    this.usersResource.params.limit.set(10);
+    this.usersResource.params.role.set(undefined);
     this.usersResource.params.offset.set(0);
   }
 
@@ -149,14 +166,30 @@ export class AppAdminUsersPageComponent {
   }
 
   protected editUser(user: User) {
+    const confirm = this.confirm.withConfirm({
+      label: "Закрыть окно?",
+      data: { content: "Ваши изменения будут потеряны", yes: "Да", no: "Нет" },
+    });
+
+    const closable = this.editUserFormClosable.pipe(
+      switchMap((closable) => (closable ? confirm : of(false))),
+    );
+
     this.dialogs
       .open<User>(
         new PolymorpheusComponent(AppAdminUsersEditUserFormComponent),
         {
           label: "Редактирование пользователя",
           data: user,
+          closable,
+          dismissible: closable,
         },
       )
-      .subscribe();
+      .subscribe({
+        complete: () => {
+          this.confirm.markAsPristine();
+          this.editUserFormState.touched.set(false);
+        },
+      });
   }
 }

@@ -8,7 +8,9 @@
       @if (currentUserResource.value(); as currentUser) {
         <button
           type="button"
-          tuiAvatar="@tui.user"
+          [tuiAvatar]="
+            currentUser.role === 0 ? '@tui.user' : '@tui.shield-user'
+          "
           tuiDropdownRole="menu"
           tuiDropdownSheet="Меню"
           tuiDropdownAlign="end"
@@ -24,7 +26,9 @@
             <button
               type="button"
               tuiOption
-              iconStart="@tui.user"
+              [iconStart]="
+                currentUser.role === 0 ? '@tui.user' : '@tui.shield-user'
+              "
               (click)="userDropdownOpen.set(false)"
             >
               <span tuiTitle>

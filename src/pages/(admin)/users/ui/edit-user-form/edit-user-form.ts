@@ -9,7 +9,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  signal,
+  OnDestroy,
 } from "@angular/core";
 import {
   FormControl,
@@ -39,6 +39,7 @@ import {
 import { TuiForm } from "@taiga-ui/layout";
 import { injectContext } from "@taiga-ui/polymorpheus";
 import { lastValueFrom } from "rxjs";
+import { EDIT_USER_FORM_STATE } from "./state";
 
 @Component({
   templateUrl: "./edit-user-form.html",
@@ -62,17 +63,15 @@ import { lastValueFrom } from "rxjs";
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppAdminUsersEditUserFormComponent {
+export class AppAdminUsersEditUserFormComponent implements OnDestroy {
   private readonly userService = inject(UserService);
   private readonly usersResource = inject(USERS_RESOURCE);
   private readonly currentUserResource = inject(CURRENT_USER_RESOURCE);
   private readonly notifications = inject(TuiNotificationService);
-
+  protected readonly state = inject(EDIT_USER_FORM_STATE);
   protected readonly context = injectContext<TuiDialogContext<User, User>>();
-  protected readonly items = [0, 3];
 
-  protected readonly submitting = signal(false);
-  protected readonly serverError = signal<string | null>(null);
+  protected readonly items = [0, 3];
 
   protected readonly form = new FormGroup({
     name: new FormControl(this.context.data.name, {
@@ -93,6 +92,12 @@ export class AppAdminUsersEditUserFormComponent {
     }),
   });
 
+  constructor() {
+    this.form.valueChanges.subscribe(() => {
+      this.state.touched.set(true);
+    });
+  }
+
   protected readonly stringifyRole = (role: UserRole): string =>
     role === 3 ? "Админ" : "Пользователь";
 
@@ -102,8 +107,8 @@ export class AppAdminUsersEditUserFormComponent {
       return;
     }
 
-    this.submitting.set(true);
-    this.serverError.set(null);
+    this.state.error.set(null);
+    this.state.isLoading.set(true);
 
     try {
       const newUser = await lastValueFrom(
@@ -126,9 +131,13 @@ export class AppAdminUsersEditUserFormComponent {
 
       this.context.completeWith(newUser);
     } catch {
-      this.serverError.set("Произошла ошибка, попробуйте ещё раз");
+      this.state.error.set("Произошла ошибка, попробуйте ещё раз");
     } finally {
-      this.submitting.set(false);
+      this.state.isLoading.set(false);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.state.touched.set(false);
   }
 }

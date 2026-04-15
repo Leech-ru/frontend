@@ -1,17 +1,29 @@
 <form id="user-edit-form" tuiForm [formGroup]="form" (ngSubmit)="submit()">
   <tui-textfield [tuiTextfieldCleaner]="false">
-    <input tuiInput tuiAutoFocus placeholder="Имя" formControlName="name" />
+    <input
+      tuiInput
+      [readOnly]="this.state.isLoading()"
+      tuiAutoFocus
+      placeholder="Имя"
+      formControlName="name"
+    />
   </tui-textfield>
   <tui-error [formControl]="form.controls.name" />
 
   <tui-textfield [tuiTextfieldCleaner]="false">
-    <input tuiInput placeholder="Фамилия" formControlName="surname" />
+    <input
+      tuiInput
+      [readOnly]="this.state.isLoading()"
+      placeholder="Фамилия"
+      formControlName="surname"
+    />
   </tui-textfield>
   <tui-error [formControl]="form.controls.surname" />
 
   <tui-textfield [tuiTextfieldCleaner]="false">
     <input
       tuiInput
+      [readOnly]="this.state.isLoading()"
       placeholder="Адрес электронной почты"
       formControlName="email"
     />
@@ -24,7 +36,12 @@
     [tuiTextfieldCleaner]="false"
     tuiDropdownSheet="Выберите роль"
   >
-    <input tuiSelect formControlName="role" placeholder="Роль" />
+    <input
+      tuiSelect
+      [readOnly]="this.state.isLoading()"
+      formControlName="role"
+      placeholder="Роль"
+    />
     <tui-data-list-wrapper
       *tuiDropdown
       [itemContent]="stringifyRole | tuiStringifyContent"
@@ -33,7 +50,7 @@
   </tui-textfield>
   <tui-error [formControl]="form.controls.role" />
 
-  <tui-error [error]="serverError()" />
+  <tui-error [error]="state.error()" />
 </form>
 
 <footer>
@@ -41,6 +58,7 @@
     appearance="secondary"
     tuiButton
     type="button"
+    [disabled]="state.isLoading()"
     (click)="context.$implicit.complete()"
   >
     Закрыть
@@ -49,7 +67,7 @@
     form="user-edit-form"
     tuiButton
     type="submit"
-    [loading]="submitting()"
+    [loading]="state.isLoading()"
   >
     Сохранить
   </button>

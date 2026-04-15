@@ -10,11 +10,15 @@
       </tui-textfield>
       <tui-textfield
         tuiChevron
+        [stringify]="stringifyRole"
         tuiDropdownSheet="Выберите роль"
-        [tuiTextfieldCleaner]="false"
       >
         <input formControlName="role" placeholder="Роль" tuiSelect />
-        <tui-data-list-wrapper *tuiDropdown [items]="items" />
+        <tui-data-list-wrapper
+          *tuiDropdown
+          [itemContent]="stringifyRole | tuiStringifyContent"
+          [items]="items"
+        />
       </tui-textfield>
     </fieldset>
   </form>
@@ -25,7 +29,6 @@
     @for (user of users(); track user.id) {
       <button type="button" (click)="editUser(user)" tuiCell>
         <div
-          [appearance]="user.role === 0 ? '' : 'primary'"
           [tuiAvatar]="user.role === 0 ? '@tui.user' : '@tui.shield-user'"
           size="m"
           [tuiHint]="user.role === 0 ? 'Пользователь' : 'Админ'"
@@ -36,17 +39,13 @@
           {{ `${user.name} ${user.surname}` }}
           <span tuiSubtitle>{{ user.email }}</span>
         </div>
-
-        <div tuiSubtitle>
-          <tui-icon icon="@tui.chevron-right" />
-        </div>
       </button>
     } @empty {
       @if (loaded()) {
         <tui-block-status size="m">
           <div tuiAvatar="@tui.user-x" tuiSlot="top"></div>
 
-          <h4>Пользователи не найдены</h4>
+          <h4>Нет результатов</h4>
 
           Попробуйте изменить фильтры
 
