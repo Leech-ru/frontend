@@ -24,9 +24,7 @@
             <button
               type="button"
               tuiOption
-              [iconStart]="
-                currentUser.role === 0 ? '@tui.user' : '@tui.shield-user'
-              "
+              iconStart="@tui.user"
               (click)="userDropdownOpen.set(false)"
             >
               <span tuiTitle>
