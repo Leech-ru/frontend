@@ -8,7 +8,9 @@
       @if (currentUserResource.value(); as currentUser) {
         <button
           type="button"
-          tuiAvatar="@tui.user"
+          [tuiAvatar]="
+            `${currentUser.name} ${currentUser.surname}` | tuiInitials
+          "
           tuiDropdownRole="menu"
           tuiDropdownSheet="Меню"
           tuiDropdownAlign="end"

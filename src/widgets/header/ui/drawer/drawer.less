@@ -3,19 +3,27 @@ button {
 }
 
 tui-drawer {
-  top: 3.75rem;
-  animation-name: none !important;
+  top: 3.75rem !important;
+  opacity: 1 !important;
   border-radius: 0;
   box-shadow: none;
   inline-size: 100%;
   max-inline-size: 100dvw;
   border-top: 1px solid var(--tui-border-normal);
 
-  tui-data-list {
-    margin-inline: -1rem;
+  header {
+    box-shadow: none !important;
+    padding-bottom: 0 !important;
+  }
 
-    [tuiOption] {
-      padding: 0.75rem 1rem;
+  tui-data-list {
+    margin: -1rem -1.5rem;
+
+    tui-opt-group {
+      &::before,
+      [tuiOption] {
+        padding-inline: 1rem;
+      }
     }
   }
 }

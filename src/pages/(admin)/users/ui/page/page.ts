@@ -42,6 +42,7 @@ import {
   TuiConfirmService,
   TuiDataListWrapper,
   TuiFade,
+  TuiInitialsPipe,
   TuiSelect,
   TuiStringifyContentPipe,
 } from "@taiga-ui/kit";
@@ -75,6 +76,7 @@ import {
     TuiDropdownSheet,
     TuiFade,
     TuiHeader,
+    TuiInitialsPipe,
     TuiInput,
     TuiLoader,
     TuiSearch,

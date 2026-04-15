@@ -1,25 +1,24 @@
 <button
   tuiIconButton
-  appearance="flat-grayscale"
+  appearance="icon"
   [iconStart]="open() ? '@tui.x' : '@tui.menu'"
   size="m"
   type="button"
   (click)="open.update(open => !open)"
 >
-  Открыть навигацию
+  {{ open() ? "Закрыть навигацию" : "Открыть навигацию" }}
 </button>
 
-<tui-drawer *tuiPopup="open()">
+<tui-drawer *tuiPopup="open()" direction="start">
+  <header>
+    <h2 tuiHeader="body-l"><span tuiTitle>Навигация</span></h2>
+  </header>
   <tui-data-list>
-    @for (item of items; track item.routerLink) {
-      @let currentUser = currentUserResource.value();
-
-      @if (
-        !item.roles || (currentUser && item.roles.includes(currentUser.role))
-      ) {
+    <tui-opt-group label="Разделы">
+      @for (item of navigationItems(); track item.routerLink) {
         <a
           #rla="routerLinkActive"
-          [tuiAppearance]="rla.isActive ? 'flat' : 'initial'"
+          [tuiAppearance]="rla.isActive ? 'secondary' : ''"
           tuiOption
           [routerLink]="item.routerLink"
           routerLinkActive
@@ -30,6 +29,25 @@
           {{ item.label }}
         </a>
       }
+    </tui-opt-group>
+    @if (hasAdminAccess() && adminItems().length) {
+      <hr />
+      <tui-opt-group label="Администрация">
+        @for (item of adminItems(); track item.routerLink) {
+          <a
+            #rla="routerLinkActive"
+            [tuiAppearance]="rla.isActive ? 'secondary' : ''"
+            tuiOption
+            [routerLink]="item.routerLink"
+            routerLinkActive
+            [routerLinkActiveOptions]="{
+              exact: item.routerLink === '/' ? true : false,
+            }"
+          >
+            {{ item.label }}
+          </a>
+        }
+      </tui-opt-group>
     }
   </tui-data-list>
 </tui-drawer>

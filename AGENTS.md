@@ -212,6 +212,13 @@ By following these updated guidelines you will build modern Angular applications
 - Reactive and performant, thanks to signals
 - Clean and maintainable, thanks to best practices around TypeScript, state and architecture
 
+## Backend
+
+- **Repository**: https://github.com/leech-ru/backend
+- **OpenAPI spec**: https://raw.githubusercontent.com/leech-ru/backend/refs/heads/dev/docs/swagger.json
+
+When working with API endpoints, always reference the OpenAPI spec to ensure correct request/response types, HTTP methods, and endpoint paths.
+
 ## Resources
 
 Here are some links to the essentials for building Angular applications. Use these to get an understanding of how some

@@ -28,7 +28,10 @@
   <div tuiCardLarge="compact" appearance="outline">
     @for (user of users().items; track user.id) {
       <button type="button" (click)="editUser(user)" tuiCell>
-        <div tuiAvatar="@tui.user" size="m"></div>
+        <div
+          [tuiAvatar]="`${user.name} ${user.surname}` | tuiInitials"
+          size="m"
+        ></div>
         <div tuiTitle tuiFade>
           {{ `${user.name} ${user.surname}` }}
           <span tuiSubtitle>{{ user.email }}</span>
