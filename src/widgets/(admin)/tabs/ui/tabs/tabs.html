@@ -1,13 +1,39 @@
-<tui-tabs tuiFade>
+<tui-tabs [(activeItemIndex)]="activeItemIndex" tuiFade>
   <a
+    #tab
     tuiTab
-    routerLink="/admin/"
+    iconStart="@tui.info"
+    routerLink="/admin"
     routerLinkActive
     [routerLinkActiveOptions]="{ exact: true }"
   >
     Информация
   </a>
-  <a tuiTab routerLink="/admin/cosmetics" routerLinkActive>Косметика</a>
-  <a tuiTab routerLink="/admin/partners" routerLinkActive>Партнёры</a>
-  <a tuiTab routerLink="/admin/users" routerLinkActive>Пользователи</a>
+  <a
+    #tab
+    tuiTab
+    iconStart="@tui.store"
+    routerLink="/admin/cosmetics"
+    routerLinkActive
+  >
+    Косметика
+  </a>
+  <a
+    #tab
+    tuiTab
+    iconStart="@tui.handshake"
+    routerLink="/admin/partners"
+    routerLinkActive
+  >
+    Партнёры
+  </a>
+  <a
+    #tab
+    tuiTab
+    iconStart="@tui.users"
+    routerLink="/admin/users"
+    routerLinkActive
+  >
+    Пользователи
+  </a>
 </tui-tabs>

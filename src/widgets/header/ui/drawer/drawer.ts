@@ -12,10 +12,8 @@ import {
   TuiButton,
   TuiDataList,
   TuiPopup,
-  TuiTitle,
 } from "@taiga-ui/core";
 import { TuiDrawer } from "@taiga-ui/kit";
-import { TuiHeader } from "@taiga-ui/layout";
 import { NAVIGATION_ITEMS } from "../../config/navigation.config";
 
 @Component({
@@ -29,9 +27,7 @@ import { NAVIGATION_ITEMS } from "../../config/navigation.config";
     TuiButton,
     TuiDataList,
     TuiDrawer,
-    TuiHeader,
     TuiPopup,
-    TuiTitle,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
