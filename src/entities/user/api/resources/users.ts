@@ -8,21 +8,29 @@ export const USERS_RESOURCE = new InjectionToken("Users Resource", {
   factory: () => {
     const userService = inject(UserService);
 
-    const search = signal<string | undefined>(undefined);
+    const q = signal<string | undefined>(undefined);
     const role = signal<UserRole | undefined>(undefined);
+    const limit = signal(10);
+    const offset = signal(0);
 
     return Object.assign(
       resource({
-        params: () => ({ search: search(), role: role() }),
+        params: () => ({
+          q: q(),
+          role: role(),
+          limit: limit(),
+          offset: offset(),
+        }),
         loader: async ({ params }) => {
           try {
-            return await lastValueFrom(userService.getAll(params));
+            return (await lastValueFrom(userService.getAll(params))) ?? [];
           } catch {
             return null;
           }
         },
+        defaultValue: null,
       }),
-      { params: { search, role } },
+      { params: { q, role, limit, offset } },
     );
   },
 });

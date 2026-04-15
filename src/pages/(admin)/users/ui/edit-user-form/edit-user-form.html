@@ -1,0 +1,56 @@
+<form id="user-edit-form" tuiForm [formGroup]="form" (ngSubmit)="submit()">
+  <tui-textfield [tuiTextfieldCleaner]="false">
+    <input tuiInput tuiAutoFocus placeholder="Имя" formControlName="name" />
+  </tui-textfield>
+  <tui-error [formControl]="form.controls.name" />
+
+  <tui-textfield [tuiTextfieldCleaner]="false">
+    <input tuiInput placeholder="Фамилия" formControlName="surname" />
+  </tui-textfield>
+  <tui-error [formControl]="form.controls.surname" />
+
+  <tui-textfield [tuiTextfieldCleaner]="false">
+    <input
+      tuiInput
+      placeholder="Адрес электронной почты"
+      formControlName="email"
+    />
+  </tui-textfield>
+  <tui-error [formControl]="form.controls.email" />
+
+  <tui-textfield
+    tuiChevron
+    [stringify]="stringifyRole"
+    [tuiTextfieldCleaner]="false"
+    tuiDropdownSheet="Выберите роль"
+  >
+    <input tuiSelect formControlName="role" placeholder="Роль" />
+    <tui-data-list-wrapper
+      *tuiDropdown
+      [itemContent]="stringifyRole | tuiStringifyContent"
+      [items]="items"
+    ></tui-data-list-wrapper>
+  </tui-textfield>
+  <tui-error [formControl]="form.controls.role" />
+
+  <tui-error [error]="serverError()" />
+</form>
+
+<footer>
+  <button
+    appearance="secondary"
+    tuiButton
+    type="button"
+    (click)="context.$implicit.complete()"
+  >
+    Закрыть
+  </button>
+  <button
+    form="user-edit-form"
+    tuiButton
+    type="submit"
+    [loading]="submitting()"
+  >
+    Сохранить
+  </button>
+</footer>

@@ -8,13 +8,6 @@
   --app-header-z-index: 1;
 }
 
-.t-root-content {
-  display: flex;
-  min-height: 100dvh;
-  background: var(--tui-background-base-alt);
-  flex-direction: column;
-}
-
 html {
   touch-action: manipulation;
 }
@@ -25,6 +18,13 @@ body:has(tui-drawer) {
   tui-scroll-controls {
     display: none !important;
   }
+}
+
+.t-root-content {
+  display: flex;
+  min-height: 100dvh;
+  background: var(--tui-background-base-alt);
+  flex-direction: column;
 }
 
 // TODO: Taiga UI 5.0 пока не поддерживает Signal Forms, поэтому костыль

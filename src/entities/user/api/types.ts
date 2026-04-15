@@ -22,7 +22,16 @@ export interface UserRegisterRequest {
   password: string;
 }
 
+export interface UserPatchRequest {
+  name: string;
+  surname: string;
+  email: string;
+  role: UserRole;
+}
+
 export interface UserGetAllParams {
-  search?: string;
+  q?: string;
   role?: UserRole;
+  limit?: number;
+  offset?: number;
 }

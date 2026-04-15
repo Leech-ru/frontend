@@ -3,7 +3,9 @@ export { USERS_RESOURCE } from "./api/resources/users";
 export { UserService } from "./api/service";
 export type {
   User,
+  UserGetAllParams,
   UserLoginRequest,
+  UserPatchRequest,
   UserRegisterRequest,
   UserRole,
 } from "./api/types";

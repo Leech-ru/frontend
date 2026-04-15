@@ -4,6 +4,7 @@ import {
   User,
   UserGetAllParams,
   UserLoginRequest,
+  UserPatchRequest,
   UserRegisterRequest,
 } from "./types";
 
@@ -28,6 +29,18 @@ export class UserService {
 
   public get() {
     return this.client.get<User>(`${this.baseUrl}`, { withCredentials: true });
+  }
+
+  public getById(userId: string) {
+    return this.client.get<User>(`${this.baseUrl}/${userId}`, {
+      withCredentials: true,
+    });
+  }
+
+  public updateById(userId: string, body: UserPatchRequest) {
+    return this.client.patch<User>(`${this.baseUrl}/${userId}`, body, {
+      withCredentials: true,
+    });
   }
 
   public getAll(params: UserGetAllParams) {

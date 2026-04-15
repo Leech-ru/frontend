@@ -35,7 +35,10 @@
                 >
                   {{ `${currentUser.name} ${currentUser.surname}` }}
                   @if (currentUser.role == 2 || currentUser.role == 3) {
-                    <app-user-role-badge [role]="currentUser.role" />
+                    <app-user-role-badge
+                      [role]="currentUser.role"
+                      [style.margin-top.rem]="-0.125"
+                    />
                   }
                 </span>
                 <span tuiSubtitle tuiFade>

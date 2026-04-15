@@ -17,6 +17,7 @@ import {
 } from "@angular/router";
 import { provideTaiga } from "@taiga-ui/core";
 import { TUI_LANGUAGE, TUI_RUSSIAN_LANGUAGE } from "@taiga-ui/i18n";
+
 import { routes } from "./routes";
 
 export const browserConfig: ApplicationConfig = {
