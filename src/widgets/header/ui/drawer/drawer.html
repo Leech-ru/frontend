@@ -10,9 +10,6 @@
 </button>
 
 <tui-drawer *tuiPopup="open()" direction="start">
-  <header>
-    <h2 tuiHeader="body-l"><span tuiTitle>Навигация</span></h2>
-  </header>
   <tui-data-list>
     <tui-opt-group label="Разделы">
       @for (item of navigationItems(); track item.routerLink) {
