@@ -8,9 +8,7 @@
       @if (currentUserResource.value(); as currentUser) {
         <button
           type="button"
-          [tuiAvatar]="
-            currentUser.role === 0 ? '@tui.user' : '@tui.shield-user'
-          "
+          tuiAvatar="@tui.user"
           tuiDropdownRole="menu"
           tuiDropdownSheet="Меню"
           tuiDropdownAlign="end"
@@ -38,12 +36,10 @@
                   [style.justify-items]="'center'"
                 >
                   {{ `${currentUser.name} ${currentUser.surname}` }}
-                  @if (currentUser.role == 2 || currentUser.role == 3) {
-                    <app-user-role-badge
-                      [role]="currentUser.role"
-                      [style.margin-top.rem]="-0.125"
-                    />
-                  }
+                  <app-user-role-badge
+                    [role]="currentUser.role"
+                    [style.margin-top.rem]="-0.125"
+                  />
                 </span>
                 <span tuiSubtitle tuiFade>
                   {{ currentUser.email }}

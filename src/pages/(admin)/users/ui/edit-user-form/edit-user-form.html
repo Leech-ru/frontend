@@ -38,14 +38,14 @@
   >
     <input
       tuiSelect
-      [readOnly]="this.state.isLoading()"
+      [readOnly]="this.state.isLoading() || isOwnProfile"
       formControlName="role"
       placeholder="Роль"
     />
     <tui-data-list-wrapper
       *tuiDropdown
       [itemContent]="stringifyRole | tuiStringifyContent"
-      [items]="items"
+      [items]="roles"
     />
   </tui-textfield>
   <tui-error [formControl]="form.controls.role" />

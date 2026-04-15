@@ -1,6 +1,7 @@
 import {
   CURRENT_USER_RESOURCE,
   type User,
+  USER_ROLES,
   type UserRole,
   USERS_RESOURCE,
   UserService,
@@ -71,7 +72,10 @@ export class AppAdminUsersEditUserFormComponent implements OnDestroy {
   protected readonly state = inject(EDIT_USER_FORM_STATE);
   protected readonly context = injectContext<TuiDialogContext<User, User>>();
 
-  protected readonly items = [0, 3];
+  protected readonly roles = USER_ROLES;
+
+  protected readonly isOwnProfile =
+    this.context.data.id === this.currentUserResource.value()?.id;
 
   protected readonly form = new FormGroup({
     name: new FormControl(this.context.data.name, {
@@ -98,8 +102,15 @@ export class AppAdminUsersEditUserFormComponent implements OnDestroy {
     });
   }
 
+  private static readonly ROLE_NAMES: Record<UserRole, string> = {
+    0: "Пользователь",
+    1: "Модератор",
+    2: "Админ",
+    3: "Суперадмин",
+  };
+
   protected readonly stringifyRole = (role: UserRole): string =>
-    role === 3 ? "Админ" : "Пользователь";
+    AppAdminUsersEditUserFormComponent.ROLE_NAMES[role];
 
   protected async submit(): Promise<void> {
     if (this.form.invalid) {

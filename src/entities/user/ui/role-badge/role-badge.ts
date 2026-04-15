@@ -17,11 +17,27 @@ import { UserRole } from "../../api/types";
 export class AppUserRoleBadgeComponent {
   public readonly role = input.required<UserRole>();
 
-  protected readonly roleDisplayName = computed(() =>
-    this.role() === 0 ? "Пользователь" : "Админ",
+  private static readonly ROLE_NAMES: Record<UserRole, string> = {
+    0: "Пользователь",
+    1: "Модератор",
+    2: "Админ",
+    3: "Суперадмин",
+  };
+
+  protected readonly roleDisplayName = computed(
+    () => AppUserRoleBadgeComponent.ROLE_NAMES[this.role()],
   );
 
-  protected readonly badgeAppearance = computed(() =>
-    this.role() === 0 ? "" : "primary",
-  );
+  protected readonly badgeAppearance = computed(() => {
+    switch (this.role()) {
+      case 0:
+        return "info";
+      case 1:
+        return "positive";
+      case 2:
+        return "warning";
+      case 3:
+        return "negative";
+    }
+  });
 }

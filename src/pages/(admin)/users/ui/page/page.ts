@@ -1,4 +1,10 @@
-import { User, UserRole, USERS_RESOURCE } from "@/entities/user";
+import {
+  AppUserRoleBadgeComponent,
+  User,
+  USER_ROLES,
+  UserRole,
+  USERS_RESOURCE,
+} from "@/entities/user";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,7 +30,6 @@ import {
   TuiCell,
   TuiDialogService,
   TuiDropdown,
-  TuiHint,
   TuiInput,
   TuiLoader,
   TuiTextfield,
@@ -56,6 +61,7 @@ import {
   templateUrl: "page.html",
   styleUrl: "page.less",
   imports: [
+    AppUserRoleBadgeComponent,
     ReactiveFormsModule,
     TuiAvatar,
     TuiBlockStatusComponent,
@@ -68,7 +74,6 @@ import {
     TuiDropdownSheet,
     TuiFade,
     TuiHeader,
-    TuiHint,
     TuiInput,
     TuiLoader,
     TuiSearch,
@@ -118,7 +123,7 @@ export class AppAdminUsersPageComponent {
     role: new FormControl(null),
   });
 
-  protected readonly items = [0, 3];
+  protected readonly roles = USER_ROLES;
 
   constructor() {
     this.usersResource.reload();
@@ -150,8 +155,15 @@ export class AppAdminUsersPageComponent {
     });
   }
 
+  private static readonly ROLE_NAMES: Record<UserRole, string> = {
+    0: "Пользователь",
+    1: "Модератор",
+    2: "Админ",
+    3: "Суперадмин",
+  };
+
   protected readonly stringifyRole = (role: UserRole): string =>
-    role === 3 ? "Админ" : "Пользователь";
+    AppAdminUsersPageComponent.ROLE_NAMES[role];
 
   protected resetFilters() {
     this.form.reset({ q: "", role: null });

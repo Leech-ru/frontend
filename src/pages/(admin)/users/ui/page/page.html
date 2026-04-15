@@ -17,7 +17,7 @@
         <tui-data-list-wrapper
           *tuiDropdown
           [itemContent]="stringifyRole | tuiStringifyContent"
-          [items]="items"
+          [items]="roles"
         />
       </tui-textfield>
     </fieldset>
@@ -28,17 +28,12 @@
   <div tuiCardLarge="compact" appearance="outline">
     @for (user of users(); track user.id) {
       <button type="button" (click)="editUser(user)" tuiCell>
-        <div
-          [tuiAvatar]="user.role === 0 ? '@tui.user' : '@tui.shield-user'"
-          size="m"
-          [tuiHint]="user.role === 0 ? 'Пользователь' : 'Админ'"
-          tuiHintDirection="bottom"
-          tuiHintAppearance="floating"
-        ></div>
+        <div tuiAvatar="@tui.user" size="m"></div>
         <div tuiTitle tuiFade>
           {{ `${user.name} ${user.surname}` }}
           <span tuiSubtitle>{{ user.email }}</span>
         </div>
+        <app-user-role-badge [role]="user.role" />
       </button>
     } @empty {
       @if (loaded()) {
