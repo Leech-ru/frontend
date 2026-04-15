@@ -4,6 +4,7 @@ import {
   USER_ROLES,
   UserRole,
   USERS_RESOURCE,
+  UsersPagination,
 } from "@/entities/user";
 import {
   ChangeDetectionStrategy,
@@ -111,9 +112,23 @@ export class AppAdminUsersPageComponent {
 
   protected readonly usersResource = inject(USERS_RESOURCE);
 
-  protected readonly users = linkedSignal<User[] | null, User[]>({
+  protected readonly users = linkedSignal<
+    UsersPagination | null,
+    UsersPagination
+  >({
     source: () => this.usersResource.value(),
-    computation: (next, previous) => next ?? previous?.value ?? [],
+    computation: (next, previous) =>
+      next ??
+      previous?.value ?? {
+        items: [],
+        pagination: {
+          current_page: 0,
+          has_next: false,
+          has_previous: false,
+          total_items: 0,
+          total_pages: 0,
+        },
+      },
   });
 
   protected readonly loaded = signal(false);

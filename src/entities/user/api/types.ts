@@ -10,6 +10,19 @@ export interface User {
   role: UserRole;
 }
 
+export interface Pagination {
+  current_page: number;
+  has_next: boolean;
+  has_previous: boolean;
+  total_items: number;
+  total_pages: number;
+}
+
+export interface UsersPagination {
+  items: User[];
+  pagination: Pagination;
+}
+
 export interface UserLoginRequest {
   email: string;
   password: string;

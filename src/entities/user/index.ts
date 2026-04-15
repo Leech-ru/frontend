@@ -8,6 +8,7 @@ export type {
   UserPatchRequest,
   UserRegisterRequest,
   UserRole,
+  UsersPagination,
 } from "./api/types";
 export { USER_EMAIL_MAX_LENGTH, USER_EMAIL_MIN_LENGTH } from "./config/email";
 export { USER_NAME_MAX_LENGTH, USER_NAME_MIN_LENGTH } from "./config/name";

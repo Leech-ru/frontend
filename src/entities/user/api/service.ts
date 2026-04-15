@@ -6,6 +6,7 @@ import {
   UserLoginRequest,
   UserPatchRequest,
   UserRegisterRequest,
+  UsersPagination,
 } from "./types";
 
 @Injectable({ providedIn: "root" })
@@ -44,7 +45,7 @@ export class UserService {
   }
 
   public getAll(params: UserGetAllParams) {
-    return this.client.get<User[]>(`${this.baseUrl}/all`, {
+    return this.client.get<UsersPagination>(`${this.baseUrl}/all`, {
       withCredentials: true,
       params: JSON.parse(JSON.stringify(params)),
     });

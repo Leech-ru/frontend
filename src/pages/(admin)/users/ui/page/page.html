@@ -26,7 +26,7 @@
 
 <tui-loader [loading]="usersResource.isLoading()" [overlay]="true">
   <div tuiCardLarge="compact" appearance="outline">
-    @for (user of users(); track user.id) {
+    @for (user of users().items; track user.id) {
       <button type="button" (click)="editUser(user)" tuiCell>
         <div tuiAvatar="@tui.user" size="m"></div>
         <div tuiTitle tuiFade>
@@ -56,12 +56,12 @@
         </tui-block-status>
       }
     }
-    @if (users().length) {
+    @if (users().items.length) {
       <footer>
         <tui-table-pagination
           [page]="usersResource.params.offset() / usersResource.params.limit()"
           [size]="usersResource.params.limit()"
-          [total]="10"
+          [total]="users().pagination.total_items"
           [items]="[5, 10, 15, 30]"
           (paginationChange)="handlePagination($event)"
         />
