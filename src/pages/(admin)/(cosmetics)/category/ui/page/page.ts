@@ -8,6 +8,7 @@ import { AppCosmeticCategoryFormComponent } from "@/entities/cosmetic/ui/categor
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   inject,
   input,
   signal,
@@ -22,7 +23,6 @@ import {
   TuiDataList,
   TuiDialogService,
   TuiDropdown,
-  TuiInput,
   TuiOption,
   TuiTitle,
 } from "@taiga-ui/core";
@@ -61,7 +61,6 @@ interface CategoryFormData {
     TuiDropdown,
     TuiDropdownSheet,
     TuiHeader,
-    TuiInput,
     TuiOption,
     TuiTitle,
   ],
@@ -81,9 +80,15 @@ export class AppAdminCategoryPageComponent {
   private readonly categoriesResource = inject(CATEGORIES_RESOURCE);
 
   protected readonly category = input.required<CategoryDto>();
-  protected readonly isDeleting = signal(false);
   protected readonly openActions = signal(false);
   protected readonly notificationOpen = signal(false);
+  protected readonly loadedCategory = signal<CategoryDto | null>(null);
+
+  constructor() {
+    effect(() => {
+      this.loadedCategory.set(this.category());
+    });
+  }
 
   protected toggleActions() {
     this.openActions.update((open) => !open);
@@ -94,19 +99,27 @@ export class AppAdminCategoryPageComponent {
   }
 
   protected editCategory() {
+    const cat = this.loadedCategory();
+    if (!cat) return;
+
     this.dialogs
       .open<CategoryFormData>(
         new PolymorpheusComponent(AppCosmeticCategoryFormComponent),
         {
           label: "Редактирование категории",
           data: {
-            id: this.category().id,
-            name: this.category().name,
-            image_id: this.category().image_id,
+            id: cat.id,
+            name: cat.name,
+            image_id: cat.image_id,
           },
         },
       )
-      .subscribe();
+      .subscribe((result) => {
+        if (result) {
+          this.loadedCategory.set(result as unknown as CategoryDto);
+          this.categoriesResource.reload();
+        }
+      });
   }
 
   protected deleteCategory() {
@@ -134,11 +147,12 @@ export class AppAdminCategoryPageComponent {
   }
 
   private doDelete() {
+    const cat = this.loadedCategory();
+    if (!cat) return EMPTY;
+
     return this.notification.open("Удаление категории…").pipe(
       startWith(null),
-      switchMap(() =>
-        lastValueFrom(this.categoryService.delete(this.category().id)),
-      ),
+      switchMap(() => lastValueFrom(this.categoryService.delete(cat.id))),
       bufferTime(600),
       first(),
     );

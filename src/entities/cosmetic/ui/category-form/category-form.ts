@@ -28,7 +28,6 @@ import {
 import {
   TuiAvatar,
   TuiButtonLoading,
-  TuiFile,
   TuiFiles,
   TuiInputFiles,
 } from "@taiga-ui/kit";
@@ -52,7 +51,6 @@ interface CategoryFormData {
     TuiButton,
     TuiButtonLoading,
     TuiError,
-    TuiFile,
     TuiFiles,
     TuiInput,
     TuiInputFiles,
@@ -90,29 +88,13 @@ export class AppCosmeticCategoryFormComponent {
     }
 
     this.form.controls.file.valueChanges.subscribe((files) => {
-      const currentUrl = this.previewUrl();
-      if (currentUrl?.startsWith("blob:")) {
-        URL.revokeObjectURL(currentUrl);
-      }
-
       if (files && files instanceof File) {
         if (files.type.startsWith("image/")) {
           const url = URL.createObjectURL(files);
           this.previewUrl.set(url);
         }
-      } else {
-        this.previewUrl.set(
-          this.isEdit && this.context.data?.image_id
-            ? getImageUrlById(this.context.data.image_id)
-            : null,
-        );
       }
     });
-  }
-
-  protected getFileFromUrl(url: string): File {
-    const filename = url.split("/").pop() || "image";
-    return new File([], filename, { type: "image/jpeg" });
   }
 
   protected async submit(): Promise<void> {
@@ -141,11 +123,14 @@ export class AppCosmeticCategoryFormComponent {
       }
 
       if (this.isEdit && this.context.data?.id) {
+        const updateData: { name: string; image_id?: string } = { name };
+
+        if (this.form.value.file) {
+          updateData.image_id = imageId;
+        }
+
         await lastValueFrom(
-          this.categoryService.update(this.context.data.id, {
-            name,
-            image_id: imageId,
-          }),
+          this.categoryService.update(this.context.data.id, updateData),
         );
 
         this.notifications

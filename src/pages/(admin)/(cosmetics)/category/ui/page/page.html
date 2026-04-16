@@ -15,7 +15,7 @@
 </header>
 
 <header tuiHeader [style.margin-top.rem]="0.5">
-  <h1 tuiTitle>{{ category().name }}</h1>
+  <h1 tuiTitle>{{ loadedCategory()?.name }}</h1>
   <aside tuiAccessories>
     <button
       class="actions-button"
@@ -25,7 +25,7 @@
       iconStart="@tui.more-vertical"
       [tuiDropdown]="dropdownContent"
       [tuiDropdownManual]="openActions()"
-      tuiDropdownAlign="center"
+      tuiDropdownAlign="end"
       (click)="toggleActions()"
     ></button>
     <ng-template #dropdownContent>

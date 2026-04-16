@@ -17,22 +17,22 @@
         <div appearance="secondary" size="l" tuiAvatar="@tui.droplet"></div>
         <div>Отпустите для загрузки</div>
       } @else {
-        <div
-          appearance="secondary"
-          size="l"
-          tuiAvatar="@tui.cloud-upload"
-        ></div>
+        @if (previewUrl(); as url) {
+          <img [src]="url" alt="Превью" class="preview" />
+        } @else {
+          <div
+            appearance="secondary"
+            size="l"
+            tuiAvatar="@tui.cloud-upload"
+          ></div>
+        }
         <div>
           Перетащите изображение или <a tuiLink>нажмите для загрузки</a>
         </div>
-        <div>PNG, JPG, JPEG</div>
+        <div class="types">PNG, JPG, JPEG</div>
       }
     </ng-template>
   </label>
-
-  @if (previewUrl(); as url) {
-    <tui-file state="normal" [file]="getFileFromUrl(url)" />
-  }
 
   <tui-error [error]="error()" />
 </form>
