@@ -1,5 +1,10 @@
-export { CategoryService, CosmeticsService } from "./api/cosmetic.service";
+export {
+  CategoryService,
+  CosmeticsService,
+  type UploadImageResponse,
+} from "./api/cosmetic.service";
 export type {
+  CategoriesPagination,
   CategoryDto,
   CategoryFiltersDto,
   CosmeticDto,
@@ -11,6 +16,7 @@ export type {
   UpdateCosmeticsRequestDto,
 } from "./api/cosmetic.service.types";
 export { TEST_CATEGORY_CARDS } from "./api/mock";
+export { CATEGORIES_RESOURCE } from "./api/resources/categories";
 export { COSMETIC_CATEGORIES } from "./config/categories";
 export {
   getCategoriesCardsFromDto,
@@ -23,6 +29,6 @@ export type {
   CosmeticItemCard,
 } from "./model/cosmetics.model";
 export { getImageUrlById } from "./model/imagesUrl";
-export { CosmeticsStore } from "./store/cosmetic.store";
 export { AppCosmeticCategoryCardComponent } from "./ui/category";
+export { AppCosmeticCategoryFormComponent } from "./ui/category-form";
 export { AppCosmeticItemCardComponent } from "./ui/item";

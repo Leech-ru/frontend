@@ -3,14 +3,14 @@
   tuiCardLarge
   tuiHeader
   appearance="floating"
-  [routerLink]="['/cosmetics/categories', data().id]"
+  [routerLink]="routerLink()"
 >
   <h2 class="cosmetic-category-card__text" tuiTitle>
-    {{ data().name }}
+    {{ name() }}
   </h2>
   <aside>
     <div tuiAvatar size="xxl" appearance="accent">
-      <img [alt]="data().name" [src]="data().image_link" />
+      <img [alt]="name()" [src]="imageUrl()" />
     </div>
   </aside>
 </a>

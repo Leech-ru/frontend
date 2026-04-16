@@ -1,6 +1,8 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 import {
+  CategoriesPagination,
   CategoryDto,
   CategoryFiltersDto,
   CosmeticDto,
@@ -11,10 +13,23 @@ import {
   UpdateCosmeticsRequestDto,
 } from "./cosmetic.service.types";
 
+export interface UploadImageResponse {
+  id: string;
+}
+
 @Injectable({ providedIn: "root" })
 export class CosmeticsService {
   private readonly client = inject(HttpClient);
   private readonly baseUrl = `/api/v1/cosmetics`;
+  private readonly imageUrl = `/api/v1/image`;
+
+  public uploadImage(file: File): Observable<UploadImageResponse> {
+    const formData = new FormData();
+    formData.append("file", file);
+    return this.client.post<UploadImageResponse>(this.imageUrl, formData, {
+      withCredentials: true,
+    });
+  }
 
   public getAll(filters?: CosmeticsFiltersDto) {
     return this.client.get<CosmeticDto[]>(this.baseUrl, {
@@ -59,9 +74,18 @@ export class CosmeticsService {
 export class CategoryService {
   private readonly client = inject(HttpClient);
   private readonly baseUrl = `/api/v1/category`;
+  private readonly imageUrl = `/api/v1/image`;
+
+  public uploadImage(file: File): Observable<UploadImageResponse> {
+    const formData = new FormData();
+    formData.append("file", file);
+    return this.client.post<UploadImageResponse>(this.imageUrl, formData, {
+      withCredentials: true,
+    });
+  }
 
   public getAll(filters?: CategoryFiltersDto) {
-    return this.client.get<CategoryDto[]>(this.baseUrl, {
+    return this.client.get<CategoriesPagination>(this.baseUrl, {
       params: filters as HttpParams,
       withCredentials: true,
     });

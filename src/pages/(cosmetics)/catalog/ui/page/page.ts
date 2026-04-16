@@ -1,9 +1,10 @@
 import {
   AppCosmeticCategoryCardComponent,
-  TEST_CATEGORY_CARDS,
+  CATEGORIES_RESOURCE,
+  CategoriesPagination,
 } from "@/entities/cosmetic";
 import { AppHeroComponent } from "@/shared/ui";
-import { Component } from "@angular/core";
+import { Component, inject, linkedSignal } from "@angular/core";
 
 @Component({
   templateUrl: "page.html",
@@ -11,5 +12,24 @@ import { Component } from "@angular/core";
   imports: [AppHeroComponent, AppCosmeticCategoryCardComponent],
 })
 export class AppCosmeticsCatalogPageComponent {
-  protected readonly categories = TEST_CATEGORY_CARDS;
+  private readonly categoriesResource = inject(CATEGORIES_RESOURCE);
+
+  protected readonly categories = linkedSignal<
+    CategoriesPagination | null,
+    CategoriesPagination
+  >({
+    source: () => this.categoriesResource.value(),
+    computation: (next, previous) =>
+      next ??
+      previous?.value ?? {
+        items: [],
+        pagination: {
+          current_page: 0,
+          has_next: false,
+          has_previous: false,
+          total_items: 0,
+          total_pages: 0,
+        },
+      },
+  });
 }

@@ -1,0 +1,59 @@
+<form id="category-edit-form" tuiForm [formGroup]="form" (ngSubmit)="submit()">
+  <tui-textfield>
+    <input
+      tuiInput
+      [readOnly]="isLoading()"
+      tuiAutoFocus
+      placeholder="Название"
+      formControlName="name"
+    />
+  </tui-textfield>
+  <tui-error [formControl]="form.controls.name" />
+
+  <label tuiInputFiles>
+    <input tuiInputFiles accept="image/*" formControlName="file" />
+    <ng-template let-dragged>
+      @if (dragged) {
+        <div appearance="secondary" size="l" tuiAvatar="@tui.droplet"></div>
+        <div>Отпустите для загрузки</div>
+      } @else {
+        <div
+          appearance="secondary"
+          size="l"
+          tuiAvatar="@tui.cloud-upload"
+        ></div>
+        <div>
+          Перетащите изображение или <a tuiLink>нажмите для загрузки</a>
+        </div>
+        <div>PNG, JPG, JPEG</div>
+      }
+    </ng-template>
+  </label>
+
+  @if (previewUrl(); as url) {
+    <tui-file state="normal" [file]="getFileFromUrl(url)" />
+  }
+
+  <tui-error [error]="error()" />
+</form>
+
+<footer>
+  <button
+    appearance="secondary"
+    tuiButton
+    type="button"
+    [disabled]="isLoading()"
+    (click)="context.$implicit.complete()"
+  >
+    Закрыть
+  </button>
+  <button
+    form="category-edit-form"
+    tuiButton
+    tuiButtonLoading
+    type="submit"
+    [loading]="isLoading()"
+  >
+    {{ isEdit ? "Сохранить" : "Создать" }}
+  </button>
+</footer>

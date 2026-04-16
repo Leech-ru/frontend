@@ -1,0 +1,52 @@
+<header tuiHeader="h4">
+  <h1 tuiTitle>Категории</h1>
+  <aside tuiAccessories>
+    <button tuiButton type="button" (click)="createCategory()">Создать</button>
+  </aside>
+</header>
+
+<tui-loader [loading]="categoriesResource.isLoading()" [overlay]="true">
+  @if (categories().items.length) {
+    <div class="categories-grid">
+      @for (category of categories().items; track category.id) {
+        <app-cosmetics-category-card
+          [id]="category.id"
+          [name]="category.name"
+          [routerLink]="'/admin/cosmetics/categories/' + category.id"
+          [imageId]="category.image_id"
+        />
+      }
+    </div>
+    <footer>
+      <tui-table-pagination
+        [page]="
+          categoriesResource.params.offset() / categoriesResource.params.limit()
+        "
+        [size]="categoriesResource.params.limit()"
+        [total]="categories().pagination.total_items"
+        [items]="[12, 24, 48, 96]"
+        (paginationChange)="handlePagination($event)"
+      />
+    </footer>
+  } @else {
+    @if (loaded()) {
+      <tui-block-status [card]="true" class="card" size="m">
+        <div tuiAvatar="@tui.archive" tuiSlot="top"></div>
+
+        <h4>Нет категорий</h4>
+
+        Создайте первую категорию
+
+        <button
+          appearance="secondary"
+          tuiButton
+          type="button"
+          size="s"
+          (click)="createCategory()"
+        >
+          Создать категорию
+        </button></tui-block-status
+      >
+    }
+  }
+</tui-loader>

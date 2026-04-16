@@ -5,11 +5,14 @@
 
 <main class="cosmetic-category-list">
   <div role="list" class="list__grid">
-    @for (category of categories; track category.name) {
+    @for (category of categories().items; track category.id) {
       <app-cosmetics-category-card
         role="listitem"
         class="grid__element"
-        [data]="category"
+        [id]="category.id"
+        [name]="category.name"
+        [routerLink]="'/cosmetics/categories/' + category.id"
+        [imageId]="category.image_id"
       />
     }
   </div>

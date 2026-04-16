@@ -1,0 +1,55 @@
+<header tuiHeader>
+  <a
+    tuiButton
+    appearance="flat"
+    size="s"
+    iconStart="@tui.chevron-left"
+    routerLink="/admin/cosmetics"
+  >
+    Назад
+  </a>
+  <hr [style.opacity]="0" />
+  <aside tuiAccessories>
+    <button tuiButton>Создать товар</button>
+  </aside>
+</header>
+
+<header tuiHeader [style.margin-top.rem]="0.5">
+  <h1 tuiTitle>{{ category().name }}</h1>
+  <aside tuiAccessories>
+    <button
+      class="actions-button"
+      tuiButton
+      appearance="flat"
+      tuiDropdownSheet="Действия"
+      iconStart="@tui.more-vertical"
+      [tuiDropdown]="dropdownContent"
+      [tuiDropdownManual]="openActions()"
+      tuiDropdownAlign="center"
+      (click)="toggleActions()"
+    ></button>
+    <ng-template #dropdownContent>
+      <tui-data-list>
+        <button
+          tuiOption
+          iconStart="@tui.pencil"
+          (click)="editCategory(); closeActions()"
+        >
+          Редактировать
+        </button>
+        <button tuiOption iconStart="@tui.trash" (click)="deleteCategory()">
+          Удалить
+        </button>
+      </tui-data-list>
+    </ng-template>
+  </aside>
+</header>
+
+<tui-block-status [card]="true" class="card" size="m">
+  <div tuiAvatar="@tui.package" tuiSlot="top"></div>
+  <h4>Нет товаров</h4>
+  В этой категории пока нет товаров
+  <button appearance="secondary" tuiButton type="button" size="s">
+    Создать товар
+  </button>
+</tui-block-status>

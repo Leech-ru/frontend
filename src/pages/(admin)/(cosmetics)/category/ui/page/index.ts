@@ -1,0 +1,1 @@
+export { AppAdminCategoryPageComponent } from "./page";

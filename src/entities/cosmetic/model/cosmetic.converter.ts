@@ -36,11 +36,15 @@ export function getSelectedCosmeticFromDto(
 }
 
 export function getCategoriesCardsFromDto(
-  categoryDtoList: CategoryDto[],
+  categoryDtoList: CategoryDto[] | null,
 ): CosmeticCategoryCard[] {
+  if (!categoryDtoList || !Array.isArray(categoryDtoList)) {
+    return [];
+  }
   return categoryDtoList.map((categoryDto) => ({
     id: categoryDto.id,
     name: categoryDto.name,
-    image_link: "",
+    routerLink: `/cosmetics/categories/${categoryDto.id}`,
+    imageId: categoryDto.image_id,
   }));
 }

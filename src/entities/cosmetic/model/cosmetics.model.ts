@@ -26,5 +26,6 @@ export interface CosmeticItemCard {
 export interface CosmeticCategoryCard {
   id: string;
   name: string;
-  image_link: string;
+  routerLink: string;
+  imageId: string;
 }

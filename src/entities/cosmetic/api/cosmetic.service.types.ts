@@ -6,6 +6,20 @@ export interface Links {
 export interface CategoryDto {
   id: string;
   name: string;
+  image_id: string;
+}
+
+export interface Pagination {
+  current_page: number;
+  has_next: boolean;
+  has_previous: boolean;
+  total_items: number;
+  total_pages: number;
+}
+
+export interface CategoriesPagination {
+  items: CategoryDto[];
+  pagination: Pagination;
 }
 
 export interface CategoryFiltersDto {
@@ -15,11 +29,13 @@ export interface CategoryFiltersDto {
 
 export interface CreateCategoryRequestDto {
   name: string;
+  image_id: string;
 }
 
 export interface UpdateCategoryRequestDto {
   id: string;
   name?: string;
+  image_id?: string;
 }
 
 export interface CosmeticDto {
