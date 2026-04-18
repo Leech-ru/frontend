@@ -7,7 +7,8 @@
     "format": "prettier !package-lock.json --check --write --ignore-path .gitignore .",
     "prepare": "git config core.hooksPath ./scripts/git/hooks",
     "serve": "ng serve",
-    "start": "node dist/frontend/server/server.mjs"
+    "start": "node dist/frontend/server/server.mjs",
+    "typecheck": "ngc --noEmit"
   },
   "prettier": {
     "endOfLine": "lf",
