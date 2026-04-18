@@ -1,5 +1,6 @@
 #!/bin/sh
 
 npm run format
+npm run typecheck
 
 git update-index --again
