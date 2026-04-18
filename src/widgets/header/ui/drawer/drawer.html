@@ -4,7 +4,7 @@
   [iconStart]="open() ? '@tui.x' : '@tui.menu'"
   size="m"
   type="button"
-  (click)="open.update(open => !open)"
+  (click)="open.update((open) => !open)"
 >
   {{ open() ? "Закрыть навигацию" : "Открыть навигацию" }}
 </button>

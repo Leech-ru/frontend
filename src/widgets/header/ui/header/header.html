@@ -16,7 +16,7 @@
           tuiDropdownAlign="end"
           [tuiDropdown]="dropdownContent"
           [tuiDropdownManual]="userDropdownOpen()"
-          (click)="userDropdownOpen.update(open => !open)"
+          (click)="userDropdownOpen.update((open) => !open)"
           (tuiActiveZoneChange)="!isMobile && userDropdownOpen.set(false)"
           [attr.aria-expanded]="userDropdownOpen()"
         ></button>
