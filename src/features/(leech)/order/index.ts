@@ -1,11 +1,11 @@
-export { OrderService } from "./api/order.service";
+export { OrderService } from "./api/service";
 export type {
   CreateOrderRequest,
   CustomerInfo,
   Order,
   OrderDetails,
   PackageType,
-} from "./api/order.service.types";
+} from "./api/types";
 export {
   LEECH_ORDER_COMMENT_MAX_LENGTH,
   LEECH_ORDER_FORM_VALUE_LOCAL_STORAGE_KEY,
@@ -19,5 +19,4 @@ export {
   saveLeechOrderFormValue,
 } from "./model/storage";
 export type { LeechOrderPackage } from "./model/types";
-export { OrderStore } from "./store/order.store";
 export { AppLeechOrderFormComponent } from "./ui/form";

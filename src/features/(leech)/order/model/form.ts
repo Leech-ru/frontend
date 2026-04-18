@@ -125,7 +125,6 @@ export class LeechOrderForm {
 
   public submit(): void {
     this.submitted.set(true);
-    console.log(this.group.value);
   }
 
   public reset(): void {

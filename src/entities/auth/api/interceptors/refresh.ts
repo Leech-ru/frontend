@@ -6,9 +6,9 @@ import {
 } from "@angular/common/http";
 import { inject, PLATFORM_ID } from "@angular/core";
 import { catchError, switchMap, throwError } from "rxjs";
-import { AuthService } from "./service";
+import { AuthService } from "../service";
 
-export const authInterceptor: HttpInterceptorFn = (request, next) => {
+export const authRefreshInterceptor: HttpInterceptorFn = (request, next) => {
   const auth = inject(AuthService);
   const platformId = inject(PLATFORM_ID);
   const isServer = isPlatformServer(platformId);

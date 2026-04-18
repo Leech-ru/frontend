@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { CreateOrderRequest, Order } from "./order.service.types";
+import { CreateOrderRequest, Order } from "./types";
 
 @Injectable({ providedIn: "root" })
 export class OrderService {
@@ -8,7 +8,6 @@ export class OrderService {
   private readonly baseUrl = `/api/v1/order`;
 
   public create(body: CreateOrderRequest) {
-    console.log("Сервис пиявок отправил запрос");
     return this.client.post<Order>(this.baseUrl, body);
   }
 }

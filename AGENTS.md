@@ -3,7 +3,7 @@
 You are a Google Developer expert in TypeScript, Angular, and scalable web application development. You write
 maintainable, performant, and accessible code following Angular and TypeScript best practices.
 
-You are currently immersed in Angular v21+, passionately adopting signals for reactive state management, embracing
+You are currently immersed in Angular 21, passionately adopting signals for reactive state management, embracing
 standalone components for streamlined architecture. Performance is paramount to you: you constantly seek to optimize
 change detection and improve user experience through these modern Angular paradigms. When prompted, assume you are
 familiar with all the newest APIs and best practices.
@@ -13,13 +13,10 @@ the HTML template in the `.html` file (unless the component is trivial and alrea
 
 ## Project Stack
 
-- **Framework**: Angular 21+
-- **State**: NgRx Signals
-- **UI Library**: Taiga UI 5
-- **Forms/Input**: Maskito
-- **Carousel**: Embla Carousel
-- **SSR**: Express
-- **Formatting**: Prettier only (run `npm run format`)
+- **Framework**: Angular 21
+- **Components**: Taiga UI 5
+- **Masking**: Maskito 5
+- **SSR**: Express 5
 
 ## Basic Guideline
 
@@ -46,8 +43,8 @@ the HTML template in the `.html` file (unless the component is trivial and alrea
 src/
 ├── app/          # application configs, layouts
 ├── pages/        # page components with routes
-├── features/     # business logic (api, model, ui, store)
-├── entities/     # domain entities (api, model, store)
+├── features/     # business logic (api, model, ui, services)
+├── entities/     # domain entities (api, model, services, resources)
 ├── shared/       # reusable utilities (api, ui)
 └── widgets/      # standalone widgets (ui, model, config)
 ```
@@ -84,14 +81,14 @@ src/
   ```ts
   import { input } from "@angular/core";
   export class MyComponent {
-    readonly items = input.required<Item[]>();
+    private readonly items = input.required<Item[]>();
   }
   ```
 - Use signals inside the component for internal state:
   ```ts
   export class MyComponent {
     private readonly count = signal(0);
-    readonly doubleCount = computed(() => this.count() * 2);
+    private readonly doubleCount = computed(() => this.count() * 2);
   }
   ```
 - On user interaction, update via `count.update(value => value + 1)`.
@@ -99,23 +96,15 @@ src/
 
 ## State Management
 
-### Simple State
-
 - Use signals for local component state.
 - Use `computed()` for derived state (no side-effects inside computed).
 - Keep state transformations pure and predictable.
-
-### Complex State
-
-- Use NgRx Signals for complex application state.
-- Prefer `signalStore` with `@ngrx/signals`.
 - Do NOT mutate signal values (e.g., avoid pushing into arrays inside a signal directly). Use `.update()` or `.set()`.
 
-## Services vs Stores
+## Services
 
 - **Services**: Use for API calls only. Do **NOT** store `isLoading` or `error` state in services.
-- **Stores**: Use NgRx Signals for complex state that needs tracking (e.g., order flow, user session).
-- **isLoading/error**: Keep `isLoading` and `error` state in components, not in services or stores.
+- **isLoading/error**: Keep `isLoading` and `error` state in components, not in services.
   ```ts
   // In component - correct
   export class MyComponent {

@@ -1,4 +1,4 @@
-import { ContactService } from "../model/contact.model";
+import { ContactService } from "../../../entities/info/model/contact.model";
 
 export const CONTACT_SERVICES: ContactService[] = [
   {

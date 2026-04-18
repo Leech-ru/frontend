@@ -45,8 +45,6 @@
     "@maskito/phone": "^5.2.2",
     "@ng-web-apis/platform": "^5.2.0",
     "@ng-web-apis/universal": "^5.2.0",
-    "@ngrx/operators": "^21.1.0",
-    "@ngrx/signals": "^21.1.0",
     "@taiga-ui/addon-commerce": "^5.1.0",
     "@taiga-ui/addon-mobile": "^5.1.0",
     "@taiga-ui/addon-table": "^5.1.0",

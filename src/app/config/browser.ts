@@ -1,4 +1,4 @@
-import { authInterceptor } from "@/entities/auth";
+import { authRefreshInterceptor } from "@/entities/auth";
 import {
   provideHttpClient,
   withFetch,
@@ -28,7 +28,7 @@ export const browserConfig: ApplicationConfig = {
       withInMemoryScrolling({ scrollPositionRestoration: "top" }),
       withComponentInputBinding(),
     ),
-    provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([authRefreshInterceptor])),
     provideClientHydration(withEventReplay()),
     provideTaiga({ mode: "light" }),
     {

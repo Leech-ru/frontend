@@ -22,15 +22,14 @@ import {
   TuiElasticContainer,
   TuiHeader,
 } from "@taiga-ui/layout";
-import { CreateOrderRequest, PackageType } from "../../api/order.service.types";
+import { CreateOrderRequest, PackageType } from "../../api/types";
 import { LEECH_ORDER_MIN_COUNT } from "../../config";
+import { FormStepper } from "../../lib";
 import { LeechOrderForm } from "../../model/form";
-import { OrderStore } from "../../store/order.store";
 import { AppLeechOrderFormStepsContactComponent } from "../steps/contact";
 import { AppLeechOrderFormStepsFinishComponent } from "../steps/finish";
 import { AppLeechOrderFormStepsLeechComponent } from "../steps/leech";
 import { AppLeechOrderFormStepsPackageComponent } from "../steps/package";
-import { FormStepper } from "../../lib";
 
 const NEED_PLURAR_RULES_RU: Record<Intl.LDMLPluralRule, string> = {
   zero: "Необходима",
@@ -125,7 +124,6 @@ export class AppLeechOrderFormComponent {
       next: () => this.router.navigateByUrl("/"),
     },
   ]);
-  private readonly store = inject(OrderStore);
 
   public constructor() {
     if (this.form.submitted()) {
@@ -195,6 +193,5 @@ export class AppLeechOrderFormComponent {
           ?.value as unknown as PackageType,
       },
     };
-    this.store.create(data);
   }
 }
