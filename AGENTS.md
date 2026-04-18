@@ -35,6 +35,11 @@ the HTML template in the `.html` file (unless the component is trivial and alrea
   variables).
 - Use aliases from `tsconfig.json` instead of deep relative imports.
 
+## package.json
+
+- Put packages in `dependencies` if they are imported in `/src`.
+- Put packages in `devDependencies` if they are not imported in `/src`.
+
 ## Architecture
 
 ### Folder Structure
