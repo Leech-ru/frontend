@@ -11,6 +11,7 @@
       "@/*": ["./src/*"]
     },
     "rootDir": ".",
+    "types": ["@angular/localize"],
     "importHelpers": true,
     "esModuleInterop": true,
     "isolatedModules": true,

@@ -11,7 +11,7 @@ export const routes: Routes = [
     children: [
       {
         path: "",
-        title: "Главная",
+        title: $localize`Главная`,
         loadComponent: () => import("@/pages/home"),
       },
       {

@@ -6,11 +6,18 @@
       "projectType": "application",
       "root": "",
       "sourceRoot": "src",
+      "i18n": {
+        "sourceLocale": "ru",
+        "locales": {
+          "en": "src/shared/i18n/locales/messages.en.xlf"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular/build:application",
           "options": {
             "outputPath": "dist/frontend",
+            "localize": ["ru", "en"],
             "index": "src/app/index.html",
             "browser": "src/app/entry.browser.ts",
             "tsConfig": "tsconfig.json",
@@ -37,7 +44,8 @@
             "prerender": true,
             "ssr": {
               "entry": "src/app/entry.ssr.ts"
-            }
+            },
+            "polyfills": ["@angular/localize/init"]
           },
           "configurations": {
             "production": {
@@ -46,6 +54,12 @@
             "development": {
               "optimization": false,
               "sourceMap": true
+            },
+            "ru": {
+              "localize": ["ru"]
+            },
+            "en": {
+              "localize": ["en"]
             }
           },
           "defaultConfiguration": "production"
@@ -58,12 +72,24 @@
             },
             "development": {
               "buildTarget": "frontend:build:development"
+            },
+            "ru": {
+              "buildTarget": "frontend:build:development,ru"
+            },
+            "en": {
+              "buildTarget": "frontend:build:development,en"
             }
           },
           "options": {
             "proxyConfig": "src/app/proxy.ts"
           },
           "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular/build:extract-i18n",
+          "options": {
+            "outputPath": "src/shared/i18n/locales"
+          }
         }
       }
     }

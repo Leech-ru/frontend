@@ -1,8 +1,48 @@
 {
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "ru.*"
+        }
+      ],
+      "permanent": false,
+      "destination": "/ru"
+    },
+    {
+      "source": "/",
+      "permanent": false,
+      "destination": "/en"
+    }
+  ],
   "rewrites": [
     {
       "source": "/api/:path*",
       "destination": "https://xn--80abcjepbp1bfe2q.xn--p1ai/api/:path*"
+    },
+    {
+      "source": "/ru/:file(.*\\..*)",
+      "destination": "/browser/ru/:file"
+    },
+    {
+      "source": "/en/:file(.*\\..*)",
+      "destination": "/browser/en/:file"
+    },
+    {
+      "source": "/ru/:path*",
+      "destination": "/server/ru/main.js"
+    },
+    {
+      "source": "/en/:path*",
+      "destination": "/server/en/main.js"
+    },
+    {
+      "source": "/((?!ru|en|api).*)",
+      "destination": "/ru/$1"
     }
-  ]
+  ],
+  "trailingSlash": false
 }

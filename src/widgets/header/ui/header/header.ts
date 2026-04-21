@@ -3,27 +3,29 @@ import {
   CURRENT_USER_RESOURCE,
 } from "@/entities/user";
 import { LogoutService } from "@/features/(auth)/logout";
-import { isPlatformServer } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
-  computed,
   inject,
   OnDestroy,
   output,
-  PLATFORM_ID,
   signal,
 } from "@angular/core";
-import { RouterOutlet } from "@angular/router";
+import { RouterLinkWithHref, RouterOutlet } from "@angular/router";
 import { WA_IS_MOBILE } from "@ng-web-apis/platform";
 import { TuiDropdownSheet } from "@taiga-ui/addon-mobile";
 import { TuiActiveZone } from "@taiga-ui/cdk";
-import { TuiDataList, TuiDropdown, TuiTitle } from "@taiga-ui/core";
-import { TuiAvatar, TuiFade, TuiInitialsPipe } from "@taiga-ui/kit";
+import { TuiButton, TuiDataList, TuiDropdown, TuiTitle } from "@taiga-ui/core";
+import { TuiCountryIsoCode } from "@taiga-ui/i18n";
+import {
+  TuiAvatar,
+  TuiFade,
+  TuiFlagPipe,
+  TuiInitialsPipe,
+} from "@taiga-ui/kit";
 import { AppHeaderDrawerComponent } from "../drawer";
 import { AppHeaderLogoComponent } from "../logo";
 import { AppHeaderNavigationComponent } from "../navigation";
-import { AppHeaderNavigationItemComponent } from "../navigation/item";
 
 @Component({
   selector: "sheet-spy",
@@ -46,16 +48,18 @@ export class SheetSpy implements OnDestroy {
     AppHeaderDrawerComponent,
     AppHeaderLogoComponent,
     AppHeaderNavigationComponent,
-    AppHeaderNavigationItemComponent,
     AppUserRoleBadgeComponent,
+    RouterLinkWithHref,
     RouterOutlet,
     SheetSpy,
     TuiActiveZone,
     TuiAvatar,
+    TuiButton,
     TuiDataList,
     TuiDropdown,
     TuiDropdownSheet,
     TuiFade,
+    TuiFlagPipe,
     TuiInitialsPipe,
     TuiTitle,
   ],
@@ -65,9 +69,10 @@ export class AppHeaderComponent {
   protected readonly logoutService = inject(LogoutService);
   protected readonly currentUserResource = inject(CURRENT_USER_RESOURCE);
   protected readonly isMobile = inject(WA_IS_MOBILE);
-  protected readonly platformId = inject(PLATFORM_ID);
-  protected readonly isServer = computed(() =>
-    isPlatformServer(this.platformId),
-  );
+  protected readonly languages = [
+    { code: "RU" satisfies TuiCountryIsoCode, name: "Русский", path: "/ru/" },
+    { code: "GB" satisfies TuiCountryIsoCode, name: "English", path: "/en/" },
+  ];
+  protected readonly langDropdownOpen = signal(false);
   protected readonly userDropdownOpen = signal(false);
 }

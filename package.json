@@ -6,8 +6,8 @@
     "build": "ng build",
     "format": "prettier !package-lock.json --check --write --ignore-path .gitignore .",
     "prepare": "git config core.hooksPath ./scripts/git/hooks",
-    "serve": "ng serve",
-    "start": "node dist/frontend/server/server.mjs",
+    "serve:ru": "ng serve --configuration=ru",
+    "serve:en": "ng serve --configuration=en",
     "typecheck": "ngc --noEmit"
   },
   "prettier": {
@@ -57,6 +57,7 @@
   "devDependencies": {
     "@angular/build": "21.2.7",
     "@angular/cli": "21.2.7",
+    "@angular/localize": "21.2.9",
     "@types/express": "5.0.6",
     "@types/node": "24",
     "less": "4.6.4",

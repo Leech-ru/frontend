@@ -2,12 +2,16 @@ import { APP_BASE_HREF } from "@angular/common";
 import { CommonEngine, isMainModule } from "@angular/ssr/node";
 import { provideLocation, provideUserAgent } from "@ng-web-apis/universal";
 import express from "express";
-import { dirname, join, resolve } from "node:path";
+import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import bootstrap from "./entry.server";
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
-const browserDistFolder = resolve(serverDistFolder, "../browser");
+const browserDistFolder = resolve(
+  serverDistFolder,
+  "../../browser",
+  basename(serverDistFolder),
+);
 const indexHtml = join(serverDistFolder, "index.server.html");
 
 const app = express();
@@ -41,8 +45,8 @@ app.get("*all", async (request, response, next) => {
     });
 
     response.send(html);
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 });
 

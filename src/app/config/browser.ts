@@ -4,7 +4,7 @@ import {
   withFetch,
   withInterceptors,
 } from "@angular/common/http";
-import { ApplicationConfig, signal } from "@angular/core";
+import { ApplicationConfig, inject, LOCALE_ID, signal } from "@angular/core";
 import {
   provideClientHydration,
   withEventReplay,
@@ -16,8 +16,11 @@ import {
   withRouterConfig,
 } from "@angular/router";
 import { provideTaiga } from "@taiga-ui/core";
-import { TUI_LANGUAGE, TUI_RUSSIAN_LANGUAGE } from "@taiga-ui/i18n";
-
+import {
+  TUI_ENGLISH_LANGUAGE,
+  TUI_LANGUAGE,
+  TUI_RUSSIAN_LANGUAGE,
+} from "@taiga-ui/i18n";
 import { routes } from "./routes";
 
 export const browserConfig: ApplicationConfig = {
@@ -33,7 +36,12 @@ export const browserConfig: ApplicationConfig = {
     provideTaiga({ mode: "light" }),
     {
       provide: TUI_LANGUAGE,
-      useValue: signal(TUI_RUSSIAN_LANGUAGE),
+      useFactory: () =>
+        signal(
+          inject(LOCALE_ID).startsWith("ru")
+            ? TUI_RUSSIAN_LANGUAGE
+            : TUI_ENGLISH_LANGUAGE,
+        ),
     },
   ],
 };
