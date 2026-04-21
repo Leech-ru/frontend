@@ -48,8 +48,8 @@ interface CategoryFormData {
       provide: TUI_TABLE_PAGINATION_TEXTS,
       useValue: signal({
         linesPerPage: undefined,
-        of: "из",
-        pages: "Страниц",
+        of: $localize`из`,
+        pages: $localize`Страниц`,
       }),
     },
     {
@@ -100,7 +100,7 @@ export class AppAdminCategoriesPageComponent {
       .open<CategoryFormData>(
         new PolymorpheusComponent(AppCosmeticCategoryFormComponent),
         {
-          label: "Создание категории",
+          label: $localize`Создание категории`,
           data: { name: "", image_id: undefined },
         },
       )

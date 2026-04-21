@@ -7,15 +7,22 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
+  LOCALE_ID,
   OnDestroy,
   output,
   signal,
 } from "@angular/core";
-import { RouterLinkWithHref, RouterOutlet } from "@angular/router";
+import { Router, RouterLinkWithHref, RouterOutlet } from "@angular/router";
 import { WA_IS_MOBILE } from "@ng-web-apis/platform";
 import { TuiDropdownSheet } from "@taiga-ui/addon-mobile";
 import { TuiActiveZone } from "@taiga-ui/cdk";
-import { TuiButton, TuiDataList, TuiDropdown, TuiTitle } from "@taiga-ui/core";
+import {
+  TuiAppearance,
+  TuiButton,
+  TuiDataList,
+  TuiDropdown,
+  TuiTitle,
+} from "@taiga-ui/core";
 import { TuiCountryIsoCode } from "@taiga-ui/i18n";
 import {
   TuiAvatar,
@@ -53,6 +60,7 @@ export class SheetSpy implements OnDestroy {
     RouterOutlet,
     SheetSpy,
     TuiActiveZone,
+    TuiAppearance,
     TuiAvatar,
     TuiButton,
     TuiDataList,
@@ -66,13 +74,24 @@ export class SheetSpy implements OnDestroy {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppHeaderComponent {
+  protected readonly router = inject(Router);
+  protected readonly locale = inject(LOCALE_ID);
   protected readonly logoutService = inject(LogoutService);
   protected readonly currentUserResource = inject(CURRENT_USER_RESOURCE);
   protected readonly isMobile = inject(WA_IS_MOBILE);
   protected readonly languages = [
-    { code: "RU" satisfies TuiCountryIsoCode, name: "Русский", path: "/ru/" },
-    { code: "GB" satisfies TuiCountryIsoCode, name: "English", path: "/en/" },
+    { flag: "RU" satisfies TuiCountryIsoCode, name: "Русский", code: "ru" },
+    { flag: "GB" satisfies TuiCountryIsoCode, name: "English", code: "en" },
   ];
   protected readonly langDropdownOpen = signal(false);
   protected readonly userDropdownOpen = signal(false);
+
+  protected getLanguagePath(code: string): string {
+    const path = this.router.url.replace(/^\/(?:ru|en)\/?/, "");
+    return `/${code}${path}`;
+  }
+
+  protected isCurrentLanguage(code: string): boolean {
+    return this.locale === code;
+  }
 }

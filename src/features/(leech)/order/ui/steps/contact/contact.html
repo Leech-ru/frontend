@@ -1,7 +1,12 @@
 <form tuiForm="l" [formGroup]="form.group">
   <ng-container formGroupName="contact">
     <tui-textfield>
-      <input formControlName="name" placeholder="ФИО" tuiInput />
+      <input
+        formControlName="name"
+        placeholder="ФИО"
+        i18n-placeholder
+        tuiInput
+      />
     </tui-textfield>
     <tui-error formControlName="name" />
 
@@ -9,6 +14,7 @@
       <input
         formControlName="phone"
         placeholder="Номер телефона"
+        i18n-placeholder
         tuiInputPhone
         mask="+7 (###) ###-##-##"
       />
@@ -19,13 +25,19 @@
       <input
         formControlName="email"
         placeholder="Адрес электронной почты"
+        i18n-placeholder
         tuiInput
       />
     </tui-textfield>
     <tui-error formControlName="email" />
 
     <tui-textfield>
-      <input formControlName="address" placeholder="Адрес доставки" tuiInput />
+      <input
+        formControlName="address"
+        placeholder="Адрес доставки"
+        i18n-placeholder
+        tuiInput
+      />
     </tui-textfield>
     <tui-error formControlName="address" />
 
@@ -33,6 +45,7 @@
       <textarea
         formControlName="comment"
         placeholder="Комментарии"
+        i18n-placeholder
         tuiTextarea
         [min]="3"
         [max]="6"
@@ -43,7 +56,7 @@
 
     <label>
       <input type="checkbox" size="s" tuiCheckbox formControlName="agreement" />
-      <span class="tui-text_body-s">
+      <span i18n class="tui-text_body-s">
         Я даю согласие на обработку своих персональных данных и соглашаюсь с
         <a tuiLink href="#">политикой конфиденциальности</a>
       </span>

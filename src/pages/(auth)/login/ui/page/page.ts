@@ -48,8 +48,7 @@ export class AppLoginPageComponent {
   private readonly loginService = inject(LoginService);
 
   private readonly serverErrorMap: Record<number, string> = {
-    [HttpStatusCode.Unauthorized]:
-      "Неверный адрес электронной почты или пароль",
+    [HttpStatusCode.Unauthorized]: $localize`Неверный адрес электронной почты или пароль`,
   };
 
   protected readonly form = form(
@@ -72,7 +71,7 @@ export class AppLoginPageComponent {
               message:
                 error instanceof HttpErrorResponse
                   ? this.serverErrorMap[error.status]
-                  : "Произошла неизвестная ошибка, попробуйте ещё раз",
+                  : $localize`Произошла неизвестная ошибка, попробуйте ещё раз`,
             };
           }
           return null;

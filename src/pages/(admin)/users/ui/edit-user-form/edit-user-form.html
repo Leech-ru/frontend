@@ -5,6 +5,7 @@
       [readOnly]="this.state.isLoading()"
       tuiAutoFocus
       placeholder="Имя"
+      i18n-placeholder
       formControlName="name"
     />
   </tui-textfield>
@@ -15,6 +16,7 @@
       tuiInput
       [readOnly]="this.state.isLoading()"
       placeholder="Фамилия"
+      i18n-placeholder
       formControlName="surname"
     />
   </tui-textfield>
@@ -25,6 +27,7 @@
       tuiInput
       [readOnly]="this.state.isLoading()"
       placeholder="Адрес электронной почты"
+      i18n-placeholder
       formControlName="email"
     />
   </tui-textfield>
@@ -35,12 +38,14 @@
     [stringify]="stringifyRole"
     [tuiTextfieldCleaner]="false"
     tuiDropdownSheet="Выберите роль"
+    i18n-tuiDropdownSheet
   >
     <input
       tuiSelect
       [readOnly]="this.state.isLoading() || isOwnProfile"
       formControlName="role"
       placeholder="Роль"
+      i18n-placeholder
     />
     <tui-data-list-wrapper
       *tuiDropdown
@@ -61,7 +66,7 @@
     [disabled]="state.isLoading()"
     (click)="context.$implicit.complete()"
   >
-    Закрыть
+    <span i18n>Закрыть</span>
   </button>
   <button
     form="user-edit-form"
@@ -69,6 +74,6 @@
     type="submit"
     [loading]="state.isLoading()"
   >
-    Сохранить
+    <span i18n>Сохранить</span>
   </button>
 </footer>

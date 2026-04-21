@@ -106,7 +106,7 @@ export class AppAdminCategoryPageComponent {
       .open<CategoryFormData>(
         new PolymorpheusComponent(AppCosmeticCategoryFormComponent),
         {
-          label: "Редактирование категории",
+          label: $localize`Редактирование категории`,
           data: {
             id: cat.id,
             name: cat.name,
@@ -126,14 +126,14 @@ export class AppAdminCategoryPageComponent {
     this.closeActions();
 
     const confirmData: TuiConfirmData = {
-      content: "Вы уверены, что хотите удалить эту категорию?",
-      yes: "Удалить",
-      no: "Отмена",
+      content: $localize`Вы уверены, что хотите удалить эту категорию?`,
+      yes: $localize`Удалить`,
+      no: $localize`Отмена`,
     };
 
     this.dialogs
       .open<boolean>(TUI_CONFIRM, {
-        label: "Удалить категорию?",
+        label: $localize`Удалить категорию?`,
         size: "s",
         data: confirmData,
       })
@@ -150,7 +150,7 @@ export class AppAdminCategoryPageComponent {
     const cat = this.loadedCategory();
     if (!cat) return EMPTY;
 
-    return this.notification.open("Удаление категории…").pipe(
+    return this.notification.open($localize`Удаление категории…`).pipe(
       startWith(null),
       switchMap(() => lastValueFrom(this.categoryService.delete(cat.id))),
       bufferTime(600),

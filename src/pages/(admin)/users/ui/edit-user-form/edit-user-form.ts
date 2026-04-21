@@ -103,10 +103,10 @@ export class AppAdminUsersEditUserFormComponent implements OnDestroy {
   }
 
   private static readonly ROLE_NAMES: Record<UserRole, string> = {
-    0: "Пользователь",
-    1: "Модератор",
-    2: "Админ",
-    3: "Суперадмин",
+    0: $localize`Пользователь`,
+    1: $localize`Модератор`,
+    2: $localize`Админ`,
+    3: $localize`Суперадмин`,
   };
 
   protected readonly stringifyRole = (role: UserRole): string =>
@@ -130,7 +130,7 @@ export class AppAdminUsersEditUserFormComponent implements OnDestroy {
       );
 
       this.notifications
-        .open<number>("Пользователь отредактирован!", {
+        .open<number>($localize`Пользователь отредактирован!`, {
           appearance: "positive",
           block: "end",
           inline: "end",
@@ -142,7 +142,7 @@ export class AppAdminUsersEditUserFormComponent implements OnDestroy {
 
       this.context.completeWith(newUser);
     } catch {
-      this.state.error.set("Произошла ошибка, попробуйте ещё раз");
+      this.state.error.set($localize`Произошла ошибка, попробуйте ещё раз`);
     } finally {
       this.state.isLoading.set(false);
     }

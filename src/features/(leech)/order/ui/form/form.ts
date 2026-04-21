@@ -32,22 +32,24 @@ import { AppLeechOrderFormStepsLeechComponent } from "../steps/leech";
 import { AppLeechOrderFormStepsPackageComponent } from "../steps/package";
 
 const NEED_PLURAR_RULES_RU: Record<Intl.LDMLPluralRule, string> = {
-  zero: "Необходима",
-  one: "Необходима",
-  two: "Необходимо",
-  few: "Необходимо",
-  many: "Необходимо",
-  other: "Необходимо",
+  zero: $localize`Необходима`,
+  one: $localize`Необходима`,
+  two: $localize`Необходимо`,
+  few: $localize`Необходимо`,
+  many: $localize`Необходимо`,
+  other: $localize`Необходимо`,
 };
 
 const LEECH_PLURAR_RULES_RU: Record<Intl.LDMLPluralRule, string> = {
-  zero: "пиявок",
-  one: "пиявка",
-  two: "пиявки",
-  few: "пиявки",
-  many: "пиявок",
-  other: "пиявок",
+  zero: $localize`пиявок`,
+  one: $localize`пиявка`,
+  two: $localize`пиявки`,
+  few: $localize`пиявки`,
+  many: $localize`пиявок`,
+  other: $localize`пиявок`,
 };
+
+const STILL_NEED_LABEL = $localize`ещё`;
 
 @Component({
   selector: "app-leech-order-form",
@@ -79,10 +81,10 @@ export class AppLeechOrderFormComponent {
   protected readonly plurarRulesRu = new Intl.PluralRules("ru");
   protected readonly stepper = new FormStepper([
     {
-      title: "Выбор пиявок",
-      description: "Сроки доставки уточняйте у менеджера",
+      title: $localize`Выбор пиявок`,
+      description: $localize`Сроки доставки уточняйте у менеджера`,
       control: this.form.leech,
-      backLabel: "Назад",
+      backLabel: $localize`Назад`,
       nextLabel: () => {
         const remains = LEECH_ORDER_MIN_COUNT - this.form.count;
         const remainsLDMLPluralRule = this.plurarRulesRu.select(remains);
@@ -90,37 +92,35 @@ export class AppLeechOrderFormComponent {
         const remainsLeechWord = LEECH_PLURAR_RULES_RU[remainsLDMLPluralRule];
 
         return this.form.count < LEECH_ORDER_MIN_COUNT
-          ? `${remainsNeedWord} ещё ${remains} ${remainsLeechWord}`
-          : "Далее";
+          ? `${remainsNeedWord} ${STILL_NEED_LABEL} ${remains} ${remainsLeechWord}`
+          : $localize`Далее`;
       },
       back: () => this.router.navigateByUrl("/"),
     },
     {
-      title: "Выбор упаковки",
-      description: "Стоимость упаковок уточняйте у менеджера",
+      title: $localize`Выбор упаковки`,
+      description: $localize`Стоимость упаковок уточняйте у менеджера`,
       control: this.form.package,
-      backLabel: "Назад",
-      nextLabel: "Далее",
+      backLabel: $localize`Назад`,
+      nextLabel: $localize`Далее`,
     },
     {
-      title: "Контактная информация",
-      description:
-        "Подтверждение и уточнение заказа производится менеджером по телефону или электронной почте",
+      title: $localize`Контактная информация`,
+      description: $localize`Подтверждение и уточнение заказа производится менеджером по телефону или электронной почте`,
       control: this.form.contact,
-      backLabel: "Назад",
+      backLabel: $localize`Назад`,
       nextLabel: () =>
-        `Оформить заказ на ${tuiFormatNumber(this.form.price)} ${tuiFormatCurrency(TuiCurrency.Ruble)}`,
+        $localize`Оформить заказ на ${tuiFormatNumber(this.form.price)} ₽`,
       next: () => {
         this.form.submit();
         this.stepper.next();
       },
     },
     {
-      title: "Заказ успешно оформлен",
-      description:
-        "Обработка заказов осуществляется с понедельника по пятницу с 08:30 до 17:00.",
-      backLabel: "Назад",
-      nextLabel: "Вернуться на главную",
+      title: $localize`Заказ успешно оформлен`,
+      description: $localize`Обработка заказов осуществляется с понедельника по пятницу с 08:30 до 17:00.`,
+      backLabel: $localize`Назад`,
+      nextLabel: $localize`Вернуться на главную`,
       next: () => this.router.navigateByUrl("/"),
     },
   ]);

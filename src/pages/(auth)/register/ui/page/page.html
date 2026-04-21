@@ -1,10 +1,10 @@
 <form [formRoot]="form" tuiForm>
   <header tuiHeader>
     <h2 tuiTitle>
-      Регистрация
+      <span i18n>Регистрация</span>
       <span tuiSubtitle>
-        Создайте новый аккаунт или
-        <a routerLink="/login" tuiLink>войдите</a>
+        <span i18n>Создайте новый аккаунт или </span>
+        <a routerLink="/login" tuiLink i18n>войдите</a>
       </span>
     </h2>
   </header>
@@ -14,6 +14,7 @@
       tuiInput
       tuiAutoFocus
       placeholder="Имя"
+      i18n-placeholder
       autocomplete="given-name"
       [formField]="form.name"
     />
@@ -28,6 +29,7 @@
     <input
       tuiInput
       placeholder="Фамилия"
+      i18n-placeholder
       autocomplete="family-name"
       [formField]="form.surname"
     />
@@ -44,6 +46,7 @@
     <input
       tuiInput
       placeholder="Адрес электронной почты"
+      i18n-placeholder
       autocomplete="email"
       [formField]="form.email"
     />
@@ -61,6 +64,7 @@
       tuiInput
       type="password"
       placeholder="Пароль"
+      i18n-placeholder
       autocomplete="new-password"
       [formField]="form.password"
     />
@@ -78,7 +82,7 @@
 
   <footer>
     <button tuiButton type="submit" [loading]="form().submitting()">
-      Зарегистрироваться
+      <span i18n>Зарегистрироваться</span>
     </button>
   </footer>
 </form>

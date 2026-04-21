@@ -19,6 +19,11 @@ export class AppAdminTabsComponent {
   protected readonly activeItemIndex = signal(0);
   protected readonly tabs = viewChildren<ElementRef<HTMLElement>>("tab");
 
+  protected readonly infoLabel = $localize`Информация`;
+  protected readonly cosmeticsLabel = $localize`Косметика`;
+  protected readonly partnersLabel = $localize`Партнёры`;
+  protected readonly usersLabel = $localize`Пользователи`;
+
   constructor() {
     effect(() => {
       const index = this.activeItemIndex();

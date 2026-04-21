@@ -5,6 +5,7 @@
       [readOnly]="isLoading()"
       tuiAutoFocus
       placeholder="Название"
+      i18n-placeholder
       formControlName="name"
     />
   </tui-textfield>
@@ -15,10 +16,10 @@
     <ng-template let-dragged>
       @if (dragged) {
         <div appearance="secondary" size="l" tuiAvatar="@tui.droplet"></div>
-        <div>Отпустите для загрузки</div>
+        <div i18n>Отпустите для загрузки</div>
       } @else {
         @if (previewUrl(); as url) {
-          <img [src]="url" alt="Превью" class="preview" />
+          <img [src]="url" alt="Превью" i18n-alt class="preview" />
         } @else {
           <div
             appearance="secondary"
@@ -27,7 +28,9 @@
           ></div>
         }
         <div>
-          Перетащите изображение или <a tuiLink>нажмите для загрузки</a>
+          <span i18n>Перетащите изображение или</span>
+          {{ " " }}
+          <a tuiLink i18n>нажмите для загрузки</a>
         </div>
         <div class="types">PNG, JPG, JPEG</div>
       }
@@ -45,7 +48,7 @@
     [disabled]="isLoading()"
     (click)="context.$implicit.complete()"
   >
-    Закрыть
+    <span i18n>Закрыть</span>
   </button>
   <button
     form="category-edit-form"
@@ -54,6 +57,6 @@
     type="submit"
     [loading]="isLoading()"
   >
-    {{ isEdit ? "Сохранить" : "Создать" }}
+    {{ isEdit ? saveLabel : createLabel }}
   </button>
 </footer>

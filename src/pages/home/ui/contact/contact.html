@@ -1,35 +1,35 @@
 <section aria-labelledby="contactHeading" class="app-contact">
-  <h2 id="contactHeading" class="tui-space_top-0 tui-space_bottom-4">
+  <h2 id="contactHeading" i18n class="tui-space_top-0 tui-space_bottom-4">
     Контакты
   </h2>
 
   <ul class="app-contact__quick">
     <li>
-      <strong>АДРЕС</strong>
+      <strong i18n>АДРЕС</strong>
       <span>
         140140, Московская область, г. Раменское, д.п. Удельная, ул.
         Октябрьская, 40
       </span>
-      <a tuiLink href="http://maps.yandex.ru/-/CRC9NdT" target="_blank">
+      <a i18n tuiLink href="http://maps.yandex.ru/-/CRC9NdT" target="_blank">
         Открыть схему проезда
       </a>
     </li>
     <li>
-      <strong>15 минут</strong>
+      <strong i18n>15 минут</strong>
       <span>
-        пешком от
+        <span i18n>пешком от </span>
         <a tuiLink href="https://yandex.ru/maps/-/CHRAMGIY" target="_blank">
           железнодорожной станции Удельная
         </a>
       </span>
-      <a tuiLink href="https://youtu.be/33MGx5DUGKc" target="_blank">
+      <a i18n tuiLink href="https://youtu.be/33MGx5DUGKc" target="_blank">
         Открыть пеший маршрут
       </a>
     </li>
   </ul>
 
   <iframe
-    src="https://yandex.ru/map-widget/v1/?ll=38.049671%2C55.643261&z=17"
+    [src]="mapUrl()"
     width="100%"
     [height]="breakpoint() === 'mobile' ? 320 : 480"
     frameborder="0"

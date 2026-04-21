@@ -7,7 +7,7 @@
     routerLinkActive
     [routerLinkActiveOptions]="{ exact: true }"
   >
-    Информация
+    {{ infoLabel }}
   </a>
   <a
     #tab
@@ -16,7 +16,7 @@
     routerLink="/admin/cosmetics"
     routerLinkActive
   >
-    Косметика
+    {{ cosmeticsLabel }}
   </a>
   <a
     #tab
@@ -25,7 +25,7 @@
     routerLink="/admin/partners"
     routerLinkActive
   >
-    Партнёры
+    {{ partnersLabel }}
   </a>
   <a
     #tab
@@ -34,6 +34,6 @@
     routerLink="/admin/users"
     routerLinkActive
   >
-    Пользователи
+    {{ usersLabel }}
   </a>
 </tui-tabs>

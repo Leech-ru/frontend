@@ -1,16 +1,18 @@
 <app-hero
   heading="О центре"
+  i18n-heading
   description="«Международный Центр Медицинской Пиявки» (International Medical Leech Centre) создан на базе образованного в 1937 г. объединения «Медпиявка», которое занималось содержанием пиявок в искусственных прудах дачного поселка Удельная (Московская область)"
+  i18n-description
 />
 
 <section class="app-about-photo">
-  <h2 [style.font]="'var(--tui-typography-heading-h3)'">Фотографии</h2>
+  <h2 i18n [style.font]="'var(--tui-typography-heading-h3)'">Фотографии</h2>
   <app-gallery [items]="gallery" />
 </section>
 
 <section class="app-about-document">
   <header>
-    <h2 [style.font]="'var(--tui-typography-heading-h3)'">Документы</h2>
+    <h2 i18n [style.font]="'var(--tui-typography-heading-h3)'">Документы</h2>
   </header>
 
   <div class="app-about-document-list">
@@ -29,7 +31,7 @@
           </aside>
         </header>
         <footer>
-          <span tuiAppearance="flat">Открыть документ</span>
+          <span i18n tuiAppearance="flat">Открыть документ</span>
         </footer>
       </a>
     }

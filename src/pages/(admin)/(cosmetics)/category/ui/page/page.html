@@ -6,11 +6,11 @@
     iconStart="@tui.chevron-left"
     routerLink="/admin/cosmetics"
   >
-    Назад
+    <span i18n>Назад</span>
   </a>
   <hr [style.opacity]="0" />
   <aside tuiAccessories>
-    <button tuiButton>Создать товар</button>
+    <button tuiButton type="button"><span i18n>Создать товар</span></button>
   </aside>
 </header>
 
@@ -22,6 +22,7 @@
       tuiButton
       appearance="flat"
       tuiDropdownSheet="Действия"
+      i18n-tuiDropdownSheet
       iconStart="@tui.more-vertical"
       [tuiDropdown]="dropdownContent"
       [tuiDropdownManual]="openActions()"
@@ -35,10 +36,10 @@
           iconStart="@tui.pencil"
           (click)="editCategory(); closeActions()"
         >
-          Редактировать
+          <span i18n>Редактировать</span>
         </button>
         <button tuiOption iconStart="@tui.trash" (click)="deleteCategory()">
-          Удалить
+          <span i18n>Удалить</span>
         </button>
       </tui-data-list>
     </ng-template>
@@ -47,9 +48,9 @@
 
 <tui-block-status [card]="true" class="card" size="m">
   <div tuiAvatar="@tui.package" tuiSlot="top"></div>
-  <h4>Нет товаров</h4>
-  В этой категории пока нет товаров
+  <h4 i18n>Нет товаров</h4>
+  <span i18n>В этой категории пока нет товаров</span>
   <button appearance="secondary" tuiButton type="button" size="s">
-    Создать товар
+    <span i18n>Создать товар</span>
   </button>
 </tui-block-status>

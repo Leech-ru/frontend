@@ -3,40 +3,40 @@ import { FooterContent } from "../model/footer.model";
 export const FOOTER_CONTENT: FooterContent = {
   sections: [
     {
-      title: "Пиявки",
+      title: $localize`Пиявки`,
       items: [
         {
-          title: "Заказать пиявок",
+          title: $localize`Заказать пиявок`,
           routerLink: "/leech/order",
         },
         {
-          title: "О пиявках",
+          title: $localize`О пиявках`,
           routerLink: "/leech/about",
         },
       ],
     },
     {
-      title: "Косметика",
+      title: $localize`Косметика`,
       items: [
         {
-          title: "Каталог косметики",
+          title: $localize`Каталог косметики`,
           routerLink: "/cosmetics",
         },
         {
-          title: "Где купить косметику?",
+          title: $localize`Где купить косметику?`,
           routerLink: "/cosmetics/buy",
         },
       ],
     },
     {
-      title: "О нас",
+      title: $localize`О нас`,
       items: [
         {
-          title: "Информация",
+          title: $localize`Информация`,
           routerLink: "/about",
         },
         {
-          title: "Экскурсии",
+          title: $localize`Экскурсии`,
           routerLink: "/",
         },
       ],

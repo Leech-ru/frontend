@@ -91,8 +91,8 @@ import {
       provide: TUI_TABLE_PAGINATION_TEXTS,
       useValue: signal({
         linesPerPage: undefined,
-        of: "из",
-        pages: "Страниц",
+        of: $localize`из`,
+        pages: $localize`Страниц`,
       }),
     },
     TuiConfirmService,
@@ -173,10 +173,10 @@ export class AppAdminUsersPageComponent {
   }
 
   private static readonly ROLE_NAMES: Record<UserRole, string> = {
-    0: "Пользователь",
-    1: "Модератор",
-    2: "Админ",
-    3: "Суперадмин",
+    0: $localize`Пользователь`,
+    1: $localize`Модератор`,
+    2: $localize`Админ`,
+    3: $localize`Суперадмин`,
   };
 
   protected readonly stringifyRole = (role: UserRole): string =>
@@ -196,8 +196,12 @@ export class AppAdminUsersPageComponent {
 
   protected editUser(user: User) {
     const confirm = this.confirm.withConfirm({
-      label: "Закрыть окно?",
-      data: { content: "Ваши изменения будут потеряны", yes: "Да", no: "Нет" },
+      label: $localize`Закрыть окно?`,
+      data: {
+        content: $localize`Ваши изменения будут потеряны`,
+        yes: $localize`Да`,
+        no: $localize`Нет`,
+      },
     });
 
     const closable = this.editUserFormClosable.pipe(
@@ -208,7 +212,7 @@ export class AppAdminUsersPageComponent {
       .open<User>(
         new PolymorpheusComponent(AppAdminUsersEditUserFormComponent),
         {
-          label: "Редактирование пользователя",
+          label: $localize`Редактирование пользователя`,
           data: user,
           closable,
           dismissible: closable,

@@ -6,12 +6,12 @@
   type="button"
   (click)="open.update((open) => !open)"
 >
-  {{ open() ? "Закрыть навигацию" : "Открыть навигацию" }}
+  {{ open() ? closeNavLabel : openNavLabel }}
 </button>
 
 <tui-drawer *tuiPopup="open()" direction="start">
   <tui-data-list>
-    <tui-opt-group label="Разделы">
+    <tui-opt-group [label]="sectionsLabel">
       @for (item of navigationItems(); track item.routerLink) {
         <a
           #rla="routerLinkActive"
@@ -29,7 +29,7 @@
     </tui-opt-group>
     @if (hasAdminAccess() && adminItems().length) {
       <hr />
-      <tui-opt-group label="Администрация">
+      <tui-opt-group [label]="adminLabel">
         @for (item of adminItems(); track item.routerLink) {
           <a
             #rla="routerLinkActive"

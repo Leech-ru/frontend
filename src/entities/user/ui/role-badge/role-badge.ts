@@ -18,10 +18,10 @@ export class AppUserRoleBadgeComponent {
   public readonly role = input.required<UserRole>();
 
   private static readonly ROLE_NAMES: Record<UserRole, string> = {
-    0: "Пользователь",
-    1: "Модератор",
-    2: "Админ",
-    3: "Суперадмин",
+    0: $localize`Пользователь`,
+    1: $localize`Модератор`,
+    2: $localize`Админ`,
+    3: $localize`Суперадмин`,
   };
 
   protected readonly roleDisplayName = computed(

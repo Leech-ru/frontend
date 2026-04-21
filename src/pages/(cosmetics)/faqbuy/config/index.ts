@@ -4,9 +4,8 @@ export type { ContactService, ContactServiceLink } from "@/entities/info";
 export const BUY_CONTACTS: ContactService[] = [
   {
     icon: "@tui.scroll-text",
-    heading: "Международный Центр Пиявки",
-    description:
-      "Московская область, г. Раменское, д.п. Удельная, ул. Октябрьская, 40",
+    heading: $localize`Международный Центр Пиявки`,
+    description: $localize`Московская область, г. Раменское, д.п. Удельная, ул. Октябрьская, 40`,
     links: [
       {
         label: "(495) 744-26-50",
@@ -29,8 +28,8 @@ export const BUY_CONTACTS: ContactService[] = [
   },
   {
     icon: "@tui.info",
-    heading: "ООО «Аптечный край»",
-    description: "г. Москва, ул. Дм. Ульянова д. 24",
+    heading: $localize`ООО «Аптечный край»`,
+    description: $localize`г. Москва, ул. Дм. Ульянова д. 24`,
     links: [
       {
         label: "+7-963-932-50-83",
@@ -40,23 +39,23 @@ export const BUY_CONTACTS: ContactService[] = [
   },
   {
     icon: "@tui.info",
-    heading: "Медтехно.ру",
-    description: "г. Москва, ул. Краснодонская, 39",
+    heading: $localize`Медтехно.ру`,
+    description: $localize`г. Москва, ул. Краснодонская, 39`,
     links: [
       {
         label: "+7-495-255-78-00",
         href: "tel:+7-495-255-78-00",
       },
       {
-        label: "Сайт",
+        label: $localize`Сайт`,
         href: "https://www.medtehno.ru/contacts/#shops",
       },
     ],
   },
   {
     icon: "@tui.info",
-    heading: "ООО «Юнитек»",
-    description: "656066, г. Барнаул, ул. Малахова 177е",
+    heading: $localize`ООО «Юнитек»`,
+    description: $localize`656066, г. Барнаул, ул. Малахова 177е`,
     links: [
       {
         label: "+7-495-255-78-00",
@@ -66,8 +65,8 @@ export const BUY_CONTACTS: ContactService[] = [
   },
   {
     icon: "@tui.info",
-    heading: "ИП Сафронов Кирилл Сергеевич",
-    description: "Доступно на ozon и wildberries",
+    heading: $localize`ИП Сафронов Кирилл Сергеевич`,
+    description: $localize`Доступно на ozon и wildberries`,
     links: [
       {
         label: "OZON Dr.Nikonov",

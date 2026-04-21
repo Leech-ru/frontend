@@ -8,5 +8,5 @@ import {
 export const userName = <TPathKind extends PathKind = PathKind.Root>(
   path: SchemaPath<string, SchemaPathRules.Supported, TPathKind>,
 ) => {
-  required(path, { message: "Введите имя" });
+  required(path, { message: $localize`Введите имя` });
 };

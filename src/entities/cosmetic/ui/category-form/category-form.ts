@@ -74,6 +74,9 @@ export class AppCosmeticCategoryFormComponent {
 
   protected readonly isEdit = !!this.context.data?.id;
 
+  protected readonly saveLabel = $localize`Сохранить`;
+  protected readonly createLabel = $localize`Создать`;
+
   protected readonly form = new FormGroup({
     name: new FormControl(this.context.data?.name ?? "", {
       nonNullable: true,
@@ -104,7 +107,7 @@ export class AppCosmeticCategoryFormComponent {
     }
 
     if (!this.isEdit && !this.form.value.file) {
-      this.error.set("Выберите изображение");
+      this.error.set($localize`Выберите изображение`);
       return;
     }
 
@@ -134,7 +137,7 @@ export class AppCosmeticCategoryFormComponent {
         );
 
         this.notifications
-          .open("Категория изменена!", {
+          .open($localize`Категория изменена!`, {
             appearance: "positive",
             block: "end",
             inline: "end",
@@ -146,7 +149,7 @@ export class AppCosmeticCategoryFormComponent {
         );
 
         this.notifications
-          .open("Категория создана!", {
+          .open($localize`Категория создана!`, {
             appearance: "positive",
             block: "end",
             inline: "end",
@@ -161,7 +164,7 @@ export class AppCosmeticCategoryFormComponent {
         image_id: imageId,
       });
     } catch {
-      this.error.set("Произошла ошибка, попробуйте ещё раз");
+      this.error.set($localize`Произошла ошибка, попробуйте ещё раз`);
     } finally {
       this.isLoading.set(false);
     }

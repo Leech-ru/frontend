@@ -1,19 +1,30 @@
 <header tuiHeader="h4">
-  <h1 tuiTitle>Пользователи</h1>
+  <h1 tuiTitle i18n>Пользователи</h1>
 </header>
 
 <search tuiSearch>
   <form [formGroup]="form">
     <fieldset tuiTextfieldSize="m">
       <tui-textfield iconStart="@tui.search">
-        <input formControlName="q" placeholder="Поиск" tuiInput />
+        <input
+          formControlName="q"
+          placeholder="Поиск"
+          i18n-placeholder
+          tuiInput
+        />
       </tui-textfield>
       <tui-textfield
         tuiChevron
         [stringify]="stringifyRole"
         tuiDropdownSheet="Выберите роль"
+        i18n-tuiDropdownSheet
       >
-        <input formControlName="role" placeholder="Роль" tuiSelect />
+        <input
+          formControlName="role"
+          placeholder="Роль"
+          i18n-placeholder
+          tuiSelect
+        />
         <tui-data-list-wrapper
           *tuiDropdown
           [itemContent]="stringifyRole | tuiStringifyContent"
@@ -43,9 +54,9 @@
         <tui-block-status size="m">
           <div tuiAvatar="@tui.user-x" tuiSlot="top"></div>
 
-          <h4>Нет результатов</h4>
+          <h4 i18n>Нет результатов</h4>
 
-          Попробуйте изменить фильтры
+          <span i18n>Попробуйте изменить фильтры</span>
 
           <button
             appearance="secondary"
@@ -54,7 +65,7 @@
             size="s"
             (click)="resetFilters()"
           >
-            Сбросить фильтры
+            <span i18n>Сбросить фильтры</span>
           </button>
         </tui-block-status>
       }

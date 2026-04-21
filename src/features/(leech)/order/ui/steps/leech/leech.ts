@@ -48,7 +48,7 @@ export class AppLeechOrderFormStepsLeechComponent {
 
   protected readonly items = [
     {
-      title: "Малые пиявки",
+      title: $localize`Малые пиявки`,
       price: LEECH_SMALL_PRICE,
       sizes: {
         max: 0.6,
@@ -56,7 +56,7 @@ export class AppLeechOrderFormStepsLeechComponent {
       formControlName: "small",
     },
     {
-      title: "Средние пиявки",
+      title: $localize`Средние пиявки`,
       price: LEECH_MEDIUM_PRICE,
       sizes: {
         min: 0.6,
@@ -65,7 +65,7 @@ export class AppLeechOrderFormStepsLeechComponent {
       formControlName: "medium",
     },
     {
-      title: "Крупные пиявки",
+      title: $localize`Крупные пиявки`,
       price: LEECH_LARGE_PRICE,
       sizes: {
         min: 2,

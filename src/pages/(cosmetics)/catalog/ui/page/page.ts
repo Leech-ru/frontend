@@ -14,6 +14,9 @@ import { Component, inject, linkedSignal } from "@angular/core";
 export class AppCosmeticsCatalogPageComponent {
   private readonly categoriesResource = inject(CATEGORIES_RESOURCE);
 
+  protected readonly heading = $localize`Каталог косметики`;
+  protected readonly description = $localize`Линия «bioenergy, antistress, antiage» (ВАА) — максимальная степень активности БАВ и чистоты слюны пиявок, подчеркнутые оригинальной композицией косметических средств. Эта линия обладает биоэнергетическим, антистрессорным и омолаживающим действием`;
+
   protected readonly categories = linkedSignal<
     CategoriesPagination | null,
     CategoriesPagination

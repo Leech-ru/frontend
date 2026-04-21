@@ -3,7 +3,7 @@ import { ContactService } from "../../../entities/info/model/contact.model";
 export const CONTACT_SERVICES: ContactService[] = [
   {
     icon: "@tui.phone",
-    heading: "Будем на связи",
+    heading: $localize`Будем на связи`,
     links: [
       {
         label: "+7 (495) 501-34-54",
@@ -14,34 +14,45 @@ export const CONTACT_SERVICES: ContactService[] = [
         href: "mailto:leech-centre@mail.ru",
       },
     ],
-    description:
-      "Мы ответим на ваши звонки и письма с понедельника по пятницу с 08:30 до 17:00",
+    description: $localize`Мы ответим на ваши звонки и письма с понедельника по пятницу с 08:30 до 17:00`,
     fluid: true,
   },
   {
     icon: "@tui.clock",
-    heading: "Время работы киосков",
+    heading: $localize`Время работы киосков`,
     schedule: [
       {
-        days: ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница"],
+        days: [
+          $localize`Понедельник`,
+          $localize`Вторник`,
+          $localize`Среда`,
+          $localize`Четверг`,
+          $localize`Пятница`,
+        ],
         hours: { open: "08:00", close: "19:00" },
       },
       {
-        days: ["Суббота", "Воскресенье"],
+        days: [$localize`Суббота`, $localize`Воскресенье`],
         hours: { open: "09:00", close: "17:00" },
       },
     ],
-    description: "Киоски работают без перерыва на обед",
+    description: $localize`Киоски работают без перерыва на обед`,
   },
   {
     icon: "@tui.users",
-    heading: "Обслуживание юр. лиц",
+    heading: $localize`Обслуживание юр. лиц`,
     schedule: [
       {
-        days: ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница"],
+        days: [
+          $localize`Понедельник`,
+          $localize`Вторник`,
+          $localize`Среда`,
+          $localize`Четверг`,
+          $localize`Пятница`,
+        ],
         hours: { open: "08:30", close: "17:00" },
       },
     ],
-    description: "Обслуживание юридических лиц без перерыва на обед",
+    description: $localize`Обслуживание юридических лиц без перерыва на обед`,
   },
 ];

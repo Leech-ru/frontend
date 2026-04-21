@@ -27,31 +27,33 @@ export class LeechOrderForm {
   public readonly medium = new FormControl(0);
   public readonly large = new FormControl(0);
   public readonly package = new FormControl(1, [
-    z.required("Пожалуйста, укажите тип упаковки"),
+    z.required($localize`Пожалуйста, укажите тип упаковки`),
   ]);
   public readonly name = new FormControl("", [
-    z.required("Пожалуйста, укажите ФИО (например, Иванов Иван Иванович)"),
-    z.name("Пожалуйста, укажите корректное ФИО"),
+    z.required(
+      $localize`Пожалуйста, укажите ФИО (например, Иванов Иван Иванович)`,
+    ),
+    z.name($localize`Пожалуйста, укажите корректное ФИО`),
   ]);
   public readonly phone = new FormControl("", [
-    z.required("Пожалуйста, укажите номер телефона"),
-    z.minLength(12, "Пожалуйста, укажите корректный номер телефона"),
+    z.required($localize`Пожалуйста, укажите номер телефона`),
+    z.minLength(12, $localize`Пожалуйста, укажите корректный номер телефона`),
   ]);
   public readonly email = new FormControl("", [
-    z.required("Пожалуйста, укажите электронную почту"),
-    z.email("Пожалуйста, укажите корректную электронную почту"),
+    z.required($localize`Пожалуйста, укажите электронную почту`),
+    z.email($localize`Пожалуйста, укажите корректную электронную почту`),
   ]);
   public readonly address = new FormControl("", [
-    z.required("Пожалуйста, укажите адрес"),
+    z.required($localize`Пожалуйста, укажите адрес`),
   ]);
   public readonly comment = new FormControl("", [
     z.maxLength(
       LEECH_ORDER_COMMENT_MAX_LENGTH,
-      `Максимальная длина комментария — ${LEECH_ORDER_COMMENT_MAX_LENGTH} символов`,
+      $localize`Максимальная длина комментария — ${LEECH_ORDER_COMMENT_MAX_LENGTH} символов`,
     ),
   ]);
   public readonly agreement = new FormControl(false, [
-    z.requiredTrue("Необходимо дать согласие"),
+    z.requiredTrue($localize`Необходимо дать согласие`),
   ]);
   public readonly leech = new FormGroup(
     {

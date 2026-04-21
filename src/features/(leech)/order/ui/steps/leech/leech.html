@@ -3,7 +3,8 @@
     tuiNotification
     [appearance]="form.count < leechOrderMinCount ? 'warning' : 'positive'"
   >
-    Заказ от <strong>{{ leechOrderMinCount }}</strong> шт.
+    <span i18n>Заказ от</span>{{ " " }}<strong>{{ leechOrderMinCount }}</strong
+    ><span i18n> шт.</span>
   </div>
 
   <ng-container formGroupName="leech">
@@ -15,18 +16,19 @@
             <app-leech-price [price]="item.price" />
             <span>
               @if (item.sizes.min && item.sizes.max) {
-                от <app-leech-size [size]="item.sizes.min" /> до
-                <app-leech-size [size]="item.sizes.max" />
+                <span i18n>от </span><app-leech-size [size]="item.sizes.min" />
+                <span i18n>до </span><app-leech-size [size]="item.sizes.max" />
               } @else if (item.sizes.max) {
-                до <app-leech-size [size]="item.sizes.max" />
+                <span i18n>до </span><app-leech-size [size]="item.sizes.max" />
               } @else if (item.sizes.min) {
-                от <app-leech-size [size]="item.sizes.min" />
+                <span i18n>от </span><app-leech-size [size]="item.sizes.min" />
               }
             </span>
           </div>
         </div>
         <tui-textfield [tuiTextfieldCleaner]="false" [style.width.rem]="10">
           <input
+            i18n-postfix
             postfix=" шт."
             tuiInputNumber
             [max]="1000"
@@ -40,14 +42,15 @@
   </ng-container>
 
   <div tuiHeader="body-m">
-    <strong tuiTitle tuiAppearance="flat-grayscale">Итого:</strong>
+    <strong i18n tuiTitle tuiAppearance="flat-grayscale">Итого:</strong>
     <p
       tuiAccessories
       tuiAppearance="action-grayscale"
       class="tui-space_top-0 tui-space_bottom-0"
     >
       <span>
-        <strong tuiAppearance="flat-grayscale">{{ form.count }}</strong> шт. за
+        <strong tuiAppearance="flat-grayscale">{{ form.count }}</strong
+        ><span i18n> шт. за</span>
         <strong tuiAppearance="flat-grayscale">
           {{ form.price | tuiFormatNumber }}
         </strong>

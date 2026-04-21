@@ -12,6 +12,7 @@
       type="button"
       tuiDropdownRole="menu"
       tuiDropdownSheet="Выберите язык"
+      i18n-tuiDropdownSheet
       tuiDropdownAlign="end"
       (click)="langDropdownOpen.update((open) => !open)"
       [tuiDropdown]="dropdownContentLang"
@@ -20,19 +21,22 @@
       (tuiActiveZoneChange)="!isMobile && langDropdownOpen.set(false)"
       [attr.aria-expanded]="langDropdownOpen()"
     >
-      Язык
+      <span i18n>Язык</span>
     </button>
     <ng-template #dropdownContentLang>
       <sheet-spy (destroyed)="langDropdownOpen.set(false)" />
       <tui-data-list>
-        @for (language of languages; track $index) {
+        @for (language of languages; track language.code) {
           <a
             tuiOption
-            [href]="language.path"
+            [tuiAppearance]="
+              isCurrentLanguage(language.code) ? 'secondary' : ''
+            "
+            [href]="getLanguagePath(language.code)"
             (click)="langDropdownOpen.set(false)"
           >
             <img
-              [src]="language.code | tuiFlag"
+              [src]="language.flag | tuiFlag"
               [style.border-radius.%]="50"
               [style.width.rem]="1.5"
               [style.height.rem]="1.5"
@@ -49,6 +53,7 @@
         [tuiAvatar]="`${currentUser.name} ${currentUser.surname}` | tuiInitials"
         tuiDropdownRole="menu"
         tuiDropdownSheet="Меню"
+        i18n-tuiDropdownSheet
         tuiDropdownAlign="end"
         [tuiDropdown]="dropdownContent"
         [tuiDropdownManual]="userDropdownOpen()"
@@ -89,7 +94,7 @@
             iconStart="@tui.log-out"
             (click)="logoutService.logout(); userDropdownOpen.set(false)"
           >
-            <span tuiTitle>Выйти</span>
+            <span tuiTitle i18n>Выйти</span>
           </button>
         </tui-data-list>
       </ng-template>
@@ -101,7 +106,7 @@
         iconStart="@tui.log-in"
         routerLink="login"
       >
-        Войти
+        <span i18n>Войти</span>
       </a>
     }
 

@@ -50,8 +50,7 @@ export class AppRegisterPageComponent {
   private readonly registerService = inject(RegisterService);
 
   private readonly serverErrorMap: Record<number, string> = {
-    [HttpStatusCode.Conflict]:
-      "Пользователь с таким адресом электронной почты уже существует",
+    [HttpStatusCode.Conflict]: $localize`Пользователь с таким адресом электронной почты уже существует`,
   };
 
   protected readonly form = form(
@@ -78,7 +77,7 @@ export class AppRegisterPageComponent {
               message:
                 error instanceof HttpErrorResponse
                   ? this.serverErrorMap[error.status]
-                  : "Произошла неизвестная ошибка, попробуйте ещё раз",
+                  : $localize`Произошла неизвестная ошибка, попробуйте ещё раз`,
             };
           }
           return null;

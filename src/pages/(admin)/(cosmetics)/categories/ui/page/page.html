@@ -1,7 +1,9 @@
 <header tuiHeader="h4">
-  <h1 tuiTitle>Категории</h1>
+  <h1 tuiTitle i18n>Категории</h1>
   <aside tuiAccessories>
-    <button tuiButton type="button" (click)="createCategory()">Создать</button>
+    <button tuiButton type="button" (click)="createCategory()">
+      <span i18n>Создать</span>
+    </button>
   </aside>
 </header>
 
@@ -33,9 +35,9 @@
       <tui-block-status [card]="true" class="card" size="m">
         <div tuiAvatar="@tui.archive" tuiSlot="top"></div>
 
-        <h4>Нет категорий</h4>
+        <h4 i18n>Нет категорий</h4>
 
-        Создайте первую категорию
+        <span i18n>Создайте первую категорию</span>
 
         <button
           appearance="secondary"
@@ -44,7 +46,7 @@
           size="s"
           (click)="createCategory()"
         >
-          Создать категорию
+          <span i18n>Создать категорию</span>
         </button></tui-block-status
       >
     }

@@ -50,6 +50,11 @@ export class AppHeaderDrawerComponent {
     return currentUser && currentUser.role > 0;
   });
 
+  protected readonly closeNavLabel = $localize`Закрыть навигацию`;
+  protected readonly openNavLabel = $localize`Открыть навигацию`;
+  protected readonly sectionsLabel = $localize`Разделы`;
+  protected readonly adminLabel = $localize`Администрация`;
+
   public constructor() {
     this.router.events.subscribe(() => {
       this.open.set(false);

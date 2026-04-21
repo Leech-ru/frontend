@@ -1,7 +1,7 @@
 <header>
   @if (breakpoint() !== "mobile") {
     <tui-breadcrumbs>
-      <a *tuiItem tuiLink routerLink="/cosmetics">Разделы косметики</a>
+      <a *tuiItem tuiLink routerLink="/cosmetics" i18n>Разделы косметики</a>
       <a
         *tuiItem
         tuiLink
@@ -23,7 +23,7 @@
       size="m"
       [routerLink]="['/cosmetics/categories', categoryId()]"
     >
-      Назад
+      <span i18n>Назад</span>
     </a>
   }
 </header>

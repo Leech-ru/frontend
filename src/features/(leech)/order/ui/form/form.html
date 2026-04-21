@@ -11,7 +11,7 @@
         {{ stepper.step.backLabel }}
       </button>
     }
-    <span>Оформление заказа</span>
+    <span i18n>Оформление заказа</span>
     @if (stepper.step.control) {
       <span tuiSlot="end" tuiAppearance="action" [style.margin-right.rem]="1">
         {{ stepper.index() + 1 }}/{{ stepper.steps.length - 1 }}

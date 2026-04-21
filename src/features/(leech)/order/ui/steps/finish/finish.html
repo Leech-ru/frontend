@@ -1,6 +1,6 @@
 <hgroup>
-  <img src="/favicon.svg" width="96" height="96" alt="Логотип" />
-  <h2>Заказ успешно оформлен</h2>
+  <img src="/favicon.svg" width="96" height="96" alt="Логотип" i18n-alt />
+  <h2 i18n>Заказ успешно оформлен</h2>
   <span>
     <strong tuiAppearance="flat-grayscale">{{ form.count }}</strong> шт. за
     <strong tuiAppearance="flat-grayscale">
@@ -10,25 +10,25 @@
   </span>
 </hgroup>
 
-<p>
+<p i18n>
   Мы отправили электронное письмо с деталями заказа на
   <a tuiLink [href]="`mailto:${form.email.value}`">{{ form.email.value }}</a>
 </p>
 
-<p>
+<p i18n>
   Скоро наш менеджер свяжется с вами по телефону или электронной почте для
   подтверждения и уточнения вашего заказа.
 </p>
 
 <div tuiCell>
-  <div tuiTitle>ФИО</div>
+  <div i18n tuiTitle>ФИО</div>
   <span tuiSubtitle>
     {{ form.name.value }}
   </span>
 </div>
 <hr class="tui-space_top-2 tui-space_bottom-1" />
 <div tuiCell>
-  <div tuiTitle>Номер телефона</div>
+  <div i18n tuiTitle>Номер телефона</div>
   <span tuiSubtitle>
     <a tuiLink [href]="`tel:${form.phone.value}`">{{
       form.phone.value | maskito: phoneMaskitoOptions
@@ -37,7 +37,7 @@
 </div>
 <hr class="tui-space_top-2 tui-space_bottom-1" />
 <div tuiCell>
-  <div tuiTitle>Электронная почта</div>
+  <div i18n tuiTitle>Электронная почта</div>
   <span tuiSubtitle>
     <a tuiLink [href]="`mailto:${form.email.value}`">{{ form.email.value }}</a>
   </span>
@@ -46,7 +46,7 @@
   <hr class="tui-space_top-2 tui-space_bottom-2" />
   <div tuiCell>
     <div tuiTitle>
-      Комментарии
+      <span i18n>Комментарии</span>
       <span tuiSubtitle>
         {{ form.comment.value }}
       </span>
@@ -58,7 +58,7 @@
 }
 @if (form.small.value) {
   <div tuiCell>
-    <div tuiTitle>Пиявка весом до 0,6 г.</div>
+    <div i18n tuiTitle>Пиявка весом до 0,6 г.</div>
     <span tuiSubtitle>
       <strong>{{ form.small.value | tuiFormatNumber }}</strong> шт
     </span>
@@ -67,7 +67,7 @@
 }
 @if (form.medium.value) {
   <div tuiCell>
-    <div tuiTitle>Пиявка весом от 0,6 до 2,0 г.</div>
+    <div i18n tuiTitle>Пиявка весом от 0,6 до 2,0 г.</div>
     <span tuiSubtitle>
       <strong>{{ form.medium.value | tuiFormatNumber }}</strong> шт
     </span>
@@ -76,7 +76,7 @@
 }
 @if (form.large.value) {
   <div tuiCell>
-    <div tuiTitle>Пиявка весом более 2,0 г.</div>
+    <div i18n tuiTitle>Пиявка весом более 2,0 г.</div>
     <span tuiSubtitle>
       <strong>{{ form.large.value | tuiFormatNumber }}</strong> шт
     </span>
@@ -84,7 +84,7 @@
   <hr class="tui-space_top-2 tui-space_bottom-1" />
 }
 <div tuiCell>
-  <div tuiTitle>Тип упаковки</div>
+  <div i18n tuiTitle>Тип упаковки</div>
   <span tuiSubtitle>
     {{ package.name }}
   </span>
