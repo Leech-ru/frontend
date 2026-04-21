@@ -2,27 +2,27 @@ import { NavigationItem } from "../model/navigation.model";
 
 export const NAVIGATION_ITEMS: NavigationItem[] = [
   {
-    label: "Главная",
+    label: $localize`Главная`,
     routerLink: "/",
     section: "navigation",
   },
   {
-    label: "Пиявки",
+    label: $localize`Пиявки`,
     routerLink: "/leech",
     section: "navigation",
   },
   {
-    label: "Косметика",
+    label: $localize`Косметика`,
     routerLink: "/cosmetics",
     section: "navigation",
   },
   {
-    label: "О центре",
+    label: $localize`О центре`,
     routerLink: "/about",
     section: "navigation",
   },
   {
-    label: "Управление",
+    label: $localize`Управление`,
     routerLink: "/admin",
     roles: [1, 2, 3],
     section: "admin",

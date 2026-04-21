@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="ru" datatype="plaintext" original="ng2.template">
+  <file source-language="ru" target-language="en" datatype="plaintext" original="ng2.template">
     <body>
       <trans-unit id="358635692190524549" datatype="html">
         <source>Главная</source>
@@ -8,6 +8,166 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/config/routes.ts</context>
           <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/widgets/header/config/navigation.config.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7718172792948036917" datatype="html">
+        <source>О пиявке</source>
+        <target>About leeches</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/config/routes.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4238715586518932913" datatype="html">
+        <source>Заказать пиявок</source>
+        <target>Order leeches</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/config/routes.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1862804112691811492" datatype="html">
+        <source>Каталог косметики</source>
+        <target>Cosmetics catalog</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/config/routes.ts</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/config/routes.ts</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5964482056718199368" datatype="html">
+        <source>О центре</source>
+        <target>About the center</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/config/routes.ts</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/widgets/header/config/navigation.config.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2665051728128938835" datatype="html">
+        <source>Вход</source>
+        <target>Login</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/config/routes.ts</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="579968542905738317" datatype="html">
+        <source>Регистрация</source>
+        <target>Registration</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/config/routes.ts</context>
+          <context context-type="linenumber">77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1893361210511658137" datatype="html">
+        <source>Информация</source>
+        <target>Information</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/config/routes.ts</context>
+          <context context-type="linenumber">94</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8808283790642402321" datatype="html">
+        <source>Косметика</source>
+        <target>Cosmetics</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/config/routes.ts</context>
+          <context context-type="linenumber">99</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/widgets/header/config/navigation.config.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7042831860230360042" datatype="html">
+        <source>Категория</source>
+        <target>Category</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/config/routes.ts</context>
+          <context context-type="linenumber">105</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3560549462372444669" datatype="html">
+        <source>Партнёры</source>
+        <target>Partners</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/config/routes.ts</context>
+          <context context-type="linenumber">114</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3713441941414701471" datatype="html">
+        <source>Пользователи</source>
+        <target>Users</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/config/routes.ts</context>
+          <context context-type="linenumber">119</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="664628621384297691" datatype="html">
+        <source>Международный центр медицинской пиявки</source>
+        <target>International Medical Leech Center</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/pages/home/ui/page/page.html</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2049408560853759151" datatype="html">
+        <source>Старейшее предприятии в России и в мире, которое более 80 лет занимается выращиванием сертифицированной медицинской пиявки</source>
+        <target>The oldest enterprise in Russia and the world, which has been breeding certified medical leeches for more than 80 years</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/pages/home/ui/page/page.html</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/pages/home/ui/page/page.html</context>
+          <context context-type="linenumber">25,26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4690044952653923985" datatype="html">
+        <source>Оформить заказ</source>
+        <target>Place an order</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/pages/home/ui/page/page.html</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/pages/home/ui/page/page.html</context>
+          <context context-type="linenumber">27,28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8920462970382528209" datatype="html">
+        <source>Готовы сделать заказ?</source>
+        <target>Ready to place an order?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/pages/home/ui/page/page.html</context>
+          <context context-type="linenumber">23,24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1064289182664606157" datatype="html">
+        <source>Пиявки</source>
+        <target>Leech</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/widgets/header/config/navigation.config.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5478617993274733100" datatype="html">
+        <source>Управление</source>
+        <target>Admin</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/widgets/header/config/navigation.config.ts</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
     </body>

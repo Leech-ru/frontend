@@ -5,9 +5,10 @@
   "scripts": {
     "build": "ng build",
     "format": "prettier !package-lock.json --check --write --ignore-path .gitignore .",
+    "i18n:extract": "ng extract-i18n",
     "prepare": "git config core.hooksPath ./scripts/git/hooks",
-    "serve:ru": "ng serve --configuration=ru",
     "serve:en": "ng serve --configuration=en",
+    "serve:ru": "ng serve --configuration=ru",
     "typecheck": "ngc --noEmit"
   },
   "prettier": {

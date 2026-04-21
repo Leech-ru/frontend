@@ -19,13 +19,13 @@ export const routes: Routes = [
         children: [
           {
             path: "",
-            title: "О пиявке",
+            title: $localize`О пиявке`,
             loadComponent: () => import("@/pages/(leech)/about"),
           },
           {
             path: "order",
             data: { showHeaderMobile: false, showFooter: false },
-            title: "Заказать пиявок",
+            title: $localize`Заказать пиявок`,
             loadComponent: () => import("@/pages/(leech)/order"),
           },
         ],
@@ -35,12 +35,12 @@ export const routes: Routes = [
         children: [
           {
             path: "",
-            title: "Каталог косметики",
+            title: $localize`Каталог косметики`,
             loadComponent: () => import("@/pages/(cosmetics)/catalog"),
           },
           {
             path: "categories/:id",
-            title: "Каталог косметики",
+            title: $localize`Каталог косметики`,
             loadComponent: () => import("@/pages/(cosmetics)/category"),
           },
           {
@@ -54,7 +54,7 @@ export const routes: Routes = [
       },
       {
         path: "about",
-        title: "О центре",
+        title: $localize`О центре`,
         loadComponent: () => import("@/pages/about"),
       },
       {
@@ -69,12 +69,12 @@ export const routes: Routes = [
             children: [
               {
                 path: "login",
-                title: "Вход",
+                title: $localize`Вход`,
                 loadComponent: () => import("@/pages/(auth)/login"),
               },
               {
                 path: "register",
-                title: "Регистрация",
+                title: $localize`Регистрация`,
                 loadComponent: () => import("@/pages/(auth)/register"),
               },
             ],
@@ -91,18 +91,18 @@ export const routes: Routes = [
               },
               {
                 path: "",
-                title: "Информация",
+                title: $localize`Информация`,
                 loadComponent: () => import("@/pages/(admin)/info"),
               },
               {
                 path: "cosmetics",
-                title: "Косметика",
+                title: $localize`Косметика`,
                 loadComponent: () =>
                   import("@/pages/(admin)/(cosmetics)/categories"),
               },
               {
                 path: "cosmetics/categories/:id",
-                title: "Категория",
+                title: $localize`Категория`,
                 loadComponent: () =>
                   import("@/pages/(admin)/(cosmetics)/category"),
                 resolve: {
@@ -111,12 +111,12 @@ export const routes: Routes = [
               },
               {
                 path: "partners",
-                title: "Партнёры",
+                title: $localize`Партнёры`,
                 loadComponent: () => import("@/pages/(admin)/partners"),
               },
               {
                 path: "users",
-                title: "Пользователи",
+                title: $localize`Пользователи`,
                 loadComponent: () => import("@/pages/(admin)/users"),
               },
             ],
