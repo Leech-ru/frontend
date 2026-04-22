@@ -12,8 +12,8 @@ Build type-safe, reactive forms using Angular's Signal Forms API. Signal Forms p
 ## Basic Setup
 
 ```typescript
-import { Component, signal } from "@angular/core";
-import { form, FormField, required, email } from "@angular/forms/signals";
+import { Component, signal } from '@angular/core';
+import { form, FormField, required, email } from '@angular/forms/signals';
 
 interface LoginData {
   email: string;
@@ -21,7 +21,7 @@ interface LoginData {
 }
 
 @Component({
-  selector: "app-login",
+  selector: 'app-login',
   imports: [FormField],
   template: `
     <form (submit)="onSubmit($event)">
@@ -32,7 +32,7 @@ interface LoginData {
       @if (loginForm.email().touched() && loginForm.email().invalid()) {
         <p class="error">{{ loginForm.email().errors()[0].message }}</p>
       }
-
+      
       <label>
         Password
         <input type="password" [formField]="loginForm.password" />
@@ -40,7 +40,7 @@ interface LoginData {
       @if (loginForm.password().touched() && loginForm.password().invalid()) {
         <p class="error">{{ loginForm.password().errors()[0].message }}</p>
       }
-
+      
       <button type="submit" [disabled]="loginForm().invalid()">Login</button>
     </form>
   `,
@@ -48,22 +48,22 @@ interface LoginData {
 export class Login {
   // Form model - a writable signal
   loginModel = signal<LoginData>({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
-
+  
   // Create form with validation schema
   loginForm = form(this.loginModel, (schemaPath) => {
-    required(schemaPath.email, { message: "Email is required" });
-    email(schemaPath.email, { message: "Enter a valid email address" });
-    required(schemaPath.password, { message: "Password is required" });
+    required(schemaPath.email, { message: 'Email is required' });
+    email(schemaPath.email, { message: 'Enter a valid email address' });
+    required(schemaPath.password, { message: 'Password is required' });
   });
-
+  
   onSubmit(event: Event) {
     event.preventDefault();
     if (this.loginForm().valid()) {
       const credentials = this.loginModel();
-      console.log("Submitting:", credentials);
+      console.log('Submitting:', credentials);
     }
   }
 }
@@ -81,18 +81,18 @@ interface UserProfile {
   age: number | null;
   preferences: {
     newsletter: boolean;
-    theme: "light" | "dark";
+    theme: 'light' | 'dark';
   };
 }
 
 // Create model signal with initial values
 const userModel = signal<UserProfile>({
-  name: "",
-  email: "",
+  name: '',
+  email: '',
   age: null,
   preferences: {
     newsletter: false,
-    theme: "light",
+    theme: 'light',
   },
 });
 
@@ -100,8 +100,8 @@ const userModel = signal<UserProfile>({
 const userForm = form(userModel);
 
 // Access nested fields via dot notation
-userForm.name; // FieldTree<string>
-userForm.preferences.theme; // FieldTree<'light' | 'dark'>
+userForm.name                    // FieldTree<string>
+userForm.preferences.theme       // FieldTree<'light' | 'dark'>
 ```
 
 ### Reading Values
@@ -120,15 +120,15 @@ const theme = this.userForm.preferences.theme().value();
 ```typescript
 // Replace entire model
 this.userModel.set({
-  name: "Alice",
-  email: "alice@example.com",
+  name: 'Alice',
+  email: 'alice@example.com',
   age: 30,
-  preferences: { newsletter: true, theme: "dark" },
+  preferences: { newsletter: true, theme: 'dark' },
 });
 
 // Update single field
-this.userForm.name().value.set("Bob");
-this.userForm.age().value.update((age) => (age ?? 0) + 1);
+this.userForm.name().value.set('Bob');
+this.userForm.age().value.update(age => (age ?? 0) + 1);
 ```
 
 ## Field State
@@ -139,22 +139,22 @@ Each field provides reactive signals for validation, interaction, and availabili
 const emailField = this.form.email();
 
 // Validation state
-emailField.valid(); // true if passes all validation
-emailField.invalid(); // true if has validation errors
-emailField.errors(); // array of error objects
-emailField.pending(); // true if async validation in progress
+emailField.valid()      // true if passes all validation
+emailField.invalid()    // true if has validation errors
+emailField.errors()     // array of error objects
+emailField.pending()    // true if async validation in progress
 
 // Interaction state
-emailField.touched(); // true after focus + blur
-emailField.dirty(); // true after user modification
+emailField.touched()    // true after focus + blur
+emailField.dirty()      // true after user modification
 
 // Availability state
-emailField.disabled(); // true if field is disabled
-emailField.hidden(); // true if field should be hidden
-emailField.readonly(); // true if field is readonly
+emailField.disabled()   // true if field is disabled
+emailField.hidden()     // true if field should be hidden
+emailField.readonly()   // true if field is readonly
 
 // Value
-emailField.value(); // current field value (signal)
+emailField.value()      // current field value (signal)
 ```
 
 ### Form-Level State
@@ -163,13 +163,13 @@ The form itself is also a field with aggregated state:
 
 ```typescript
 // Form is valid when all interactive fields are valid
-this.form().valid();
+this.form().valid()
 
 // Form is touched when any field is touched
-this.form().touched();
+this.form().touched()
 
 // Form is dirty when any field is modified
-this.form().dirty();
+this.form().dirty()
 ```
 
 ## Validation
@@ -177,35 +177,29 @@ this.form().dirty();
 ### Built-in Validators
 
 ```typescript
-import {
-  form,
-  required,
-  email,
-  min,
-  max,
-  minLength,
-  maxLength,
-  pattern,
-} from "@angular/forms/signals";
+import { 
+  form, required, email, min, max, 
+  minLength, maxLength, pattern 
+} from '@angular/forms/signals';
 
 const userForm = form(this.userModel, (schemaPath) => {
   // Required field
-  required(schemaPath.name, { message: "Name is required" });
-
+  required(schemaPath.name, { message: 'Name is required' });
+  
   // Email format
-  email(schemaPath.email, { message: "Invalid email" });
-
+  email(schemaPath.email, { message: 'Invalid email' });
+  
   // Numeric range
-  min(schemaPath.age, 18, { message: "Must be 18+" });
-  max(schemaPath.age, 120, { message: "Invalid age" });
-
+  min(schemaPath.age, 18, { message: 'Must be 18+' });
+  max(schemaPath.age, 120, { message: 'Invalid age' });
+  
   // String/array length
-  minLength(schemaPath.password, 8, { message: "Min 8 characters" });
-  maxLength(schemaPath.bio, 500, { message: "Max 500 characters" });
-
+  minLength(schemaPath.password, 8, { message: 'Min 8 characters' });
+  maxLength(schemaPath.bio, 500, { message: 'Max 500 characters' });
+  
   // Regex pattern
   pattern(schemaPath.phone, /^\d{3}-\d{3}-\d{4}$/, {
-    message: "Format: 555-123-4567",
+    message: 'Format: 555-123-4567',
   });
 });
 ```
@@ -215,7 +209,7 @@ const userForm = form(this.userModel, (schemaPath) => {
 ```typescript
 const orderForm = form(this.orderModel, (schemaPath) => {
   required(schemaPath.promoCode, {
-    message: "Promo code required for discounts",
+    message: 'Promo code required for discounts',
     when: ({ valueOf }) => valueOf(schemaPath.applyDiscount),
   });
 });
@@ -224,13 +218,13 @@ const orderForm = form(this.orderModel, (schemaPath) => {
 ### Custom Validators
 
 ```typescript
-import { validate } from "@angular/forms/signals";
+import { validate } from '@angular/forms/signals';
 
 const signupForm = form(this.signupModel, (schemaPath) => {
   // Custom validation logic
   validate(schemaPath.username, ({ value }) => {
-    if (value().includes(" ")) {
-      return { kind: "noSpaces", message: "Username cannot contain spaces" };
+    if (value().includes(' ')) {
+      return { kind: 'noSpaces', message: 'Username cannot contain spaces' };
     }
     return null;
   });
@@ -243,11 +237,11 @@ const signupForm = form(this.signupModel, (schemaPath) => {
 const passwordForm = form(this.passwordModel, (schemaPath) => {
   required(schemaPath.password);
   required(schemaPath.confirmPassword);
-
+  
   // Compare fields
   validate(schemaPath.confirmPassword, ({ value, valueOf }) => {
     if (value() !== valueOf(schemaPath.password)) {
-      return { kind: "mismatch", message: "Passwords do not match" };
+      return { kind: 'mismatch', message: 'Passwords do not match' };
     }
     return null;
   });
@@ -257,20 +251,20 @@ const passwordForm = form(this.passwordModel, (schemaPath) => {
 ### Async Validation
 
 ```typescript
-import { validateHttp } from "@angular/forms/signals";
+import { validateHttp } from '@angular/forms/signals';
 
 const signupForm = form(this.signupModel, (schemaPath) => {
   validateHttp(schemaPath.username, {
     request: ({ value }) => `/api/check-username?u=${value()}`,
     onSuccess: (response: { taken: boolean }) => {
       if (response.taken) {
-        return { kind: "taken", message: "Username already taken" };
+        return { kind: 'taken', message: 'Username already taken' };
       }
       return null;
     },
     onError: () => ({
-      kind: "networkError",
-      message: "Could not verify username",
+      kind: 'networkError',
+      message: 'Could not verify username',
     }),
   });
 });
@@ -281,7 +275,7 @@ const signupForm = form(this.signupModel, (schemaPath) => {
 ### Hidden Fields
 
 ```typescript
-import { hidden } from "@angular/forms/signals";
+import { hidden } from '@angular/forms/signals';
 
 const profileForm = form(this.profileModel, (schemaPath) => {
   hidden(schemaPath.publicUrl, ({ valueOf }) => !valueOf(schemaPath.isPublic));
@@ -290,27 +284,24 @@ const profileForm = form(this.profileModel, (schemaPath) => {
 
 ```html
 @if (!profileForm.publicUrl().hidden()) {
-<input [formField]="profileForm.publicUrl" />
+  <input [formField]="profileForm.publicUrl" />
 }
 ```
 
 ### Disabled Fields
 
 ```typescript
-import { disabled } from "@angular/forms/signals";
+import { disabled } from '@angular/forms/signals';
 
 const orderForm = form(this.orderModel, (schemaPath) => {
-  disabled(
-    schemaPath.couponCode,
-    ({ valueOf }) => valueOf(schemaPath.total) < 50,
-  );
+  disabled(schemaPath.couponCode, ({ valueOf }) => valueOf(schemaPath.total) < 50);
 });
 ```
 
 ### Readonly Fields
 
 ```typescript
-import { readonly } from "@angular/forms/signals";
+import { readonly } from '@angular/forms/signals';
 
 const accountForm = form(this.accountModel, (schemaPath) => {
   readonly(schemaPath.username); // Always readonly
@@ -320,7 +311,7 @@ const accountForm = form(this.accountModel, (schemaPath) => {
 ## Form Submission
 
 ```typescript
-import { submit } from "@angular/forms/signals";
+import { submit } from '@angular/forms/signals';
 
 @Component({
   template: `
@@ -332,15 +323,15 @@ import { submit } from "@angular/forms/signals";
   `,
 })
 export class Login {
-  model = signal({ email: "", password: "" });
+  model = signal({ email: '', password: '' });
   form = form(this.model, (schemaPath) => {
     required(schemaPath.email);
     required(schemaPath.password);
   });
-
+  
   onSubmit(event: Event) {
     event.preventDefault();
-
+    
     // submit() marks all fields touched and runs callback if valid
     submit(this.form, async () => {
       await this.authService.login(this.model());
@@ -370,25 +361,25 @@ interface Order {
 })
 export class Order {
   orderModel = signal<Order>({
-    items: [{ product: "", quantity: 1 }],
+    items: [{ product: '', quantity: 1 }],
   });
-
+  
   orderForm = form(this.orderModel, (schemaPath) => {
     applyEach(schemaPath.items, (item) => {
-      required(item.product, { message: "Product required" });
-      min(item.quantity, 1, { message: "Min quantity is 1" });
+      required(item.product, { message: 'Product required' });
+      min(item.quantity, 1, { message: 'Min quantity is 1' });
     });
   });
-
+  
   addItem() {
-    this.orderModel.update((m) => ({
+    this.orderModel.update(m => ({
       ...m,
-      items: [...m.items, { product: "", quantity: 1 }],
+      items: [...m.items, { product: '', quantity: 1 }],
     }));
   }
-
+  
   removeItem(index: number) {
-    this.orderModel.update((m) => ({
+    this.orderModel.update(m => ({
       ...m,
       items: m.items.filter((_, i) => i !== index),
     }));
@@ -402,13 +393,15 @@ export class Order {
 <input [formField]="form.email" />
 
 @if (form.email().touched() && form.email().invalid()) {
-<ul class="errors">
-  @for (error of form.email().errors(); track error) {
-  <li>{{ error.message }}</li>
-  }
-</ul>
-} @if (form.email().pending()) {
-<span>Validating...</span>
+  <ul class="errors">
+    @for (error of form.email().errors(); track error) {
+      <li>{{ error.message }}</li>
+    }
+  </ul>
+}
+
+@if (form.email().pending()) {
+  <span>Validating...</span>
 }
 ```
 
@@ -427,12 +420,12 @@ export class Order {
 ```typescript
 async onSubmit() {
   if (!this.form().valid()) return;
-
+  
   await this.api.submit(this.model());
-
+  
   // Clear interaction state
   this.form().reset();
-
+  
   // Clear values
   this.model.set({ email: '', password: '' });
 }

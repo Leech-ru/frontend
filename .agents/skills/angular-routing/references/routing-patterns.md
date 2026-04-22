@@ -1,7 +1,6 @@
 # Angular Routing Patterns
 
 ## Table of Contents
-
 - [Route Configuration Options](#route-configuration-options)
 - [Authentication Flow](#authentication-flow)
 - [Breadcrumbs](#breadcrumbs)
@@ -17,30 +16,30 @@
 {
   path: 'users/:id',
   component: UserCmpt,
-
+  
   // Lazy loading alternatives
   loadComponent: () => import('./user.component').then(m => m.UserCmpt),
   loadChildren: () => import('./user.routes').then(m => m.userRoutes),
-
+  
   // Guards
   canActivate: [authGuard],
   canActivateChild: [authGuard],
   canDeactivate: [unsavedChangesGuard],
   canMatch: [featureFlagGuard],
-
+  
   // Data
   resolve: { user: userResolver },
   data: { title: 'User Profile', animation: 'userPage' },
-
+  
   // Children
   children: [...],
-
+  
   // Outlet
   outlet: 'sidebar',
-
+  
   // Path matching
   pathMatch: 'full', // or 'prefix'
-
+  
   // Title
   title: 'User Profile',
   // Or dynamic title
@@ -53,8 +52,10 @@
 ```typescript
 export const userTitleResolver: ResolveFn<string> = (route) => {
   const userService = inject(User);
-  const id = route.paramMap.get("id")!;
-  return userService.getById(id).pipe(map((user) => `${user.name} - Profile`));
+  const id = route.paramMap.get('id')!;
+  return userService.getById(id).pipe(
+    map(user => `${user.name} - Profile`)
+  );
 };
 ```
 
@@ -64,51 +65,53 @@ export const userTitleResolver: ResolveFn<string> = (route) => {
 
 ```typescript
 // auth.service.ts
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class Auth {
   private _user = signal<User | null>(null);
   private _token = signal<string | null>(null);
-
+  
   readonly user = this._user.asReadonly();
   readonly isAuthenticated = computed(() => this._user() !== null);
-
+  
   private router = inject(Router);
   private http = inject(HttpClient);
-
+  
   async login(credentials: Credentials): Promise<boolean> {
     try {
       const response = await firstValueFrom(
-        this.http.post<AuthResponse>("/api/login", credentials),
+        this.http.post<AuthResponse>('/api/login', credentials)
       );
-
+      
       this._token.set(response.token);
       this._user.set(response.user);
-      localStorage.setItem("token", response.token);
-
+      localStorage.setItem('token', response.token);
+      
       return true;
     } catch {
       return false;
     }
   }
-
+  
   logout(): void {
     this._user.set(null);
     this._token.set(null);
-    localStorage.removeItem("token");
-    this.router.navigate(["/login"]);
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
-
+  
   async checkAuth(): Promise<boolean> {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     if (!token) return false;
-
+    
     try {
-      const user = await firstValueFrom(this.http.get<User>("/api/me"));
+      const user = await firstValueFrom(
+        this.http.get<User>('/api/me')
+      );
       this._user.set(user);
       this._token.set(token);
       return true;
     } catch {
-      localStorage.removeItem("token");
+      localStorage.removeItem('token');
       return false;
     }
   }
@@ -118,20 +121,20 @@ export class Auth {
 export const authGuard: CanActivateFn = async (route, state) => {
   const authService = inject(Auth);
   const router = inject(Router);
-
+  
   // Check if already authenticated
   if (authService.isAuthenticated()) {
     return true;
   }
-
+  
   // Try to restore session
   const isValid = await authService.checkAuth();
   if (isValid) {
     return true;
   }
-
+  
   // Redirect to login
-  return router.createUrlTree(["/login"], {
+  return router.createUrlTree(['/login'], {
     queryParams: { returnUrl: state.url },
   });
 };
@@ -150,18 +153,18 @@ export class Login {
   private authService = inject(Auth);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
-
-  email = "";
-  password = "";
-
+  
+  email = '';
+  password = '';
+  
   async login() {
     const success = await this.authService.login({
       email: this.email,
       password: this.password,
     });
-
+    
     if (success) {
-      const returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
+      const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
       this.router.navigateByUrl(returnUrl);
     }
   }
@@ -172,47 +175,47 @@ export class Login {
 
 ```typescript
 // breadcrumb.service.ts
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class Breadcrumb {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
-
+  
   breadcrumbs = toSignal(
     this.router.events.pipe(
-      filter((event) => event instanceof NavigationEnd),
-      map(() => this.buildBreadcrumbs(this.route.root)),
+      filter(event => event instanceof NavigationEnd),
+      map(() => this.buildBreadcrumbs(this.route.root))
     ),
-    { initialValue: [] },
+    { initialValue: [] }
   );
-
+  
   private buildBreadcrumbs(
     route: ActivatedRoute,
-    url: string = "",
-    breadcrumbs: Breadcrumb[] = [],
+    url: string = '',
+    breadcrumbs: Breadcrumb[] = []
   ): Breadcrumb[] {
     const children = route.children;
-
+    
     if (children.length === 0) {
       return breadcrumbs;
     }
-
+    
     for (const child of children) {
       const routeUrl = child.snapshot.url
-        .map((segment) => segment.path)
-        .join("/");
-
+        .map(segment => segment.path)
+        .join('/');
+      
       if (routeUrl) {
         url += `/${routeUrl}`;
       }
-
-      const label = child.snapshot.data["breadcrumb"];
+      
+      const label = child.snapshot.data['breadcrumb'];
       if (label) {
         breadcrumbs.push({ label, url });
       }
-
+      
       return this.buildBreadcrumbs(child, url, breadcrumbs);
     }
-
+    
     return breadcrumbs;
   }
 }
@@ -220,13 +223,13 @@ export class Breadcrumb {
 // Route config with breadcrumb data
 export const routes: Routes = [
   {
-    path: "products",
-    data: { breadcrumb: "Products" },
+    path: 'products',
+    data: { breadcrumb: 'Products' },
     children: [
-      { path: "", component: ProductList },
+      { path: '', component: ProductList },
       {
-        path: ":id",
-        data: { breadcrumb: "Product Details" },
+        path: ':id',
+        data: { breadcrumb: 'Product Details' },
         component: ProductDetail,
       },
     ],
@@ -235,7 +238,7 @@ export const routes: Routes = [
 
 // breadcrumb.component.ts
 @Component({
-  selector: "app-breadcrumb",
+  selector: 'app-breadcrumb',
   template: `
     <nav aria-label="Breadcrumb">
       <ol>
@@ -263,8 +266,8 @@ export class BreadcrumbCmpt {
   template: `
     <div class="tabs">
       @for (tab of tabs; track tab.path) {
-        <a
-          [routerLink]="tab.path"
+        <a 
+          [routerLink]="tab.path" 
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: tab.exact }"
         >
@@ -334,18 +337,18 @@ this.router.navigate([{ outlets: { modal: null } }]);
 ### Built-in Strategies
 
 ```typescript
-import {
-  provideRouter,
+import { 
+  provideRouter, 
   withPreloading,
   PreloadAllModules,
-  NoPreloading,
-} from "@angular/router";
+  NoPreloading 
+} from '@angular/router';
 
 // Preload all lazy modules
-provideRouter(routes, withPreloading(PreloadAllModules));
+provideRouter(routes, withPreloading(PreloadAllModules))
 
 // No preloading (default)
-provideRouter(routes, withPreloading(NoPreloading));
+provideRouter(routes, withPreloading(NoPreloading))
 ```
 
 ### Custom Preloading Strategy
@@ -377,24 +380,24 @@ provideRouter(routes, withPreloading(SelectivePreloadStrategy))
 ### Network-Aware Preloading
 
 ```typescript
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class NetworkAwarePreloadStrategy implements PreloadingStrategy {
   preload(route: Route, load: () => Observable<any>): Observable<any> {
     // Check network conditions
     const connection = (navigator as any).connection;
-
+    
     if (connection) {
       // Don't preload on slow connections
-      if (connection.saveData || connection.effectiveType === "2g") {
+      if (connection.saveData || connection.effectiveType === '2g') {
         return of(null);
       }
     }
-
+    
     // Preload if marked
-    if (route.data?.["preload"]) {
+    if (route.data?.['preload']) {
       return load();
     }
-
+    
     return of(null);
   }
 }
@@ -405,8 +408,8 @@ export class NetworkAwarePreloadStrategy implements PreloadingStrategy {
 ```typescript
 // app.routes.ts
 export const routes: Routes = [
-  { path: "home", component: Home, data: { animation: "HomePage" } },
-  { path: "about", component: About, data: { animation: "AboutPage" } },
+  { path: 'home', component: Home, data: { animation: 'HomePage' } },
+  { path: 'about', component: About, data: { animation: 'AboutPage' } },
 ];
 
 // app.component.ts
@@ -418,22 +421,22 @@ export const routes: Routes = [
     </div>
   `,
   animations: [
-    trigger("routeAnimations", [
-      transition("HomePage <=> AboutPage", [
-        style({ position: "relative" }),
-        query(":enter, :leave", [
+    trigger('routeAnimations', [
+      transition('HomePage <=> AboutPage', [
+        style({ position: 'relative' }),
+        query(':enter, :leave', [
           style({
-            position: "absolute",
+            position: 'absolute',
             top: 0,
             left: 0,
-            width: "100%",
+            width: '100%',
           }),
         ]),
-        query(":enter", [style({ left: "-100%" })]),
-        query(":leave", animateChild()),
+        query(':enter', [style({ left: '-100%' })]),
+        query(':leave', animateChild()),
         group([
-          query(":leave", [animate("300ms ease-out", style({ left: "100%" }))]),
-          query(":enter", [animate("300ms ease-out", style({ left: "0%" }))]),
+          query(':leave', [animate('300ms ease-out', style({ left: '100%' }))]),
+          query(':enter', [animate('300ms ease-out', style({ left: '0%' }))]),
         ]),
       ]),
     ]),
@@ -441,7 +444,7 @@ export const routes: Routes = [
 })
 export class AppMain {
   getRouteAnimationData() {
-    return this.route.firstChild?.snapshot.data["animation"];
+    return this.route.firstChild?.snapshot.data['animation'];
   }
 }
 ```
@@ -450,20 +453,20 @@ export class AppMain {
 
 ```typescript
 // app.config.ts
-import {
-  provideRouter,
+import { 
+  provideRouter, 
   withInMemoryScrolling,
-  withRouterConfig,
-} from "@angular/router";
+  withRouterConfig 
+} from '@angular/router';
 
 provideRouter(
   routes,
   withInMemoryScrolling({
-    scrollPositionRestoration: "enabled", // or 'top'
-    anchorScrolling: "enabled",
+    scrollPositionRestoration: 'enabled', // or 'top'
+    anchorScrolling: 'enabled',
   }),
   withRouterConfig({
-    onSameUrlNavigation: "reload",
-  }),
-);
+    onSameUrlNavigation: 'reload',
+  })
+)
 ```

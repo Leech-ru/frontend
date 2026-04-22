@@ -12,8 +12,8 @@ Fetch data in Angular using signal-based `resource()`, `httpResource()`, and the
 `httpResource()` wraps HttpClient with signal-based state management:
 
 ```typescript
-import { Component, signal } from "@angular/core";
-import { httpResource } from "@angular/common/http";
+import { Component, signal } from '@angular/core';
+import { httpResource } from '@angular/common/http';
 
 interface User {
   id: number;
@@ -22,7 +22,7 @@ interface User {
 }
 
 @Component({
-  selector: "app-user-profile",
+  selector: 'app-user-profile',
   template: `
     @if (userResource.isLoading()) {
       <p>Loading...</p>
@@ -36,8 +36,8 @@ interface User {
   `,
 })
 export class UserProfile {
-  userId = signal("123");
-
+  userId = signal('123');
+  
   // Reactive HTTP resource - refetches when userId changes
   userResource = httpResource<User>(() => `/api/users/${this.userId()}`);
 }
@@ -52,13 +52,13 @@ userResource = httpResource<User>(() => `/api/users/${this.userId()}`);
 // With full request options
 userResource = httpResource<User>(() => ({
   url: `/api/users/${this.userId()}`,
-  method: "GET",
-  headers: { Authorization: `Bearer ${this.token()}` },
-  params: { include: "profile" },
+  method: 'GET',
+  headers: { 'Authorization': `Bearer ${this.token()}` },
+  params: { include: 'profile' },
 }));
 
 // With default value
-usersResource = httpResource<User[]>(() => "/api/users", {
+usersResource = httpResource<User[]>(() => '/api/users', {
   defaultValue: [],
 });
 
@@ -73,16 +73,16 @@ userResource = httpResource<User>(() => {
 
 ```typescript
 // Status signals
-userResource.value(); // Current value or undefined
-userResource.hasValue(); // Boolean - has resolved value
-userResource.error(); // Error or undefined
-userResource.isLoading(); // Boolean - currently loading
-userResource.status(); // 'idle' | 'loading' | 'reloading' | 'resolved' | 'error' | 'local'
+userResource.value()      // Current value or undefined
+userResource.hasValue()   // Boolean - has resolved value
+userResource.error()      // Error or undefined
+userResource.isLoading()  // Boolean - currently loading
+userResource.status()     // 'idle' | 'loading' | 'reloading' | 'resolved' | 'error' | 'local'
 
 // Actions
-userResource.reload(); // Manually trigger reload
-userResource.set(value); // Set local value
-userResource.update(fn); // Update local value
+userResource.reload()     // Manually trigger reload
+userResource.set(value)   // Set local value
+userResource.update(fn)   // Update local value
 ```
 
 ## resource() - Generic Async Data
@@ -95,15 +95,15 @@ import { resource, signal } from '@angular/core';
 @Component({...})
 export class Search {
   query = signal('');
-
+  
   searchResource = resource({
     // Reactive params - triggers reload when changed
     params: () => ({ q: this.query() }),
-
+    
     // Async loader function
     loader: async ({ params, abortSignal }) => {
       if (!params.q) return [];
-
+      
       const response = await fetch(`/api/search?q=${params.q}`, {
         signal: abortSignal,
       });
@@ -140,7 +140,7 @@ userResource = resource({
     return id ? { id } : undefined;
   },
   loader: async ({ params }) => {
-    return fetch(`/api/users/${params.id}`).then((r) => r.json());
+    return fetch(`/api/users/${params.id}`).then(r => r.json());
   },
 });
 // Status is 'idle' when params returns undefined
@@ -158,13 +158,13 @@ import { toSignal } from '@angular/core/rxjs-interop';
 @Component({...})
 export class Users {
   private http = inject(HttpClient);
-
+  
   // Convert Observable to Signal
   users = toSignal(
     this.http.get<User[]>('/api/users'),
     { initialValue: [] }
   );
-
+  
   // Or use Observable directly
   users$ = this.http.get<User[]>('/api/users');
 }
@@ -204,18 +204,18 @@ deleteUser(id: string) {
 ### Request Options
 
 ```typescript
-this.http.get<User[]>("/api/users", {
+this.http.get<User[]>('/api/users', {
   headers: {
-    Authorization: "Bearer token",
-    "Content-Type": "application/json",
+    'Authorization': 'Bearer token',
+    'Content-Type': 'application/json',
   },
   params: {
-    page: "1",
-    limit: "10",
-    sort: "name",
+    page: '1',
+    limit: '10',
+    sort: 'name',
   },
-  observe: "response", // Get full HttpResponse
-  responseType: "json",
+  observe: 'response', // Get full HttpResponse
+  responseType: 'json',
 });
 ```
 
@@ -225,19 +225,19 @@ this.http.get<User[]>("/api/users", {
 
 ```typescript
 // auth.interceptor.ts
-import { HttpInterceptorFn } from "@angular/common/http";
-import { inject } from "@angular/core";
+import { HttpInterceptorFn } from '@angular/common/http';
+import { inject } from '@angular/core';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(Auth);
   const token = authService.token();
-
+  
   if (token) {
     req = req.clone({
       setHeaders: { Authorization: `Bearer ${token}` },
     });
   }
-
+  
   return next(req);
 };
 
@@ -246,10 +246,10 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
       if (error.status === 401) {
-        inject(Router).navigate(["/login"]);
+        inject(Router).navigate(['/login']);
       }
       return throwError(() => error);
-    }),
+    })
   );
 };
 
@@ -258,10 +258,9 @@ export const loggingInterceptor: HttpInterceptorFn = (req, next) => {
   const started = Date.now();
   return next(req).pipe(
     tap({
-      next: () =>
-        console.log(`${req.method} ${req.url} - ${Date.now() - started}ms`),
+      next: () => console.log(`${req.method} ${req.url} - ${Date.now() - started}ms`),
       error: (err) => console.error(`${req.method} ${req.url} failed`, err),
-    }),
+    })
   );
 };
 ```
@@ -270,12 +269,16 @@ export const loggingInterceptor: HttpInterceptorFn = (req, next) => {
 
 ```typescript
 // app.config.ts
-import { provideHttpClient, withInterceptors } from "@angular/common/http";
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(
-      withInterceptors([authInterceptor, errorInterceptor, loggingInterceptor]),
+      withInterceptors([
+        authInterceptor,
+        errorInterceptor,
+        loggingInterceptor,
+      ])
     ),
   ],
 };
@@ -298,14 +301,12 @@ export const appConfig: ApplicationConfig = {
 })
 export class UserCmpt {
   userResource = httpResource<User>(() => `/api/users/${this.userId()}`);
-
+  
   getErrorMessage(error: unknown): string {
     if (error instanceof HttpErrorResponse) {
-      return (
-        error.error?.message || `Error ${error.status}: ${error.statusText}`
-      );
+      return error.error?.message || `Error ${error.status}: ${error.statusText}`;
     }
-    return "An unexpected error occurred";
+    return 'An unexpected error occurred';
   }
 }
 ```
@@ -332,32 +333,32 @@ getUser(id: string) {
 @Component({
   template: `
     @switch (dataResource.status()) {
-      @case ("idle") {
+      @case ('idle') {
         <p>Enter a search term</p>
       }
-      @case ("loading") {
+      @case ('loading') {
         <app-spinner />
       }
-      @case ("reloading") {
+      @case ('reloading') {
         <app-data [data]="dataResource.value()" />
         <app-spinner size="small" />
       }
-      @case ("resolved") {
+      @case ('resolved') {
         <app-data [data]="dataResource.value()" />
       }
-      @case ("error") {
-        <app-error
-          [error]="dataResource.error()"
-          (retry)="dataResource.reload()"
+      @case ('error') {
+        <app-error 
+          [error]="dataResource.error()" 
+          (retry)="dataResource.reload()" 
         />
       }
     }
   `,
 })
 export class Data {
-  query = signal("");
-  dataResource = httpResource<Data[]>(() =>
-    this.query() ? `/api/search?q=${this.query()}` : undefined,
+  query = signal('');
+  dataResource = httpResource<Data[]>(() => 
+    this.query() ? `/api/search?q=${this.query()}` : undefined
   );
 }
 ```

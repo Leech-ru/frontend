@@ -14,19 +14,19 @@ Configure and use dependency injection in Angular v20+ with `inject()` and provi
 Prefer `inject()` over constructor injection:
 
 ```typescript
-import { Component, inject } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { User } from "./user.service";
+import { Component, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { User } from './user.service';
 
 @Component({
-  selector: "app-user-list",
+  selector: 'app-user-list',
   template: `...`,
 })
 export class UserList {
   // Inject dependencies
   private http = inject(HttpClient);
   private userService = inject(User);
-
+  
   // Can use immediately
   users = this.userService.getUsers();
 }
@@ -35,20 +35,22 @@ export class UserList {
 ### Injectable Services
 
 ```typescript
-import { Injectable, inject, signal } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { Injectable, inject, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: "root", // Singleton at root level
+  providedIn: 'root', // Singleton at root level
 })
 export class User {
   private http = inject(HttpClient);
-
+  
   private users = signal<User[]>([]);
   readonly users$ = this.users.asReadonly();
-
+  
   async loadUsers() {
-    const users = await firstValueFrom(this.http.get<User[]>("/api/users"));
+    const users = await firstValueFrom(
+      this.http.get<User[]>('/api/users')
+    );
     this.users.set(users);
   }
 }
@@ -61,13 +63,15 @@ export class User {
 ```typescript
 // Recommended: providedIn
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class Auth {}
 
 // Alternative: in app.config.ts
 export const appConfig: ApplicationConfig = {
-  providers: [Auth],
+  providers: [
+    Auth,
+  ],
 };
 ```
 
@@ -75,7 +79,7 @@ export const appConfig: ApplicationConfig = {
 
 ```typescript
 @Component({
-  selector: "app-editor",
+  selector: 'app-editor',
   providers: [EditorState], // New instance for each component
   template: `...`,
 })
@@ -89,11 +93,11 @@ export class Editor {
 ```typescript
 export const routes: Routes = [
   {
-    path: "admin",
+    path: 'admin',
     providers: [Admin], // Shared within this route tree
     children: [
-      { path: "", component: AdminDashboard },
-      { path: "users", component: AdminUsers },
+      { path: '', component: AdminDashboard },
+      { path: 'users', component: AdminUsers },
     ],
   },
 ];
@@ -104,10 +108,10 @@ export const routes: Routes = [
 ### Creating Tokens
 
 ```typescript
-import { InjectionToken } from "@angular/core";
+import { InjectionToken } from '@angular/core';
 
 // Simple value token
-export const API_URL = new InjectionToken<string>("API_URL");
+export const API_URL = new InjectionToken<string>('API_URL');
 
 // Object token
 export interface AppConfig {
@@ -118,16 +122,16 @@ export interface AppConfig {
   };
 }
 
-export const APP_CONFIG = new InjectionToken<AppConfig>("APP_CONFIG");
+export const APP_CONFIG = new InjectionToken<AppConfig>('APP_CONFIG');
 
 // Token with factory (self-providing)
-export const WINDOW = new InjectionToken<Window>("Window", {
-  providedIn: "root",
+export const WINDOW = new InjectionToken<Window>('Window', {
+  providedIn: 'root',
   factory: () => window,
 });
 
-export const LOCAL_STORAGE = new InjectionToken<Storage>("LocalStorage", {
-  providedIn: "root",
+export const LOCAL_STORAGE = new InjectionToken<Storage>('LocalStorage', {
+  providedIn: 'root',
   factory: () => localStorage,
 });
 ```
@@ -138,11 +142,11 @@ export const LOCAL_STORAGE = new InjectionToken<Storage>("LocalStorage", {
 // app.config.ts
 export const appConfig: ApplicationConfig = {
   providers: [
-    { provide: API_URL, useValue: "https://api.example.com" },
+    { provide: API_URL, useValue: 'https://api.example.com' },
     {
       provide: APP_CONFIG,
       useValue: {
-        apiUrl: "https://api.example.com",
+        apiUrl: 'https://api.example.com',
         features: { darkMode: true, analytics: true },
       },
     },
@@ -153,12 +157,12 @@ export const appConfig: ApplicationConfig = {
 ### Injecting Tokens
 
 ```typescript
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class Api {
   private apiUrl = inject(API_URL);
   private config = inject(APP_CONFIG);
   private window = inject(WINDOW);
-
+  
   getBaseUrl(): string {
     return this.apiUrl;
   }
@@ -234,7 +238,7 @@ providers: [
 export class My {
   // Returns null if not provided
   private analytics = inject(Analytics, { optional: true });
-
+  
   trackEvent(name: string) {
     this.analytics?.track(name);
   }
@@ -268,22 +272,24 @@ Collect multiple values for same token:
 
 ```typescript
 // Token for multiple validators
-export const VALIDATORS = new InjectionToken<Validator[]>("Validators");
+export const VALIDATORS = new InjectionToken<Validator[]>('Validators');
 
 // Provide multiple values
 providers: [
   { provide: VALIDATORS, useClass: RequiredValidator, multi: true },
   { provide: VALIDATORS, useClass: EmailValidator, multi: true },
   { provide: VALIDATORS, useClass: MinLengthValidator, multi: true },
-];
+]
 
 // Inject as array
 @Injectable()
 export class Validation {
   private validators = inject(VALIDATORS); // Validator[]
-
+  
   validate(value: string): ValidationError[] {
-    return this.validators.map((v) => v.validate(value)).filter(Boolean);
+    return this.validators
+      .map(v => v.validate(value))
+      .filter(Boolean);
   }
 }
 ```
@@ -295,7 +301,11 @@ export class Validation {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(
-      withInterceptors([authInterceptor, loggingInterceptor, errorInterceptor]),
+      withInterceptors([
+        authInterceptor,
+        loggingInterceptor,
+        errorInterceptor,
+      ])
     ),
   ],
 };
@@ -306,7 +316,7 @@ export const appConfig: ApplicationConfig = {
 Run async code before app starts using `provideAppInitializer`:
 
 ```typescript
-import { provideAppInitializer, inject } from "@angular/core";
+import { provideAppInitializer, inject } from '@angular/core';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -331,7 +341,7 @@ providers: [
     const auth = inject(Auth);
     return auth.checkSession();
   }),
-];
+]
 ```
 
 ## Environment Injector
@@ -339,16 +349,12 @@ providers: [
 Create injectors programmatically:
 
 ```typescript
-import {
-  createEnvironmentInjector,
-  EnvironmentInjector,
-  inject,
-} from "@angular/core";
+import { createEnvironmentInjector, EnvironmentInjector, inject } from '@angular/core';
 
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class Plugin {
   private parentInjector = inject(EnvironmentInjector);
-
+  
   loadPlugin(providers: Provider[]): EnvironmentInjector {
     return createEnvironmentInjector(providers, this.parentInjector);
   }
@@ -360,16 +366,12 @@ export class Plugin {
 Run code with injection context:
 
 ```typescript
-import {
-  runInInjectionContext,
-  EnvironmentInjector,
-  inject,
-} from "@angular/core";
+import { runInInjectionContext, EnvironmentInjector, inject } from '@angular/core';
 
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class Utility {
   private injector = inject(EnvironmentInjector);
-
+  
   executeWithDI<T>(fn: () => T): T {
     return runInInjectionContext(this.injector, fn);
   }

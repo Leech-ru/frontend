@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "ng build",
-    "format": "prettier !package-lock.json --check --write --ignore-path .gitignore .",
+    "format": "prettier !package-lock.json --check --write --ignore-path .gitignore . \"!**/.agents/**\"",
     "i18n:extract": "ng extract-i18n",
     "prepare": "git config core.hooksPath ./scripts/git/hooks",
     "serve:en": "ng serve --configuration=en",

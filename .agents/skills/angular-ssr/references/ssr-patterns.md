@@ -1,7 +1,6 @@
 # Angular SSR Patterns
 
 ## Table of Contents
-
 - [Hydration Debugging](#hydration-debugging)
 - [SEO Optimization](#seo-optimization)
 - [Authentication with SSR](#authentication-with-ssr)
@@ -28,8 +27,8 @@ export class Time {
   template: `<p>Current time: {{ currentTime() }}</p>`,
 })
 export class Time {
-  currentTime = signal("");
-
+  currentTime = signal('');
+  
   constructor() {
     afterNextRender(() => {
       this.currentTime.set(new Date().toLocaleTimeString());
@@ -56,16 +55,13 @@ export class Page {}
 
 ```typescript
 // Enable hydration debugging in development
-import {
-  provideClientHydration,
-  withNoDomReuse,
-} from "@angular/platform-browser";
+import { provideClientHydration, withNoDomReuse } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideClientHydration(
       // Disable DOM reuse to see hydration errors clearly
-      ...(isDevMode() ? [withNoDomReuse()] : []),
+      ...(isDevMode() ? [withNoDomReuse()] : [])
     ),
   ],
 };
@@ -85,7 +81,7 @@ export class Seo {
   private meta = inject(Meta);
   private title = inject(Title);
   private document = inject(DOCUMENT);
-
+  
   updateMetaTags(config: {
     title: string;
     description: string;
@@ -96,52 +92,52 @@ export class Seo {
     // Basic meta
     this.title.setTitle(config.title);
     this.meta.updateTag({ name: 'description', content: config.description });
-
+    
     // Open Graph
     this.meta.updateTag({ property: 'og:title', content: config.title });
     this.meta.updateTag({ property: 'og:description', content: config.description });
     this.meta.updateTag({ property: 'og:type', content: config.type || 'website' });
-
+    
     if (config.image) {
       this.meta.updateTag({ property: 'og:image', content: config.image });
     }
-
+    
     if (config.url) {
       this.meta.updateTag({ property: 'og:url', content: config.url });
       this.updateCanonicalUrl(config.url);
     }
-
+    
     // Twitter Card
     this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
     this.meta.updateTag({ name: 'twitter:title', content: config.title });
     this.meta.updateTag({ name: 'twitter:description', content: config.description });
-
+    
     if (config.image) {
       this.meta.updateTag({ name: 'twitter:image', content: config.image });
     }
   }
-
+  
   private updateCanonicalUrl(url: string) {
     let link: HTMLLinkElement | null = this.document.querySelector('link[rel="canonical"]');
-
+    
     if (!link) {
       link = this.document.createElement('link');
       link.setAttribute('rel', 'canonical');
       this.document.head.appendChild(link);
     }
-
+    
     link.setAttribute('href', url);
   }
-
+  
   setJsonLd(data: object) {
     let script: HTMLScriptElement | null = this.document.querySelector('script[type="application/ld+json"]');
-
+    
     if (!script) {
       script = this.document.createElement('script');
       script.type = 'application/ld+json';
       this.document.head.appendChild(script);
     }
-
+    
     script.textContent = JSON.stringify(data);
   }
 }
@@ -151,7 +147,7 @@ export class Seo {
 export class Product {
   private seo = inject(Seo);
   product = input.required<Product>();
-
+  
   constructor() {
     effect(() => {
       const product = this.product();
@@ -162,7 +158,7 @@ export class Product {
         url: `https://mystore.com/products/${product.id}`,
         type: 'product',
       });
-
+      
       this.seo.setJsonLd({
         '@context': 'https://schema.org',
         '@type': 'Product',
@@ -188,7 +184,7 @@ export const seoResolver: ResolveFn<SeoData> = async (route) => {
   const productId = route.paramMap.get('id')!;
   const productService = inject(Product);
   const product = await productService.getById(productId);
-
+  
   return {
     title: `${product.name} | My Store`,
     description: product.description,
@@ -208,7 +204,7 @@ export const seoResolver: ResolveFn<SeoData> = async (route) => {
 export class Product {
   private seo = inject(Seo);
   seoData = input.required<SeoData>(); // From resolver
-
+  
   constructor() {
     effect(() => {
       this.seo.updateMetaTags(this.seoData());
@@ -223,27 +219,27 @@ export class Product {
 
 ```typescript
 // Server-side cookie reading
-import { REQUEST } from "@angular/ssr/tokens";
+import { REQUEST } from '@angular/ssr/tokens';
 
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class Auth {
   private request = inject(REQUEST, { optional: true });
   private platformId = inject(PLATFORM_ID);
-
+  
   getToken(): string | null {
     if (isPlatformServer(this.platformId) && this.request) {
       // Read from request cookies on server
-      const cookies = this.request.headers.cookie || "";
+      const cookies = this.request.headers.cookie || '';
       const match = cookies.match(/auth_token=([^;]+)/);
       return match ? match[1] : null;
     }
-
+    
     if (isPlatformBrowser(this.platformId)) {
       // Read from document cookies on client
       const match = document.cookie.match(/auth_token=([^;]+)/);
       return match ? match[1] : null;
     }
-
+    
     return null;
   }
 }
@@ -255,13 +251,13 @@ export class Auth {
 // app.routes.server.ts
 export const serverRoutes: ServerRoute[] = [
   // Public routes - prerender
-  { path: "", renderMode: RenderMode.Prerender },
-  { path: "products", renderMode: RenderMode.Prerender },
-
+  { path: '', renderMode: RenderMode.Prerender },
+  { path: 'products', renderMode: RenderMode.Prerender },
+  
   // Authenticated routes - client only
-  { path: "dashboard", renderMode: RenderMode.Client },
-  { path: "profile", renderMode: RenderMode.Client },
-  { path: "settings", renderMode: RenderMode.Client },
+  { path: 'dashboard', renderMode: RenderMode.Client },
+  { path: 'profile', renderMode: RenderMode.Client },
+  { path: 'settings', renderMode: RenderMode.Client },
 ];
 ```
 
@@ -277,7 +273,7 @@ import { REQUEST, RESPONSE_INIT } from '@angular/ssr/tokens';
 @Component({...})
 export class ProductList {
   private responseInit = inject(RESPONSE_INIT, { optional: true });
-
+  
   constructor() {
     // Set cache headers for SSR response
     if (this.responseInit) {
@@ -296,7 +292,7 @@ export class ProductList {
 // server.ts - Express middleware
 app.use((req, res, next) => {
   // Vary by cookie for authenticated content
-  res.setHeader("Vary", "Cookie");
+  res.setHeader('Vary', 'Cookie');
   next();
 });
 ```
@@ -306,7 +302,7 @@ app.use((req, res, next) => {
 ```typescript
 // Set SWR headers for dynamic content
 this.responseInit.headers = {
-  "Cache-Control": "public, max-age=60, stale-while-revalidate=3600",
+  'Cache-Control': 'public, max-age=60, stale-while-revalidate=3600',
 };
 ```
 
@@ -323,7 +319,7 @@ import { isPlatformServer } from '@angular/common';
 @Injectable()
 export class SsrError implements ErrorHandler {
   private platformId = inject(PLATFORM_ID);
-
+  
   handleError(error: Error) {
     if (isPlatformServer(this.platformId)) {
       // Log server errors
@@ -355,14 +351,14 @@ export class SsrError implements ErrorHandler {
 })
 export class PageCmpt {
   private dataService = inject(Data);
-
+  
   data = signal<Data | null>(null);
   dataError = signal(false);
-
+  
   constructor() {
     this.loadData();
   }
-
+  
   private async loadData() {
     try {
       const data = await this.dataService.getData();
@@ -385,24 +381,24 @@ export class PageCmpt {
     <header>
       <app-navigation />
     </header>
-
+    
     <!-- Main content - hydrate on viewport -->
     <main>
       @defer (hydrate on viewport) {
         <app-product-grid [products]="products()" />
       }
     </main>
-
+    
     <!-- Below fold - hydrate on idle -->
     @defer (hydrate on idle) {
       <app-reviews [productId]="productId()" />
     }
-
+    
     <!-- Interactive only - hydrate on interaction -->
     @defer (hydrate on interaction) {
       <app-chat-widget />
     }
-
+    
     <!-- Static footer - never hydrate -->
     @defer (hydrate never) {
       <app-footer />
@@ -418,12 +414,12 @@ export class ProductPage {}
 // app.routes.server.ts
 export const serverRoutes: ServerRoute[] = [
   {
-    path: "products/:id",
+    path: 'products/:id',
     renderMode: RenderMode.Server,
     async getPrerenderParams() {
       // Prerender top 100 products
       const topProducts = await fetchTopProducts(100);
-      return topProducts.map((p) => ({ id: p.id }));
+      return topProducts.map(p => ({ id: p.id }));
     },
   },
 ];
@@ -433,7 +429,7 @@ export const serverRoutes: ServerRoute[] = [
 
 ```typescript
 // Enable streaming for faster TTFB
-import { provideServerRendering } from "@angular/platform-server";
+import { provideServerRendering } from '@angular/platform-server';
 
 const serverConfig: ApplicationConfig = {
   providers: [
@@ -448,31 +444,31 @@ const serverConfig: ApplicationConfig = {
 ### Test Server Rendering
 
 ```typescript
-import { renderApplication } from "@angular/platform-server";
-import { App } from "./app.component";
-import { config } from "./app.config.server";
+import { renderApplication } from '@angular/platform-server';
+import { App } from './app.component';
+import { config } from './app.config.server';
 
-describe("SSR", () => {
-  it("should render home page", async () => {
+describe('SSR', () => {
+  it('should render home page', async () => {
     const html = await renderApplication(App, {
-      appId: "my-app",
+      appId: 'my-app',
       providers: config.providers,
-      url: "/",
+      url: '/',
     });
-
-    expect(html).toContain("<h1>Welcome</h1>");
-    expect(html).toContain("</app-root>");
+    
+    expect(html).toContain('<h1>Welcome</h1>');
+    expect(html).toContain('</app-root>');
   });
-
-  it("should render product page with data", async () => {
+  
+  it('should render product page with data', async () => {
     const html = await renderApplication(App, {
-      appId: "my-app",
+      appId: 'my-app',
       providers: config.providers,
-      url: "/products/123",
+      url: '/products/123',
     });
-
-    expect(html).toContain("Product Name");
-    expect(html).not.toContain("Loading...");
+    
+    expect(html).toContain('Product Name');
+    expect(html).not.toContain('Loading...');
   });
 });
 ```
@@ -480,20 +476,20 @@ describe("SSR", () => {
 ### Test Hydration
 
 ```typescript
-import { TestBed } from "@angular/core/testing";
-import { provideClientHydration } from "@angular/platform-browser";
+import { TestBed } from '@angular/core/testing';
+import { provideClientHydration } from '@angular/platform-browser';
 
-describe("Hydration", () => {
+describe('Hydration', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideClientHydration()],
     });
   });
-
-  it("should hydrate without errors", () => {
+  
+  it('should hydrate without errors', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
-
+    
     // No hydration mismatch errors should be thrown
     expect(fixture.componentInstance).toBeTruthy();
   });

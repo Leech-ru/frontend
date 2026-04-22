@@ -16,7 +16,6 @@ ng add @angular/ssr
 ```
 
 This adds:
-
 - `@angular/ssr` package
 - `server.ts` - Express server
 - `src/main.server.ts` - Server bootstrap
@@ -41,11 +40,11 @@ server.ts                       # Express server
 ### app.config.server.ts
 
 ```typescript
-import { ApplicationConfig, mergeApplicationConfig } from "@angular/core";
-import { provideServerRendering } from "@angular/platform-server";
-import { provideServerRoutesConfig } from "@angular/ssr";
-import { appConfig } from "./app.config";
-import { serverRoutes } from "./app.routes.server";
+import { ApplicationConfig, mergeApplicationConfig } from '@angular/core';
+import { provideServerRendering } from '@angular/platform-server';
+import { provideServerRoutesConfig } from '@angular/ssr';
+import { appConfig } from './app.config';
+import { serverRoutes } from './app.routes.server';
 
 const serverConfig: ApplicationConfig = {
   providers: [
@@ -61,27 +60,27 @@ export const config = mergeApplicationConfig(appConfig, serverConfig);
 
 ```typescript
 // app.routes.server.ts
-import { RenderMode, ServerRoute } from "@angular/ssr";
+import { RenderMode, ServerRoute } from '@angular/ssr';
 
 export const serverRoutes: ServerRoute[] = [
   {
-    path: "",
+    path: '',
     renderMode: RenderMode.Prerender, // Static at build time
   },
   {
-    path: "products",
+    path: 'products',
     renderMode: RenderMode.Prerender,
   },
   {
-    path: "products/:id",
+    path: 'products/:id',
     renderMode: RenderMode.Server, // Dynamic SSR
   },
   {
-    path: "dashboard",
+    path: 'dashboard',
     renderMode: RenderMode.Client, // Client-only (SPA)
   },
   {
-    path: "**",
+    path: '**',
     renderMode: RenderMode.Server,
   },
 ];
@@ -89,11 +88,11 @@ export const serverRoutes: ServerRoute[] = [
 
 ### Render Modes
 
-| Mode                   | Description               | Use Case                 |
-| ---------------------- | ------------------------- | ------------------------ |
-| `RenderMode.Prerender` | Static HTML at build time | Marketing pages, blogs   |
-| `RenderMode.Server`    | Dynamic SSR per request   | User-specific content    |
-| `RenderMode.Client`    | Client-side only (SPA)    | Authenticated dashboards |
+| Mode | Description | Use Case |
+|------|-------------|----------|
+| `RenderMode.Prerender` | Static HTML at build time | Marketing pages, blogs |
+| `RenderMode.Server` | Dynamic SSR per request | User-specific content |
+| `RenderMode.Client` | Client-side only (SPA) | Authenticated dashboards |
 
 ## Hydration
 
@@ -103,7 +102,7 @@ Hydration is enabled by default with `provideClientHydration()`:
 
 ```typescript
 // app.config.ts
-import { provideClientHydration } from "@angular/platform-browser";
+import { provideClientHydration } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -126,17 +125,17 @@ Defer hydration of specific components:
     } @placeholder {
       <div class="comments-placeholder">Loading comments...</div>
     }
-
+    
     <!-- Hydrate on interaction -->
     @defer (hydrate on interaction) {
       <app-interactive-chart [data]="chartData" />
     }
-
+    
     <!-- Hydrate on idle -->
     @defer (hydrate on idle) {
       <app-recommendations />
     }
-
+    
     <!-- Never hydrate (static only) -->
     @defer (hydrate never) {
       <app-static-footer />
@@ -151,28 +150,27 @@ export class Post {
 
 ### Hydration Triggers
 
-| Trigger                  | Description                  |
-| ------------------------ | ---------------------------- |
-| `hydrate on viewport`    | When element enters viewport |
-| `hydrate on interaction` | On click, focus, or input    |
-| `hydrate on idle`        | When browser is idle         |
-| `hydrate on immediate`   | Immediately after load       |
-| `hydrate on timer(ms)`   | After specified delay        |
-| `hydrate when condition` | When expression is true      |
-| `hydrate never`          | Never hydrate (static)       |
+| Trigger | Description |
+|---------|-------------|
+| `hydrate on viewport` | When element enters viewport |
+| `hydrate on interaction` | On click, focus, or input |
+| `hydrate on idle` | When browser is idle |
+| `hydrate on immediate` | Immediately after load |
+| `hydrate on timer(ms)` | After specified delay |
+| `hydrate when condition` | When expression is true |
+| `hydrate never` | Never hydrate (static) |
 
 ### Event Replay
 
 Capture user events before hydration completes:
 
 ```typescript
-import {
-  provideClientHydration,
-  withEventReplay,
-} from "@angular/platform-browser";
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideClientHydration(withEventReplay())],
+  providers: [
+    provideClientHydration(withEventReplay()),
+  ],
 };
 ```
 
@@ -187,7 +185,7 @@ import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 @Component({...})
 export class My {
   private platformId = inject(PLATFORM_ID);
-
+  
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
       // Browser-only code
@@ -211,13 +209,13 @@ export class Chart {
     afterNextRender(() => {
       this.initChart();
     });
-
+    
     // Runs after every render (browser only)
     afterRender(() => {
       this.updateChart();
     });
   }
-
+  
   private initChart() {
     // Safe to use DOM APIs here
     const canvas = document.getElementById('chart');
@@ -230,37 +228,34 @@ export class Chart {
 
 ```typescript
 // tokens.ts
-import { InjectionToken, PLATFORM_ID, inject } from "@angular/core";
-import { isPlatformBrowser } from "@angular/common";
+import { InjectionToken, PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
-export const WINDOW = new InjectionToken<Window | null>("Window", {
-  providedIn: "root",
+export const WINDOW = new InjectionToken<Window | null>('Window', {
+  providedIn: 'root',
   factory: () => {
     const platformId = inject(PLATFORM_ID);
     return isPlatformBrowser(platformId) ? window : null;
   },
 });
 
-export const LOCAL_STORAGE = new InjectionToken<Storage | null>(
-  "LocalStorage",
-  {
-    providedIn: "root",
-    factory: () => {
-      const platformId = inject(PLATFORM_ID);
-      return isPlatformBrowser(platformId) ? localStorage : null;
-    },
+export const LOCAL_STORAGE = new InjectionToken<Storage | null>('LocalStorage', {
+  providedIn: 'root',
+  factory: () => {
+    const platformId = inject(PLATFORM_ID);
+    return isPlatformBrowser(platformId) ? localStorage : null;
   },
-);
+});
 
 // Usage
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class Storage {
   private storage = inject(LOCAL_STORAGE);
-
+  
   get(key: string): string | null {
     return this.storage?.getItem(key) ?? null;
   }
-
+  
   set(key: string, value: string): void {
     this.storage?.setItem(key, value);
   }
@@ -274,10 +269,10 @@ export class Storage {
 ```typescript
 // app.routes.server.ts
 export const serverRoutes: ServerRoute[] = [
-  { path: "", renderMode: RenderMode.Prerender },
-  { path: "about", renderMode: RenderMode.Prerender },
-  { path: "contact", renderMode: RenderMode.Prerender },
-  { path: "blog", renderMode: RenderMode.Prerender },
+  { path: '', renderMode: RenderMode.Prerender },
+  { path: 'about', renderMode: RenderMode.Prerender },
+  { path: 'contact', renderMode: RenderMode.Prerender },
+  { path: 'blog', renderMode: RenderMode.Prerender },
 ];
 ```
 
@@ -285,26 +280,26 @@ export const serverRoutes: ServerRoute[] = [
 
 ```typescript
 // app.routes.server.ts
-import { RenderMode, ServerRoute, PrerenderFallback } from "@angular/ssr";
+import { RenderMode, ServerRoute, PrerenderFallback } from '@angular/ssr';
 
 export const serverRoutes: ServerRoute[] = [
   {
-    path: "products/:id",
+    path: 'products/:id',
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
       // Fetch product IDs to prerender
-      const response = await fetch("https://api.example.com/products");
+      const response = await fetch('https://api.example.com/products');
       const products = await response.json();
       return products.map((p: Product) => ({ id: p.id }));
     },
     fallback: PrerenderFallback.Server, // SSR for non-prerendered
   },
   {
-    path: "blog/:slug",
+    path: 'blog/:slug',
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
       const posts = await fetchBlogPosts();
-      return posts.map((post) => ({ slug: post.slug }));
+      return posts.map(post => ({ slug: post.slug }));
     },
     fallback: PrerenderFallback.Client, // SPA for non-prerendered
   },
@@ -313,11 +308,11 @@ export const serverRoutes: ServerRoute[] = [
 
 ### Prerender Fallback Options
 
-| Fallback                   | Description                    |
-| -------------------------- | ------------------------------ |
+| Fallback | Description |
+|----------|-------------|
 | `PrerenderFallback.Server` | SSR for non-prerendered routes |
-| `PrerenderFallback.Client` | Client-side rendering          |
-| `PrerenderFallback.None`   | 404 for non-prerendered routes |
+| `PrerenderFallback.Client` | Client-side rendering |
+| `PrerenderFallback.None` | 404 for non-prerendered routes |
 
 ## HTTP Caching
 
@@ -326,10 +321,7 @@ export const serverRoutes: ServerRoute[] = [
 Automatically transfer HTTP responses from server to client:
 
 ```typescript
-import {
-  provideClientHydration,
-  withHttpTransferCacheOptions,
-} from "@angular/platform-browser";
+import { provideClientHydration, withHttpTransferCacheOptions } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -337,8 +329,8 @@ export const appConfig: ApplicationConfig = {
       withHttpTransferCacheOptions({
         includePostRequests: true,
         includeRequestsWithAuthHeaders: false,
-        filter: (req) => !req.url.includes("/api/realtime"),
-      }),
+        filter: (req) => !req.url.includes('/api/realtime'),
+      })
     ),
   ],
 };
@@ -347,16 +339,16 @@ export const appConfig: ApplicationConfig = {
 ### Manual TransferState
 
 ```typescript
-import { TransferState, makeStateKey } from "@angular/core";
+import { TransferState, makeStateKey } from '@angular/core';
 
-const PRODUCTS_KEY = makeStateKey<Product[]>("products");
+const PRODUCTS_KEY = makeStateKey<Product[]>('products');
 
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class Product {
   private http = inject(HttpClient);
   private transferState = inject(TransferState);
   private platformId = inject(PLATFORM_ID);
-
+  
   getProducts(): Observable<Product[]> {
     // Check if data was transferred from server
     if (this.transferState.hasKey(PRODUCTS_KEY)) {
@@ -364,14 +356,14 @@ export class Product {
       this.transferState.remove(PRODUCTS_KEY);
       return of(products);
     }
-
-    return this.http.get<Product[]>("/api/products").pipe(
-      tap((products) => {
+    
+    return this.http.get<Product[]>('/api/products').pipe(
+      tap(products => {
         // Store for transfer on server
         if (isPlatformServer(this.platformId)) {
           this.transferState.set(PRODUCTS_KEY, products);
         }
-      }),
+      })
     );
   }
 }
@@ -406,23 +398,23 @@ node dist/my-app/server/server.mjs
 
 ```javascript
 // server.ts (generated)
-import { APP_BASE_HREF } from "@angular/common";
-import { CommonEngine } from "@angular/ssr/node";
-import express from "express";
-import { dirname, join, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
-import bootstrap from "./src/main.server";
+import { APP_BASE_HREF } from '@angular/common';
+import { CommonEngine } from '@angular/ssr/node';
+import express from 'express';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import bootstrap from './src/main.server';
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
-const browserDistFolder = resolve(serverDistFolder, "../browser");
-const indexHtml = join(serverDistFolder, "index.server.html");
+const browserDistFolder = resolve(serverDistFolder, '../browser');
+const indexHtml = join(serverDistFolder, 'index.server.html');
 
 const app = express();
 const commonEngine = new CommonEngine();
 
-app.get("*", express.static(browserDistFolder, { maxAge: "1y", index: false }));
+app.get('*', express.static(browserDistFolder, { maxAge: '1y', index: false }));
 
-app.get("*", (req, res, next) => {
+app.get('*', (req, res, next) => {
   commonEngine
     .render({
       bootstrap,
@@ -436,7 +428,7 @@ app.get("*", (req, res, next) => {
 });
 
 app.listen(4000, () => {
-  console.log("Server listening on http://localhost:4000");
+  console.log('Server listening on http://localhost:4000');
 });
 ```
 
