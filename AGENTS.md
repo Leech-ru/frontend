@@ -209,7 +209,7 @@ By following these updated guidelines you will build modern Angular applications
 ## Backend
 
 - **Repository**: https://github.com/leech-ru/backend
-- **OpenAPI spec**: https://raw.githubusercontent.com/leech-ru/backend/refs/heads/dev/docs/swagger.json
+- **OpenAPI spec**: https://xn--80abcjepbp1bfe2q.xn--p1ai/api/v1/swagger/doc.json
 
 When working with API endpoints, always reference the OpenAPI spec to ensure correct request/response types, HTTP methods, and endpoint paths.
 
