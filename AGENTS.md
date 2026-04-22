@@ -1,220 +1,213 @@
-# Instructions for AI Agents
+# AGENTS.md
 
-You are a Google Developer expert in TypeScript, Angular, and scalable web application development. You write
-maintainable, performant, and accessible code following Angular and TypeScript best practices.
+You are an expert Senior Frontend Engineer in TypeScript, Angular, and scalable web application development. You write maintainable, performant, and accessible code following Angular and TypeScript best practices.
 
 You are currently immersed in Angular 21, passionately adopting signals for reactive state management, embracing
-standalone components for streamlined architecture. Performance is paramount to you: you constantly seek to optimize
-change detection and improve user experience through these modern Angular paradigms. When prompted, assume you are
-familiar with all the newest APIs and best practices.
+standalone components for streamlined architecture. When prompted, assume you are familiar with all the newest APIs and best practices.
 
-When you update a component, be sure to put the logic in the `.ts` file, the styles in the `.less` (or `.css`) file and
-the HTML template in the `.html` file (unless the component is trivial and already agreed to be inline).
+When you create or update a component, be sure to put the logic in the `.ts` file, the styles in the `.less` file and the HTML template in the `.html` file.
 
-## Project Stack
+## Tech Stack
 
-- **Framework**: Angular 21
-- **Components**: Taiga UI 5
-- **Masking**: Maskito 5
-- **SSR**: Express 5
+- **Framework**: Angular 21 (Signals-only preference).
+- **Architecture**: Feature-Sliced Design (FSD).
+- **UI Kit**: Taiga UI 5 (stable)
+- **Masking**: Maskito 5 (stable)
+- **SSR**: Express 5 and @angular/ssr
+- **Styling:** LESS
 
-## Basic Guideline
+## Coding Guide
 
-- Drop unused variables (and imports).
-- JSDoc is optional for public API surfaces; prefer meaningful names and self-documenting code.
-- Sort imports alphabetically (both import statements and in Angular `@Component` decorator).
+### Quality
 
-## TypeScript Guideline
+- Run `npm run typecheck` to ensure all types are correct.
+- Run `npm run format` to ensure all files are formatted.
+- NOTE: the project do NOT have a linter right now.
 
-- Use `strict` type checking (`tsconfig.json` → `"strict": true`).
-- Prefer type inference when the type is obvious; only annotate when helpful.
-- Avoid the `any` type; use `unknown` when type is uncertain, and narrow it quickly.
-- Private fields should appear before protected fields, which in turn appear before public fields.
-- Prefer readonly where appropriate.
-- Use disciplined naming and file structure consistent with styleguide (e.g., PascalCase for classes, camelCase for
-  variables).
-- Use aliases from `tsconfig.json` instead of deep relative imports.
+### TypeScript
 
-## package.json
+- Use `strict` type checking.
+- Prefer type inference; annotate only when helpful.
+- Avoid `any`; use `unknown` with narrowing.
+- Always use access modifiers: `private`, `protected`, `public`.
+- Prefer `readonly` where appropriate.
+- Use aliases from `tsconfig.json` instead of deep relative imports (`@/…`).
 
-- Put packages in `dependencies` if they are imported in `/src`.
-- Put packages in `devDependencies` if they are not imported in `/src`.
+### Angular
 
-## Architecture
+#### State
 
-### Folder Structure
+We build reactivity exclusively on Signals. RxJS is only for asynchronous flows that are impossible or impractical to implement using Signals.
 
-```
-src/
-├── app/          # application configs, layouts
-├── pages/        # page components with routes
-├── features/     # business logic (api, model, ui, services)
-├── entities/     # domain entities (api, model, services, resources)
-├── shared/       # reusable utilities (api, ui)
-└── widgets/      # standalone widgets (ui, model, config)
-```
+##### Local
 
-### Forbidden Placements
+- Use Signals for everything. RxJS is allowed ONLY for complex event streams
+- Use modern `signal()`, `model()`, `input()`, `output()`, APIs.
+- Use `computed()` for computed data.
+- Use `linkedSignal()` for dependent data to reset or synchronize state when input data changes.
+- Prefer the new signal-based `form()` API and fallback to reactive forms in complex cases because Taiga UI 5 does not support signal forms fully yet.
 
-- **DO NOT** place features, entities, shared, or widgets inside `src/app/`. They must live inside their directories.
-- The `src/app/` directory should only contain layouts, configs, and the root component.
+##### Global
 
-## Angular Best Practices
+- Use lightweight `@Injectable({ providedIn: 'root' })` services over heavy third-party stores.
+- Use `InjectionToken` for global state and configuration.
 
-- Use standalone components and standalone directives/pipes by default. With newest Angular components, directives and pipes
-  are standalone by default. Do not use standalone flag for each class, because it is already the default.
-- Use the new functional input/output APIs when appropriate (e.g., `input.required<T>()`, `input.optional<T>()`) to
-  strongly type and enforce component inputs.
-- Use signals for reactive state management: local component state with `signal()`, derived state with `computed()`,
-  prefer `update()` or `set()` over in-place mutations.
-- Design components with `changeDetection: ChangeDetectionStrategy.OnPush` (though with signals the change-detection
-  model is improved).
-- Do NOT use `@HostBinding` and `@HostListener` decorators; instead use the `host` object inside the `@Component` (or
-  `@Directive`) decorator.
-- Keep components small and focused on a single responsibility.
-- Prefer reactive forms (`FormControl`, `FormGroup`, `FormArray`) over template-driven forms.
-- Do NOT use `ngClass`; use `[class.foo]="…"`.
-- Do NOT use `ngStyle`; use `[style.prop]="…"`.
-- Avoid heavy logic in templates: keep templates simple, delegate to component class or service.
-- Leverage lazy-loading of standalone components/routes to minimize bundle size.
+##### Server
 
-## Components
+- Create services to work with API:
 
-- Each component should have its logic in `.ts`, styles in `.less` (or `.css`) and template in `.html`, unless
-  explicitly agreed otherwise.
-- Define inputs with the new `input()` API when practical:
   ```ts
-  import { input } from "@angular/core";
-  export class MyComponent {
-    private readonly items = input.required<Item[]>();
-  }
-  ```
-- Use signals inside the component for internal state:
-  ```ts
-  export class MyComponent {
-    private readonly count = signal(0);
-    private readonly doubleCount = computed(() => this.count() * 2);
-  }
-  ```
-- On user interaction, update via `count.update(value => value + 1)`.
-- Set `changeDetection: ChangeDetectionStrategy.OnPush`.
+  @Injectable({ providedIn: "root" })
+  export class UserService {
+    private readonly client = inject(HttpClient);
+    private readonly baseUrl = `/api/v1/user`;
 
-## State Management
-
-- Use signals for local component state.
-- Use `computed()` for derived state (no side-effects inside computed).
-- Keep state transformations pure and predictable.
-- Do NOT mutate signal values (e.g., avoid pushing into arrays inside a signal directly). Use `.update()` or `.set()`.
-
-## Services
-
-- **Services**: Use for API calls only. Do **NOT** store `isLoading` or `error` state in services.
-- **isLoading/error**: Keep `isLoading` and `error` state in components, not in services.
-  ```ts
-  // In component - correct
-  export class MyComponent {
-    private readonly orderService = inject(OrderService);
-    readonly isLoading = signal(false);
-    readonly error = signal<string | null>(null);
+    public login(body: UserLoginRequest) {
+      return this.client.post<User>(`${this.baseUrl}/login`, body);
+    }
   }
   ```
 
-## Routing & Guards
+- Return `null` on server if working with endpoints that require auth.
+- Use `resource()` with `InjectionToken` pattern to get single entity data:
 
-### Lazy Loading
-
-Use lazy-loaded routes:
-
-```ts
-export const routes: Routes = [
-  {
-    path: "feature",
-    loadComponent: () => import("@/pages/feature")),
-  },
-];
-```
-
-### Guards & Resolvers
-
-- Use functional guards (`CanActivateFn`) and resolvers (`ResolveFn`).
-- Place resolvers in `lib/` folder next to the page:
-
-```
-src/pages/(leech)/order/
-├── ui/page/
-├── lib/order.resolver.ts     # resolver
-└── index.ts                  # exports (public API)
-```
-
-## Layouts
-
-- Layouts live in `@src/app/layouts/`.
-- Example layouts: `bare`, `auth`, `full`, `admin`.
-- Use layout based on route requirements (e.g., auth layout for protected routes).
-
-## Templates
-
-- Keep templates simple: avoid complex logic, method calls in loops, deeply nested computations.
-- Use `[class.xyz]`, `[style.prop]`, bindings rather than `ngClass`/`ngStyle`.
-- Avoid subscribing to Observables in templates; prefer signals or `async` pipe when needed.
-- Prefer structural directives like `*ngIf`, `*ngFor` for flow control, but keep them shallow.
-- Use `input()` signals in components so you can reference `myInputSignal()` directly in template.
-- Writable signals are valid with Angular two-way binding syntax (`[(...)]`). Example: `[(open)]="isOpen"` is allowed
-  when `isOpen` is a writable signal.
-
-## i18n
-
-- For this project: Russian is the only language at the moment.
-- Put Russian text directly in templates and components. Do not use i18n libraries.
-- Example:
   ```ts
-  readonly submitLabel = "Оформить заказ";
+  export const CURRENT_USER_RESOURCE = new InjectionToken(
+    "Current User Resource",
+    {
+      providedIn: "root",
+      factory: () => {
+        const userService = inject(UserService);
+
+        return resource({
+          loader: async () => {
+            try {
+              return await lastValueFrom(userService.get());
+            } catch {
+              return null;
+            }
+          },
+        });
+      },
+    },
+  );
   ```
-- Handle complex words using the native `Intl` API.
 
-## Accessibility & Performance
+- Use `Object.assign` to extend resource pattern API with other parameters or methods that is useful for pagination or multiple entities:
 
-- Use semantic HTML elements.
-- Use `aria-*` attributes appropriately for accessibility.
-- Do not bake `aria-label` into component host metadata by default; labeling is the responsibility of developers who use
-  the component in specific contexts.
-- Avoid unnecessary re-rendering by leveraging signals and OnPush.
-- Optimize bundle size via lazy loading, tree-shaking, standalone components.
-- Use efficient change detection patterns: avoid heavy work inside frequent event handlers, split large components.
+  ```ts
+  export const USERS_RESOURCE = new InjectionToken("Users Resource", {
+    providedIn: "root",
+    factory: () => {
+      const userService = inject(UserService);
 
-## Style & Architecture
+      const params = signal({ q: "" });
 
-- Keep component file structure consistent and logical (e.g., component folder with `.ts`, `.html`, `.less`,
-  `.spec.ts`).
-- Maintain module/feature folder structure: with standalone components this becomes simpler — you import only what you
-  need.
-- Document public APIs in services/components when necessary with JSDoc (optional).
-- Use meaningful commit messages, consistent linting, and code reviews.
+      return Object.assign(
+        resource({
+          params,
+          loader: async ({ params }) => {
+            try {
+              return (await lastValueFrom(userService.getAll(params))) ?? [];
+            } catch {
+              return null;
+            }
+          },
+          defaultValue: null,
+        }),
+        {
+          params,
+        },
+      );
+    },
+  });
+  ```
 
-## Upgrade & Migration Notes
+- Use the following folder structure for an entity that is working with an API:
 
-- Since newest Angular makes standalone components, directives and pipes default, you can remove `NgModule` boilerplate and
-  simplify architecture.
-- Use CLI migrations to convert existing code.
-- Gradually migrate rather than big-bang: convert shared/utility components first.
+  ```
+  src/entities/entity
+  ├── api
+  │   ├── resources
+  │   │   └── *.ts      # InjectionToken with `resource()`
+  │   ├── interceptors  # Optional API interceptors
+  │   │   └── *.ts
+  │   ├── service.ts    # API wrapper calls
+  │   └── types.ts      # DTOs
+  └── index.ts          # Public API of the slice
+  ```
 
-## Summary
+- Use feature-driven mutations and update data (POST/PUT/DELETE) only in `features`:
 
-By following these updated guidelines you will build modern Angular applications that are:
+  ```ts
+  @Injectable({ providedIn: "root" })
+  export class LoginService {
+    private readonly router = inject(Router);
+    private readonly userService = inject(UserService);
+    private readonly currentUserResource = inject(CURRENT_USER_RESOURCE);
 
-- Modular, thanks to standalone components
-- Reactive and performant, thanks to signals
-- Clean and maintainable, thanks to best practices around TypeScript, state and architecture
+    public async login(body: UserLoginRequest) {
+      const user = await lastValueFrom(this.userService.login(body));
+      this.currentUserResource.set(user);
+      this.router.navigateByUrl("/");
+    }
+  }
+  ```
 
-## Backend
+- Prioritize built-in `isLoading` and `error` from `resource()` or `form()` APIs.
+- If native states are unavailable, use `try/catch/finally` with explicit signals `isLoading` and `error`, ensuring `isLoading` is reset in the `finally` block.
 
-- **Repository**: https://github.com/leech-ru/backend
-- **OpenAPI spec**: https://xn--80abcjepbp1bfe2q.xn--p1ai/api/v1/swagger/doc.json
+- Use the following folder structure for a feature that is working with an API:
 
-When working with API endpoints, always reference the OpenAPI spec to ensure correct request/response types, HTTP methods, and endpoint paths.
+  ```
+  src/features/feature/
+  ├── api/
+  │ └── service.ts     # Coordination of calls needed to perform an action and optimistic updates
+  └── index.ts         # Public API of the slice
+  ```
 
-## Resources
+#### Components
 
-Here are some links to the essentials for building Angular applications. Use these to get an understanding of how some
-of the core functionality works https://angular.dev/essentials/components https://angular.dev/essentials/signals
-https://angular.dev/essentials/templates https://angular.dev/essentials/dependency-injection
+- **Change Detection**: Force `changeDetection: ChangeDetectionStrategy.OnPush`.
+- **Control Flow**: Use `@if`, `@for`, `@switch` exclusively.
+- **Host Binding**: Use `host: { '[class.foo]': 'condition()' }` in `@Component` decorator.
+
+#### Internationalization
+
+- **URL-Based Routing**: The locale is a part of the URL path.
+- **Source Language**: The primary source code (templates and TS files) must be written in Russian.
+- **Standard Tooling**: Use the native `$localize` tagged templates in TypeScript logic and `i18n` attributes in HTML templates.
+- **Static Extraction**: Ensure all strings are extractable via `ng extract-i18n`. Avoid dynamic string concatenation that breaks static analysis.
+
+#### SSR
+
+- Use `inject(PLATFORM_ID)` and `isPlatformServer` if needed.
+- Avoid direct DOM manipulation to prevent hydration mismatch.
+
+#### Routing
+
+- **Lazy Loading**: Use mandatory lazy-loading for all page components: `loadComponent: () => import("@/pages/…")`.
+- **Layout Strategy**:
+  - Use the existing base layout, configuring its behavior via the `data` property in route definitions.
+  - Create new layouts (e.g., `auth`) as nested child routes to maintain state and minimize DOM thrashing.
+- **Performance Optimization**: Use **Named Outlets** (e.g., `subHeader`) for auxiliary UI parts to prevent unnecessary re-renders of the main content area (e.g., `(admin)/tabs`).
+- **Functional Guards**:
+  - Use `CanActivateFn` and other functional guard types exclusively.
+  - Store all guards in `@src/app/guards`.
+  - Client-side execution priority: Ensure guards handle platform-specific logic (CSR vs SSR) correctly.
+- **Auth-Blocking**: Routes depending on authentication must wait their dependency to resolve. Use `data: { showServerLoading: true }` to trigger the global loading indicator during resource resolution.
+
+#### Testing
+
+Do NOT write tests for now.
+
+## External Tools
+
+### MCPs
+
+- **Angular Documentation**: Use `angular-cli` MCP for latest Signal APIs (`resource()`, `linkedSignal()`).
+- **Taiga UI**: Use `taiga-ui` for the most recent documentation and usage examples.
+
+### API Specification
+
+Before updating API types or generating new API logic always fetch `https://xn--80abcjepbp1bfe2q.xn--p1ai/api/v1/swagger/doc.json` for the most recent definitions.
