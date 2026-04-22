@@ -1,0 +1,31 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "chrome-devtools": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "npx",
+        "-y",
+        "chrome-devtools-mcp@latest",
+        "--browserUrl",
+        "http://localhost:9222"
+      ]
+    },
+    "angular-cli": {
+      "type": "local",
+      "enabled": true,
+      "command": ["npx", "-y", "@angular/cli", "mcp"]
+    },
+    "taiga-ui": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "npx",
+        "-y",
+        "@taiga-ui/mcp@latest",
+        "--source-url=https://taiga-ui.dev"
+      ]
+    }
+  }
+}
