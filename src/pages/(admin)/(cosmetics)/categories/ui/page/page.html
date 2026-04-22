@@ -30,7 +30,7 @@
         [size]="categoriesResource.params().limit"
         [total]="categoriesResource.placeholder().pagination.total_items"
         [items]="sizes"
-        (paginationChange)="paginate($event)"
+        (paginationChange)="categoriesResource.paginate($event)"
       />
     </footer>
   } @else {

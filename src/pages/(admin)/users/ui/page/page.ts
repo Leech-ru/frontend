@@ -9,10 +9,7 @@ import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { debounce, form, FormField, FormRoot } from "@angular/forms/signals";
 import { TuiDropdownSheet } from "@taiga-ui/addon-mobile";
-import {
-  TuiTablePagination,
-  TuiTablePaginationEvent,
-} from "@taiga-ui/addon-table";
+import { TuiTablePagination } from "@taiga-ui/addon-table";
 import {
   TUI_BREAKPOINT,
   TuiButton,
@@ -80,28 +77,12 @@ export class AppAdminUsersPageComponent {
   protected readonly roles = USER_ROLES;
   protected readonly getRoleDisplayName = getRoleDisplayName;
 
-  protected readonly form = form(this.usersResource.params, (schema) => {
+  protected readonly form = form(this.usersResource.filters, (schema) => {
     debounce(schema.q, 400);
   });
 
   constructor() {
+    this.usersResource.reset();
     this.usersResource.reload();
-  }
-
-  protected reset() {
-    this.usersResource.params.update((params) => ({
-      ...params,
-      q: "",
-      role: null,
-      offset: 0,
-    }));
-  }
-
-  protected paginate({ page, size }: TuiTablePaginationEvent) {
-    this.usersResource.params.update((params) => ({
-      ...params,
-      limit: size,
-      offset: page * size,
-    }));
   }
 }

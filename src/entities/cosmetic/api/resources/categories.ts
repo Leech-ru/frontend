@@ -7,6 +7,7 @@ import {
   resource,
   signal,
 } from "@angular/core";
+import { TuiTablePaginationEvent } from "@taiga-ui/addon-table";
 import { lastValueFrom } from "rxjs";
 import { CategoryService } from "../service";
 import { CategoriesPagination, CategoryFiltersDto } from "../types";
@@ -56,10 +57,20 @@ export const CATEGORIES_RESOURCE = new InjectionToken("Categories Resource", {
       }
     });
 
-    return Object.assign(categoriesResource, {
-      placeholder,
-      loaded,
-      params,
+    const paginate = ({ page, size }: TuiTablePaginationEvent) => {
+      params.update((params) => ({
+        ...params,
+        limit: size,
+        offset: page * size,
+      }));
+    };
+
+    return Object.assign(categoriesResource.asReadonly(), {
+      paginate,
+      reload: categoriesResource.reload,
+      loaded: loaded.asReadonly(),
+      params: params.asReadonly(),
+      placeholder: placeholder.asReadonly(),
     });
   },
 });

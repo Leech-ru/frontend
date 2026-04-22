@@ -23,10 +23,9 @@
         <input
           [ngModel]="form.role().value()"
           (ngModelChange)="
-            usersResource.params.update((params) => ({
-              ...params,
+            usersResource.filters.update((filters) => ({
+              ...filters,
               role: $event,
-              offset: 0,
             }))
           "
           [ngModelOptions]="{ standalone: true }"
@@ -72,7 +71,7 @@
             tuiButton
             type="button"
             size="s"
-            (click)="reset()"
+            (click)="usersResource.reset()"
           >
             <span i18n>Сбросить фильтры</span>
           </button>
@@ -86,7 +85,7 @@
           [size]="usersResource.params().limit"
           [total]="usersResource.placeholder().pagination.total_items"
           [items]="sizes"
-          (paginationChange)="paginate($event)"
+          (paginationChange)="usersResource.paginate($event)"
         />
       </footer>
     }

@@ -6,10 +6,7 @@ import { AppCosmeticCategoryCardComponent } from "@/entities/cosmetic/ui/categor
 import { AppCosmeticCategoryFormComponent } from "@/entities/cosmetic/ui/category-form";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { TuiResponsiveDialogService } from "@taiga-ui/addon-mobile";
-import {
-  TuiTablePagination,
-  TuiTablePaginationEvent,
-} from "@taiga-ui/addon-table";
+import { TuiTablePagination } from "@taiga-ui/addon-table";
 import { TuiButton, TuiLoader, TuiTitle } from "@taiga-ui/core";
 import { TuiAvatar } from "@taiga-ui/kit";
 import { TuiBlockStatusComponent, TuiHeader } from "@taiga-ui/layout";
@@ -55,13 +52,5 @@ export class AppAdminCategoriesPageComponent {
         },
       )
       .subscribe();
-  }
-
-  protected paginate({ page, size }: TuiTablePaginationEvent) {
-    this.categoriesResource.params.update((params) => ({
-      ...params,
-      limit: size,
-      offset: page * size,
-    }));
   }
 }

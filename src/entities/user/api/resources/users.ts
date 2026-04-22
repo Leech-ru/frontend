@@ -7,9 +7,10 @@ import {
   resource,
   signal,
 } from "@angular/core";
+import { TuiTablePaginationEvent } from "@taiga-ui/addon-table";
 import { lastValueFrom } from "rxjs";
 import { UserService } from "../service";
-import { UserGetAllParams, UsersPagination } from "../types";
+import { UsersPagination } from "../types";
 
 export const USERS_RESOURCE_PAGINATION_SIZES = [5, 10, 15, 30];
 
@@ -18,11 +19,18 @@ export const USERS_RESOURCE = new InjectionToken("Users Resource", {
   factory: () => {
     const userService = inject(UserService);
 
-    const params = signal<UserGetAllParams>({
+    const filters = signal({
       q: "",
       role: null,
       limit: USERS_RESOURCE_PAGINATION_SIZES[1],
-      offset: 0,
+    });
+
+    const params = linkedSignal({
+      source: filters,
+      computation: (filters) => ({
+        ...filters,
+        offset: 0,
+      }),
     });
 
     const usersResource = resource({
@@ -55,10 +63,36 @@ export const USERS_RESOURCE = new InjectionToken("Users Resource", {
       }
     });
 
-    return Object.assign(usersResource, {
-      placeholder,
-      loaded,
-      params,
+    const reset = () => {
+      filters.update((filters) => ({
+        ...filters,
+        q: "",
+        role: null,
+      }));
+    };
+
+    const paginate = ({ page, size }: TuiTablePaginationEvent) => {
+      if (size !== filters().limit) {
+        filters.update((filters) => ({
+          ...filters,
+          limit: size,
+        }));
+      } else {
+        params.update((params) => ({
+          ...params,
+          offset: page * size,
+        }));
+      }
+    };
+
+    return Object.assign(usersResource.asReadonly(), {
+      reset,
+      reload: usersResource.reload,
+      filters,
+      paginate,
+      loaded: loaded.asReadonly(),
+      params: params.asReadonly(),
+      placeholder: placeholder.asReadonly(),
     });
   },
 });
