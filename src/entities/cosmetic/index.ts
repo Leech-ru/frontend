@@ -1,8 +1,12 @@
 export {
+  CATEGORIES_RESOURCE,
+  CATEGORIES_RESOURCE_PAGINATION_SIZES,
+} from "./api/resources/categories";
+export {
   CategoryService,
   CosmeticsService,
   type UploadImageResponse,
-} from "./api/cosmetic.service";
+} from "./api/service";
 export type {
   CategoriesPagination,
   CategoryDto,
@@ -14,9 +18,7 @@ export type {
   Links,
   UpdateCategoryRequestDto,
   UpdateCosmeticsRequestDto,
-} from "./api/cosmetic.service.types";
-export { TEST_CATEGORY_CARDS } from "./api/mock";
-export { CATEGORIES_RESOURCE } from "./api/resources/categories";
+} from "./api/types";
 export { COSMETIC_CATEGORIES } from "./config/categories";
 export {
   getCategoriesCardsFromDto,

@@ -1,16 +1,19 @@
 <header tuiHeader="h4">
   <h1 tuiTitle i18n>Категории</h1>
   <aside tuiAccessories>
-    <button tuiButton type="button" (click)="createCategory()">
+    <button tuiButton type="button" (click)="create()">
       <span i18n>Создать</span>
     </button>
   </aside>
 </header>
 
 <tui-loader [loading]="categoriesResource.isLoading()" [overlay]="true">
-  @if (categories().items.length) {
+  @if (categoriesResource.placeholder().items.length) {
     <div class="categories-grid">
-      @for (category of categories().items; track category.id) {
+      @for (
+        category of categoriesResource.placeholder().items;
+        track category.id
+      ) {
         <app-cosmetics-category-card
           [id]="category.id"
           [name]="category.name"
@@ -22,16 +25,16 @@
     <footer>
       <tui-table-pagination
         [page]="
-          categoriesResource.params.offset() / categoriesResource.params.limit()
+          categoriesResource.params().offset / categoriesResource.params().limit
         "
-        [size]="categoriesResource.params.limit()"
-        [total]="categories().pagination.total_items"
-        [items]="[12, 24, 48, 96]"
-        (paginationChange)="handlePagination($event)"
+        [size]="categoriesResource.params().limit"
+        [total]="categoriesResource.placeholder().pagination.total_items"
+        [items]="sizes"
+        (paginationChange)="paginate($event)"
       />
     </footer>
   } @else {
-    @if (loaded()) {
+    @if (categoriesResource.loaded()) {
       <tui-block-status [card]="true" class="card" size="m">
         <div tuiAvatar="@tui.archive" tuiSlot="top"></div>
 
@@ -44,7 +47,7 @@
           tuiButton
           type="button"
           size="s"
-          (click)="createCategory()"
+          (click)="create()"
         >
           <span i18n>Создать категорию</span>
         </button></tui-block-status

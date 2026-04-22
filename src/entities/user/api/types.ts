@@ -1,3 +1,4 @@
+import { Pagination } from "@/shared/api";
 import type { USER_ROLES } from "../config/roles";
 
 export type UserRole = (typeof USER_ROLES)[number];
@@ -8,14 +9,6 @@ export interface User {
   surname: string;
   email: string;
   role: UserRole;
-}
-
-export interface Pagination {
-  current_page: number;
-  has_next: boolean;
-  has_previous: boolean;
-  total_items: number;
-  total_pages: number;
 }
 
 export interface UsersPagination {
@@ -43,8 +36,8 @@ export interface UserPatchRequest {
 }
 
 export interface UserGetAllParams {
-  q?: string;
-  role?: UserRole;
-  limit?: number;
-  offset?: number;
+  q: string;
+  role: UserRole | null;
+  limit: number;
+  offset: number;
 }

@@ -11,7 +11,7 @@ import {
   CreateCosmeticsRequestDto,
   UpdateCategoryRequestDto,
   UpdateCosmeticsRequestDto,
-} from "./cosmetic.service.types";
+} from "./types";
 
 export interface UploadImageResponse {
   id: string;
@@ -84,9 +84,13 @@ export class CategoryService {
     });
   }
 
-  public getAll(filters?: CategoryFiltersDto) {
+  public getAll(filters: CategoryFiltersDto) {
+    let httpParams = new HttpParams()
+      .set("limit", filters.limit)
+      .set("offset", filters.offset);
+
     return this.client.get<CategoriesPagination>(this.baseUrl, {
-      params: filters as HttpParams,
+      params: httpParams,
       withCredentials: true,
     });
   }

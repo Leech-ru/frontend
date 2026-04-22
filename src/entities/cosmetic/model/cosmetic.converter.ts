@@ -1,4 +1,4 @@
-import { CategoryDto, CosmeticDto } from "../api/cosmetic.service.types";
+import { CategoryDto, CosmeticDto } from "../api/types";
 import {
   CosmeticCategoryCard,
   CosmeticItem,

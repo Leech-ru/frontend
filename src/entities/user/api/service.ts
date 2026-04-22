@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import {
   User,
@@ -45,9 +45,21 @@ export class UserService {
   }
 
   public getAll(params: UserGetAllParams) {
+    let httpParams = new HttpParams()
+      .set("limit", params.limit)
+      .set("offset", params.offset);
+
+    if (params.q) {
+      httpParams = httpParams.set("q", params.q);
+    }
+
+    if (params.role !== undefined && params.role !== null) {
+      httpParams = httpParams.set("role", params.role);
+    }
+
     return this.client.get<UsersPagination>(`${this.baseUrl}/all`, {
       withCredentials: true,
-      params: JSON.parse(JSON.stringify(params)),
+      params: httpParams,
     });
   }
 }

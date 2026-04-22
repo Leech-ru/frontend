@@ -1,4 +1,4 @@
-import { Links } from "../api/cosmetic.service.types";
+import { Links } from "../api/types";
 
 interface CosmeticFeatures {
   category: string;

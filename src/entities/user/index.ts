@@ -1,5 +1,8 @@
 export { CURRENT_USER_RESOURCE } from "./api/resources/current-user";
-export { USERS_RESOURCE } from "./api/resources/users";
+export {
+  USERS_RESOURCE,
+  USERS_RESOURCE_PAGINATION_SIZES,
+} from "./api/resources/users";
 export { UserService } from "./api/service";
 export type {
   User,
@@ -21,6 +24,7 @@ export {
   USER_SURNAME_MAX_LENGTH,
   USER_SURNAME_MIN_LENGTH,
 } from "./config/surname";
+export { getRoleDisplayName } from "./lib/roles";
 export { userEmail } from "./model/email";
 export { userName } from "./model/name";
 export { userPassword } from "./model/password";

@@ -1,8 +1,8 @@
 import {
   CURRENT_USER_RESOURCE,
+  getRoleDisplayName,
   type User,
   USER_ROLES,
-  type UserRole,
   USERS_RESOURCE,
   UserService,
 } from "@/entities/user";
@@ -10,7 +10,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  OnDestroy,
+  signal,
 } from "@angular/core";
 import {
   FormControl,
@@ -40,7 +40,6 @@ import {
 import { TuiForm } from "@taiga-ui/layout";
 import { injectContext } from "@taiga-ui/polymorpheus";
 import { lastValueFrom } from "rxjs";
-import { EDIT_USER_FORM_STATE } from "./state";
 
 @Component({
   templateUrl: "./edit-user-form.html",
@@ -64,13 +63,14 @@ import { EDIT_USER_FORM_STATE } from "./state";
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppAdminUsersEditUserFormComponent implements OnDestroy {
+export class AppAdminUsersEditUserFormComponent {
   private readonly userService = inject(UserService);
   private readonly usersResource = inject(USERS_RESOURCE);
   private readonly currentUserResource = inject(CURRENT_USER_RESOURCE);
   private readonly notifications = inject(TuiNotificationService);
-  protected readonly state = inject(EDIT_USER_FORM_STATE);
   protected readonly context = injectContext<TuiDialogContext<User, User>>();
+  protected readonly isLoading = signal(false);
+  protected readonly error = signal<string | null>(null);
 
   protected readonly roles = USER_ROLES;
 
@@ -96,21 +96,7 @@ export class AppAdminUsersEditUserFormComponent implements OnDestroy {
     }),
   });
 
-  constructor() {
-    this.form.valueChanges.subscribe(() => {
-      this.state.touched.set(true);
-    });
-  }
-
-  private static readonly ROLE_NAMES: Record<UserRole, string> = {
-    0: $localize`Пользователь`,
-    1: $localize`Модератор`,
-    2: $localize`Админ`,
-    3: $localize`Суперадмин`,
-  };
-
-  protected readonly stringifyRole = (role: UserRole): string =>
-    AppAdminUsersEditUserFormComponent.ROLE_NAMES[role];
+  protected readonly getRoleDisplayName = getRoleDisplayName;
 
   protected async submit(): Promise<void> {
     if (this.form.invalid) {
@@ -118,10 +104,9 @@ export class AppAdminUsersEditUserFormComponent implements OnDestroy {
       return;
     }
 
-    this.state.error.set(null);
-    this.state.isLoading.set(true);
-
     try {
+      this.isLoading.set(true);
+
       const newUser = await lastValueFrom(
         this.userService.updateById(
           this.context.data.id,
@@ -142,13 +127,9 @@ export class AppAdminUsersEditUserFormComponent implements OnDestroy {
 
       this.context.completeWith(newUser);
     } catch {
-      this.state.error.set($localize`Произошла ошибка, попробуйте ещё раз`);
+      this.error.set($localize`Произошла ошибка, попробуйте ещё раз`);
     } finally {
-      this.state.isLoading.set(false);
+      this.isLoading.set(false);
     }
-  }
-
-  ngOnDestroy(): void {
-    this.state.touched.set(false);
   }
 }

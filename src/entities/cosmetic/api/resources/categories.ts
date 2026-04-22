@@ -1,31 +1,65 @@
-import { InjectionToken, inject, resource, signal } from "@angular/core";
+import { EMPTY_PAGINATION } from "@/shared/api";
+import {
+  InjectionToken,
+  effect,
+  inject,
+  linkedSignal,
+  resource,
+  signal,
+} from "@angular/core";
 import { lastValueFrom } from "rxjs";
-import { CategoryService } from "../cosmetic.service";
+import { CategoryService } from "../service";
+import { CategoriesPagination, CategoryFiltersDto } from "../types";
+
+export const CATEGORIES_RESOURCE_PAGINATION_SIZES = [12, 24, 48, 96];
 
 export const CATEGORIES_RESOURCE = new InjectionToken("Categories Resource", {
   providedIn: "root",
   factory: () => {
     const categoryService = inject(CategoryService);
 
-    const limit = signal(96);
-    const offset = signal(0);
+    const params = signal<CategoryFiltersDto>({
+      limit: CATEGORIES_RESOURCE_PAGINATION_SIZES[3],
+      offset: 0,
+    });
 
-    return Object.assign(
-      resource({
-        params: () => ({
-          limit: limit(),
-          offset: offset(),
-        }),
-        loader: async ({ params }) => {
-          try {
-            return (await lastValueFrom(categoryService.getAll(params))) ?? [];
-          } catch {
-            return null;
-          }
+    const categoriesResource = resource({
+      params,
+      loader: async ({ params }) => {
+        try {
+          return (await lastValueFrom(categoryService.getAll(params))) ?? [];
+        } catch {
+          return null;
+        }
+      },
+      defaultValue: null,
+    });
+
+    const placeholder = linkedSignal<
+      CategoriesPagination | null,
+      CategoriesPagination
+    >({
+      source: categoriesResource.value,
+      computation: (next, previous) =>
+        next ??
+        previous?.value ?? {
+          items: [],
+          pagination: EMPTY_PAGINATION,
         },
-        defaultValue: null,
-      }),
-      { params: { limit, offset } },
-    );
+    });
+
+    const loaded = signal(false);
+
+    effect(() => {
+      if (categoriesResource.status() === "resolved") {
+        loaded.set(true);
+      }
+    });
+
+    return Object.assign(categoriesResource, {
+      placeholder,
+      loaded,
+      params,
+    });
   },
 });

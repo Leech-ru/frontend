@@ -3,31 +3,40 @@
 </header>
 
 <search tuiSearch>
-  <form [formGroup]="form">
+  <form [formRoot]="form">
     <fieldset tuiTextfieldSize="m">
       <tui-textfield iconStart="@tui.search">
         <input
-          formControlName="q"
+          [formField]="form.q"
           placeholder="Поиск"
           i18n-placeholder
           tuiInput
         />
       </tui-textfield>
+
       <tui-textfield
         tuiChevron
-        [stringify]="stringifyRole"
+        [stringify]="getRoleDisplayName"
         tuiDropdownSheet="Выберите роль"
         i18n-tuiDropdownSheet
       >
         <input
-          formControlName="role"
+          [ngModel]="form.role().value()"
+          (ngModelChange)="
+            usersResource.params.update((params) => ({
+              ...params,
+              role: $event,
+              offset: 0,
+            }))
+          "
+          [ngModelOptions]="{ standalone: true }"
           placeholder="Роль"
           i18n-placeholder
           tuiSelect
         />
         <tui-data-list-wrapper
           *tuiDropdown
-          [itemContent]="stringifyRole | tuiStringifyContent"
+          [itemContent]="getRoleDisplayName | tuiStringifyContent"
           [items]="roles"
         />
       </tui-textfield>
@@ -37,8 +46,8 @@
 
 <tui-loader [loading]="usersResource.isLoading()" [overlay]="true">
   <div tuiCardLarge="compact" appearance="outline">
-    @for (user of users().items; track user.id) {
-      <button type="button" (click)="editUser(user)" tuiCell>
+    @for (user of usersResource.placeholder().items; track user.id) {
+      <button type="button" (click)="editUserFormDialog.open(user)" tuiCell>
         <div
           [tuiAvatar]="`${user.name} ${user.surname}` | tuiInitials"
           size="m"
@@ -50,7 +59,7 @@
         <app-user-role-badge [role]="user.role" />
       </button>
     } @empty {
-      @if (loaded()) {
+      @if (usersResource.loaded()) {
         <tui-block-status size="m">
           <div tuiAvatar="@tui.user-x" tuiSlot="top"></div>
 
@@ -63,21 +72,21 @@
             tuiButton
             type="button"
             size="s"
-            (click)="resetFilters()"
+            (click)="reset()"
           >
             <span i18n>Сбросить фильтры</span>
           </button>
         </tui-block-status>
       }
     }
-    @if (users().items.length) {
+    @if (usersResource.placeholder().items.length) {
       <footer>
         <tui-table-pagination
-          [page]="usersResource.params.offset() / usersResource.params.limit()"
-          [size]="usersResource.params.limit()"
-          [total]="users().pagination.total_items"
-          [items]="[5, 10, 15, 30]"
-          (paginationChange)="handlePagination($event)"
+          [page]="usersResource.params().offset / usersResource.params().limit"
+          [size]="usersResource.params().limit"
+          [total]="usersResource.placeholder().pagination.total_items"
+          [items]="sizes"
+          (paginationChange)="paginate($event)"
         />
       </footer>
     }

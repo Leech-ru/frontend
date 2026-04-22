@@ -15,12 +15,15 @@ import {
   withInMemoryScrolling,
   withRouterConfig,
 } from "@angular/router";
+import { TuiResponsiveDialogService } from "@taiga-ui/addon-mobile";
+import { TUI_TABLE_PAGINATION_TEXTS } from "@taiga-ui/addon-table";
 import { provideTaiga } from "@taiga-ui/core";
 import {
   TUI_ENGLISH_LANGUAGE,
   TUI_LANGUAGE,
   TUI_RUSSIAN_LANGUAGE,
 } from "@taiga-ui/i18n";
+import { TuiConfirmService } from "@taiga-ui/kit";
 import { routes } from "./routes";
 
 export const browserConfig: ApplicationConfig = {
@@ -42,6 +45,16 @@ export const browserConfig: ApplicationConfig = {
             ? TUI_RUSSIAN_LANGUAGE
             : TUI_ENGLISH_LANGUAGE,
         ),
+    },
+    TuiConfirmService,
+    TuiResponsiveDialogService,
+    {
+      provide: TUI_TABLE_PAGINATION_TEXTS,
+      useValue: signal({
+        linesPerPage: undefined,
+        of: $localize`из`,
+        pages: $localize`Страниц`,
+      }),
     },
   ],
 };

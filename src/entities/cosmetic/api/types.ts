@@ -1,3 +1,5 @@
+import { Pagination } from "@/shared/api";
+
 export interface Links {
   ozon?: string;
   wildberries?: string;
@@ -9,22 +11,14 @@ export interface CategoryDto {
   image_id: string;
 }
 
-export interface Pagination {
-  current_page: number;
-  has_next: boolean;
-  has_previous: boolean;
-  total_items: number;
-  total_pages: number;
-}
-
 export interface CategoriesPagination {
   items: CategoryDto[];
   pagination: Pagination;
 }
 
 export interface CategoryFiltersDto {
-  limit?: number;
-  offset?: number;
+  limit: number;
+  offset: number;
 }
 
 export interface CreateCategoryRequestDto {

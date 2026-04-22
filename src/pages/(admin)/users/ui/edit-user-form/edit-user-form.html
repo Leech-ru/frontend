@@ -2,7 +2,7 @@
   <tui-textfield [tuiTextfieldCleaner]="false">
     <input
       tuiInput
-      [readOnly]="this.state.isLoading()"
+      [readOnly]="isLoading()"
       tuiAutoFocus
       placeholder="Имя"
       i18n-placeholder
@@ -14,7 +14,7 @@
   <tui-textfield [tuiTextfieldCleaner]="false">
     <input
       tuiInput
-      [readOnly]="this.state.isLoading()"
+      [readOnly]="isLoading()"
       placeholder="Фамилия"
       i18n-placeholder
       formControlName="surname"
@@ -25,7 +25,7 @@
   <tui-textfield [tuiTextfieldCleaner]="false">
     <input
       tuiInput
-      [readOnly]="this.state.isLoading()"
+      [readOnly]="isLoading()"
       placeholder="Адрес электронной почты"
       i18n-placeholder
       formControlName="email"
@@ -35,27 +35,27 @@
 
   <tui-textfield
     tuiChevron
-    [stringify]="stringifyRole"
+    [stringify]="getRoleDisplayName"
     [tuiTextfieldCleaner]="false"
     tuiDropdownSheet="Выберите роль"
     i18n-tuiDropdownSheet
   >
     <input
       tuiSelect
-      [readOnly]="this.state.isLoading() || isOwnProfile"
+      [readOnly]="isLoading() || isOwnProfile"
       formControlName="role"
       placeholder="Роль"
       i18n-placeholder
     />
     <tui-data-list-wrapper
       *tuiDropdown
-      [itemContent]="stringifyRole | tuiStringifyContent"
+      [itemContent]="getRoleDisplayName | tuiStringifyContent"
       [items]="roles"
     />
   </tui-textfield>
   <tui-error [formControl]="form.controls.role" />
 
-  <tui-error [error]="state.error()" />
+  <tui-error [error]="error()" />
 </form>
 
 <footer>
@@ -63,17 +63,12 @@
     appearance="secondary"
     tuiButton
     type="button"
-    [disabled]="state.isLoading()"
+    [disabled]="isLoading()"
     (click)="context.$implicit.complete()"
   >
     <span i18n>Закрыть</span>
   </button>
-  <button
-    form="user-edit-form"
-    tuiButton
-    type="submit"
-    [loading]="state.isLoading()"
-  >
+  <button form="user-edit-form" tuiButton type="submit" [loading]="isLoading()">
     <span i18n>Сохранить</span>
   </button>
 </footer>

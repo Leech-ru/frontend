@@ -1,8 +1,8 @@
-import { ResolveFn } from "@angular/router";
-import { inject } from "@angular/core";
-import { lastValueFrom } from "rxjs";
 import { CategoryService } from "@/entities/cosmetic";
-import { CategoryDto } from "@/entities/cosmetic/api/cosmetic.service.types";
+import { CategoryDto } from "@/entities/cosmetic/api/types";
+import { inject } from "@angular/core";
+import { ResolveFn } from "@angular/router";
+import { lastValueFrom } from "rxjs";
 
 export const categoryResolver: ResolveFn<CategoryDto> = async (route) => {
   const categoryService = inject(CategoryService);

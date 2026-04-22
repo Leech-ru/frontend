@@ -1,25 +1,16 @@
-import { CATEGORIES_RESOURCE, CategoriesPagination } from "@/entities/cosmetic";
+import {
+  CATEGORIES_RESOURCE,
+  CATEGORIES_RESOURCE_PAGINATION_SIZES,
+} from "@/entities/cosmetic";
 import { AppCosmeticCategoryCardComponent } from "@/entities/cosmetic/ui/category";
 import { AppCosmeticCategoryFormComponent } from "@/entities/cosmetic/ui/category-form";
-import {
-  ChangeDetectionStrategy,
-  Component,
-  effect,
-  inject,
-  linkedSignal,
-  signal,
-} from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { TuiResponsiveDialogService } from "@taiga-ui/addon-mobile";
 import {
-  TUI_TABLE_PAGINATION_TEXTS,
   TuiTablePagination,
+  TuiTablePaginationEvent,
 } from "@taiga-ui/addon-table";
-import {
-  TuiButton,
-  TuiDialogService,
-  TuiLoader,
-  TuiTitle,
-} from "@taiga-ui/core";
+import { TuiButton, TuiLoader, TuiTitle } from "@taiga-ui/core";
 import { TuiAvatar } from "@taiga-ui/kit";
 import { TuiBlockStatusComponent, TuiHeader } from "@taiga-ui/layout";
 import { PolymorpheusComponent } from "@taiga-ui/polymorpheus";
@@ -43,59 +34,18 @@ interface CategoryFormData {
     TuiTablePagination,
     TuiTitle,
   ],
-  providers: [
-    {
-      provide: TUI_TABLE_PAGINATION_TEXTS,
-      useValue: signal({
-        linesPerPage: undefined,
-        of: $localize`из`,
-        pages: $localize`Страниц`,
-      }),
-    },
-    {
-      provide: TuiDialogService,
-      useExisting: TuiResponsiveDialogService,
-    },
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppAdminCategoriesPageComponent {
-  private readonly dialogs = inject(TuiResponsiveDialogService);
-
+  protected readonly dialogs = inject(TuiResponsiveDialogService);
   protected readonly categoriesResource = inject(CATEGORIES_RESOURCE);
-
-  protected readonly categories = linkedSignal<
-    CategoriesPagination | null,
-    CategoriesPagination
-  >({
-    source: () => this.categoriesResource.value(),
-    computation: (next, previous) =>
-      next ??
-      previous?.value ?? {
-        items: [],
-        pagination: {
-          current_page: 0,
-          has_next: false,
-          has_previous: false,
-          total_items: 0,
-          total_pages: 0,
-        },
-      },
-  });
-
-  protected readonly loaded = signal(false);
+  protected readonly sizes = CATEGORIES_RESOURCE_PAGINATION_SIZES;
 
   constructor() {
     this.categoriesResource.reload();
-
-    effect(() => {
-      if (this.categoriesResource.status() === "resolved") {
-        this.loaded.set(true);
-      }
-    });
   }
 
-  protected createCategory(): void {
+  protected create() {
     this.dialogs
       .open<CategoryFormData>(
         new PolymorpheusComponent(AppCosmeticCategoryFormComponent),
@@ -107,11 +57,11 @@ export class AppAdminCategoriesPageComponent {
       .subscribe();
   }
 
-  protected handlePagination(pagination: { page: number; size: number }): void {
-    this.categoriesResource.params.offset.set(
-      pagination.page * pagination.size,
-    );
-    this.categoriesResource.params.limit.set(pagination.size);
-    this.categoriesResource.reload();
+  protected paginate({ page, size }: TuiTablePaginationEvent) {
+    this.categoriesResource.params.update((params) => ({
+      ...params,
+      limit: size,
+      offset: page * size,
+    }));
   }
 }
