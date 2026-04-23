@@ -7,15 +7,9 @@ export class FormStepper implements FormStepNavigation {
   public readonly index = signal<number>(0);
 
   public constructor(steps: FormStepArgs[]) {
-    this.steps = steps.map(({ nextLabel, backLabel, ...step }, i) => ({
+    this.steps = steps.map((step, i) => ({
       next: () => this.next(),
       back: () => this.back(),
-      get nextLabel() {
-        return typeof nextLabel === "function" ? nextLabel() : nextLabel;
-      },
-      get backLabel() {
-        return typeof backLabel === "function" ? backLabel() : backLabel;
-      },
       get disabled() {
         return this.dependencies.some(({ invalid }) => invalid);
       },

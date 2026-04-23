@@ -7,8 +7,9 @@
         type="button"
         appearance="action"
         (click)="stepper.step.back()"
+        i18n
       >
-        {{ stepper.step.backLabel }}
+        Назад
       </button>
     }
     <span i18n>Оформление заказа</span>
@@ -43,7 +44,7 @@
         (click)="stepper.step.next()"
         [disabled]="stepper.step.control?.invalid"
       >
-        {{ stepper.step.nextLabel }}
+        <ng-container *ngTemplateOutlet="nextLabel" />
       </button>
       <p>
         {{ stepper.step.description }}
@@ -89,8 +90,9 @@
           appearance="secondary"
           type="button"
           (click)="stepper.step.back()"
+          i18n
         >
-          {{ stepper.step.backLabel }}
+          Назад
         </button>
       }
       <button
@@ -100,7 +102,7 @@
         [disabled]="stepper.step.control?.invalid"
         (click)="stepper.step.next()"
       >
-        {{ stepper.step.nextLabel }}
+        <ng-container *ngTemplateOutlet="nextLabel" />
       </button>
     </footer>
 
@@ -125,6 +127,33 @@
     }
     @case (3) {
       <app-leech-order-form-steps-finish />
+    }
+    @default {}
+  }
+</ng-template>
+
+<ng-template #nextLabel>
+  @switch (stepper.index()) {
+    @case (0) {
+      <span i18n>
+        {this.form.remains, plural,
+          =0 {Далее}
+          one {Необходима ещё {{this.form.remains}} пиявка}
+          few {Необходимо ещё {{this.form.remains}} пиявки}
+          other {Необходимо ещё {{this.form.remains}} пиявок}
+        }
+      </span>
+    }
+    @case (1) {
+      <span i18n>Далее</span>
+    }
+    @case (2) {
+      <span i18n>
+        Оформить заказ на {{ this.form.price | tuiFormatNumber }} ₽
+      </span>
+    }
+    @case (3) {
+      <span i18n>Вернуться на главную</span>
     }
     @default {}
   }

@@ -4,1862 +4,603 @@
     <body>
       <trans-unit id="358635692190524549" datatype="html">
         <source>Главная</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/config/routes.ts</context>
-          <context context-type="linenumber">14</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/header/config/navigation.config.ts</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="7718172792948036917" datatype="html">
         <source>О пиявке</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/config/routes.ts</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/config/cards.config.ts</context>
-          <context context-type="linenumber">8</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="4238715586518932913" datatype="html">
         <source>Заказать пиявок</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/config/routes.ts</context>
-          <context context-type="linenumber">28</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/footer/config/footer.config.ts</context>
-          <context context-type="linenumber">9</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="1862804112691811492" datatype="html">
         <source>Каталог косметики</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/config/routes.ts</context>
-          <context context-type="linenumber">38</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/config/routes.ts</context>
-          <context context-type="linenumber">43</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28cosmetics%29/catalog/ui/page/page.ts</context>
-          <context context-type="linenumber">17</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/config/cards.config.ts</context>
-          <context context-type="linenumber">14</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/footer/config/footer.config.ts</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5964482056718199368" datatype="html">
         <source>О центре</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/config/routes.ts</context>
-          <context context-type="linenumber">57</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/about/ui/page.html</context>
-          <context context-type="linenumber">2,3</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/header/config/navigation.config.ts</context>
-          <context context-type="linenumber">20</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="2665051728128938835" datatype="html">
         <source>Вход</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/config/routes.ts</context>
-          <context context-type="linenumber">72</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28auth%29/login/ui/page/page.html</context>
-          <context context-type="linenumber">4,5</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="579968542905738317" datatype="html">
         <source>Регистрация</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/config/routes.ts</context>
-          <context context-type="linenumber">77</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28auth%29/register/ui/page/page.html</context>
-          <context context-type="linenumber">4,5</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="1893361210511658137" datatype="html">
         <source>Информация</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/config/routes.ts</context>
-          <context context-type="linenumber">94</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/info/ui/page/page.html</context>
-          <context context-type="linenumber">2,3</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/%28admin%29/tabs/ui/tabs/tabs.ts</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/footer/config/footer.config.ts</context>
-          <context context-type="linenumber">35</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="8808283790642402321" datatype="html">
         <source>Косметика</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/config/routes.ts</context>
-          <context context-type="linenumber">99</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/%28admin%29/tabs/ui/tabs/tabs.ts</context>
-          <context context-type="linenumber">23</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/footer/config/footer.config.ts</context>
-          <context context-type="linenumber">19</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/header/config/navigation.config.ts</context>
-          <context context-type="linenumber">15</context>
-        </context-group>
+      </trans-unit>
+      <trans-unit id="8856905278208146821" datatype="html">
+        <source> <x id="ICU" equiv-text="{this.form.remains, plural, =0 {Далее} one {Необходима ещё {{this.form.remains}} пиявка} few {Необходимо ещё {{this.form.remains}} пиявки} other {Необходимо ещё {{this.form.remains}} пиявок} }" xid="1997146973188354731"/> </source>
       </trans-unit>
       <trans-unit id="7042831860230360042" datatype="html">
         <source>Категория</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/config/routes.ts</context>
-          <context context-type="linenumber">105</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="3560549462372444669" datatype="html">
         <source>Партнёры</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/config/routes.ts</context>
-          <context context-type="linenumber">114</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/partners/ui/page/page.html</context>
-          <context context-type="linenumber">2,3</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/%28admin%29/tabs/ui/tabs/tabs.ts</context>
-          <context context-type="linenumber">24</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="3713441941414701471" datatype="html">
         <source>Пользователи</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/config/routes.ts</context>
-          <context context-type="linenumber">119</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/page/page.html</context>
-          <context context-type="linenumber">2,3</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/%28admin%29/tabs/ui/tabs/tabs.ts</context>
-          <context context-type="linenumber">25</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="3135376807559126630" datatype="html">
         <source>Назад</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/layouts/auth/auth.html</context>
-          <context context-type="linenumber">8,9</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">87</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">104</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">111</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">122</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/%28cosmetics%29/category/ui/page/page.html</context>
-          <context context-type="linenumber">9,10</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28cosmetics%29/category/ui/page/page.html</context>
-          <context context-type="linenumber">19,20</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28cosmetics%29/item/ui/page/page.html</context>
-          <context context-type="linenumber">26,27</context>
-        </context-group>
+      </trans-unit>
+      <trans-unit id="9026785351754933741" datatype="html">
+        <source> Назад </source>
       </trans-unit>
       <trans-unit id="9029276342908205226" datatype="html">
         <source> Загружаем страницу </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/layouts/base/base.html</context>
-          <context context-type="linenumber">5,6</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="4770356316810028963" datatype="html">
         <source>Это может занять несколько секунд</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/layouts/base/base.html</context>
-          <context context-type="linenumber">7,8</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="12570073020562793" datatype="html">
-        <source>Очищение</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/cosmetic/api/mock.ts</context>
-          <context context-type="linenumber">6</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6282252915229423338" datatype="html">
-        <source>Лицо и декольте</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/cosmetic/api/mock.ts</context>
-          <context context-type="linenumber">12</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6236515437734638803" datatype="html">
-        <source>Тело</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/cosmetic/api/mock.ts</context>
-          <context context-type="linenumber">18</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6648714113804179974" datatype="html">
-        <source>Волосы</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/cosmetic/api/mock.ts</context>
-          <context context-type="linenumber">24</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4718881946693334815" datatype="html">
-        <source>Мужская линия</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/cosmetic/api/mock.ts</context>
-          <context context-type="linenumber">30</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="143231415647043676" datatype="html">
-        <source>Интенсивный уход</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/cosmetic/api/mock.ts</context>
-          <context context-type="linenumber">36</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8877780406488704006" datatype="html">
-        <source>Люкс</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/cosmetic/api/mock.ts</context>
-          <context context-type="linenumber">42</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7040786635523018232" datatype="html">
-        <source>Эксклюзив</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/cosmetic/api/mock.ts</context>
-          <context context-type="linenumber">48</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1610911517677863013" datatype="html">
-        <source>Косметика на пиявках</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/cosmetic/api/mock.ts</context>
-          <context context-type="linenumber">54</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="1999819659160476251" datatype="html">
         <source>Название</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/cosmetic/ui/category-form/category-form.html</context>
-          <context context-type="linenumber">7,8</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="7213295971227548702" datatype="html">
         <source>Отпустите для загрузки</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/cosmetic/ui/category-form/category-form.html</context>
-          <context context-type="linenumber">19,20</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5759706212578829987" datatype="html">
         <source>Превью</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/cosmetic/ui/category-form/category-form.html</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="8462831321700048608" datatype="html">
         <source>Перетащите изображение или</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/cosmetic/ui/category-form/category-form.html</context>
-          <context context-type="linenumber">31,32</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5213186702544263259" datatype="html">
         <source>нажмите для загрузки</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/cosmetic/ui/category-form/category-form.html</context>
-          <context context-type="linenumber">33,34</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5813922920209429185" datatype="html">
         <source>Закрыть</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/cosmetic/ui/category-form/category-form.html</context>
-          <context context-type="linenumber">51,52</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/edit-user-form/edit-user-form.html</context>
-          <context context-type="linenumber">69,70</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="3723747900508174057" datatype="html">
         <source>Сохранить</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/cosmetic/ui/category-form/category-form.ts</context>
-          <context context-type="linenumber">77</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/edit-user-form/edit-user-form.html</context>
-          <context context-type="linenumber">77,78</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="8959668959240038129" datatype="html">
         <source>Создать</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/cosmetic/ui/category-form/category-form.ts</context>
-          <context context-type="linenumber">78</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/%28cosmetics%29/categories/ui/page/page.html</context>
-          <context context-type="linenumber">5,6</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="587089223407401874" datatype="html">
         <source>Выберите изображение</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/cosmetic/ui/category-form/category-form.ts</context>
-          <context context-type="linenumber">110</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="7930967365849678014" datatype="html">
         <source>Категория изменена!</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/cosmetic/ui/category-form/category-form.ts</context>
-          <context context-type="linenumber">140</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="6768321589375015407" datatype="html">
         <source>Категория создана!</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/cosmetic/ui/category-form/category-form.ts</context>
-          <context context-type="linenumber">152</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="3725330711757123453" datatype="html">
         <source>Произошла ошибка, попробуйте ещё раз</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/cosmetic/ui/category-form/category-form.ts</context>
-          <context context-type="linenumber">167</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/edit-user-form/edit-user-form.ts</context>
-          <context context-type="linenumber">145</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="287800821129095133" datatype="html">
         <source>Будем на связи</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/info/config/contact.config.ts</context>
-          <context context-type="linenumber">6</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5033811742198454297" datatype="html">
         <source>Мы ответим на ваши звонки и письма с понедельника по пятницу с 08:30 до 17:00</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/info/config/contact.config.ts</context>
-          <context context-type="linenumber">17</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5332601169775709246" datatype="html">
         <source>Время работы киосков</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/info/config/contact.config.ts</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5167098335222024680" datatype="html">
         <source>Понедельник</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/info/config/contact.config.ts</context>
-          <context context-type="linenumber">26</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/info/config/contact.config.ts</context>
-          <context context-type="linenumber">47</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="6236609805161561079" datatype="html">
         <source>Вторник</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/info/config/contact.config.ts</context>
-          <context context-type="linenumber">27</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/info/config/contact.config.ts</context>
-          <context context-type="linenumber">48</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="2608727638324431992" datatype="html">
         <source>Среда</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/info/config/contact.config.ts</context>
-          <context context-type="linenumber">28</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/info/config/contact.config.ts</context>
-          <context context-type="linenumber">49</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="4985196563128123551" datatype="html">
         <source>Четверг</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/info/config/contact.config.ts</context>
-          <context context-type="linenumber">29</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/info/config/contact.config.ts</context>
-          <context context-type="linenumber">50</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="7665979322817973721" datatype="html">
         <source>Пятница</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/info/config/contact.config.ts</context>
-          <context context-type="linenumber">30</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/info/config/contact.config.ts</context>
-          <context context-type="linenumber">51</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="6764710102160180883" datatype="html">
         <source>Суббота</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/info/config/contact.config.ts</context>
-          <context context-type="linenumber">35</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="8205594089179263576" datatype="html">
         <source>Воскресенье</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/info/config/contact.config.ts</context>
-          <context context-type="linenumber">35</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="1234660253530523099" datatype="html">
         <source>Киоски работают без перерыва на обед</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/info/config/contact.config.ts</context>
-          <context context-type="linenumber">39</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="6559227738566488230" datatype="html">
         <source>Обслуживание юр. лиц</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/info/config/contact.config.ts</context>
-          <context context-type="linenumber">43</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="2785223697920191056" datatype="html">
         <source>Обслуживание юридических лиц без перерыва на обед</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/info/config/contact.config.ts</context>
-          <context context-type="linenumber">56</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="2225499020247497782" datatype="html">
         <source>г.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/leech/ui/size/size.html</context>
-          <context context-type="linenumber">3,4</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="8126101695996915368" datatype="html">
         <source>Введите адрес электронной почты</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/user/model/email.ts</context>
-          <context context-type="linenumber">15</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="4482307579537964813" datatype="html">
         <source>Некорректный адрес электронной почты</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/user/model/email.ts</context>
-          <context context-type="linenumber">17</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5090219265337961220" datatype="html">
         <source>Слишком короткий адрес электронной почты</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/user/model/email.ts</context>
-          <context context-type="linenumber">20</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5268261885002292401" datatype="html">
         <source>Слишком длинный адрес электронной почты</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/user/model/email.ts</context>
-          <context context-type="linenumber">23</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="122628350067133961" datatype="html">
         <source>Введите имя</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/user/model/name.ts</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="6055965901373109898" datatype="html">
         <source>Введите пароль</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/user/model/password.ts</context>
-          <context context-type="linenumber">17</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="1548363601965601425" datatype="html">
         <source>Слишком короткий пароль</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/user/model/password.ts</context>
-          <context context-type="linenumber">19</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="8803964505625968820" datatype="html">
         <source>Слишком длинный пароль</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/user/model/password.ts</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="348733027331404675" datatype="html">
         <source>Введите фамилию</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/user/model/surname.ts</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="787639102804589850" datatype="html">
         <source>Пользователь</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/user/ui/role-badge/role-badge.ts</context>
-          <context context-type="linenumber">21</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/edit-user-form/edit-user-form.ts</context>
-          <context context-type="linenumber">106</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/page/page.ts</context>
-          <context context-type="linenumber">176</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="6515112287030288589" datatype="html">
         <source>Модератор</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/user/ui/role-badge/role-badge.ts</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/edit-user-form/edit-user-form.ts</context>
-          <context context-type="linenumber">107</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/page/page.ts</context>
-          <context context-type="linenumber">177</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5430822584007701585" datatype="html">
         <source>Админ</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/user/ui/role-badge/role-badge.ts</context>
-          <context context-type="linenumber">23</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/edit-user-form/edit-user-form.ts</context>
-          <context context-type="linenumber">108</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/page/page.ts</context>
-          <context context-type="linenumber">178</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="4520881491484278345" datatype="html">
         <source>Суперадмин</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/entities/user/ui/role-badge/role-badge.ts</context>
-          <context context-type="linenumber">24</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/edit-user-form/edit-user-form.ts</context>
-          <context context-type="linenumber">109</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/page/page.ts</context>
-          <context context-type="linenumber">179</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="1064296959860409704" datatype="html">
         <source>Вода</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/config/index.ts</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5165551750261736776" datatype="html">
         <source>Транспортировка не более 1-х суток</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/config/index.ts</context>
-          <context context-type="linenumber">14</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5716496114815919350" datatype="html">
         <source>Гель</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/config/index.ts</context>
-          <context context-type="linenumber">21</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="4582030673855791967" datatype="html">
         <source>Транспортировка не более 5 суток</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/config/index.ts</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/config/index.ts</context>
-          <context context-type="linenumber">30</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="444488073512897152" datatype="html">
         <source>Торф</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/config/index.ts</context>
-          <context context-type="linenumber">29</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="789097742752057971" datatype="html">
         <source>Пожалуйста, укажите тип упаковки</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/model/form.ts</context>
-          <context context-type="linenumber">30</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="4273127488623524072" datatype="html">
         <source>Пожалуйста, укажите ФИО (например, Иванов Иван Иванович)</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/model/form.ts</context>
-          <context context-type="linenumber">34</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="3092211071871695786" datatype="html">
         <source>Пожалуйста, укажите корректное ФИО</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/model/form.ts</context>
-          <context context-type="linenumber">36</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="1945277869153522709" datatype="html">
         <source>Пожалуйста, укажите номер телефона</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/model/form.ts</context>
-          <context context-type="linenumber">39</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="6925096325774166193" datatype="html">
         <source>Пожалуйста, укажите корректный номер телефона</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/model/form.ts</context>
-          <context context-type="linenumber">40</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="2534913989418819572" datatype="html">
         <source>Пожалуйста, укажите электронную почту</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/model/form.ts</context>
-          <context context-type="linenumber">43</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="6420416992149088986" datatype="html">
         <source>Пожалуйста, укажите корректную электронную почту</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/model/form.ts</context>
-          <context context-type="linenumber">44</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="1648693449298004238" datatype="html">
         <source>Пожалуйста, укажите адрес</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/model/form.ts</context>
-          <context context-type="linenumber">47</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="6122952147074696001" datatype="html">
         <source>Максимальная длина комментария — <x id="PH" equiv-text="LEECH_ORDER_COMMENT_MAX_LENGTH"/> символов</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/model/form.ts</context>
-          <context context-type="linenumber">52</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="323422472177329421" datatype="html">
         <source>Необходимо дать согласие</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/model/form.ts</context>
-          <context context-type="linenumber">56</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="1734994978600854296" datatype="html">
         <source>Оформление заказа</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.html</context>
-          <context context-type="linenumber">14,15</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7540689743326685982" datatype="html">
-        <source>Необходима</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">35</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">36</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5851812362504640788" datatype="html">
-        <source>Необходимо</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">37</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">38</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">39</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">40</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4192213867595655264" datatype="html">
-        <source>пиявок</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">44</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">48</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">49</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2053106679662442860" datatype="html">
-        <source>пиявка</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">45</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4147076394868513109" datatype="html">
-        <source>пиявки</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">46</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">47</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5312842332642671903" datatype="html">
-        <source>ещё</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">52</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="7641317799292688379" datatype="html">
         <source>Выбор пиявок</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">84</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="6388044601142797939" datatype="html">
         <source>Сроки доставки уточняйте у менеджера</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">85</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="4559462115522719132" datatype="html">
         <source>Далее</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">96</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">105</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5439744759547030534" datatype="html">
         <source>Выбор упаковки</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">101</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="6185825102376465720" datatype="html">
         <source>Стоимость упаковок уточняйте у менеджера</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">102</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="143459583691263163" datatype="html">
         <source>Контактная информация</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">108</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="392620287651971492" datatype="html">
         <source>Подтверждение и уточнение заказа производится менеджером по телефону или электронной почте</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">109</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2263964686247283786" datatype="html">
-        <source>Оформить заказ на <x id="PH" equiv-text="tuiFormatNumber(this.form.price)"/> ₽</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">113</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="1335775716085501847" datatype="html">
         <source>Заказ успешно оформлен</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">120</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/finish/finish.html</context>
-          <context context-type="linenumber">3,4</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="3315212219783946137" datatype="html">
         <source>Обработка заказов осуществляется с понедельника по пятницу с 08:30 до 17:00.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">121</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="1718374880801763687" datatype="html">
         <source>Вернуться на главную</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/form/form.ts</context>
-          <context context-type="linenumber">123</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="8313531713187725726" datatype="html">
         <source>ФИО</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/contact/contact.html</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/finish/finish.html</context>
-          <context context-type="linenumber">24,25</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="6263339115462061172" datatype="html">
         <source>Номер телефона</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/contact/contact.html</context>
-          <context context-type="linenumber">16,17</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/finish/finish.html</context>
-          <context context-type="linenumber">31,32</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="1557238823544006926" datatype="html">
         <source>Адрес электронной почты</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/contact/contact.html</context>
-          <context context-type="linenumber">27,28</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/edit-user-form/edit-user-form.html</context>
-          <context context-type="linenumber">29,30</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28auth%29/login/ui/page/page.html</context>
-          <context context-type="linenumber">16,17</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28auth%29/register/ui/page/page.html</context>
-          <context context-type="linenumber">48,49</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="7107350658338229908" datatype="html">
         <source>Адрес доставки</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/contact/contact.html</context>
-          <context context-type="linenumber">37,38</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="4454193317576927723" datatype="html">
         <source>Комментарии</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/contact/contact.html</context>
-          <context context-type="linenumber">47,48</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/finish/finish.html</context>
-          <context context-type="linenumber">49,50</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="382894587925037337" datatype="html">
         <source> Я даю согласие на обработку своих персональных данных и соглашаюсь с <x id="START_LINK" ctype="x-a" equiv-text="&lt;a tuiLink href=&quot;#&quot;&gt;"/>политикой конфиденциальности<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/contact/contact.html</context>
-          <context context-type="linenumber">60,62</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="3168740026832656995" datatype="html">
         <source>Логотип</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/finish/finish.html</context>
-          <context context-type="linenumber">2</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="4312072501995683751" datatype="html">
         <source> Мы отправили электронное письмо с деталями заказа на <x id="START_LINK" ctype="x-a" equiv-text="&lt;a tuiLink [href]=&quot;`mailto:${form.email.value}`&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ form.email.value }}"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/finish/finish.html</context>
-          <context context-type="linenumber">14,18</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5028993787250931028" datatype="html">
-        <source> Скоро наш менеджер свяжется с вами по телефону или электронной почте для подтверждения и уточнения вашего заказа.
-</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/finish/finish.html</context>
-          <context context-type="linenumber">19,23</context>
-        </context-group>
+        <source> Скоро наш менеджер свяжется с вами по телефону или электронной почте для подтверждения и уточнения вашего заказа. </source>
       </trans-unit>
       <trans-unit id="3534829722487150375" datatype="html">
         <source>Электронная почта</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/finish/finish.html</context>
-          <context context-type="linenumber">40,41</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="1875265010417987132" datatype="html">
         <source>Пиявка весом до 0,6 г.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/finish/finish.html</context>
-          <context context-type="linenumber">61,62</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="6131401572850312936" datatype="html">
         <source>Пиявка весом от 0,6 до 2,0 г.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/finish/finish.html</context>
-          <context context-type="linenumber">70,71</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5057637945862863986" datatype="html">
         <source>Пиявка весом более 2,0 г.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/finish/finish.html</context>
-          <context context-type="linenumber">79,80</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="2045856049178999794" datatype="html">
         <source>Тип упаковки</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/finish/finish.html</context>
-          <context context-type="linenumber">87,88</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="2963109295397475333" datatype="html">
         <source>Заказ от</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/leech/leech.html</context>
-          <context context-type="linenumber">6</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="6969288561406407698" datatype="html">
         <source> шт.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/leech/leech.html</context>
-          <context context-type="linenumber">7,8</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/leech/leech.html</context>
-          <context context-type="linenumber">33</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="3039382487545417795" datatype="html">
         <source>от </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/leech/leech.html</context>
-          <context context-type="linenumber">19</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/leech/leech.html</context>
-          <context context-type="linenumber">24</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="6252220930049031724" datatype="html">
         <source>до </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/leech/leech.html</context>
-          <context context-type="linenumber">20</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/leech/leech.html</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="7750065358708839129" datatype="html">
         <source>Итого:</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/leech/leech.html</context>
-          <context context-type="linenumber">45,46</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="2848577262779269958" datatype="html">
         <source> шт. за</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/leech/leech.html</context>
-          <context context-type="linenumber">53,54</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5850421844328809052" datatype="html">
         <source>Малые пиявки</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/leech/leech.ts</context>
-          <context context-type="linenumber">51</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="438190730843305192" datatype="html">
         <source>Средние пиявки</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/leech/leech.ts</context>
-          <context context-type="linenumber">59</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5958580690050615514" datatype="html">
         <source>Крупные пиявки</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/features/%28leech%29/order/ui/steps/leech/leech.ts</context>
-          <context context-type="linenumber">68</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="3321717414031429228" datatype="html">
         <source>Категории</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/%28cosmetics%29/categories/ui/page/page.html</context>
-          <context context-type="linenumber">2,3</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="8337598339518154738" datatype="html">
         <source>Нет категорий</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/%28cosmetics%29/categories/ui/page/page.html</context>
-          <context context-type="linenumber">38,40</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="7277681342613927293" datatype="html">
         <source>Создайте первую категорию</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/%28cosmetics%29/categories/ui/page/page.html</context>
-          <context context-type="linenumber">40,42</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="2578121595488504369" datatype="html">
         <source>Создать категорию</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/%28cosmetics%29/categories/ui/page/page.html</context>
-          <context context-type="linenumber">49,50</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="520226466809793677" datatype="html">
         <source>из</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/%28cosmetics%29/categories/ui/page/page.ts</context>
-          <context context-type="linenumber">51</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/%28cosmetics%29/categories/ui/page/page.ts</context>
-          <context context-type="linenumber">51</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/page/page.ts</context>
-          <context context-type="linenumber">94</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/page/page.ts</context>
-          <context context-type="linenumber">94</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="8374497062507130610" datatype="html">
         <source>Страниц</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/%28cosmetics%29/categories/ui/page/page.ts</context>
-          <context context-type="linenumber">52</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/%28cosmetics%29/categories/ui/page/page.ts</context>
-          <context context-type="linenumber">52</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/page/page.ts</context>
-          <context context-type="linenumber">95</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/page/page.ts</context>
-          <context context-type="linenumber">95</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="50652293291743843" datatype="html">
         <source>Создание категории</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/%28cosmetics%29/categories/ui/page/page.ts</context>
-          <context context-type="linenumber">103</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="4543639816995555799" datatype="html">
         <source>Создать товар</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/%28cosmetics%29/category/ui/page/page.html</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/%28cosmetics%29/category/ui/page/page.html</context>
-          <context context-type="linenumber">54,55</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="7938564888478501532" datatype="html">
         <source>Действия</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/%28cosmetics%29/category/ui/page/page.html</context>
-          <context context-type="linenumber">24,25</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="8252012682736359916" datatype="html">
         <source>Редактировать</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/%28cosmetics%29/category/ui/page/page.html</context>
-          <context context-type="linenumber">39,40</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="4561887409678109920" datatype="html">
         <source>Удалить</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/%28cosmetics%29/category/ui/page/page.html</context>
-          <context context-type="linenumber">42,43</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/%28cosmetics%29/category/ui/page/page.ts</context>
-          <context context-type="linenumber">130</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5106601536765981794" datatype="html">
         <source>Нет товаров</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/%28cosmetics%29/category/ui/page/page.html</context>
-          <context context-type="linenumber">51,52</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="3969889404638624727" datatype="html">
         <source>В этой категории пока нет товаров</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/%28cosmetics%29/category/ui/page/page.html</context>
-          <context context-type="linenumber">52,53</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="4834964035614275477" datatype="html">
         <source>Редактирование категории</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/%28cosmetics%29/category/ui/page/page.ts</context>
-          <context context-type="linenumber">109</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="6800578057634566697" datatype="html">
         <source>Вы уверены, что хотите удалить эту категорию?</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/%28cosmetics%29/category/ui/page/page.ts</context>
-          <context context-type="linenumber">129</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="6562619109145730272" datatype="html">
         <source>Отмена</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/%28cosmetics%29/category/ui/page/page.ts</context>
-          <context context-type="linenumber">131</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="2421429539199516808" datatype="html">
         <source>Удалить категорию?</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/%28cosmetics%29/category/ui/page/page.ts</context>
-          <context context-type="linenumber">136</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5978865326050913026" datatype="html">
         <source>Удаление категории…</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/%28cosmetics%29/category/ui/page/page.ts</context>
-          <context context-type="linenumber">153</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="9160934205853432244" datatype="html">
         <source>Имя</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/edit-user-form/edit-user-form.html</context>
-          <context context-type="linenumber">8</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28auth%29/register/ui/page/page.html</context>
-          <context context-type="linenumber">17</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="4137242213136341766" datatype="html">
         <source>Фамилия</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/edit-user-form/edit-user-form.html</context>
-          <context context-type="linenumber">19</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28auth%29/register/ui/page/page.html</context>
-          <context context-type="linenumber">32</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="7607169145863047065" datatype="html">
         <source>Выберите роль</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/edit-user-form/edit-user-form.html</context>
-          <context context-type="linenumber">40,41</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/page/page.html</context>
-          <context context-type="linenumber">19,20</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="6820897821402150629" datatype="html">
         <source>Роль</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/edit-user-form/edit-user-form.html</context>
-          <context context-type="linenumber">48</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/page/page.html</context>
-          <context context-type="linenumber">25</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="1999753772195760508" datatype="html">
         <source>Пользователь отредактирован!</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/edit-user-form/edit-user-form.ts</context>
-          <context context-type="linenumber">133</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="925091968260703217" datatype="html">
         <source>Поиск</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/page/page.html</context>
-          <context context-type="linenumber">12</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="7091899213589384609" datatype="html">
         <source>Нет результатов</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/page/page.html</context>
-          <context context-type="linenumber">57,59</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="6792628589891524468" datatype="html">
         <source>Попробуйте изменить фильтры</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/page/page.html</context>
-          <context context-type="linenumber">59,61</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="67584620951873141" datatype="html">
         <source>Сбросить фильтры</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/page/page.html</context>
-          <context context-type="linenumber">68,69</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4788558014012332891" datatype="html">
-        <source>Закрыть окно?</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/page/page.ts</context>
-          <context context-type="linenumber">199</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2779913715602349056" datatype="html">
-        <source>Ваши изменения будут потеряны</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/page/page.ts</context>
-          <context context-type="linenumber">201</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7258196389588589082" datatype="html">
-        <source>Да</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/page/page.ts</context>
-          <context context-type="linenumber">202</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6691503823975026026" datatype="html">
-        <source>Нет</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/page/page.ts</context>
-          <context context-type="linenumber">203</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="8973562156794176231" datatype="html">
         <source>Редактирование пользователя</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28admin%29/users/ui/page/page.ts</context>
-          <context context-type="linenumber">215</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="1962083994968683679" datatype="html">
         <source>Войдите в аккаунт или </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28auth%29/login/ui/page/page.html</context>
-          <context context-type="linenumber">6,7</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="92346685733197143" datatype="html">
         <source>создайте новый</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28auth%29/login/ui/page/page.html</context>
-          <context context-type="linenumber">7,8</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5089199220175449046" datatype="html">
         <source>Пароль</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28auth%29/login/ui/page/page.html</context>
-          <context context-type="linenumber">35</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28auth%29/register/ui/page/page.html</context>
-          <context context-type="linenumber">67</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="6226153132877476748" datatype="html">
         <source>Войти</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28auth%29/login/ui/page/page.html</context>
-          <context context-type="linenumber">58,59</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/header/ui/header/header.html</context>
-          <context context-type="linenumber">109,110</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="724846975111019398" datatype="html">
         <source>Неверный адрес электронной почты или пароль</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28auth%29/login/ui/page/page.ts</context>
-          <context context-type="linenumber">51</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="189615518621063994" datatype="html">
         <source>Произошла неизвестная ошибка, попробуйте ещё раз</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28auth%29/login/ui/page/page.ts</context>
-          <context context-type="linenumber">74</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28auth%29/register/ui/page/page.ts</context>
-          <context context-type="linenumber">80</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="993766529811822382" datatype="html">
         <source>Создайте новый аккаунт или </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28auth%29/register/ui/page/page.html</context>
-          <context context-type="linenumber">6,7</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="1078875455643107553" datatype="html">
         <source>войдите</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28auth%29/register/ui/page/page.html</context>
-          <context context-type="linenumber">7,8</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="506052441639725362" datatype="html">
         <source>Зарегистрироваться</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28auth%29/register/ui/page/page.html</context>
-          <context context-type="linenumber">85,86</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="3714598949431268128" datatype="html">
         <source>Пользователь с таким адресом электронной почты уже существует</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28auth%29/register/ui/page/page.ts</context>
-          <context context-type="linenumber">53</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5956408936096259976" datatype="html">
         <source>Линия «bioenergy, antistress, antiage» (ВАА) — максимальная степень активности БАВ и чистоты слюны пиявок, подчеркнутые оригинальной композицией косметических средств. Эта линия обладает биоэнергетическим, антистрессорным и омолаживающим действием</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28cosmetics%29/catalog/ui/page/page.ts</context>
-          <context context-type="linenumber">18</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="7337042819135017755" datatype="html">
         <source>Разделы косметики</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28cosmetics%29/category/ui/page/page.html</context>
-          <context context-type="linenumber">4,5</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28cosmetics%29/item/ui/page/page.html</context>
-          <context context-type="linenumber">4,5</context>
-        </context-group>
       </trans-unit>
-      <trans-unit id="6079948000648315348" datatype="html">
-        <source>ДОБАВИТЬ СЮДА ОПИСАНИЕ КАТЕГОРИЙ</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28cosmetics%29/category/ui/page/page.html</context>
-          <context context-type="linenumber">36,37</context>
-        </context-group>
+      <trans-unit id="7340265990496754099" datatype="html">
+        <source> Оформить заказ на <x id="INTERPOLATION" equiv-text="{{ this.form.price | tuiFormatNumber }}"/> ₽ </source>
       </trans-unit>
       <trans-unit id="3055438465359413988" datatype="html">
         <source>Характеристики</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28cosmetics%29/item/ui/accordions/accordions.html</context>
-          <context context-type="linenumber">3,4</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="6610049932459902795" datatype="html">
         <source>Объём</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28cosmetics%29/item/ui/accordions/accordions.html</context>
-          <context context-type="linenumber">6,7</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="6637178118683575108" datatype="html">
         <source>Раздел</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28cosmetics%29/item/ui/accordions/accordions.html</context>
-          <context context-type="linenumber">11,12</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5085375219320218745" datatype="html">
         <source>Описание</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28cosmetics%29/item/ui/accordions/accordions.html</context>
-          <context context-type="linenumber">21,22</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5203843351928242510" datatype="html">
         <source>Способ применения</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28cosmetics%29/item/ui/accordions/accordions.html</context>
-          <context context-type="linenumber">25,26</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="3579780343791944614" datatype="html">
         <source>О пиявках</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/%28leech%29/about/ui/page/page.html</context>
-          <context context-type="linenumber">1,2</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/footer/config/footer.config.ts</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="7418873719023608206" datatype="html">
         <source>Заключение эксперта по СОУТ</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/about/config/index.ts</context>
-          <context context-type="linenumber">8</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="8090151396242328913" datatype="html">
         <source>Перечень рекомендуемых мероприятий по улучшению условий труда</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/about/config/index.ts</context>
-          <context context-type="linenumber">12</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="6883985005790036054" datatype="html">
         <source>Сводная ведомость результатов СОУТ</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/about/config/index.ts</context>
-          <context context-type="linenumber">16</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="3214081127015523210" datatype="html">
-        <source>Пиявка медицинская, являясь лекарственным средством, относится к группе живые животные прочие (код 0106), которая входит в Перечень подконтрольных товаров, подлежащих сопровождению ветеринарными сопроводительными документами.
-</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/about/config/index.ts</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
+        <source>Пиявка медицинская, являясь лекарственным средством, относится к группе живые животные прочие (код 0106), которая входит в Перечень подконтрольных товаров, подлежащих сопровождению ветеринарными сопроводительными документами. </source>
       </trans-unit>
       <trans-unit id="8166752801268985316" datatype="html">
-        <source>В соответствии со статьей 4 Федерального закона № 243-ФЗ &quot;О внесении изменений в Закон Российской Федерации &quot;О ветеринарии&quot; от 13 июля 2015 года и Приказа № 648 Минсельхоз России от 18 декабря 2015 года
-</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/about/config/index.ts</context>
-          <context context-type="linenumber">24</context>
-        </context-group>
+        <source>В соответствии со статьей 4 Федерального закона № 243-ФЗ &quot;О внесении изменений в Закон Российской Федерации &quot;О ветеринарии&quot; от 13 июля 2015 года и Приказа № 648 Минсельхоз России от 18 декабря 2015 года </source>
       </trans-unit>
       <trans-unit id="6151556285886611593" datatype="html">
-        <source>с 1 июля 2018 года оформление ветеринарных сопроводительных документов производится в электронной форме.
-</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/about/config/index.ts</context>
-          <context context-type="linenumber">26</context>
-        </context-group>
+        <source>с 1 июля 2018 года оформление ветеринарных сопроводительных документов производится в электронной форме. </source>
       </trans-unit>
       <trans-unit id="8544899147763494229" datatype="html">
         <source>ЗАО «Международный Центр Медицинской ПИЯВКИ», согласно вышеуказанным законам, работает в системе «Меркурий» и сопровождает каждую партию медицинских пиявок ветеринарным свидетельством в электронной форме.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/about/config/index.ts</context>
-          <context context-type="linenumber">27</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="7473031008937284709" datatype="html">
         <source>«Международный Центр Медицинской Пиявки» (International Medical Leech Centre) создан на базе образованного в 1937 г. объединения «Медпиявка», которое занималось содержанием пиявок в искусственных прудах дачного поселка Удельная (Московская область)</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/about/ui/page.html</context>
-          <context context-type="linenumber">4,5</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="991097183380672560" datatype="html">
         <source>Фотографии</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/about/ui/page.html</context>
-          <context context-type="linenumber">9,10</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="2757292154244103330" datatype="html">
         <source>Документы</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/about/ui/page.html</context>
-          <context context-type="linenumber">15,16</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="927135233044866037" datatype="html">
         <source>Открыть документ</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/about/ui/page.html</context>
-          <context context-type="linenumber">34,35</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="2690185415753076999" datatype="html">
         <source>Медицинская пиявка оптом</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/config/cards.config.ts</context>
-          <context context-type="linenumber">6</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5872070781519670599" datatype="html">
         <source>Выращенная в искусственно созданных условиях медицинская пиявка (Hirudo medicinalis)</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/config/cards.config.ts</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="3035804203838211852" datatype="html">
         <source>Косметические средства линии BAA содержат секрет слюнных желез медицинских пиявок, полученный ручным способом</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/config/cards.config.ts</context>
-          <context context-type="linenumber">15</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="195122993228771437" datatype="html">
         <source>Посмотреть</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/config/cards.config.ts</context>
-          <context context-type="linenumber">16</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="4824002681320368431" datatype="html">
         <source>О нашем центре</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/config/cards.config.ts</context>
-          <context context-type="linenumber">21</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="7702715873841021052" datatype="html">
         <source>Обеспечиваем высокое качество продукции круглый год, в наличии любое количество пиявки выращенное в искусственно созданных условиях</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/config/cards.config.ts</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="4382006901454466182" datatype="html">
         <source>Читать подробнее</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/config/cards.config.ts</context>
-          <context context-type="linenumber">23</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="3458731884905921405" datatype="html">
         <source> Контакты </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/ui/contact/contact.html</context>
-          <context context-type="linenumber">3,4</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="7778631785249528331" datatype="html">
         <source>АДРЕС</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/ui/contact/contact.html</context>
-          <context context-type="linenumber">8,9</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="2119405054103084197" datatype="html">
         <source> Открыть схему проезда </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/ui/contact/contact.html</context>
-          <context context-type="linenumber">14,15</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="79635371848451174" datatype="html">
         <source>15 минут</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/ui/contact/contact.html</context>
-          <context context-type="linenumber">18,19</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="7963936648539485867" datatype="html">
         <source>пешком от </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/ui/contact/contact.html</context>
-          <context context-type="linenumber">20,21</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="6923916265239679095" datatype="html">
         <source> Открыть пеший маршрут </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/ui/contact/contact.html</context>
-          <context context-type="linenumber">26,27</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="664628621384297691" datatype="html">
         <source>Международный центр медицинской пиявки</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/ui/page/page.html</context>
-          <context context-type="linenumber">3,4</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="2049408560853759151" datatype="html">
         <source>Старейшее предприятии в России и в мире, которое более 80 лет занимается выращиванием сертифицированной медицинской пиявки</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/ui/page/page.html</context>
-          <context context-type="linenumber">5,6</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/ui/page/page.html</context>
-          <context context-type="linenumber">25,26</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="4690044952653923985" datatype="html">
         <source>Оформить заказ</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/ui/page/page.html</context>
-          <context context-type="linenumber">7,8</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/ui/page/page.html</context>
-          <context context-type="linenumber">27,28</context>
-        </context-group>
+      </trans-unit>
+      <trans-unit id="2621837683109030060" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {Далее} one {Необходима ещё <x id="INTERPOLATION"/> пиявка} few {Необходимо ещё <x id="INTERPOLATION"/> пиявки} other {Необходимо ещё <x id="INTERPOLATION"/> пиявок}}</source>
       </trans-unit>
       <trans-unit id="8920462970382528209" datatype="html">
         <source>Готовы сделать заказ?</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/ui/page/page.html</context>
-          <context context-type="linenumber">23,24</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5968780749055610325" datatype="html">
         <source> Качественная продукция </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/ui/quality/quality.html</context>
-          <context context-type="linenumber">3,4</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="7439278235859830325" datatype="html">
         <source>Работаем больше 85 лет</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/ui/quality/quality.html</context>
-          <context context-type="linenumber">9,11</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="1948405930791898150" datatype="html">
         <source>Международный центр медицинской пиявки был основан в 1937 году</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/ui/quality/quality.html</context>
-          <context context-type="linenumber">18,19</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="8399619143278755567" datatype="html">
         <source>Cтандарты GMP</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/ui/quality/quality.html</context>
-          <context context-type="linenumber">25,27</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="667508107465022244" datatype="html">
         <source>При центре функционирует аккредитованная лаборатория отдела контроля качества</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/pages/home/ui/quality/quality.html</context>
-          <context context-type="linenumber">34,35</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="1064289182664606157" datatype="html">
         <source>Пиявки</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/footer/config/footer.config.ts</context>
-          <context context-type="linenumber">6</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/header/config/navigation.config.ts</context>
-          <context context-type="linenumber">10</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="900422208224361976" datatype="html">
         <source>Где купить косметику?</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/footer/config/footer.config.ts</context>
-          <context context-type="linenumber">26</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="8483777578658760122" datatype="html">
         <source>О нас</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/footer/config/footer.config.ts</context>
-          <context context-type="linenumber">32</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="2252886835836762858" datatype="html">
         <source>Экскурсии</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/footer/config/footer.config.ts</context>
-          <context context-type="linenumber">39</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="2779562668226811733" datatype="html">
         <source>КОНТАКТЫ</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/footer/ui/footer.html</context>
-          <context context-type="linenumber">25,26</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5478617993274733100" datatype="html">
         <source>Управление</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/header/config/navigation.config.ts</context>
-          <context context-type="linenumber">25</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="7322022720918675699" datatype="html">
         <source>Закрыть навигацию</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/header/ui/drawer/drawer.ts</context>
-          <context context-type="linenumber">53</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="526040926191677555" datatype="html">
         <source>Открыть навигацию</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/header/ui/drawer/drawer.ts</context>
-          <context context-type="linenumber">54</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="3839532633627477021" datatype="html">
         <source>Разделы</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/header/ui/drawer/drawer.ts</context>
-          <context context-type="linenumber">55</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="3281155743374047446" datatype="html">
         <source>Администрация</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/header/ui/drawer/drawer.ts</context>
-          <context context-type="linenumber">56</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="573093878340494886" datatype="html">
         <source>Выберите язык</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/header/ui/header/header.html</context>
-          <context context-type="linenumber">14,15</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="8618555404332042597" datatype="html">
         <source>Язык</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/header/ui/header/header.html</context>
-          <context context-type="linenumber">24,25</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="4479460076197066920" datatype="html">
         <source>Меню</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/header/ui/header/header.html</context>
-          <context context-type="linenumber">56</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="9044940825787368887" datatype="html">
         <source>Выйти</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/widgets/header/ui/header/header.html</context>
-          <context context-type="linenumber">97,98</context>
-        </context-group>
       </trans-unit>
     </body>
   </file>

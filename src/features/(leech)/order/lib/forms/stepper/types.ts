@@ -12,14 +12,9 @@ export interface FormStepNavigation {
 }
 
 export interface FormStepArgs
-  extends FormStepBase, Partial<FormStepNavigation> {
-  backLabel: string | (() => string);
-  nextLabel: string | (() => string);
-}
+  extends FormStepBase, Partial<FormStepNavigation> {}
 
 export interface FormStep extends FormStepBase, FormStepNavigation {
-  nextLabel: string;
-  backLabel: string;
   disabled: boolean;
   state: "normal" | "pass" | "error";
   dependencies: AbstractControl[];

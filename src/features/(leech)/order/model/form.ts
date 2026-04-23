@@ -5,6 +5,7 @@ import {
 } from "@/entities/leech";
 import { effect, Injectable, signal } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
+import { CreateOrderRequest, PackageType } from "../api/types";
 import {
   LEECH_ORDER_COMMENT_MAX_LENGTH,
   LEECH_ORDER_MIN_COUNT,
@@ -125,8 +126,31 @@ export class LeechOrderForm {
     );
   }
 
+  public get remains(): number {
+    return Math.max(0, LEECH_ORDER_MIN_COUNT - this.count);
+  }
+
   public submit(): void {
     this.submitted.set(true);
+
+    const data: CreateOrderRequest = {
+      customer_info: {
+        fio: this.contact.get("name")?.value || "",
+        address: this.contact.get("address")?.value || "",
+        comment: this.contact.get("comment")?.value || undefined,
+        email: this.contact.get("email")?.value || "",
+        phone_number: this.contact.get("phone")?.value || "",
+      },
+      order_details: {
+        leech_size_1: this.leech.get("small")?.value || 0,
+        leech_size_2: this.leech.get("medium")?.value || 0,
+        leech_size_3: this.leech.get("large")?.value || 0,
+        package_type: this.group.get("package")
+          ?.value as unknown as PackageType,
+      },
+    };
+
+    console.log(data);
   }
 
   public reset(): void {

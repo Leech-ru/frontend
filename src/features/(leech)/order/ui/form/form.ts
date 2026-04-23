@@ -7,12 +7,11 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { TuiCurrency, tuiFormatCurrency } from "@taiga-ui/addon-commerce";
 import {
   TUI_BREAKPOINT,
   TuiAppearance,
   TuiButton,
-  tuiFormatNumber,
+  TuiFormatNumberPipe,
   TuiTitle,
 } from "@taiga-ui/core";
 import { TuiStepper } from "@taiga-ui/kit";
@@ -22,34 +21,12 @@ import {
   TuiElasticContainer,
   TuiHeader,
 } from "@taiga-ui/layout";
-import { CreateOrderRequest, PackageType } from "../../api/types";
-import { LEECH_ORDER_MIN_COUNT } from "../../config";
 import { FormStepper } from "../../lib";
 import { LeechOrderForm } from "../../model/form";
 import { AppLeechOrderFormStepsContactComponent } from "../steps/contact";
 import { AppLeechOrderFormStepsFinishComponent } from "../steps/finish";
 import { AppLeechOrderFormStepsLeechComponent } from "../steps/leech";
 import { AppLeechOrderFormStepsPackageComponent } from "../steps/package";
-
-const NEED_PLURAR_RULES_RU: Record<Intl.LDMLPluralRule, string> = {
-  zero: $localize`Необходима`,
-  one: $localize`Необходима`,
-  two: $localize`Необходимо`,
-  few: $localize`Необходимо`,
-  many: $localize`Необходимо`,
-  other: $localize`Необходимо`,
-};
-
-const LEECH_PLURAR_RULES_RU: Record<Intl.LDMLPluralRule, string> = {
-  zero: $localize`пиявок`,
-  one: $localize`пиявка`,
-  two: $localize`пиявки`,
-  few: $localize`пиявки`,
-  many: $localize`пиявок`,
-  other: $localize`пиявок`,
-};
-
-const STILL_NEED_LABEL = $localize`ещё`;
 
 @Component({
   selector: "app-leech-order-form",
@@ -66,6 +43,7 @@ const STILL_NEED_LABEL = $localize`ещё`;
     TuiButton,
     TuiCardLarge,
     TuiElasticContainer,
+    TuiFormatNumberPipe,
     TuiHeader,
     TuiStepper,
     TuiTitle,
@@ -78,39 +56,22 @@ export class AppLeechOrderFormComponent {
   protected readonly route = inject(ActivatedRoute);
   protected readonly router = inject(Router);
   protected readonly breakpoint = inject(TUI_BREAKPOINT);
-  protected readonly plurarRulesRu = new Intl.PluralRules("ru");
   protected readonly stepper = new FormStepper([
     {
       title: $localize`Выбор пиявок`,
       description: $localize`Сроки доставки уточняйте у менеджера`,
       control: this.form.leech,
-      backLabel: $localize`Назад`,
-      nextLabel: () => {
-        const remains = LEECH_ORDER_MIN_COUNT - this.form.count;
-        const remainsLDMLPluralRule = this.plurarRulesRu.select(remains);
-        const remainsNeedWord = NEED_PLURAR_RULES_RU[remainsLDMLPluralRule];
-        const remainsLeechWord = LEECH_PLURAR_RULES_RU[remainsLDMLPluralRule];
-
-        return this.form.count < LEECH_ORDER_MIN_COUNT
-          ? `${remainsNeedWord} ${STILL_NEED_LABEL} ${remains} ${remainsLeechWord}`
-          : $localize`Далее`;
-      },
       back: () => this.router.navigateByUrl("/"),
     },
     {
       title: $localize`Выбор упаковки`,
       description: $localize`Стоимость упаковок уточняйте у менеджера`,
       control: this.form.package,
-      backLabel: $localize`Назад`,
-      nextLabel: $localize`Далее`,
     },
     {
       title: $localize`Контактная информация`,
       description: $localize`Подтверждение и уточнение заказа производится менеджером по телефону или электронной почте`,
       control: this.form.contact,
-      backLabel: $localize`Назад`,
-      nextLabel: () =>
-        $localize`Оформить заказ на ${tuiFormatNumber(this.form.price)} ₽`,
       next: () => {
         this.form.submit();
         this.stepper.next();
@@ -119,8 +80,6 @@ export class AppLeechOrderFormComponent {
     {
       title: $localize`Заказ успешно оформлен`,
       description: $localize`Обработка заказов осуществляется с понедельника по пятницу с 08:30 до 17:00.`,
-      backLabel: $localize`Назад`,
-      nextLabel: $localize`Вернуться на главную`,
       next: () => this.router.navigateByUrl("/"),
     },
   ]);
@@ -129,6 +88,7 @@ export class AppLeechOrderFormComponent {
     if (this.form.submitted()) {
       this.form.reset();
     }
+
     this.route.queryParams.subscribe((params) => {
       const step = Number.parseInt(params["step"] as string) - 1;
 
@@ -160,12 +120,6 @@ export class AppLeechOrderFormComponent {
     });
 
     effect(() => {
-      if (this.form.submitted()) {
-        this.createOrder();
-      }
-    });
-
-    effect(() => {
       if (
         !this.form.submitted() &&
         this.stepper.index() === this.stepper.steps.length - 1
@@ -174,24 +128,5 @@ export class AppLeechOrderFormComponent {
         this.stepper.index.set(0);
       }
     });
-  }
-
-  private createOrder() {
-    const data: CreateOrderRequest = {
-      customer_info: {
-        fio: this.form.contact.get("name")?.value || "",
-        address: this.form.contact.get("address")?.value || "",
-        comment: this.form.contact.get("comment")?.value || undefined,
-        email: this.form.contact.get("email")?.value || "",
-        phone_number: this.form.contact.get("phone")?.value || "",
-      },
-      order_details: {
-        leech_size_1: this.form.leech.get("small")?.value || 0,
-        leech_size_2: this.form.leech.get("medium")?.value || 0,
-        leech_size_3: this.form.leech.get("large")?.value || 0,
-        package_type: this.form.group.get("package")
-          ?.value as unknown as PackageType,
-      },
-    };
   }
 }

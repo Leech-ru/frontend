@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "build": "ng build",
+    "extract-i18n": "ng extract-i18n",
     "format": "prettier !package-lock.json --check --write --ignore-path .gitignore . \"!**/.agents/**\"",
-    "i18n:extract": "ng extract-i18n",
     "prepare": "git config core.hooksPath ./scripts/git/hooks",
     "serve:en": "ng serve --configuration=en",
     "serve:ru": "ng serve --configuration=ru",
@@ -62,6 +62,7 @@
     "@types/express": "5.0.6",
     "@types/node": "24",
     "less": "4.6.4",
+    "ng-extract-i18n-merge": "3.3.0",
     "prettier": "3.8.3",
     "typescript": "5.9"
   },

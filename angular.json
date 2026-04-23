@@ -86,9 +86,12 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular/build:extract-i18n",
+          "builder": "ng-extract-i18n-merge:ng-extract-i18n-merge",
           "options": {
-            "outputPath": "src/shared/i18n/locales"
+            "buildTarget": "frontend:build",
+            "format": "xlf",
+            "outputPath": "src/shared/i18n/locales",
+            "targetFiles": ["messages.en.xlf"]
           }
         }
       }
