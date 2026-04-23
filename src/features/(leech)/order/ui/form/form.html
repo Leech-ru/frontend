@@ -1,38 +1,38 @@
 @if (breakpoint() === "mobile") {
   <tui-app-bar>
-    @if (stepper.step.control) {
+    @if (steps[index()].control) {
       <button
         tuiAppBarBack
         tuiSlot="start"
         type="button"
         appearance="action"
-        (click)="stepper.step.back()"
+        (click)="steps[index()].back()"
         i18n
       >
         Назад
       </button>
     }
     <span i18n>Оформление заказа</span>
-    @if (stepper.step.control) {
+    @if (steps[index()].control) {
       <span tuiSlot="end" tuiAppearance="action" [style.margin-right.rem]="1">
-        {{ stepper.index() + 1 }}/{{ stepper.steps.length - 1 }}
+        {{ index() + 1 }}/{{ steps.length - 1 }}
       </span>
     }
   </tui-app-bar>
 
-  @if (stepper.step.control) {
+  @if (steps[index()].control) {
     <header
       tuiHeader
       [style.margin-top.rem]="1.5"
       [style.margin-left.rem]="1"
       [style.margin-right.rem]="1"
     >
-      <h1 tuiTitle>{{ stepper.step.title }}</h1>
+      <h1 tuiTitle>{{ steps[index()].title }}</h1>
     </header>
   }
 
   <div [style.margin.rem]="1">
-    <ng-container *ngTemplateOutlet="stepsTemplate" />
+    <ng-container *ngComponentOutlet="$any(steps[index()].component)" />
   </div>
 
   <footer>
@@ -41,21 +41,21 @@
         tuiButton
         size="m"
         type="submit"
-        (click)="stepper.step.next()"
-        [disabled]="stepper.step.control?.invalid"
+        (click)="steps[index()].next()"
+        [disabled]="steps[index()].control?.invalid"
       >
         <ng-container *ngTemplateOutlet="nextLabel" />
       </button>
       <p>
-        {{ stepper.step.description }}
+        {{ steps[index()].description }}
       </p>
     </tui-elastic-container>
   </footer>
 } @else {
   <div tuiCardLarge appearance="floating">
-    @if (stepper.step.control) {
-      <tui-stepper [(activeItemIndex)]="stepper.index">
-        @for (step of stepper.steps; track step.title) {
+    @if (steps[index()].control) {
+      <tui-stepper [(activeItemIndex)]="index">
+        @for (step of steps; track step.title) {
           @if (step.control) {
             <button
               tuiStep
@@ -70,26 +70,26 @@
       </tui-stepper>
     }
 
-    @if (stepper.step.control) {
+    @if (steps[index()].control) {
       <header tuiHeader [style.margin-top.rem]="1">
         <hgroup tuiTitle>
-          <h1 tuiTitle>{{ stepper.step.title }}</h1>
-          <p tuiSubtitle>{{ stepper.step.description }}</p>
+          <h1 tuiTitle>{{ steps[index()].title }}</h1>
+          <p tuiSubtitle>{{ steps[index()].description }}</p>
         </hgroup>
       </header>
     }
 
-    <ng-container *ngTemplateOutlet="stepsTemplate" />
+    <ng-container *ngComponentOutlet="$any(steps[index()].component)" />
 
     <footer>
-      @if (stepper.step.control) {
+      @if (steps[index()].control) {
         <button
           tuiButton
           size="m"
           iconStart="@tui.chevron-left"
           appearance="secondary"
           type="button"
-          (click)="stepper.step.back()"
+          (click)="steps[index()].back()"
           i18n
         >
           Назад
@@ -99,41 +99,23 @@
         tuiButton
         size="m"
         type="submit"
-        [disabled]="stepper.step.control?.invalid"
-        (click)="stepper.step.next()"
+        [disabled]="steps[index()].control?.invalid"
+        (click)="steps[index()].next()"
       >
         <ng-container *ngTemplateOutlet="nextLabel" />
       </button>
     </footer>
 
-    @if (!stepper.step.control) {
+    @if (!steps[index()].control) {
       <p tuiSubtitle tuiAppearance="action-grayscale" align="center">
-        {{ stepper.step.description }}
+        {{ steps[index()].description }}
       </p>
     }
   </div>
 }
 
-<ng-template #stepsTemplate>
-  @switch (stepper.index()) {
-    @case (0) {
-      <app-leech-order-form-steps-leech />
-    }
-    @case (1) {
-      <app-leech-order-form-steps-package />
-    }
-    @case (2) {
-      <app-leech-order-form-steps-contact />
-    }
-    @case (3) {
-      <app-leech-order-form-steps-finish />
-    }
-    @default {}
-  }
-</ng-template>
-
 <ng-template #nextLabel>
-  @switch (stepper.index()) {
+  @switch (index()) {
     @case (0) {
       <span i18n>
         {this.form.remains, plural,
@@ -155,6 +137,5 @@
     @case (3) {
       <span i18n>Вернуться на главную</span>
     }
-    @default {}
   }
 </ng-template>

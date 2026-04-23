@@ -1,9 +1,10 @@
-import { NgTemplateOutlet } from "@angular/common";
+import { NgComponentOutlet, NgTemplateOutlet } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
   effect,
   inject,
+  signal,
   ViewEncapsulation,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -21,7 +22,6 @@ import {
   TuiElasticContainer,
   TuiHeader,
 } from "@taiga-ui/layout";
-import { FormStepper } from "../../lib";
 import { LeechOrderForm } from "../../model/form";
 import { AppLeechOrderFormStepsContactComponent } from "../steps/contact";
 import { AppLeechOrderFormStepsFinishComponent } from "../steps/finish";
@@ -33,10 +33,7 @@ import { AppLeechOrderFormStepsPackageComponent } from "../steps/package";
   templateUrl: "form.html",
   styleUrl: "form.less",
   imports: [
-    AppLeechOrderFormStepsContactComponent,
-    AppLeechOrderFormStepsFinishComponent,
-    AppLeechOrderFormStepsLeechComponent,
-    AppLeechOrderFormStepsPackageComponent,
+    NgComponentOutlet,
     NgTemplateOutlet,
     TuiAppBar,
     TuiAppearance,
@@ -56,33 +53,73 @@ export class AppLeechOrderFormComponent {
   protected readonly route = inject(ActivatedRoute);
   protected readonly router = inject(Router);
   protected readonly breakpoint = inject(TUI_BREAKPOINT);
-  protected readonly stepper = new FormStepper([
+  protected readonly index = signal(0);
+
+  protected readonly steps = [
     {
       title: $localize`Выбор пиявок`,
       description: $localize`Сроки доставки уточняйте у менеджера`,
       control: this.form.leech,
-      back: () => this.router.navigateByUrl("/"),
+      back: () => {
+        this.router.navigateByUrl("/");
+      },
+      next: () => {
+        this.index.update((index) => index + 1);
+      },
+      component: AppLeechOrderFormStepsLeechComponent,
     },
     {
       title: $localize`Выбор упаковки`,
       description: $localize`Стоимость упаковок уточняйте у менеджера`,
       control: this.form.package,
+      back: () => {
+        this.index.update((index) => index - 1);
+      },
+      next: () => {
+        this.index.update((index) => index + 1);
+      },
+      component: AppLeechOrderFormStepsPackageComponent,
     },
     {
       title: $localize`Контактная информация`,
       description: $localize`Подтверждение и уточнение заказа производится менеджером по телефону или электронной почте`,
       control: this.form.contact,
+      back: () => {
+        this.index.update((index) => index - 1);
+      },
       next: () => {
         this.form.submit();
-        this.stepper.next();
+        this.index.update((index) => index + 1);
       },
+      component: AppLeechOrderFormStepsContactComponent,
     },
     {
       title: $localize`Заказ успешно оформлен`,
       description: $localize`Обработка заказов осуществляется с понедельника по пятницу с 08:30 до 17:00.`,
-      next: () => this.router.navigateByUrl("/"),
+      back: () => {
+        this.index.update((index) => index - 1);
+      },
+      next: () => {
+        this.router.navigateByUrl("/");
+      },
+      component: AppLeechOrderFormStepsFinishComponent,
     },
-  ]);
+  ].map((step, i, all) => ({
+    ...step,
+    get disabled() {
+      return all
+        .slice(0, i)
+        .map((s) => s.control)
+        .some((c) => c?.invalid);
+    },
+    get state() {
+      return step.control?.touched
+        ? step.control.invalid
+          ? "error"
+          : "pass"
+        : "normal";
+    },
+  }));
 
   public constructor() {
     if (this.form.submitted()) {
@@ -95,37 +132,34 @@ export class AppLeechOrderFormComponent {
       if (
         !isNaN(step) &&
         step >= 0 &&
-        step < this.stepper.steps.length &&
-        !this.stepper.steps[step].disabled
+        step < this.steps.length &&
+        !this.steps[step].disabled
       ) {
-        this.stepper.index.set(step);
+        this.index.set(step);
       } else {
-        const latestStep = this.stepper.steps
+        const latestStep = this.steps
           .map((step, index) => ({ index, disabled: step.disabled }))
           .reverse()
           .find(({ disabled }) => !disabled);
 
         if (latestStep && latestStep.index > 0) {
-          this.stepper.index.set(latestStep.index);
+          this.index.set(latestStep.index);
         }
       }
     });
 
     effect(() => {
       this.router.navigate([], {
-        queryParams: { step: this.stepper.index() + 1 },
+        queryParams: { step: this.index() + 1 },
         queryParamsHandling: "merge",
         replaceUrl: this.route.snapshot.queryParams["step"] ? false : true,
       });
     });
 
     effect(() => {
-      if (
-        !this.form.submitted() &&
-        this.stepper.index() === this.stepper.steps.length - 1
-      ) {
+      if (!this.form.submitted() && this.index() === this.steps.length - 1) {
         this.form.reset();
-        this.stepper.index.set(0);
+        this.index.set(0);
       }
     });
   }

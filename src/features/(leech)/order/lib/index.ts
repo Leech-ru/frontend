@@ -1,6 +1,4 @@
 export {
-  type ExtractFormGroupValue,
-  FormStepper,
   compose,
   composeAsync,
   email,
@@ -14,4 +12,5 @@ export {
   pattern,
   required,
   requiredTrue,
+  type ExtractFormGroupValue,
 } from "./forms";
