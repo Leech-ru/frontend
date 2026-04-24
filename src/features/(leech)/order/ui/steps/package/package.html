@@ -1,4 +1,4 @@
-<form tuiForm="l" [formGroup]="form.group">
+<form tuiForm="l">
   <div tuiGroup orientation="vertical" [collapsed]="true">
     @for (package of packages; track package.id) {
       <label tuiBlock>
@@ -12,10 +12,10 @@
           <span tuiSubtitle>{{ package.description }}</span>
         </span>
         <input
-          formControlName="package"
+          [formField]="this.form.form.package"
           tuiRadio
           type="radio"
-          [value]="package.id"
+          [value]="package.id.toString()"
         />
       </label>
     }

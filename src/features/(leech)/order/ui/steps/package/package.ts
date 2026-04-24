@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
+import { FormField } from "@angular/forms/signals";
 import {
   TuiAppearance,
   TuiGroup,
@@ -28,6 +29,7 @@ import { LeechOrderForm } from "../../../model/form";
     TuiBlock,
     TuiDataListWrapper,
     TuiForm,
+    FormField,
     TuiGroup,
     TuiInputNumber,
     TuiRadio,

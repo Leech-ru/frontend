@@ -2,11 +2,13 @@ import { NgComponentOutlet, NgTemplateOutlet } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   effect,
   inject,
   signal,
   ViewEncapsulation,
 } from "@angular/core";
+import { submit } from "@angular/forms/signals";
 import { ActivatedRoute, Router } from "@angular/router";
 import {
   TUI_BREAKPOINT,
@@ -32,6 +34,7 @@ import { AppLeechOrderFormStepsPackageComponent } from "../steps/package";
   selector: "app-leech-order-form",
   templateUrl: "form.html",
   styleUrl: "form.less",
+  providers: [LeechOrderForm],
   imports: [
     NgComponentOutlet,
     NgTemplateOutlet,
@@ -59,7 +62,7 @@ export class AppLeechOrderFormComponent {
     {
       title: $localize`Выбор пиявок`,
       description: $localize`Сроки доставки уточняйте у менеджера`,
-      control: this.form.leech,
+      control: this.form.form.leech,
       back: () => {
         this.router.navigateByUrl("/");
       },
@@ -71,7 +74,7 @@ export class AppLeechOrderFormComponent {
     {
       title: $localize`Выбор упаковки`,
       description: $localize`Стоимость упаковок уточняйте у менеджера`,
-      control: this.form.package,
+      control: this.form.form.package,
       back: () => {
         this.index.update((index) => index - 1);
       },
@@ -83,12 +86,12 @@ export class AppLeechOrderFormComponent {
     {
       title: $localize`Контактная информация`,
       description: $localize`Подтверждение и уточнение заказа производится менеджером по телефону или электронной почте`,
-      control: this.form.contact,
+      control: this.form.form.contact,
       back: () => {
         this.index.update((index) => index - 1);
       },
       next: () => {
-        this.form.submit();
+        submit(this.form.form);
         this.index.update((index) => index + 1);
       },
       component: AppLeechOrderFormStepsContactComponent,
@@ -106,26 +109,22 @@ export class AppLeechOrderFormComponent {
     },
   ].map((step, i, all) => ({
     ...step,
-    get disabled() {
-      return all
+    disabled: computed(() =>
+      all
         .slice(0, i)
         .map((s) => s.control)
-        .some((c) => c?.invalid);
-    },
-    get state() {
-      return step.control?.touched
-        ? step.control.invalid
+        .some((c) => c?.().invalid()),
+    ),
+    state: computed(() =>
+      step.control?.().touched()
+        ? step.control?.().invalid()
           ? "error"
           : "pass"
-        : "normal";
-    },
+        : "normal",
+    ),
   }));
 
   public constructor() {
-    if (this.form.submitted()) {
-      this.form.reset();
-    }
-
     this.route.queryParams.subscribe((params) => {
       const step = Number.parseInt(params["step"] as string) - 1;
 
@@ -133,14 +132,14 @@ export class AppLeechOrderFormComponent {
         !isNaN(step) &&
         step >= 0 &&
         step < this.steps.length &&
-        !this.steps[step].disabled
+        !this.steps[step].disabled()
       ) {
         this.index.set(step);
       } else {
         const latestStep = this.steps
           .map((step, index) => ({ index, disabled: step.disabled }))
           .reverse()
-          .find(({ disabled }) => !disabled);
+          .find(({ disabled }) => !disabled());
 
         if (latestStep && latestStep.index > 0) {
           this.index.set(latestStep.index);
@@ -154,13 +153,6 @@ export class AppLeechOrderFormComponent {
         queryParamsHandling: "merge",
         replaceUrl: this.route.snapshot.queryParams["step"] ? false : true,
       });
-    });
-
-    effect(() => {
-      if (!this.form.submitted() && this.index() === this.steps.length - 1) {
-        this.form.reset();
-        this.index.set(0);
-      }
     });
   }
 }

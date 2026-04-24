@@ -2,9 +2,9 @@
   <img src="/favicon.svg" width="96" height="96" alt="Логотип" i18n-alt />
   <h2 i18n>Заказ успешно оформлен</h2>
   <span>
-    <strong tuiAppearance="flat-grayscale">{{ form.count }}</strong> шт. за
+    <strong tuiAppearance="flat-grayscale">{{ form.count() }}</strong> шт. за
     <strong tuiAppearance="flat-grayscale">
-      {{ form.price | tuiFormatNumber }}
+      {{ form.price() | tuiFormatNumber }}
     </strong>
     {{ "RUB" | tuiCurrency }}
   </span>
@@ -12,7 +12,9 @@
 
 <p i18n>
   Мы отправили электронное письмо с деталями заказа на
-  <a tuiLink [href]="`mailto:${form.email.value}`">{{ form.email.value }}</a>
+  <a tuiLink [href]="`mailto:${form.form.contact.email().value()}`">
+    {{ form.form.contact.email().value() }}
+  </a>
 </p>
 
 <p i18n>
@@ -23,32 +25,34 @@
 <div tuiCell>
   <div i18n tuiTitle>ФИО</div>
   <span tuiSubtitle>
-    {{ form.name.value }}
+    {{ form.form.contact.name().value() }}
   </span>
 </div>
 <hr class="tui-space_top-2 tui-space_bottom-1" />
 <div tuiCell>
   <div i18n tuiTitle>Номер телефона</div>
   <span tuiSubtitle>
-    <a tuiLink [href]="`tel:${form.phone.value}`">{{
-      form.phone.value | maskito: phoneMaskitoOptions
-    }}</a>
+    <a tuiLink [href]="`tel:${form.form.contact.phone().value()}`">
+      {{ form.form.contact.phone().value() | maskito: phoneMaskitoOptions }}
+    </a>
   </span>
 </div>
 <hr class="tui-space_top-2 tui-space_bottom-1" />
 <div tuiCell>
   <div i18n tuiTitle>Электронная почта</div>
   <span tuiSubtitle>
-    <a tuiLink [href]="`mailto:${form.email.value}`">{{ form.email.value }}</a>
+    <a tuiLink [href]="`mailto:${form.form.contact.email().value()}`">
+      {{ form.form.contact.email().value() }}
+    </a>
   </span>
 </div>
-@if (form.comment.value) {
+@if (form.form.contact.comment().value()) {
   <hr class="tui-space_top-2 tui-space_bottom-2" />
   <div tuiCell>
     <div tuiTitle>
       <span i18n>Комментарии</span>
       <span tuiSubtitle>
-        {{ form.comment.value }}
+        {{ form.form.contact.comment().value() }}
       </span>
     </div>
   </div>
@@ -56,29 +60,32 @@
 } @else {
   <hr class="tui-space_top-2 tui-space_bottom-1" />
 }
-@if (form.small.value) {
+@if (form.form.leech.small().value()) {
   <div tuiCell>
     <div i18n tuiTitle>Пиявка весом до 0,6 г.</div>
     <span tuiSubtitle>
-      <strong>{{ form.small.value | tuiFormatNumber }}</strong> шт
+      <strong>{{ form.form.leech.small().value() | tuiFormatNumber }}</strong>
+      шт
     </span>
   </div>
   <hr class="tui-space_top-2 tui-space_bottom-1" />
 }
-@if (form.medium.value) {
+@if (form.form.leech.medium().value()) {
   <div tuiCell>
     <div i18n tuiTitle>Пиявка весом от 0,6 до 2,0 г.</div>
     <span tuiSubtitle>
-      <strong>{{ form.medium.value | tuiFormatNumber }}</strong> шт
+      <strong>{{ form.form.leech.medium().value() | tuiFormatNumber }}</strong>
+      шт
     </span>
   </div>
   <hr class="tui-space_top-2 tui-space_bottom-1" />
 }
-@if (form.large.value) {
+@if (form.form.leech.large().value()) {
   <div tuiCell>
     <div i18n tuiTitle>Пиявка весом более 2,0 г.</div>
     <span tuiSubtitle>
-      <strong>{{ form.large.value | tuiFormatNumber }}</strong> шт
+      <strong>{{ form.form.leech.large().value() | tuiFormatNumber }}</strong>
+      шт
     </span>
   </div>
   <hr class="tui-space_top-2 tui-space_bottom-1" />

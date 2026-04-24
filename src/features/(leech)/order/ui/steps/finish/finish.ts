@@ -12,7 +12,7 @@ import {
   TuiTextfield,
   TuiTitle,
 } from "@taiga-ui/core";
-import { TuiDataListWrapper, TuiInputNumber } from "@taiga-ui/kit";
+import { TuiInputNumber } from "@taiga-ui/kit";
 import { LEECH_ORDER_PACKAGES } from "../../../config";
 import { LeechOrderForm } from "../../../model/form";
 
@@ -26,7 +26,6 @@ import { LeechOrderForm } from "../../../model/form";
     TuiAppearance,
     TuiCell,
     TuiCurrencyPipe,
-    TuiDataListWrapper,
     TuiFormatNumberPipe,
     TuiInputNumber,
     TuiLink,
@@ -63,6 +62,6 @@ export class AppLeechOrderFormStepsFinishComponent {
   };
 
   protected readonly package = LEECH_ORDER_PACKAGES.find(
-    ({ id }) => id === this.form.package.value,
+    ({ id }) => id.toString() === this.form.form.package().value(),
   )!;
 }

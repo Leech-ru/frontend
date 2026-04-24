@@ -1,66 +1,119 @@
-<form tuiForm="l" [formGroup]="form.group">
-  <ng-container formGroupName="contact">
-    <tui-textfield>
-      <input
-        formControlName="name"
-        placeholder="ФИО"
-        i18n-placeholder
-        tuiInput
-      />
-    </tui-textfield>
-    <tui-error formControlName="name" />
+<form tuiForm="l">
+  <tui-textfield>
+    <input
+      placeholder="ФИО"
+      i18n-placeholder
+      tuiInput
+      [formField]="form.form.contact.name"
+    />
+  </tui-textfield>
+  <tui-error
+    [error]="
+      form.form.contact.name().touched()
+        ? (form.form.contact.name().errors()[0]?.message ?? null)
+        : null
+    "
+  />
 
-    <tui-textfield>
-      <input
-        formControlName="phone"
-        placeholder="Номер телефона"
-        i18n-placeholder
-        tuiInputPhone
-        mask="+7 (###) ###-##-##"
-      />
-    </tui-textfield>
-    <tui-error formControlName="phone" />
+  <tui-textfield>
+    <input
+      placeholder="Номер телефона"
+      i18n-placeholder
+      tuiInputPhone
+      mask="+7 (###) ###-##-##"
+      [ngModel]="form.form.contact.phone().value()"
+      (ngModelChange)="
+        form.model.update((p) => ({
+          ...p,
+          contact: { ...p.contact, phone: $event },
+        }))
+      "
+      [ngModelOptions]="{ standalone: true }"
+    />
+  </tui-textfield>
+  <tui-error
+    [error]="
+      form.form.contact.phone().touched()
+        ? (form.form.contact.phone().errors()[0]?.message ?? null)
+        : null
+    "
+  />
 
-    <tui-textfield>
-      <input
-        formControlName="email"
-        placeholder="Адрес электронной почты"
-        i18n-placeholder
-        tuiInput
-      />
-    </tui-textfield>
-    <tui-error formControlName="email" />
+  <tui-textfield>
+    <input
+      placeholder="Адрес электронной почты"
+      i18n-placeholder
+      tuiInput
+      [formField]="form.form.contact.email"
+    />
+  </tui-textfield>
+  <tui-error
+    [error]="
+      form.form.contact.email().touched()
+        ? (form.form.contact.email().errors()[0]?.message ?? null)
+        : null
+    "
+  />
 
-    <tui-textfield>
-      <input
-        formControlName="address"
-        placeholder="Адрес доставки"
-        i18n-placeholder
-        tuiInput
-      />
-    </tui-textfield>
-    <tui-error formControlName="address" />
+  <tui-textfield>
+    <input
+      placeholder="Адрес доставки"
+      i18n-placeholder
+      tuiInput
+      [formField]="form.form.contact.address"
+    />
+  </tui-textfield>
+  <tui-error
+    [error]="
+      form.form.contact.address().touched()
+        ? (form.form.contact.address().errors()[0]?.message ?? null)
+        : null
+    "
+  />
 
-    <tui-textfield>
-      <textarea
-        formControlName="comment"
-        placeholder="Комментарии"
-        i18n-placeholder
-        tuiTextarea
-        [min]="3"
-        [max]="6"
-        [limit]="512"
-      ></textarea>
-    </tui-textfield>
-    <tui-error formControlName="comment" />
+  <tui-textfield>
+    <textarea
+      placeholder="Комментарии"
+      i18n-placeholder
+      tuiTextarea
+      [min]="3"
+      [max]="6"
+      [limit]="512"
+      [ngModel]="form.form.contact.comment().value()"
+      (ngModelChange)="
+        form.model.update((p) => ({
+          ...p,
+          contact: { ...p.contact, comment: $event },
+        }))
+      "
+      [ngModelOptions]="{ standalone: true }"
+    ></textarea>
+  </tui-textfield>
+  <tui-error
+    [error]="
+      form.form.contact.comment().touched()
+        ? (form.form.contact.comment().errors()[0]?.message ?? null)
+        : null
+    "
+  />
 
-    <label>
-      <input type="checkbox" size="s" tuiCheckbox formControlName="agreement" />
-      <span i18n class="tui-text_body-s">
-        Я даю согласие на обработку своих персональных данных и соглашаюсь с
-        <a tuiLink href="#">политикой конфиденциальности</a>
-      </span>
-    </label>
-    <tui-error formControlName="agreement" />
-  </ng-container>
+  <label>
+    <input
+      type="checkbox"
+      size="s"
+      tuiCheckbox
+      [formField]="form.form.contact.agreement"
+    />
+    <span i18n class="tui-text_body-s">
+      Я даю согласие на обработку своих персональных данных и соглашаюсь с
+      <a tuiLink href="#">политикой конфиденциальности</a>
+    </span>
+  </label>
+  <tui-error
+    [error]="
+      form.form.contact.agreement().touched()
+        ? (form.form.contact.agreement().errors()[0]?.message ?? null)
+        : null
+    "
+  />
 </form>

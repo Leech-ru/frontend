@@ -1,5 +1,12 @@
+import {
+  AppLeechPriceComponent,
+  AppLeechSizeComponent,
+  LEECH_LARGE_PRICE,
+  LEECH_MEDIUM_PRICE,
+  LEECH_SMALL_PRICE,
+} from "@/entities/leech";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 import { TuiCurrencyPipe } from "@taiga-ui/addon-commerce";
 import {
   TuiAppearance,
@@ -11,13 +18,6 @@ import {
 } from "@taiga-ui/core";
 import { TuiInputNumber } from "@taiga-ui/kit";
 import { TuiForm, TuiHeader } from "@taiga-ui/layout";
-import {
-  AppLeechPriceComponent,
-  AppLeechSizeComponent,
-  LEECH_LARGE_PRICE,
-  LEECH_MEDIUM_PRICE,
-  LEECH_SMALL_PRICE,
-} from "@/entities/leech";
 import { LEECH_ORDER_MIN_COUNT } from "../../../config";
 import { LeechOrderForm } from "../../../model/form";
 
@@ -28,7 +28,7 @@ import { LeechOrderForm } from "../../../model/form";
   imports: [
     AppLeechPriceComponent,
     AppLeechSizeComponent,
-    ReactiveFormsModule,
+    FormsModule,
     TuiAppearance,
     TuiCell,
     TuiCurrencyPipe,
@@ -48,29 +48,36 @@ export class AppLeechOrderFormStepsLeechComponent {
 
   protected readonly items = [
     {
+      key: "small" as const,
       title: $localize`Малые пиявки`,
       price: LEECH_SMALL_PRICE,
       sizes: {
         max: 0.6,
       },
-      formControlName: "small",
     },
     {
+      key: "medium" as const,
       title: $localize`Средние пиявки`,
       price: LEECH_MEDIUM_PRICE,
       sizes: {
         min: 0.6,
         max: 2,
       },
-      formControlName: "medium",
     },
     {
+      key: "large" as const,
       title: $localize`Крупные пиявки`,
       price: LEECH_LARGE_PRICE,
       sizes: {
         min: 2,
       },
-      formControlName: "large",
     },
   ];
+
+  update(key: "small" | "medium" | "large", value: unknown) {
+    this.form.model.update((model) => ({
+      ...model,
+      leech: { ...model.leech, [key]: value },
+    }));
+  }
 }

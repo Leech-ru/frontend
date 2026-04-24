@@ -39,8 +39,8 @@
         <target>Cosmetics</target>
       </trans-unit>
       <trans-unit id="8856905278208146821" datatype="html">
-        <source> <x id="ICU" equiv-text="{this.form.remains, plural, =0 {Далее} one {Необходима ещё {{this.form.remains}} пиявка} few {Необходимо ещё {{this.form.remains}} пиявки} other {Необходимо ещё {{this.form.remains}} пиявок} }" xid="1997146973188354731"/> </source>
-        <target state="new"> <x id="ICU" equiv-text="{this.form.remains, plural, =0 {Далее} one {Необходима ещё {{this.form.remains}} пиявка} few {Необходимо ещё {{this.form.remains}} пиявки} other {Необходимо ещё {{this.form.remains}} пиявок} }" xid="1997146973188354731"/> </target>
+        <source> <x id="ICU" equiv-text="{this.form.remains(), plural, =0 {Далее} one {Необходима ещё {{this.form.remains()}} пиявка} few {Необходимо ещё {{this.form.remains()}} пиявки} other {Необходимо ещё {{this.form.remains()}} пиявок} }" xid="1997146973188354731"/> </source>
+        <target state="new"> <x id="ICU" equiv-text="{this.form.remains(), plural, =0 {Далее} one {Необходима ещё {{this.form.remains()}} пиявка} few {Необходимо ещё {{this.form.remains()}} пиявки} other {Необходимо ещё {{this.form.remains()}} пиявок} }" xid="1997146973188354731"/> </target>
       </trans-unit>
       <trans-unit id="7042831860230360042" datatype="html">
         <source>Категория</source>
@@ -218,17 +218,9 @@
         <source>Суперадмин</source>
         <target>Superadmin</target>
       </trans-unit>
-      <trans-unit id="789097742752057971" datatype="html">
-        <source>Пожалуйста, укажите тип упаковки</source>
-        <target>Please specify packaging type</target>
-      </trans-unit>
       <trans-unit id="4273127488623524072" datatype="html">
         <source>Пожалуйста, укажите ФИО (например, Иванов Иван Иванович)</source>
         <target>Please enter full name (e.g., Ivanov Ivan Ivanovich)</target>
-      </trans-unit>
-      <trans-unit id="3092211071871695786" datatype="html">
-        <source>Пожалуйста, укажите корректное ФИО</source>
-        <target>Please enter a valid full name</target>
       </trans-unit>
       <trans-unit id="1945277869153522709" datatype="html">
         <source>Пожалуйста, укажите номер телефона</source>
@@ -330,9 +322,9 @@
         <source>Логотип</source>
         <target>Logo</target>
       </trans-unit>
-      <trans-unit id="4312072501995683751" datatype="html">
-        <source> Мы отправили электронное письмо с деталями заказа на <x id="START_LINK" ctype="x-a" equiv-text="&lt;a tuiLink [href]=&quot;`mailto:${form.email.value}`&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ form.email.value }}"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
-        <target> We sent an email with order details to <x id="START_LINK" ctype="x-a" equiv-text="&lt;a tuiLink [href]=&quot;`mailto:${form.email.value}`&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ form.email.value }}"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>
+      <trans-unit id="3661027753936207034" datatype="html">
+        <source> Мы отправили электронное письмо с деталями заказа на <x id="START_LINK" ctype="x-a" equiv-text="&lt;a tuiLink [href]=&quot;`mailto:${form.form.contact.email().value()}`&quot;&gt;"/> <x id="INTERPOLATION" equiv-text="{{ form.form.contact.email().value() }}"/> <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+        <target state="new"> We sent an email with order details to <x id="START_LINK" ctype="x-a" equiv-text="&lt;a tuiLink [href]=&quot;`mailto:${form.email.value}`&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ form.email.value }}"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>
       </trans-unit>
       <trans-unit id="5028993787250931028" datatype="html">
         <source> Скоро наш менеджер свяжется с вами по телефону или электронной почте для подтверждения и уточнения вашего заказа. </source>
@@ -519,7 +511,7 @@
         <target>Cosmetics Sections</target>
       </trans-unit>
       <trans-unit id="7340265990496754099" datatype="html">
-        <source> Оформить заказ на <x id="INTERPOLATION" equiv-text="{{ this.form.price | tuiFormatNumber }}"/> ₽ </source>
+        <source> Оформить заказ на <x id="INTERPOLATION" equiv-text="{{ this.form.price() | tuiFormatNumber }}"/> ₽ </source>
         <target state="new"> Place order for <x id="INTERPOLATION" equiv-text="{{ this.form.price | tuiFormatNumber }}"/> ₽ </target>
       </trans-unit>
       <trans-unit id="3055438465359413988" datatype="html">
@@ -581,6 +573,10 @@
       <trans-unit id="7473031008937284709" datatype="html">
         <source>«Международный Центр Медицинской Пиявки» (International Medical Leech Centre) создан на базе образованного в 1937 г. объединения «Медпиявка», которое занималось содержанием пиявок в искусственных прудах дачного поселка Удельная (Московская область)</source>
         <target>International Medical Leech Center was created on the basis of the Medleecher association formed in 1937, which kept leeches in artificial ponds of the dacha settlement Udelnaya (Moscow region)</target>
+      </trans-unit>
+      <trans-unit id="7478382014043907196" datatype="html">
+        <source>Пожалуйста, укажите корректное ФИО (2-3 слова)</source>
+        <target state="new">Please, specify correct full name (2-3 words)</target>
       </trans-unit>
       <trans-unit id="991097183380672560" datatype="html">
         <source>Фотографии</source>

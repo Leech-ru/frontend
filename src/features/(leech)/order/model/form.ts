@@ -3,163 +3,149 @@ import {
   LEECH_MEDIUM_PRICE,
   LEECH_SMALL_PRICE,
 } from "@/entities/leech";
-import { effect, Injectable, signal } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
-import { CreateOrderRequest, PackageType } from "../api/types";
+import { isPlatformBrowser } from "@angular/common";
+import {
+  computed,
+  effect,
+  inject,
+  Injectable,
+  PLATFORM_ID,
+  signal,
+} from "@angular/core";
+import {
+  email,
+  form,
+  maxLength,
+  minLength,
+  pattern,
+  required,
+  validate,
+} from "@angular/forms/signals";
 import {
   LEECH_ORDER_COMMENT_MAX_LENGTH,
   LEECH_ORDER_MIN_COUNT,
 } from "../config";
-import {
-  ExtractFormGroupValue,
-  markValidControlsAsTouched,
-} from "../lib/forms";
-import * as z from "../lib/forms/validation";
-import {
-  clearLeechOrderFormValue,
-  getLeechOrderFormValue,
-  saveLeechOrderFormValue,
-} from "./storage";
 
-@Injectable({ providedIn: "root" })
+const STORAGE_KEY = "leech_order_progress";
+
+@Injectable()
 export class LeechOrderForm {
-  public readonly submitted = signal<boolean>(false);
-  public readonly small = new FormControl(0);
-  public readonly medium = new FormControl(0);
-  public readonly large = new FormControl(0);
-  public readonly package = new FormControl(1, [
-    z.required($localize`Пожалуйста, укажите тип упаковки`),
-  ]);
-  public readonly name = new FormControl("", [
-    z.required(
-      $localize`Пожалуйста, укажите ФИО (например, Иванов Иван Иванович)`,
-    ),
-    z.name($localize`Пожалуйста, укажите корректное ФИО`),
-  ]);
-  public readonly phone = new FormControl("", [
-    z.required($localize`Пожалуйста, укажите номер телефона`),
-    z.minLength(12, $localize`Пожалуйста, укажите корректный номер телефона`),
-  ]);
-  public readonly email = new FormControl("", [
-    z.required($localize`Пожалуйста, укажите электронную почту`),
-    z.email($localize`Пожалуйста, укажите корректную электронную почту`),
-  ]);
-  public readonly address = new FormControl("", [
-    z.required($localize`Пожалуйста, укажите адрес`),
-  ]);
-  public readonly comment = new FormControl("", [
-    z.maxLength(
-      LEECH_ORDER_COMMENT_MAX_LENGTH,
-      $localize`Максимальная длина комментария — ${LEECH_ORDER_COMMENT_MAX_LENGTH} символов`,
-    ),
-  ]);
-  public readonly agreement = new FormControl(false, [
-    z.requiredTrue($localize`Необходимо дать согласие`),
-  ]);
-  public readonly leech = new FormGroup(
-    {
-      small: this.small,
-      medium: this.medium,
-      large: this.large,
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly isBrowser = isPlatformBrowser(this.platformId);
+
+  public readonly model = signal(this.loadProgress());
+
+  public readonly form = form(
+    this.model,
+    (schema) => {
+      required(schema.package);
+      required(schema.contact.name, {
+        message: $localize`Пожалуйста, укажите ФИО (например, Иванов Иван Иванович)`,
+      });
+      pattern(
+        schema.contact.name,
+        /^[a-zA-Zа-яА-ЯёЁ]+\s+[a-zA-Zа-яА-ЯёЁ]+(\s+[a-zA-Zа-яА-ЯёЁ]+)?$/,
+        {
+          message: $localize`Пожалуйста, укажите корректное ФИО (2-3 слова)`,
+        },
+      );
+      required(schema.contact.phone, {
+        message: $localize`Пожалуйста, укажите номер телефона`,
+      });
+      minLength(schema.contact.phone, 12, {
+        message: $localize`Пожалуйста, укажите корректный номер телефона`,
+      });
+      required(schema.contact.address, {
+        message: $localize`Пожалуйста, укажите адрес`,
+      });
+      required(schema.contact.email, {
+        message: $localize`Пожалуйста, укажите электронную почту`,
+      });
+      email(schema.contact.email, {
+        message: $localize`Пожалуйста, укажите корректную электронную почту`,
+      });
+      maxLength(schema.contact.comment, LEECH_ORDER_COMMENT_MAX_LENGTH, {
+        message: $localize`Максимальная длина комментария — ${LEECH_ORDER_COMMENT_MAX_LENGTH} символов`,
+      });
+      required(schema.contact.agreement, {
+        message: $localize`Необходимо дать согласие`,
+      });
+      validate(schema.leech, (leech) => {
+        const value = leech.value();
+        const count = value.small + value.medium + value.large;
+        if (count < LEECH_ORDER_MIN_COUNT) {
+          return { kind: "count" };
+        }
+        return undefined;
+      });
     },
     {
-      validators: [
-        () => (this.count < LEECH_ORDER_MIN_COUNT ? { invalid: true } : null),
-      ],
+      submission: {
+        action: async (form) => {
+          console.log(form().value());
+          this.clearProgress();
+          this.form().reset();
+        },
+      },
     },
   );
-  public readonly contact = new FormGroup({
-    name: this.name,
-    phone: this.phone,
-    email: this.email,
-    address: this.address,
-    comment: this.comment,
-    agreement: this.agreement,
-  });
-  public readonly group = new FormGroup({
-    leech: this.leech,
-    package: this.package,
-    contact: this.contact,
-  });
-  public readonly value = signal<ExtractFormGroupValue<
-    typeof this.group
-  > | null>(getLeechOrderFormValue());
 
-  public constructor() {
-    const value = this.value();
+  public readonly price = computed(
+    () =>
+      this.form.leech.small().value() * LEECH_SMALL_PRICE +
+      this.form.leech.medium().value() * LEECH_MEDIUM_PRICE +
+      this.form.leech.large().value() * LEECH_LARGE_PRICE,
+  );
 
-    if (value) {
-      this.group.setValue(value);
-      markValidControlsAsTouched(this.group);
-    } else {
-      this.group.reset();
-    }
+  public readonly count = computed(
+    () =>
+      this.form.leech.small().value() +
+      this.form.leech.medium().value() +
+      this.form.leech.large().value(),
+  );
 
-    this.group.valueChanges.subscribe((value) => {
-      this.value.set(value as ExtractFormGroupValue<typeof this.group>);
-    });
+  public readonly remains = computed(() =>
+    Math.max(0, LEECH_ORDER_MIN_COUNT - this.count()),
+  );
 
+  constructor() {
     effect(() => {
-      const value = this.value();
-
-      if (value) {
-        saveLeechOrderFormValue(value);
-      } else {
-        this.reset();
+      const state = this.model();
+      if (this.isBrowser) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
       }
     });
   }
 
-  public get price(): number {
-    return (
-      (this.small.value ?? 0) * LEECH_SMALL_PRICE +
-      (this.medium.value ?? 0) * LEECH_MEDIUM_PRICE +
-      (this.large.value ?? 0) * LEECH_LARGE_PRICE
-    );
-  }
-
-  public get count(): number {
-    return (
-      (this.small.value ?? 0) +
-      (this.medium.value ?? 0) +
-      (this.large.value ?? 0)
-    );
-  }
-
-  public get remains(): number {
-    return Math.max(0, LEECH_ORDER_MIN_COUNT - this.count);
-  }
-
-  public submit(): void {
-    this.submitted.set(true);
-
-    const data: CreateOrderRequest = {
-      customer_info: {
-        fio: this.contact.get("name")?.value || "",
-        address: this.contact.get("address")?.value || "",
-        comment: this.contact.get("comment")?.value || undefined,
-        email: this.contact.get("email")?.value || "",
-        phone_number: this.contact.get("phone")?.value || "",
-      },
-      order_details: {
-        leech_size_1: this.leech.get("small")?.value || 0,
-        leech_size_2: this.leech.get("medium")?.value || 0,
-        leech_size_3: this.leech.get("large")?.value || 0,
-        package_type: this.group.get("package")
-          ?.value as unknown as PackageType,
+  private loadProgress() {
+    const defaultValue = {
+      leech: { small: 0, medium: 0, large: 0 },
+      package: "",
+      contact: {
+        name: "",
+        address: "",
+        comment: "",
+        email: "",
+        phone: "",
+        agreement: false,
       },
     };
 
-    console.log(data);
+    if (!this.isBrowser) {
+      return defaultValue;
+    }
+
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      return saved ? (JSON.parse(saved) as typeof defaultValue) : defaultValue;
+    } catch {
+      return defaultValue;
+    }
   }
 
-  public reset(): void {
-    clearLeechOrderFormValue();
-    this.group.reset();
-    this.submitted.set(false);
-
-    this.small.setValue(0);
-    this.medium.setValue(0);
-    this.large.setValue(0);
+  private clearProgress() {
+    if (this.isBrowser) {
+      localStorage.removeItem(STORAGE_KEY);
+    }
   }
 }

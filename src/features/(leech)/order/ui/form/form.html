@@ -42,7 +42,7 @@
         size="m"
         type="submit"
         (click)="steps[index()].next()"
-        [disabled]="steps[index()].control?.invalid"
+        [disabled]="steps[index()].control?.()?.invalid()"
       >
         <ng-container *ngTemplateOutlet="nextLabel" />
       </button>
@@ -60,8 +60,8 @@
             <button
               tuiStep
               type="button"
-              [disabled]="step.disabled"
-              [stepState]="step.state"
+              [disabled]="step.disabled()"
+              [stepState]="step.state()"
             >
               {{ step.title }}
             </button>
@@ -99,7 +99,7 @@
         tuiButton
         size="m"
         type="submit"
-        [disabled]="steps[index()].control?.invalid"
+        [disabled]="steps[index()].control?.()?.invalid()"
         (click)="steps[index()].next()"
       >
         <ng-container *ngTemplateOutlet="nextLabel" />
@@ -118,11 +118,11 @@
   @switch (index()) {
     @case (0) {
       <span i18n>
-        {this.form.remains, plural,
+        {this.form.remains(), plural,
           =0 {Далее}
-          one {Необходима ещё {{this.form.remains}} пиявка}
-          few {Необходимо ещё {{this.form.remains}} пиявки}
-          other {Необходимо ещё {{this.form.remains}} пиявок}
+          one {Необходима ещё {{this.form.remains()}} пиявка}
+          few {Необходимо ещё {{this.form.remains()}} пиявки}
+          other {Необходимо ещё {{this.form.remains()}} пиявок}
         }
       </span>
     }
@@ -131,7 +131,7 @@
     }
     @case (2) {
       <span i18n>
-        Оформить заказ на {{ this.form.price | tuiFormatNumber }} ₽
+        Оформить заказ на {{ this.form.price() | tuiFormatNumber }} ₽
       </span>
     }
     @case (3) {

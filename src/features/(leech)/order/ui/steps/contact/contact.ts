@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule } from "@angular/forms";
+import { FormField } from "@angular/forms/signals";
 import { MaskitoDirective } from "@maskito/angular";
 import {
   TuiAppearance,
@@ -18,17 +19,18 @@ import { LeechOrderForm } from "../../../model/form";
   templateUrl: "contact.html",
   styleUrl: "contact.less",
   imports: [
+    FormField,
+    FormsModule,
     MaskitoDirective,
-    ReactiveFormsModule,
     TuiAppearance,
     TuiCheckbox,
-    TuiInput,
     TuiError,
     TuiForm,
+    TuiInput,
+    TuiInputPhoneDirective,
     TuiLink,
     TuiTextarea,
     TuiTextfield,
-    TuiInputPhoneDirective,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
