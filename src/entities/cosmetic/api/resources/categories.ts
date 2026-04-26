@@ -1,7 +1,6 @@
 import { EMPTY_PAGINATION } from "@/shared/api";
 import {
   InjectionToken,
-  effect,
   inject,
   linkedSignal,
   resource,
@@ -24,14 +23,13 @@ export const CATEGORIES_RESOURCE = new InjectionToken("Categories Resource", {
       offset: 0,
     });
 
-    const categoriesResource = resource({
+    const categoriesResource = resource<
+      CategoriesPagination | null,
+      CategoryFiltersDto
+    >({
       params,
       loader: async ({ params }) => {
-        try {
-          return (await lastValueFrom(categoryService.getAll(params))) ?? [];
-        } catch {
-          return null;
-        }
+        return (await lastValueFrom(categoryService.getAll(params))) ?? null;
       },
       defaultValue: null,
     });
@@ -49,14 +47,6 @@ export const CATEGORIES_RESOURCE = new InjectionToken("Categories Resource", {
         },
     });
 
-    const loaded = signal(false);
-
-    effect(() => {
-      if (categoriesResource.status() === "resolved") {
-        loaded.set(true);
-      }
-    });
-
     const paginate = ({ page, size }: TuiTablePaginationEvent) => {
       params.update((params) => ({
         ...params,
@@ -68,7 +58,6 @@ export const CATEGORIES_RESOURCE = new InjectionToken("Categories Resource", {
     return Object.assign(categoriesResource.asReadonly(), {
       paginate,
       reload: categoriesResource.reload,
-      loaded: loaded.asReadonly(),
       params: params.asReadonly(),
       placeholder: placeholder.asReadonly(),
     });

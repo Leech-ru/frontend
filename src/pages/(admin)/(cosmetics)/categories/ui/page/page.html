@@ -7,7 +7,13 @@
   </aside>
 </header>
 
-<tui-loader [loading]="categoriesResource.isLoading()" [overlay]="true">
+<tui-loader
+  [loading]="
+    categoriesResource.isLoading() &&
+    categoriesResource.status() !== 'reloading'
+  "
+  [overlay]="true"
+>
   @if (categoriesResource.placeholder().items.length) {
     <div class="categories-grid">
       @for (
@@ -34,24 +40,22 @@
       />
     </footer>
   } @else {
-    @if (categoriesResource.loaded()) {
-      <tui-block-status [card]="true" class="card" size="m">
-        <div tuiAvatar="@tui.archive" tuiSlot="top"></div>
+    <tui-block-status [card]="true" class="card" size="m">
+      <div tuiAvatar="@tui.archive" tuiSlot="top"></div>
 
-        <h4 i18n>Нет категорий</h4>
+      <h4 i18n>Нет категорий</h4>
 
-        <span i18n>Создайте первую категорию</span>
+      <span i18n>Создайте первую категорию</span>
 
-        <button
-          appearance="secondary"
-          tuiButton
-          type="button"
-          size="s"
-          (click)="create()"
-        >
-          <span i18n>Создать категорию</span>
-        </button></tui-block-status
+      <button
+        appearance="secondary"
+        tuiButton
+        type="button"
+        size="s"
+        (click)="create()"
       >
-    }
+        <span i18n>Создать категорию</span>
+      </button></tui-block-status
+    >
   }
 </tui-loader>

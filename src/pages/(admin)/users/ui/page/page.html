@@ -43,7 +43,12 @@
   </form>
 </search>
 
-<tui-loader [loading]="usersResource.isLoading()" [overlay]="true">
+<tui-loader
+  [loading]="
+    usersResource.isLoading() && usersResource.status() !== 'reloading'
+  "
+  [overlay]="true"
+>
   <div tuiCardLarge="compact" appearance="outline">
     @for (user of usersResource.placeholder().items; track user.id) {
       <button type="button" (click)="editUserFormDialog.open(user)" tuiCell>
