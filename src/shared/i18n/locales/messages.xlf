@@ -434,21 +434,6 @@
       <trans-unit id="7340265990496754099" datatype="html">
         <source> Оформить заказ на <x id="INTERPOLATION" equiv-text="{{ this.form.price() | tuiFormatNumber }}"/> ₽ </source>
       </trans-unit>
-      <trans-unit id="3055438465359413988" datatype="html">
-        <source>Характеристики</source>
-      </trans-unit>
-      <trans-unit id="6610049932459902795" datatype="html">
-        <source>Объём</source>
-      </trans-unit>
-      <trans-unit id="6637178118683575108" datatype="html">
-        <source>Раздел</source>
-      </trans-unit>
-      <trans-unit id="5085375219320218745" datatype="html">
-        <source>Описание</source>
-      </trans-unit>
-      <trans-unit id="5203843351928242510" datatype="html">
-        <source>Способ применения</source>
-      </trans-unit>
       <trans-unit id="3579780343791944614" datatype="html">
         <source>О пиявках</source>
       </trans-unit>
@@ -568,6 +553,9 @@
       </trans-unit>
       <trans-unit id="2252886835836762858" datatype="html">
         <source>Экскурсии</source>
+      </trans-unit>
+      <trans-unit id="2301817863777948036" datatype="html">
+        <source>Подробнее</source>
       </trans-unit>
       <trans-unit id="2779562668226811733" datatype="html">
         <source>КОНТАКТЫ</source>

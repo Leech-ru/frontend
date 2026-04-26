@@ -514,26 +514,6 @@
         <source> Оформить заказ на <x id="INTERPOLATION" equiv-text="{{ this.form.price() | tuiFormatNumber }}"/> ₽ </source>
         <target state="new"> Place order for <x id="INTERPOLATION" equiv-text="{{ this.form.price | tuiFormatNumber }}"/> ₽ </target>
       </trans-unit>
-      <trans-unit id="3055438465359413988" datatype="html">
-        <source>Характеристики</source>
-        <target>Characteristics</target>
-      </trans-unit>
-      <trans-unit id="6610049932459902795" datatype="html">
-        <source>Объём</source>
-        <target>Volume</target>
-      </trans-unit>
-      <trans-unit id="6637178118683575108" datatype="html">
-        <source>Раздел</source>
-        <target>Section</target>
-      </trans-unit>
-      <trans-unit id="5085375219320218745" datatype="html">
-        <source>Описание</source>
-        <target>Description</target>
-      </trans-unit>
-      <trans-unit id="5203843351928242510" datatype="html">
-        <source>Способ применения</source>
-        <target>Usage Method</target>
-      </trans-unit>
       <trans-unit id="5213186702544263259" datatype="html">
         <source>нажмите для загрузки</source>
         <target>click to upload</target>
@@ -697,6 +677,10 @@
       <trans-unit id="2252886835836762858" datatype="html">
         <source>Экскурсии</source>
         <target>Excursions</target>
+      </trans-unit>
+      <trans-unit id="2301817863777948036" datatype="html">
+        <source>Подробнее</source>
+        <target state="new">More</target>
       </trans-unit>
       <trans-unit id="2779562668226811733" datatype="html">
         <source>КОНТАКТЫ</source>
