@@ -1,10 +1,10 @@
 import {
   CATEGORIES_RESOURCE,
   CategoryDto,
-  CategoryService,
   getImageUrlById,
 } from "@/entities/cosmetic";
 import { AppCosmeticCategoryFormComponent } from "@/entities/cosmetic/ui/category-form";
+import { CosmeticDeleteCategoryService } from "@/features/(cosmetic)/delete-category";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -26,22 +26,10 @@ import {
   TuiOption,
   TuiTitle,
 } from "@taiga-ui/core";
-import {
-  TUI_CONFIRM,
-  TuiAvatar,
-  TuiNotificationMiddleService,
-  type TuiConfirmData,
-} from "@taiga-ui/kit";
+import { TUI_CONFIRM, TuiAvatar, type TuiConfirmData } from "@taiga-ui/kit";
 import { TuiBlockStatusComponent, TuiHeader } from "@taiga-ui/layout";
 import { PolymorpheusComponent } from "@taiga-ui/polymorpheus";
-import {
-  EMPTY,
-  bufferTime,
-  first,
-  lastValueFrom,
-  startWith,
-  switchMap,
-} from "rxjs";
+import { EMPTY, switchMap } from "rxjs";
 
 interface CategoryFormData {
   id?: string;
@@ -74,9 +62,8 @@ interface CategoryFormData {
 })
 export class AppAdminCategoryPageComponent {
   private readonly router = inject(Router);
-  private readonly categoryService = inject(CategoryService);
   private readonly dialogs = inject(TuiResponsiveDialogService);
-  private readonly notification = inject(TuiNotificationMiddleService);
+  private readonly deleteService = inject(CosmeticDeleteCategoryService);
   private readonly categoriesResource = inject(CATEGORIES_RESOURCE);
 
   protected readonly category = input.required<CategoryDto>();
@@ -125,6 +112,12 @@ export class AppAdminCategoryPageComponent {
   protected deleteCategory() {
     this.closeActions();
 
+    const category = this.loadedCategory();
+
+    if (!category) {
+      return;
+    }
+
     const confirmData: TuiConfirmData = {
       content: $localize`Вы уверены, что хотите удалить эту категорию?`,
       yes: $localize`Удалить`,
@@ -137,25 +130,17 @@ export class AppAdminCategoryPageComponent {
         size: "s",
         data: confirmData,
       })
-      .pipe(switchMap((confirmed) => (confirmed ? this.doDelete() : EMPTY)))
+      .pipe(
+        switchMap((confirmed) =>
+          confirmed ? this.deleteService.delete(category.id) : EMPTY,
+        ),
+      )
       .subscribe({
         next: () => {
           this.categoriesResource.reload();
           this.router.navigate(["/admin/cosmetics"]);
         },
       });
-  }
-
-  private doDelete() {
-    const cat = this.loadedCategory();
-    if (!cat) return EMPTY;
-
-    return this.notification.open($localize`Удаление категории…`).pipe(
-      startWith(null),
-      switchMap(() => lastValueFrom(this.categoryService.delete(cat.id))),
-      bufferTime(600),
-      first(),
-    );
   }
 
   protected getImageUrl(imageId: string | undefined): string {

@@ -3,6 +3,8 @@ import {
   CategoryService,
   getImageUrlById,
 } from "@/entities/cosmetic";
+import { CosmeticCreateCategoryService } from "@/features/(cosmetic)/create-category";
+import { CosmeticUpdateCategoryService } from "@/features/(cosmetic)/update-category";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -64,6 +66,8 @@ interface CategoryFormData {
 export class AppCosmeticCategoryFormComponent {
   private readonly categoryService = inject(CategoryService);
   private readonly categoriesResource = inject(CATEGORIES_RESOURCE);
+  private readonly createService = inject(CosmeticCreateCategoryService);
+  private readonly updateService = inject(CosmeticUpdateCategoryService);
   private readonly notifications = inject(TuiNotificationService);
   protected readonly context =
     injectContext<TuiDialogContext<CategoryFormData, CategoryFormData>>();
@@ -132,32 +136,11 @@ export class AppCosmeticCategoryFormComponent {
           updateData.image_id = imageId;
         }
 
-        await lastValueFrom(
-          this.categoryService.update(this.context.data.id, updateData),
-        );
-
-        this.notifications
-          .open($localize`Категория изменена!`, {
-            appearance: "positive",
-            block: "end",
-            inline: "end",
-          })
-          .subscribe();
+        await this.updateService.update(this.context.data.id, updateData);
       } else {
-        await lastValueFrom(
-          this.categoryService.create({ name, image_id: imageId! }),
-        );
-
-        this.notifications
-          .open($localize`Категория создана!`, {
-            appearance: "positive",
-            block: "end",
-            inline: "end",
-          })
-          .subscribe();
+        await this.createService.create({ name, image_id: imageId });
       }
 
-      this.categoriesResource.reload();
       this.context.completeWith({
         ...this.context.data,
         name,

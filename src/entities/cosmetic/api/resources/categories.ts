@@ -1,6 +1,7 @@
 import { EMPTY_PAGINATION } from "@/shared/api";
 import {
   InjectionToken,
+  effect,
   inject,
   linkedSignal,
   resource,
@@ -55,9 +56,17 @@ export const CATEGORIES_RESOURCE = new InjectionToken("Categories Resource", {
       }));
     };
 
-    return Object.assign(categoriesResource.asReadonly(), {
+    const loaded = signal(false);
+
+    effect(() => {
+      if (categoriesResource.status() === "resolved") {
+        loaded.set(true);
+      }
+    });
+
+    return Object.assign(categoriesResource, {
       paginate,
-      reload: categoriesResource.reload,
+      loaded: loaded.asReadonly(),
       params: params.asReadonly(),
       placeholder: placeholder.asReadonly(),
     });
