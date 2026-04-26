@@ -1,0 +1,30 @@
+:host {
+  display: block;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.docs-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--tui-border-normal);
+
+  a {
+    padding: 0.5rem 1rem;
+    border-radius: var(--tui-radius-m);
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: var(--tui-background-base);
+    }
+
+    &.active {
+      background-color: var(--tui-primary-bg-hover);
+      color: var(--tui-primary);
+    }
+  }
+}

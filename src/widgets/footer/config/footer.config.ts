@@ -11,7 +11,7 @@ export const FOOTER_CONTENT: FooterContent = {
         },
         {
           title: $localize`О пиявках`,
-          routerLink: "/leech/about",
+          routerLink: "/leech",
         },
       ],
     },

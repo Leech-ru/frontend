@@ -20,13 +20,18 @@ export const routes: Routes = [
           {
             path: "",
             title: $localize`О пиявке`,
-            loadComponent: () => import("@/pages/(leech)/about"),
+            loadComponent: () => import("@/pages/(leech)/docs"),
           },
           {
             path: "order",
             data: { showHeaderMobile: false, showFooter: false },
             title: $localize`Заказать пиявок`,
             loadComponent: () => import("@/pages/(leech)/order"),
+          },
+          {
+            path: ":slug",
+            title: $localize`О пиявке`,
+            loadComponent: () => import("@/pages/(leech)/docs"),
           },
         ],
       },
