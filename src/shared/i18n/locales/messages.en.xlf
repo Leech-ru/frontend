@@ -658,6 +658,10 @@
         <source>{VAR_PLURAL, plural, =0 {Далее} one {Необходима ещё <x id="INTERPOLATION"/> пиявка} few {Необходимо ещё <x id="INTERPOLATION"/> пиявки} other {Необходимо ещё <x id="INTERPOLATION"/> пиявок}}</source>
         <target state="new">{VAR_PLURAL, plural, =0 {Next} =1 {Need <x id="INTERPOLATION"/> more leech} =2 {Need <x id="INTERPOLATION"/> more leeches} other {Need <x id="INTERPOLATION"/> more leeches}}</target>
       </trans-unit>
+      <trans-unit id="8913597830156792037" datatype="html">
+        <source>Документ не найден</source>
+        <target>Document not found</target>
+      </trans-unit>
       <trans-unit id="8920462970382528209" datatype="html">
         <source>Готовы сделать заказ?</source>
         <target>Ready to place an order?</target>

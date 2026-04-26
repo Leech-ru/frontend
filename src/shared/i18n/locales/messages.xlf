@@ -539,6 +539,9 @@
       <trans-unit id="2621837683109030060" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {Далее} one {Необходима ещё <x id="INTERPOLATION"/> пиявка} few {Необходимо ещё <x id="INTERPOLATION"/> пиявки} other {Необходимо ещё <x id="INTERPOLATION"/> пиявок}}</source>
       </trans-unit>
+      <trans-unit id="8913597830156792037" datatype="html">
+        <source>Документ не найден</source>
+      </trans-unit>
       <trans-unit id="8920462970382528209" datatype="html">
         <source>Готовы сделать заказ?</source>
       </trans-unit>
