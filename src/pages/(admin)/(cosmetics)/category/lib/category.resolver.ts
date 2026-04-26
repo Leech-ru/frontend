@@ -6,7 +6,7 @@ import { lastValueFrom } from "rxjs";
 
 export const categoryResolver: ResolveFn<CategoryDto> = async (route) => {
   const categoryService = inject(CategoryService);
-  const id = route.paramMap.get("id");
+  const id = route.paramMap.get("categoryId");
   if (!id) {
     throw new Error("Category ID not found");
   }

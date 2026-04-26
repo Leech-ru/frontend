@@ -1,9 +1,13 @@
-<img [alt]="data().name" [ngSrc]="data().image_link" priority fill />
-<header tuiHeader>
-  <a
-    [routerLink]="['cosmetic/', data().id]"
-    class="tui-text_body-xl tui-text_bold app-cosmetic-item-title"
-  >
-    {{ itemName() }}
-  </a>
-</header>
+<a [routerLink]="['cosmetic/', data().id]" tuiCardLarge appearance="floating">
+  <img [alt]="data().name" [src]="data().image_link" priority fill />
+  <div class="left">
+    <header>
+      <h4 class="heading" [title]="data().name">
+        {{ data().name }}
+      </h4>
+    </header>
+    <footer>
+      <span tuiAppearance="flat" i18n>Подробнее</span>
+    </footer>
+  </div>
+</a>

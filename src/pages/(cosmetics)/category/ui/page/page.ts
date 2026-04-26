@@ -1,7 +1,4 @@
-import {
-  AppCosmeticItemCardComponent,
-  COSMETIC_CATEGORIES,
-} from "@/entities/cosmetic";
+import { AppCosmeticItemCardComponent, CategoryDto } from "@/entities/cosmetic";
 import { AppHeroComponent } from "@/shared/ui";
 import {
   ChangeDetectionStrategy,
@@ -12,38 +9,59 @@ import {
 } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { TuiItem } from "@taiga-ui/cdk";
-import { TUI_BREAKPOINT, TuiButton, TuiLink } from "@taiga-ui/core";
-import { TuiBreadcrumbs } from "@taiga-ui/kit";
-import { TuiAppBar } from "@taiga-ui/layout";
-import { TEST_ITEM_CARDS_STH_CATEGORY } from "../../mock";
+import { TUI_BREAKPOINT, TuiLink } from "@taiga-ui/core";
+import { TuiBreadcrumbs, TuiFade } from "@taiga-ui/kit";
 
 @Component({
   styleUrl: "page.less",
   templateUrl: "page.html",
   imports: [
     AppCosmeticItemCardComponent,
+    AppHeroComponent,
+    TuiFade,
     RouterLink,
-    TuiAppBar,
     TuiBreadcrumbs,
-    TuiButton,
     TuiItem,
     TuiLink,
-    AppHeroComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppCosmeticsCategoryPageComponent {
   protected readonly breakpoint = inject(TUI_BREAKPOINT);
-  protected readonly id = input.required<string>();
-  protected readonly categoryName = computed(
-    () => COSMETIC_CATEGORIES[Number(this.id())],
-  );
-  protected readonly items = TEST_ITEM_CARDS_STH_CATEGORY;
+  protected readonly category = input.required<CategoryDto>();
 
-  protected breadcrumbs = [
+  protected readonly mockItems = computed(() => [
     {
-      title: "Разделы косметики",
-      routerLink: "/cosmetic/category",
+      category: this.category().name,
+      desc: "Нежная гелевая маска для лица и шеи обеспечивает мгновенный, ярко-выраженный лифтинг-эффект, усиливающийся по мере высыхания.  Учитывая потребности кожи, маска создает эстетический эффект гладкости и подтянутости, превосходно увлажняет, сокращает морщины и размер пор",
+      id: "1",
+      image_link:
+        "https://leech.ru/upload/pages/ru/0_39628700_1737511654_img.jpg",
+      name: "Маска красоты «Мгновенный лифтинг и увлажнение»",
     },
-  ];
+    {
+      category: this.category().name,
+      desc: "Нежная гелевая маска для лица и шеи обеспечивает мгновенный, ярко-выраженный лифтинг-эффект, усиливающийся по мере высыхания.  Учитывая потребности кожи, маска создает эстетический эффект гладкости и подтянутости, превосходно увлажняет, сокращает морщины и размер пор",
+      id: "2",
+      image_link:
+        "https://leech.ru/upload/pages/ru/0_39628700_1737511654_img.jpg",
+      name: "Маска красоты «Мгновенный лифтинг и увлажнение»",
+    },
+    {
+      category: this.category().name,
+      desc: "Нежная гелевая маска для лица и шеи обеспечивает мгновенный, ярко-выраженный лифтинг-эффект, усиливающийся по мере высыхания.  Учитывая потребности кожи, маска создает эстетический эффект гладкости и подтянутости, превосходно увлажняет, сокращает морщины и размер пор",
+      id: "3",
+      image_link:
+        "https://leech.ru/upload/pages/ru/0_39628700_1737511654_img.jpg",
+      name: "Маска красоты «Мгновенный лифтинг и увлажнение»",
+    },
+    {
+      category: this.category().name,
+      desc: "Нежная гелевая маска для лица и шеи обеспечивает мгновенный, ярко-выраженный лифтинг-эффект, усиливающийся по мере высыхания.  Учитывая потребности кожи, маска создает эстетический эффект гладкости и подтянутости, превосходно увлажняет, сокращает морщины и размер пор",
+      id: "4",
+      image_link:
+        "https://leech.ru/upload/pages/ru/0_39628700_1737511654_img.jpg",
+      name: "Маска красоты «Мгновенный лифтинг и увлажнение»",
+    },
+  ]);
 }

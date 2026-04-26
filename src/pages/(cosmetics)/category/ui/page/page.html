@@ -1,31 +1,18 @@
 <header>
-  @if (breakpoint() !== "mobile") {
-    <tui-breadcrumbs>
-      <a *tuiItem tuiLink routerLink="/cosmetics" i18n>Разделы косметики</a>
-      <strong *tuiItem>
-        {{ categoryName() }}
-      </strong>
-    </tui-breadcrumbs>
-  } @else {
-    <a
-      iconStart="@tui.chevron-left"
-      tuiButton
-      tuiSlot="left"
-      type="button"
-      appearance="outline-grayscale"
-      size="m"
-      routerLink="/cosmetics"
-    >
-      <span i18n>Назад</span>
-    </a>
-  }
+  <tui-breadcrumbs tuiFade>
+    <a *tuiItem tuiLink routerLink="/cosmetics" i18n>Каталог косметики</a>
+    <strong *tuiItem>
+      {{ category().name }}
+    </strong>
+  </tui-breadcrumbs>
 </header>
+
 <main class="app-cosmetic-category">
-  <app-hero [heading]="categoryName()" description="" />
+  <app-hero [heading]="category().name" description="" />
   <div role="list" class="app-cosmetic-category__item-list">
-    @for (item of items; track item.id) {
+    @for (item of mockItems(); track item.id) {
       <app-cosmetics-item-card
-        [routerLink]="['/cosmetics', item.id]"
+        [routerLink]="['/cosmetics/categories/', category().id, item.id]"
         appearance="floating"
         [data]="item"
       />

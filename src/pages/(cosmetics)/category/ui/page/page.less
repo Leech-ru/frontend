@@ -3,10 +3,12 @@
 :host {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-block: 2rem;
+  gap: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+
   @media @tui-mobile {
-    margin-block: 0;
+    gap: 1rem;
   }
 }
 
@@ -16,13 +18,11 @@
   align-items: center;
   gap: 1rem;
   width: 100%;
+
   &__item-list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
     gap: 2rem;
-    @media @tui-mobile {
-      gap: 1rem;
-      grid-template-columns: repeat(2, 1fr);
-    }
   }
 }

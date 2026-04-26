@@ -1,5 +1,4 @@
 import { categoryResolver } from "@/pages/(admin)/(cosmetics)/category";
-import { cosmeticItemResolver } from "@/pages/(cosmetics)/item";
 import { Routes } from "@angular/router";
 import { adminGuard } from "../guards/admin";
 import { authGuard } from "../guards/auth";
@@ -39,16 +38,18 @@ export const routes: Routes = [
             loadComponent: () => import("@/pages/(cosmetics)/catalog"),
           },
           {
-            path: "categories/:id",
+            path: "categories/:categoryId",
             title: $localize`Каталог косметики`,
             loadComponent: () => import("@/pages/(cosmetics)/category"),
-          },
-          {
-            path: ":id",
-            loadComponent: () => import("@/pages/(cosmetics)/item"),
             resolve: {
-              item: cosmeticItemResolver,
+              category: categoryResolver,
             },
+            children: [
+              {
+                path: ":cosmeticId",
+                loadComponent: () => import("@/pages/(cosmetics)/item"),
+              },
+            ],
           },
         ],
       },
@@ -101,7 +102,7 @@ export const routes: Routes = [
                   import("@/pages/(admin)/(cosmetics)/categories"),
               },
               {
-                path: "cosmetics/categories/:id",
+                path: "cosmetics/categories/:categoryId",
                 title: $localize`Категория`,
                 loadComponent: () =>
                   import("@/pages/(admin)/(cosmetics)/category"),

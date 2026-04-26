@@ -19,12 +19,6 @@ export type {
   UpdateCategoryRequestDto,
   UpdateCosmeticsRequestDto,
 } from "./api/types";
-export { COSMETIC_CATEGORIES } from "./config/categories";
-export {
-  getCategoriesCardsFromDto,
-  getCosmeticCardsFromDto,
-  getSelectedCosmeticFromDto,
-} from "./model/cosmetic.converter";
 export type {
   CosmeticCategoryCard,
   CosmeticItem,

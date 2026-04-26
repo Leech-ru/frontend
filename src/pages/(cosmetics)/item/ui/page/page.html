@@ -5,12 +5,12 @@
       <a
         *tuiItem
         tuiLink
-        [routerLink]="['/cosmetics/categories', categoryId()]"
+        [routerLink]="['/cosmetics/categories', category().id]"
       >
-        {{ data().features.category }}
+        {{ category().id }}
       </a>
-      <a *tuiItem tuiLink [routerLink]="['/cosmetics', data().id]">
-        {{ data().name }}
+      <a *tuiItem tuiLink [routerLink]="['/cosmetics', category().id]">
+        {{ category().name }}
       </a>
     </tui-breadcrumbs>
   } @else {
@@ -21,7 +21,7 @@
       type="button"
       appearance="outline-grayscale"
       size="m"
-      [routerLink]="['/cosmetics/categories', categoryId()]"
+      [routerLink]="['/cosmetics/categories', category().id]"
     >
       <span i18n>Назад</span>
     </a>
@@ -30,21 +30,19 @@
 <main class="app-cosmetic-item-content">
   @if (breakpoint() !== "mobile") {
     <div class="app-cosmetic-item-content__img-container">
-      <img [src]="data().image_link" [alt]="data().name" />
+      <img [src]="category().image_id" [alt]="category().name" />
     </div>
     <div class="app-cosmetic-item-content__info">
       <h1 class="tui-text_h4">
-        {{ data().name }}
+        {{ category().name }}
       </h1>
       <app-cosmetic-item-shops />
-      <app-cosmetic-item-accorditions [data]="data()" />
     </div>
   } @else {
-    <h1 class="tui-text_h4">{{ data().name }}</h1>
+    <h1 class="tui-text_h4">{{ category().name }}</h1>
     <div class="app-cosmetic-item-content__img-container">
-      <img [src]="data().image_link" [alt]="data().name" />
+      <img [src]="category().image_id" [alt]="category().name" />
     </div>
     <app-cosmetic-item-shops />
-    <app-cosmetic-item-accorditions [data]="data()" />
   }
 </main>
