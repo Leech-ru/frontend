@@ -1,8 +1,4 @@
-import {
-  CATEGORIES_RESOURCE,
-  CategoryService,
-  getImageUrlById,
-} from "@/entities/cosmetic";
+import { CategoryService, getImageUrlById } from "@/entities/cosmetic";
 import { CosmeticCreateCategoryService } from "@/features/(cosmetic)/create-category";
 import { CosmeticUpdateCategoryService } from "@/features/(cosmetic)/update-category";
 import {
@@ -65,10 +61,8 @@ interface CategoryFormData {
 })
 export class AppCosmeticCategoryFormComponent {
   private readonly categoryService = inject(CategoryService);
-  private readonly categoriesResource = inject(CATEGORIES_RESOURCE);
   private readonly createService = inject(CosmeticCreateCategoryService);
   private readonly updateService = inject(CosmeticUpdateCategoryService);
-  private readonly notifications = inject(TuiNotificationService);
   protected readonly context =
     injectContext<TuiDialogContext<CategoryFormData, CategoryFormData>>();
 
