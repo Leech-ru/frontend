@@ -1,0 +1,19 @@
+@if (isLoading()) {
+  <tui-loader />
+} @else if (doc(); as doc) {
+  <nav class="docs-nav">
+    @for (item of doc.navigation; track item.slug) {
+      <a
+        [routerLink]="['/leech', item.slug === 'index' ? '' : item.slug]"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.slug === 'index' }"
+        tuiLink
+      >
+        {{ item.title }}
+      </a>
+    }
+  </nav>
+  <app-markdown [content]="doc.content" />
+} @else {
+  <p i18n>Документ не найден</p>
+}
