@@ -1,0 +1,24 @@
+<section class="content">
+  @if (isLoading()) {
+    <tui-loader />
+  } @else if (doc(); as doc) {
+    <tui-tabs vertical="start" class="left">
+      @for (item of navItems; track item.slug) {
+        <a
+          tuiTab
+          type="button"
+          [routerLink]="['/leech', item.slug === 'index' ? '' : item.slug]"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: item.slug === 'index' }"
+        >
+          {{ item.title }}
+        </a>
+      }
+    </tui-tabs>
+    <div>
+      <app-markdown [content]="doc.content" />
+    </div>
+  } @else {
+    <p i18n>Документ не найден</p>
+  }
+</section>
