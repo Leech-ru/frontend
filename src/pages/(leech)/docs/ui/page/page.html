@@ -1,19 +1,24 @@
 @if (isLoading()) {
   <tui-loader />
 } @else if (doc(); as doc) {
-  <nav class="docs-nav">
-    @for (item of doc.navigation; track item.slug) {
-      <a
-        [routerLink]="['/leech', item.slug === 'index' ? '' : item.slug]"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: item.slug === 'index' }"
-        tuiLink
-      >
-        {{ item.title }}
-      </a>
-    }
-  </nav>
-  <app-markdown [content]="doc.content" />
+  <section class="leech-docs">
+    <tui-tabs vertical="start" class="leech-docs__nav">
+      @for (item of doc.navigation; track item.slug) {
+        <a
+          tuiTab
+          type="button"
+          [routerLink]="['/leech', item.slug === 'index' ? '' : item.slug]"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: item.slug === 'index' }"
+        >
+          {{ item.title }}
+        </a>
+      }
+    </tui-tabs>
+    <div class="leech-docs__content">
+      <app-markdown [content]="doc.content" />
+    </div>
+  </section>
 } @else {
   <p i18n>Документ не найден</p>
 }

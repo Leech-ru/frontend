@@ -6,6 +6,7 @@ import {
 } from "@angular/core";
 import { ActivatedRoute, RouterLink, RouterLinkActive } from "@angular/router";
 import { TuiLoader } from "@taiga-ui/core";
+import { TuiTabs } from "@taiga-ui/kit";
 import { MarkdownComponent, type LeechDoc } from "@/entities/leech-docs";
 import { LeechDocsService } from "@/entities/leech-docs/api/service";
 
@@ -13,7 +14,13 @@ import { LeechDocsService } from "@/entities/leech-docs/api/service";
   templateUrl: "page.html",
   styleUrl: "page.less",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TuiLoader, RouterLink, RouterLinkActive, MarkdownComponent],
+  imports: [
+    TuiLoader,
+    RouterLink,
+    RouterLinkActive,
+    MarkdownComponent,
+    TuiTabs,
+  ],
 })
 export class AppLeechDocsPageComponent {
   private readonly route = inject(ActivatedRoute);

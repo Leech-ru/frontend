@@ -1,30 +1,37 @@
 :host {
   display: block;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 1rem;
 }
 
-.docs-nav {
+.leech-docs {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--tui-border-normal);
+  gap: 2rem;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-  a {
-    padding: 0.5rem 1rem;
-    border-radius: var(--tui-radius-m);
-    transition: background-color 0.2s ease;
+.leech-docs__nav {
+  min-width: 200px;
+  flex-shrink: 0;
 
-    &:hover {
-      background-color: var(--tui-background-base);
+  :host ::ng-deep {
+    .t-tabs__content {
+      display: flex;
+      flex-direction: column;
     }
 
-    &.active {
-      background-color: var(--tui-primary-bg-hover);
+    a {
+      white-space: nowrap;
+    }
+
+    .active-link {
+      background: var(--tui-primary-bg-hover);
       color: var(--tui-primary);
     }
   }
+}
+
+.leech-docs__content {
+  flex: 1;
+  min-width: 0;
 }
