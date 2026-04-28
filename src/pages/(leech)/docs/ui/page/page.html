@@ -3,7 +3,7 @@
     <tui-loader />
   } @else if (doc(); as doc) {
     <tui-tabs vertical="start" class="left">
-      @for (item of doc.navigation; track item.slug) {
+      @for (item of navItems; track item.slug) {
         <a
           tuiTab
           type="button"
