@@ -24,11 +24,8 @@ export class LeechDocsService {
 
   private async fetchDoc(slug: string): Promise<LeechDoc | null> {
     try {
-      const lang = this.locale?.startsWith("ru") ? "ru" : "en";
       const response = await lastValueFrom(
-        this.http.get(`/content/${lang}/leech/${slug}.md`, {
-          responseType: "text",
-        }),
+        this.http.get(`/content/leech/${slug}.md`, { responseType: "text" }),
       );
 
       const { metadata, content } = this.parseFrontmatter(response as string);

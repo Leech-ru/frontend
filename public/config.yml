@@ -8,7 +8,7 @@ public_folder: "/images"
 collections:
   - name: "leech-docs"
     label: "Раздел о пиявках"
-    folder: "content/ru/leech"
+    folder: "content/leech"
     create: true
     slug: "{{slug}}"
     preview_path: "leech/{{slug}}"
