@@ -2,36 +2,19 @@
   display: block;
 }
 
-.leech-docs {
+.content {
   display: flex;
-  gap: 2rem;
   padding: 1rem;
+  gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.leech-docs__nav {
-  min-width: 200px;
+.left {
   flex-shrink: 0;
-
-  :host ::ng-deep {
-    .t-tabs__content {
-      display: flex;
-      flex-direction: column;
-    }
-
-    a {
-      white-space: nowrap;
-    }
-
-    .active-link {
-      background: var(--tui-primary-bg-hover);
-      color: var(--tui-primary);
-    }
-  }
 }
 
-.leech-docs__content {
-  flex: 1;
-  min-width: 0;
+:host ::ng-deep .active-link {
+  background: var(--tui-primary-bg-hover);
+  color: var(--tui-primary);
 }

@@ -1,8 +1,8 @@
-@if (isLoading()) {
-  <tui-loader />
-} @else if (doc(); as doc) {
-  <section class="leech-docs">
-    <tui-tabs vertical="start" class="leech-docs__nav">
+<section class="content">
+  @if (isLoading()) {
+    <tui-loader />
+  } @else if (doc(); as doc) {
+    <tui-tabs vertical="start" class="left">
       @for (item of doc.navigation; track item.slug) {
         <a
           tuiTab
@@ -15,10 +15,10 @@
         </a>
       }
     </tui-tabs>
-    <div class="leech-docs__content">
+    <div>
       <app-markdown [content]="doc.content" />
     </div>
-  </section>
-} @else {
-  <p i18n>Документ не найден</p>
-}
+  } @else {
+    <p i18n>Документ не найден</p>
+  }
+</section>
