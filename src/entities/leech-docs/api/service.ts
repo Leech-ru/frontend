@@ -1,4 +1,4 @@
-import { Injectable, inject } from "@angular/core";
+import { Injectable, inject, LOCALE_ID } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { marked } from "marked";
 import { lastValueFrom } from "rxjs";
@@ -20,11 +20,15 @@ export interface LeechDoc {
 @Injectable({ providedIn: "root" })
 export class LeechDocsService {
   private readonly http = inject(HttpClient);
+  private readonly locale = inject(LOCALE_ID);
 
   private async fetchDoc(slug: string): Promise<LeechDoc | null> {
     try {
+      const lang = this.locale?.startsWith("ru") ? "ru" : "en";
       const response = await lastValueFrom(
-        this.http.get(`/content/leech/${slug}.md`, { responseType: "text" }),
+        this.http.get(`/content/${lang}/leech/${slug}.md`, {
+          responseType: "text",
+        }),
       );
 
       const { metadata, content } = this.parseFrontmatter(response as string);
