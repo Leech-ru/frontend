@@ -46,7 +46,9 @@
               "src/app/index.less"
             ],
             "server": "src/app/entry.server.ts",
-            "prerender": true,
+            "prerender": {
+              "routesFile": "src/app/prerender-routes.txt"
+            },
             "ssr": {
               "entry": "src/app/entry.ssr.ts"
             },

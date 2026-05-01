@@ -1,4 +1,5 @@
 import { categoryResolver } from "@/pages/(admin)/(cosmetics)/category";
+import { leechDocResolver } from "@/pages/(leech)/docs";
 import { cosmeticItemResolver } from "@/pages/(cosmetics)/item";
 import { Routes } from "@angular/router";
 import { adminGuard } from "../guards/admin";
@@ -20,6 +21,9 @@ export const routes: Routes = [
           {
             path: "",
             title: $localize`О пиявке`,
+            resolve: {
+              resolvedDoc: leechDocResolver,
+            },
             loadComponent: () => import("@/pages/(leech)/docs"),
           },
           {
@@ -31,6 +35,9 @@ export const routes: Routes = [
           {
             path: ":slug",
             title: $localize`О пиявке`,
+            resolve: {
+              resolvedDoc: leechDocResolver,
+            },
             loadComponent: () => import("@/pages/(leech)/docs"),
           },
         ],

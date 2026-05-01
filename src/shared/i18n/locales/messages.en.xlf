@@ -82,6 +82,10 @@
         <source>Превью</source>
         <target>Preview</target>
       </trans-unit>
+      <trans-unit id="8447765798893555097" datatype="html">
+        <source> Такой страницы о пиявках нет. Выберите один из доступных разделов. </source>
+        <target state="new"> Такой страницы о пиявках нет. Выберите один из доступных разделов. </target>
+      </trans-unit>
       <trans-unit id="8462831321700048608" datatype="html">
         <source>Перетащите изображение или</source>
         <target>Drag image or</target>
@@ -182,6 +186,10 @@
         <source>Слишком длинный адрес электронной почты</source>
         <target>Email address too long</target>
       </trans-unit>
+      <trans-unit id="1200856655935709027" datatype="html">
+        <source>Крупный план медицинской пиявки в лабораторной чашке</source>
+        <target state="new">Крупный план медицинской пиявки в лабораторной чашке</target>
+      </trans-unit>
       <trans-unit id="122628350067133961" datatype="html">
         <source>Введите имя</source>
         <target>Enter name</target>
@@ -193,6 +201,10 @@
       <trans-unit id="1548363601965601425" datatype="html">
         <source>Слишком короткий пароль</source>
         <target>Password too short</target>
+      </trans-unit>
+      <trans-unit id="872838817499520360" datatype="html">
+        <source>Биохимия</source>
+        <target state="new">Биохимия</target>
       </trans-unit>
       <trans-unit id="8803964505625968820" datatype="html">
         <source>Слишком длинный пароль</source>
@@ -210,9 +222,17 @@
         <source>Модератор</source>
         <target>Moderator</target>
       </trans-unit>
+      <trans-unit id="6528310693857712129" datatype="html">
+        <source>Биологически активные вещества секрета слюнных желез и их роль в комплексном действии медицинской пиявки.</source>
+        <target state="new">Биологически активные вещества секрета слюнных желез и их роль в комплексном действии медицинской пиявки.</target>
+      </trans-unit>
       <trans-unit id="5430822584007701585" datatype="html">
         <source>Админ</source>
         <target>Admin</target>
+      </trans-unit>
+      <trans-unit id="4515065270971345014" datatype="html">
+        <source> Перейдите к форме заказа: там можно выбрать размер, количество и оформить доставку. </source>
+        <target state="new"> Перейдите к форме заказа: там можно выбрать размер, количество и оформить доставку. </target>
       </trans-unit>
       <trans-unit id="4520881491484278345" datatype="html">
         <source>Суперадмин</source>
@@ -237,6 +257,10 @@
       <trans-unit id="6420416992149088986" datatype="html">
         <source>Пожалуйста, укажите корректную электронную почту</source>
         <target>Please enter a valid email</target>
+      </trans-unit>
+      <trans-unit id="1631669351641896289" datatype="html">
+        <source>Правила подготовки статей для сборника «Гирудотерапия и гирудофармакотерапия»: структура, требования и контакты.</source>
+        <target state="new">Правила подготовки статей для сборника «Гирудотерапия и гирудофармакотерапия»: структура, требования и контакты.</target>
       </trans-unit>
       <trans-unit id="1648693449298004238" datatype="html">
         <source>Пожалуйста, укажите адрес</source>
@@ -286,6 +310,10 @@
         <source>Заказ успешно оформлен</source>
         <target>Order successfully placed</target>
       </trans-unit>
+      <trans-unit id="1350155090853880722" datatype="html">
+        <source>О медицинской пиявке</source>
+        <target state="new">О медицинской пиявке</target>
+      </trans-unit>
       <trans-unit id="3315212219783946137" datatype="html">
         <source>Обработка заказов осуществляется с понедельника по пятницу с 08:30 до 17:00.</source>
         <target>Order processing is done Monday through Friday from 08:30 to 17:00.</target>
@@ -322,6 +350,10 @@
         <source>Логотип</source>
         <target>Logo</target>
       </trans-unit>
+      <trans-unit id="3656310480394778664" datatype="html">
+        <source>Раздел не найден</source>
+        <target state="new">Раздел не найден</target>
+      </trans-unit>
       <trans-unit id="3661027753936207034" datatype="html">
         <source> Мы отправили электронное письмо с деталями заказа на <x id="START_LINK" ctype="x-a" equiv-text="&lt;a tuiLink [href]=&quot;`mailto:${form.form.contact.email().value()}`&quot;&gt;"/> <x id="INTERPOLATION" equiv-text="{{ form.form.contact.email().value() }}"/> <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
         <target state="new"> We sent an email with order details to <x id="START_LINK" ctype="x-a" equiv-text="&lt;a tuiLink [href]=&quot;`mailto:${form.email.value}`&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ form.email.value }}"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>
@@ -329,6 +361,14 @@
       <trans-unit id="5028993787250931028" datatype="html">
         <source> Скоро наш менеджер свяжется с вами по телефону или электронной почте для подтверждения и уточнения вашего заказа. </source>
         <target> Soon our manager will contact you by phone or email to confirm and clarify your order. </target>
+      </trans-unit>
+      <trans-unit id="3502499554685930451" datatype="html">
+        <source>История гирудотерапии, основные механизмы действия медицинской пиявки и практические советы по безопасному выбору.</source>
+        <target state="new">История гирудотерапии, основные механизмы действия медицинской пиявки и практические советы по безопасному выбору.</target>
+      </trans-unit>
+      <trans-unit id="3513486612278330192" datatype="html">
+        <source>Как отличить контролируемую медицинскую пиявку от сомнительного материала и почему документы важнее субъективной активности.</source>
+        <target state="new">Как отличить контролируемую медицинскую пиявку от сомнительного материала и почему документы важнее субъективной активности.</target>
       </trans-unit>
       <trans-unit id="3534829722487150375" datatype="html">
         <source>Электронная почта</source>
@@ -365,6 +405,10 @@
       <trans-unit id="7277681342613927293" datatype="html">
         <source>Создайте первую категорию</source>
         <target>Create your first category</target>
+      </trans-unit>
+      <trans-unit id="7287679851590002906" datatype="html">
+        <source>Нужны пиявки для заказа?</source>
+        <target state="new">Нужны пиявки для заказа?</target>
       </trans-unit>
       <trans-unit id="2578121595488504369" datatype="html">
         <source>Создать категорию</source>
@@ -406,9 +450,17 @@
         <source>В этой категории пока нет товаров</source>
         <target>There are no products in this category yet</target>
       </trans-unit>
+      <trans-unit id="3986332771836657137" datatype="html">
+        <source> Читать раздел </source>
+        <target state="new"> Читать раздел </target>
+      </trans-unit>
       <trans-unit id="4834964035614275477" datatype="html">
         <source>Редактирование категории</source>
         <target>Edit Category</target>
+      </trans-unit>
+      <trans-unit id="4861719110330168148" datatype="html">
+        <source>Биохимия пиявки</source>
+        <target state="new">Биохимия пиявки</target>
       </trans-unit>
       <trans-unit id="6800578057634566697" datatype="html">
         <source>Вы уверены, что хотите удалить эту категорию?</source>
@@ -418,13 +470,25 @@
         <source>Отмена</source>
         <target>Cancel</target>
       </trans-unit>
+      <trans-unit id="6583454129538946765" datatype="html">
+        <source>Дикая пиявка</source>
+        <target state="new">Дикая пиявка</target>
+      </trans-unit>
       <trans-unit id="2421429539199516808" datatype="html">
         <source>Удалить категорию?</source>
         <target>Delete category?</target>
       </trans-unit>
+      <trans-unit id="5974968280048532077" datatype="html">
+        <source>Осторожно: дикая пиявка</source>
+        <target state="new">Осторожно: дикая пиявка</target>
+      </trans-unit>
       <trans-unit id="5978865326050913026" datatype="html">
         <source>Удаление категории…</source>
         <target>Deleting category…</target>
+      </trans-unit>
+      <trans-unit id="9100141252795910241" datatype="html">
+        <source> Материалы о качестве, безопасности и научной базе медицинской пиявки </source>
+        <target state="new"> Материалы о качестве, безопасности и научной базе медицинской пиявки </target>
       </trans-unit>
       <trans-unit id="9160934205853432244" datatype="html">
         <source>Имя</source>
@@ -449,6 +513,14 @@
       <trans-unit id="925091968260703217" datatype="html">
         <source>Поиск</source>
         <target>Search</target>
+      </trans-unit>
+      <trans-unit id="7077362617811296832" datatype="html">
+        <source>Медицинские пиявки в чистой производственной среде</source>
+        <target state="new">Медицинские пиявки в чистой производственной среде</target>
+      </trans-unit>
+      <trans-unit id="708067396194141798" datatype="html">
+        <source>Медицинские пиявки как объект научных публикаций</source>
+        <target state="new">Медицинские пиявки как объект научных публикаций</target>
       </trans-unit>
       <trans-unit id="7091899213589384609" datatype="html">
         <source>Нет результатов</source>
@@ -514,6 +586,10 @@
         <source> Оформить заказ на <x id="INTERPOLATION" equiv-text="{{ this.form.price() | tuiFormatNumber }}"/> ₽ </source>
         <target state="new"> Place order for <x id="INTERPOLATION" equiv-text="{{ this.form.price | tuiFormatNumber }}"/> ₽ </target>
       </trans-unit>
+      <trans-unit id="7340596611078377174" datatype="html">
+        <source>Содержание</source>
+        <target state="new">Содержание</target>
+      </trans-unit>
       <trans-unit id="3055438465359413988" datatype="html">
         <source>Характеристики</source>
         <target>Characteristics</target>
@@ -545,6 +621,10 @@
       <trans-unit id="7418873719023608206" datatype="html">
         <source>Заключение эксперта по СОУТ</source>
         <target>Expert Opinion on SWA</target>
+      </trans-unit>
+      <trans-unit id="8060440459112004546" datatype="html">
+        <source>В сборник</source>
+        <target state="new">В сборник</target>
       </trans-unit>
       <trans-unit id="8090151396242328913" datatype="html">
         <source>Перечень рекомендуемых мероприятий по улучшению условий труда</source>
@@ -578,6 +658,14 @@
         <source>Пожалуйста, укажите корректное ФИО (2-3 слова)</source>
         <target state="new">Please, specify correct full name (2-3 words)</target>
       </trans-unit>
+      <trans-unit id="7515797033499637455" datatype="html">
+        <source>Литература</source>
+        <target state="new">Литература</target>
+      </trans-unit>
+      <trans-unit id="7538987533696172295" datatype="html">
+        <source>Медицинские пиявки на губчатом материале для сравнения происхождения и качества</source>
+        <target state="new">Медицинские пиявки на губчатом материале для сравнения происхождения и качества</target>
+      </trans-unit>
       <trans-unit id="991097183380672560" datatype="html">
         <source>Фотографии</source>
         <target>Photos</target>
@@ -602,6 +690,10 @@
         <source>Косметические средства линии BAA содержат секрет слюнных желез медицинских пиявок, полученный ручным способом</source>
         <target>BAA cosmetics line contains secretion from salivary glands of medical leeches obtained manually</target>
       </trans-unit>
+      <trans-unit id="3036893441375384248" datatype="html">
+        <source> Энциклопедия центра </source>
+        <target state="new"> Энциклопедия центра </target>
+      </trans-unit>
       <trans-unit id="195122993228771437" datatype="html">
         <source>Посмотреть</source>
         <target>View</target>
@@ -609,6 +701,10 @@
       <trans-unit id="4824002681320368431" datatype="html">
         <source>О нашем центре</source>
         <target>About Our Center</target>
+      </trans-unit>
+      <trans-unit id="4826436743706914852" datatype="html">
+        <source>Подборка научных публикаций и материалов о гирудотерапии, гемостазе и биохимии медицинских пиявок.</source>
+        <target state="new">Подборка научных публикаций и материалов о гирудотерапии, гемостазе и биохимии медицинских пиявок.</target>
       </trans-unit>
       <trans-unit id="7702715873841021052" datatype="html">
         <source>Обеспечиваем высокое качество продукции круглый год, в наличии любое количество пиявки выращенное в искусственно созданных условиях</source>
@@ -629,6 +725,10 @@
       <trans-unit id="2119405054103084197" datatype="html">
         <source> Открыть схему проезда </source>
         <target> Open Directions </target>
+      </trans-unit>
+      <trans-unit id="2178180146035976143" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ doc.readingTimeMinutes }}"/> мин чтения</source>
+        <target state="new"><x id="INTERPOLATION" equiv-text="{{ doc.readingTimeMinutes }}"/> мин чтения</target>
       </trans-unit>
       <trans-unit id="79635371848451174" datatype="html">
         <source>15 минут</source>
@@ -657,10 +757,6 @@
       <trans-unit id="2621837683109030060" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {Далее} one {Необходима ещё <x id="INTERPOLATION"/> пиявка} few {Необходимо ещё <x id="INTERPOLATION"/> пиявки} other {Необходимо ещё <x id="INTERPOLATION"/> пиявок}}</source>
         <target state="new">{VAR_PLURAL, plural, =0 {Next} =1 {Need <x id="INTERPOLATION"/> more leech} =2 {Need <x id="INTERPOLATION"/> more leeches} other {Need <x id="INTERPOLATION"/> more leeches}}</target>
-      </trans-unit>
-      <trans-unit id="8913597830156792037" datatype="html">
-        <source>Документ не найден</source>
-        <target>Document not found</target>
       </trans-unit>
       <trans-unit id="8920462970382528209" datatype="html">
         <source>Готовы сделать заказ?</source>
@@ -742,6 +838,10 @@
         <source>Выйти</source>
         <target>Sign Out</target>
       </trans-unit>
+      <trans-unit id="906459493908832789" datatype="html">
+        <source> Заказать пиявок </source>
+        <target state="new"> Заказать пиявок </target>
+      </trans-unit>
       <trans-unit id="5850421844328809052" datatype="html">
         <source>Малые пиявки</source>
         <target>Small Leeches</target>
@@ -782,6 +882,10 @@
         <source>Транспортировка не более 5 суток</source>
         <target>Transportation for no more than 5 days</target>
       </trans-unit>
+      <trans-unit id="4598497862079539945" datatype="html">
+        <source>Разделы о пиявках</source>
+        <target state="new">Разделы о пиявках</target>
+      </trans-unit>
       <trans-unit id="444488073512897152" datatype="html">
         <source>Торф</source>
         <target>Peat</target>
@@ -793,6 +897,10 @@
       <trans-unit id="6969288561406407698" datatype="html">
         <source> шт.</source>
         <target> pcs.</target>
+      </trans-unit>
+      <trans-unit id="2834874510033912437" datatype="html">
+        <source> Перейти к заказу </source>
+        <target state="new"> Перейти к заказу </target>
       </trans-unit>
       <trans-unit id="2848577262779269958" datatype="html">
         <source> шт. за</source>

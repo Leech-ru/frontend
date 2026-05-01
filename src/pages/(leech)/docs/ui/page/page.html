@@ -1,24 +1,162 @@
-<section class="content">
-  @if (isLoading()) {
-    <tui-loader />
-  } @else if (doc(); as doc) {
-    <tui-tabs vertical="start" class="left">
+<section class="app-leech-docs">
+  @if (doc(); as doc) {
+    <header class="app-leech-docs-hero">
+      <div class="app-leech-docs-hero__content">
+        <span class="app-leech-docs-hero__eyebrow" i18n>
+          Энциклопедия центра
+        </span>
+
+        <h1>{{ doc.title }}</h1>
+
+        <p>{{ doc.description }}</p>
+
+        <div class="app-leech-docs-hero__actions">
+          <a tuiButton size="m" [routerLink]="orderLink" i18n>
+            Заказать пиявок
+          </a>
+          <a
+            tuiButton
+            appearance="outline"
+            size="m"
+            [routerLink]="getDocLink(currentSlug())"
+            fragment="article"
+            i18n
+          >
+            Читать раздел
+          </a>
+        </div>
+      </div>
+
+      <figure class="app-leech-docs-hero__image">
+        <img
+          loading="eager"
+          width="560"
+          height="360"
+          [src]="doc.image"
+          [alt]="doc.imageAlt"
+        />
+        <figcaption i18n>
+          Материалы о качестве, безопасности и научной базе медицинской пиявки
+        </figcaption>
+      </figure>
+    </header>
+
+    <nav
+      class="app-leech-docs-mobile-nav"
+      aria-label="Разделы о пиявках"
+      i18n-aria-label
+    >
       @for (item of navItems; track item.slug) {
         <a
-          tuiTab
-          type="button"
-          [routerLink]="['/leech', item.slug === 'index' ? '' : item.slug]"
-          routerLinkActive="active-link"
-          [routerLinkActiveOptions]="{ exact: item.slug === 'index' }"
+          class="app-leech-docs-mobile-nav__item"
+          [class.app-leech-docs-mobile-nav__item_active]="
+            item.slug === currentSlug()
+          "
+          [routerLink]="getDocLink(item.slug)"
         >
-          {{ item.title }}
+          {{ item.navTitle }}
         </a>
       }
-    </tui-tabs>
-    <div>
-      <app-markdown [content]="doc.content" />
+    </nav>
+
+    <div class="app-leech-docs__layout">
+      <aside class="app-leech-docs-section-nav" aria-label="Навигация раздела">
+        <h2 i18n>Разделы</h2>
+
+        <nav>
+          @for (item of navItems; track item.slug) {
+            <a
+              class="app-leech-docs-section-nav__item"
+              [class.app-leech-docs-section-nav__item_active]="
+                item.slug === currentSlug()
+              "
+              [routerLink]="getDocLink(item.slug)"
+              routerLinkActive="app-leech-docs-section-nav__item_active"
+              [routerLinkActiveOptions]="{ exact: item.slug === 'index' }"
+            >
+              <tui-icon [icon]="item.icon" />
+              <span>
+                <strong>{{ item.navTitle }}</strong>
+                <small>{{ item.description }}</small>
+              </span>
+            </a>
+          }
+        </nav>
+      </aside>
+
+      <article id="article" class="app-leech-docs-article">
+        <header class="app-leech-docs-article__meta">
+          <span> {{ activeIndex() + 1 }} / {{ navItems.length }} </span>
+          <span i18n>{{ doc.readingTimeMinutes }} мин чтения</span>
+        </header>
+
+        <app-markdown [content]="doc.content" />
+
+        <footer class="app-leech-docs-article__footer">
+          @if (previousDoc(); as previousDoc) {
+            <a tuiLink [routerLink]="getDocLink(previousDoc.slug)">
+              <tui-icon icon="@tui.arrow-left" />
+              <span>{{ previousDoc.navTitle }}</span>
+            </a>
+          }
+
+          @if (nextDoc(); as nextDoc) {
+            <a tuiLink [routerLink]="getDocLink(nextDoc.slug)">
+              <span>{{ nextDoc.navTitle }}</span>
+              <tui-icon icon="@tui.arrow-right" />
+            </a>
+          }
+        </footer>
+      </article>
+
+      <aside class="app-leech-docs-aside">
+        @if (doc.headings.length) {
+          <nav class="app-leech-docs-toc" aria-label="Содержание статьи">
+            <h2 i18n>Содержание</h2>
+
+            @for (heading of doc.headings; track heading.id) {
+              <a
+                tuiLink
+                [routerLink]="getDocLink(currentSlug())"
+                [fragment]="heading.id"
+              >
+                {{ heading.title }}
+              </a>
+            }
+          </nav>
+        }
+
+        <div class="app-leech-docs-help">
+          <tui-icon icon="@tui.circle-help" />
+          <h2 i18n>Нужны пиявки для заказа?</h2>
+          <p i18n>
+            Перейдите к форме заказа: там можно выбрать размер, количество и
+            оформить доставку.
+          </p>
+          <a tuiButton size="s" [routerLink]="orderLink" i18n>
+            Перейти к заказу
+          </a>
+        </div>
+      </aside>
     </div>
   } @else {
-    <p i18n>Документ не найден</p>
+    <div class="app-leech-docs-not-found">
+      <h1 i18n>Раздел не найден</h1>
+      <p i18n>
+        Такой страницы о пиявках нет. Выберите один из доступных разделов.
+      </p>
+
+      <nav aria-label="Разделы о пиявках" i18n-aria-label>
+        @for (item of navItems; track item.slug) {
+          <a
+            tuiButton
+            appearance="outline"
+            [routerLink]="getDocLink(item.slug)"
+          >
+            {{ item.navTitle }}
+          </a>
+        }
+      </nav>
+    </div>
   }
 </section>

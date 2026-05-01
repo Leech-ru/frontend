@@ -1,51 +1,63 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
-  signal,
+  input,
 } from "@angular/core";
-import { ActivatedRoute, RouterLink, RouterLinkActive } from "@angular/router";
-import { TuiLoader } from "@taiga-ui/core";
-import { TuiTabs } from "@taiga-ui/kit";
-import { MarkdownComponent, type LeechDoc } from "@/entities/leech-docs";
-import { LeechDocsService } from "@/entities/leech-docs/api/service";
-
-const NAV_ITEMS = [
-  { title: "О пиявке", slug: "index" },
-  { title: "Осторожно — дикая пиявка", slug: "wild" },
-  { title: "Биохимия пиявки", slug: "biochemistry" },
-  { title: "Литература", slug: "references" },
-  { title: "В сборник", slug: "collection" },
-];
+import { RouterLink, RouterLinkActive } from "@angular/router";
+import { TuiButton, TuiIcon, TuiLink } from "@taiga-ui/core";
+import {
+  DEFAULT_LEECH_DOC_SLUG,
+  MarkdownComponent,
+  type LeechDoc,
+  type LeechDocMeta,
+  LeechDocsService,
+} from "@/entities/leech-docs";
 
 @Component({
   templateUrl: "page.html",
   styleUrl: "page.less",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    TuiLoader,
+    MarkdownComponent,
     RouterLink,
     RouterLinkActive,
-    MarkdownComponent,
-    TuiTabs,
+    TuiButton,
+    TuiIcon,
+    TuiLink,
   ],
 })
 export class AppLeechDocsPageComponent {
-  private readonly route = inject(ActivatedRoute);
   private readonly docsService = inject(LeechDocsService);
 
-  protected readonly navItems = NAV_ITEMS;
-  protected doc = signal<LeechDoc | null>(null);
-  protected isLoading = signal(true);
+  public readonly slug = input<string>(DEFAULT_LEECH_DOC_SLUG);
+  public readonly resolvedDoc = input<LeechDoc | null>(null);
 
-  constructor() {
-    this.loadDoc();
+  protected readonly navItems = this.docsService.docs;
+  protected readonly orderLink = "/leech/order";
+  protected readonly doc = computed(() => this.resolvedDoc());
+  protected readonly currentSlug = computed(
+    () => this.doc()?.slug ?? this.slug() ?? DEFAULT_LEECH_DOC_SLUG,
+  );
+
+  protected readonly activeIndex = computed(() =>
+    this.navItems.findIndex((item) => item.slug === this.currentSlug()),
+  );
+
+  protected readonly previousDoc = computed(() =>
+    this.getSiblingDoc(this.activeIndex() - 1),
+  );
+
+  protected readonly nextDoc = computed(() =>
+    this.getSiblingDoc(this.activeIndex() + 1),
+  );
+
+  protected getDocLink(slug: string): readonly string[] {
+    return slug === DEFAULT_LEECH_DOC_SLUG ? ["/leech"] : ["/leech", slug];
   }
 
-  private async loadDoc() {
-    const slug = this.route.snapshot.paramMap.get("slug") || "index";
-    const doc = await this.docsService.getDoc(slug);
-    this.doc.set(doc);
-    this.isLoading.set(false);
+  private getSiblingDoc(index: number): LeechDocMeta | null {
+    return this.navItems[index] ?? null;
   }
 }

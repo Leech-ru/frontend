@@ -1,17 +1,26 @@
+local_backend: true
+
 backend:
-  name: git-gateway
+  name: github
+  repo: Leech-ru/frontend
   branch: main
 
-media_folder: "public/images"
-public_folder: "/images"
+media_folder: "public/images/leech"
+public_folder: "/images/leech"
 
 collections:
   - name: "leech-docs"
-    label: "Раздел о пиявках"
+    label: "Пиявки — RU"
     folder: "content/leech"
+    extension: "md"
+    format: "frontmatter"
     create: true
     slug: "{{slug}}"
     preview_path: "leech/{{slug}}"
+    identifier_field: "title"
+    summary: "{{title}} — {{slug}}"
+    editor:
+      preview: false
     fields:
       - { label: "Заголовок", name: "title", widget: "string" }
       - { label: "Slug", name: "slug", widget: "string" }
@@ -22,3 +31,25 @@ collections:
           required: false,
         }
       - { label: "Содержимое", name: "body", widget: "markdown" }
+  - name: "leech-docs-en"
+    label: "Пиявки — EN"
+    folder: "content/en/leech"
+    extension: "md"
+    format: "frontmatter"
+    create: true
+    slug: "{{slug}}"
+    preview_path: "leech/{{slug}}"
+    identifier_field: "title"
+    summary: "{{title}} — {{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - {
+          label: "Description (SEO)",
+          name: "description",
+          widget: "string",
+          required: false,
+        }
+      - { label: "Body", name: "body", widget: "markdown" }
