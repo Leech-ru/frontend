@@ -886,6 +886,30 @@
         <source>Разделы о пиявках</source>
         <target state="new">Разделы о пиявках</target>
       </trans-unit>
+      <trans-unit id="2438321307555293815" datatype="html">
+        <source>Для кого</source>
+        <target>Audience</target>
+      </trans-unit>
+      <trans-unit id="8338956869985549222" datatype="html">
+        <source>частные покупатели, клиники и опт</source>
+        <target>private buyers, clinics and wholesale</target>
+      </trans-unit>
+      <trans-unit id="2185261125653354863" datatype="html">
+        <source>Что важно</source>
+        <target>What matters</target>
+      </trans-unit>
+      <trans-unit id="3533832684221970057" datatype="html">
+        <source>происхождение, размер и упаковка</source>
+        <target>origin, size and packaging</target>
+      </trans-unit>
+      <trans-unit id="2909460016317258216" datatype="html">
+        <source>Как заказать</source>
+        <target>How to order</target>
+      </trans-unit>
+      <trans-unit id="7826029527670524805" datatype="html">
+        <source>выберите количество, затем доставку</source>
+        <target>choose quantity, then delivery</target>
+      </trans-unit>
       <trans-unit id="444488073512897152" datatype="html">
         <source>Торф</source>
         <target>Peat</target>
@@ -901,6 +925,10 @@
       <trans-unit id="2834874510033912437" datatype="html">
         <source> Перейти к заказу </source>
         <target state="new"> Перейти к заказу </target>
+      </trans-unit>
+      <trans-unit id="6353218330222443014" datatype="html">
+        <source> Перейти к статье </source>
+        <target> Go to article </target>
       </trans-unit>
       <trans-unit id="2848577262779269958" datatype="html">
         <source> шт. за</source>

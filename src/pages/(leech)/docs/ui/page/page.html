@@ -11,18 +11,23 @@
         <p>{{ doc.description }}</p>
 
         <div class="app-leech-docs-hero__actions">
-          <a tuiButton size="m" [routerLink]="orderLink" i18n>
-            Заказать пиявок
+          <a
+            tuiButton
+            size="m"
+            [href]="getFragmentHref('article')"
+            (click)="scrollToFragment($event, 'article')"
+            i18n
+          >
+            Перейти к статье
           </a>
           <a
             tuiButton
             appearance="outline"
             size="m"
-            [routerLink]="getDocLink(currentSlug())"
-            fragment="article"
+            [routerLink]="orderLink"
             i18n
           >
-            Читать раздел
+            Заказать пиявок
           </a>
         </div>
       </div>
@@ -35,56 +40,32 @@
           [src]="doc.image"
           [alt]="doc.imageAlt"
         />
-        <figcaption i18n>
-          Материалы о качестве, безопасности и научной базе медицинской пиявки
-        </figcaption>
       </figure>
     </header>
 
-    <nav
-      class="app-leech-docs-mobile-nav"
-      aria-label="Разделы о пиявках"
-      i18n-aria-label
+    <tui-tabs
+      class="app-leech-docs-tabs"
+      tuiFade
+      [activeItemIndex]="activeIndex()"
     >
       @for (item of navItems; track item.slug) {
         <a
-          class="app-leech-docs-mobile-nav__item"
-          [class.app-leech-docs-mobile-nav__item_active]="
-            item.slug === currentSlug()
-          "
+          tuiTab
+          #tab
+          [iconStart]="item.icon"
           [routerLink]="getDocLink(item.slug)"
+          routerLinkActive
+          [routerLinkActiveOptions]="{ exact: item.slug === 'index' }"
         >
           {{ item.navTitle }}
         </a>
       }
-    </nav>
+    </tui-tabs>
 
     <div class="app-leech-docs__layout">
-      <aside class="app-leech-docs-section-nav" aria-label="Навигация раздела">
-        <h2 i18n>Разделы</h2>
+      <article class="app-leech-docs-article">
+        <span id="article" class="app-leech-docs-anchor"></span>
 
-        <nav>
-          @for (item of navItems; track item.slug) {
-            <a
-              class="app-leech-docs-section-nav__item"
-              [class.app-leech-docs-section-nav__item_active]="
-                item.slug === currentSlug()
-              "
-              [routerLink]="getDocLink(item.slug)"
-              routerLinkActive="app-leech-docs-section-nav__item_active"
-              [routerLinkActiveOptions]="{ exact: item.slug === 'index' }"
-            >
-              <tui-icon [icon]="item.icon" />
-              <span>
-                <strong>{{ item.navTitle }}</strong>
-                <small>{{ item.description }}</small>
-              </span>
-            </a>
-          }
-        </nav>
-      </aside>
-
-      <article id="article" class="app-leech-docs-article">
         <header class="app-leech-docs-article__meta">
           <span> {{ activeIndex() + 1 }} / {{ navItems.length }} </span>
           <span i18n>{{ doc.readingTimeMinutes }} мин чтения</span>
@@ -117,26 +98,14 @@
             @for (heading of doc.headings; track heading.id) {
               <a
                 tuiLink
-                [routerLink]="getDocLink(currentSlug())"
-                [fragment]="heading.id"
+                [href]="getFragmentHref(heading.id)"
+                (click)="scrollToFragment($event, heading.id)"
               >
                 {{ heading.title }}
               </a>
             }
           </nav>
         }
-
-        <div class="app-leech-docs-help">
-          <tui-icon icon="@tui.circle-help" />
-          <h2 i18n>Нужны пиявки для заказа?</h2>
-          <p i18n>
-            Перейдите к форме заказа: там можно выбрать размер, количество и
-            оформить доставку.
-          </p>
-          <a tuiButton size="s" [routerLink]="orderLink" i18n>
-            Перейти к заказу
-          </a>
-        </div>
       </aside>
     </div>
   } @else {

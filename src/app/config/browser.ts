@@ -31,7 +31,10 @@ export const browserConfig: ApplicationConfig = {
     provideRouter(
       routes,
       withRouterConfig({ paramsInheritanceStrategy: "always" }),
-      withInMemoryScrolling({ scrollPositionRestoration: "top" }),
+      withInMemoryScrolling({
+        anchorScrolling: "enabled",
+        scrollPositionRestoration: "top",
+      }),
       withComponentInputBinding(),
     ),
     provideHttpClient(withFetch(), withInterceptors([authRefreshInterceptor])),

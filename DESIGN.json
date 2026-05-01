@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-01T00:00:00+03:00",
+  "title": "Design System: Leech.ru Frontend",
+  "extensions": {
+    "colorMeta": {
+      "action-olive": {
+        "role": "primary",
+        "displayName": "Action Olive",
+        "canonical": "#706900",
+        "tonalRamp": ["#f4f1cf", "#918700", "#706900", "#514c00"]
+      },
+      "leech-text-deep": {
+        "role": "neutral",
+        "displayName": "Leech Deep Text",
+        "canonical": "#203124",
+        "tonalRamp": ["#465247", "#344236", "#203124"]
+      }
+    },
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Main product and leech editorial headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Long-form Russian content and explanatory copy."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Tabs, metadata, compact controls."
+      }
+    },
+    "shadows": [
+      {
+        "name": "leech-hero-soft",
+        "value": "0 1.5rem 4rem rgba(27, 43, 31, 0.08)",
+        "purpose": "Large leech editorial hero panels only."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-transition",
+        "value": "150ms-250ms ease-out",
+        "purpose": "Product state feedback, not decorative choreography."
+      }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "Taiga @tui-mobile" },
+      { "name": "tablet", "value": "Taiga @tui-tablet" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Product Tabs",
+      "kind": "nav",
+      "refersTo": "tabs-product",
+      "description": "Horizontal Taiga tabs used for admin and leech section navigation.",
+      "html": "<tui-tabs tuiFade><a tuiTab>О пиявке</a><a tuiTab>Биохимия</a></tui-tabs>",
+      "css": "tui-tabs { box-shadow: none; margin-bottom: -1px; margin-inline: -1.5rem; padding-inline: 1.5rem; } [tuiTab] { scroll-margin-inline: 1.5rem; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Calm Clinical Shelf",
+    "overview": "A reliable medical product interface with natural context, consistent Taiga UI patterns, and enough room for serious text.",
+    "keyCharacteristics": [
+      "Taiga UI first",
+      "Restrained olive action color",
+      "Readable long-form content",
+      "No esoteric or marketplace cues"
+    ],
+    "rules": [
+      {
+        "name": "The One Accent Rule",
+        "body": "Olive marks action, current position, and small trust signals.",
+        "section": "colors"
+      },
+      {
+        "name": "The Readability Rule",
+        "body": "Long article text gets the widest practical column before decoration.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "Do use Taiga UI patterns before custom components.",
+      "Do keep leech article pages wide on desktop."
+    ],
+    "donts": [
+      "Don't make the interface look like эзотерика or miracle medicine.",
+      "Don't use marketplace discount and urgency patterns.",
+      "Don't create separate tab patterns when tui-tabs fits."
+    ]
+  }
+}
